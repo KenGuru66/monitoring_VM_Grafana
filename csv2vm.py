@@ -4,7 +4,7 @@
 
 Скрипт читает экспортированные данные из Huawei OceanStor и загружает их
 в VictoriaMetrics в формате Prometheus. Имя файла используется как значение
-лейбла 'array' (например, 2102353TJ****100020.csv → array="2102353TJ****100020").
+лейбла 'array' (например, 2102353TJWF****00020.csv → array="2102353TJWF****00020").
 
 Формат входных данных (TSV/CSV с разделителями: табуляция, точка с запятой, запятая):
     Controller;KV CPU Usage (%);0A;85;2025-09-22T00:05:00Z;1758488700.0
@@ -17,7 +17,7 @@
     Колонка 5: временная метка Unix timestamp в секундах (используется)
 
 Формат выходных данных (Prometheus exposition format):
-    huawei_kv_cpu_usage_percent{array="2102353TJWFSP3100020",controller="0A"} 85 1758488700000
+    huawei_kv_cpu_usage_percent{array="2102353TJWF****00020",controller="0A"} 85 1758488700000
 """
 
 import argparse
@@ -81,7 +81,7 @@ def row_to_prom(row: list, array_sn: str) -> str:
         ['Controller', 'KV CPU Usage (%)', '0A', '85', '2025-09-22T00:05:00Z', '1758488700.0']
     
     Выходная строка:
-        huawei_kv_cpu_usage_percent{array="2102353TJWFSP3100020",controller="0A"} 85 1758488700000
+        huawei_kv_cpu_usage_percent{array="2102353TJWF****00020",controller="0A"} 85 1758488700000
     
     Args:
         row: Список значений из CSV строки
@@ -114,7 +114,7 @@ def row_to_prom(row: list, array_sn: str) -> str:
     # Формируем лейблы (сортируем для детерминированного порядка)
     labels = {
         label_key: controller_value,  # например, controller="0A"
-        "array": array_sn             # например, array="2102353TJWFSP3100020"
+        "array": array_sn             # например, array="2102353TJWF****00020"
     }
     
     # Создаем строку лейблов: array="...",controller="..."
@@ -139,7 +139,7 @@ def main(path: pathlib.Path, url: str, batch: int):
         batch: Количество строк в одном batch-запросе
     """
     # Извлекаем серийный номер массива из имени файла (без расширения)
-    # Например: "2102353TJWFSP3100020.csv" → "2102353TJWFSP3100020"
+    # Например: "2102353TJWF****00020.csv" → "2102353TJWF****00020"
     array_sn = path.stem
     
     # Автоматически определяем разделитель
@@ -197,7 +197,7 @@ if __name__ == "__main__":
         epilog="""
 Примеры использования:
   %(prog)s data.csv
-  %(prog)s 2102353TJWFSP3100020.csv --url http://victoriametrics:8428/api/v1/import/prometheus
+  %(prog)s 2102353TJWF****00020.csv --url http://victoriametrics:8428/api/v1/import/prometheus
   %(prog)s data.tsv --batch 5000
 
 Формат входного файла (TSV/CSV):

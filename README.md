@@ -121,7 +121,7 @@ Controller;KV CPU Usage (%);0A;68;2025-09-22T00:06:00Z;1758488760.0
 
 Данные преобразуются в формат Prometheus:
 ```
-huawei_kv_cpu_usage_percent{array="2102353TJWFSP3100020",controller="0A"} 85 1758488700000
+huawei_kv_cpu_usage_percent{array="2102353TJWF****00020",controller="0A"} 85 1758488700000
 ```
 
 **Особенности:**
@@ -150,7 +150,7 @@ python csv2vm.py data.csv --batch 5000
 
 #### Полная команда с всеми параметрами
 ```bash
-python csv2vm.py 2102353TJWFSP3100020.csv \
+python csv2vm.py 2102353TJWF****00020.csv \
   --url http://localhost:8428/api/v1/import/prometheus \
   --batch 10000
 ```
@@ -168,7 +168,7 @@ python csv2vm.py 2102353TJWFSP3100020.csv \
 **Успешный импорт:**
 ```
 upload: 100%|██████████| 1/1 [00:00<00:00,  4.75it/s]
-✅ imported 5760 rows for array 2102353TJWFSP3100020
+✅ imported 5760 rows for array 2102353TJWF****00020
 ```
 
 **Ошибка:**
@@ -203,7 +203,7 @@ upload: 100%|██████████| 1/1 [00:00<00:00,  4.75it/s]
 
 #### Шаг 3: Написать запрос
 ```promql
-huawei_kv_cpu_usage_percent{array="2102353TJWFSP3100020"}
+huawei_kv_cpu_usage_percent{array="2102353TJWF****00020"}
 ```
 
 #### Шаг 4: Настроить временной диапазон
@@ -229,7 +229,7 @@ huawei_kv_cpu_usage_percent > 90
 
 **Текущее значение CPU:**
 ```promql
-huawei_kv_cpu_usage_percent{array="2102353TJWFSP3100020"}
+huawei_kv_cpu_usage_percent{array="2102353TJWF****00020"}
 ```
 
 **Только контроллер 0A:**
