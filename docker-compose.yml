@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  victoriametrics:
+    image: victoriametrics/victoria-metrics:v1.96.0
+    restart: unless-stopped
+    ports:
+      - "${VM_PORT}:8428"
+    command:
+      - --storageDataPath=/vmdata
+      - --retentionPeriod=${VM_RETENTION}
+    volumes:
+      - vmdata:/vmdata            # docker-volume, а не host-path
+
+  grafana:
+    image: grafana/grafana-oss:11.0.0
+    restart: unless-stopped
+    ports:
+      - "${GRAFANA_PORT}:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASS}
+    volumes:
+      - grafana_data:/var/lib/grafana        # основная БД
+      # provisioning (каталоги внутри репозитория → внутрь контейнера)
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+
+volumes:
+  vmdata:
+  grafana_data:
