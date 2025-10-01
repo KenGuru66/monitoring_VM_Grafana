@@ -1,5 +1,4 @@
 # Python
-venv/
 __pycache__/
 *.py[cod]
 *$py.class
@@ -9,30 +8,34 @@ __pycache__/
 dist/
 build/
 
-# Environment
-.env
-*.env
-.env.local
+# Логи
+*.log
 
-# Data files
-*.csv
-*.tsv
-*.txt
-*.dat
+# Временные файлы
+*.tmp
+*.bak
+*.swp
+*~
+.DS_Store
 
-# IDEs
+# CSV файлы (создаются автоматически)
+Data2csv/output/*.csv
+Data2csv/temp*/
+
+# Shell скрипты (кроме необходимых)
+*.sh
+
+# Временные текстовые файлы
+*_SUMMARY.txt
+*_REFERENCE.txt
+
+# IDE
 .vscode/
 .idea/
-*.swp
-*.swo
-*~
+*.code-workspace
 
-# OS
-.DS_Store
-Thumbs.db
+# VictoriaMetrics data (если локально)
+victoria-metrics-data/
 
-# Docker
-docker-compose.override.yml
-
-# Logs
-*.log
+# Grafana local data
+grafana/data/

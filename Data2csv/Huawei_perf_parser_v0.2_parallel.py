@@ -1,5 +1,5 @@
-""" script for parsing Huawei performance data
-    adopted to python3 refactored and improved by Alexey Opolchenov, edited by Sergey Terekhin
+""" script for parsing Huawei performance data - PARALLEL VERSION
+    Parallelized for multi-core processing
 """
 
 import inspect
@@ -18,6 +18,9 @@ import tarfile
 import time
 import zipfile
 import shutil
+from multiprocessing import Pool, cpu_count, Manager
+from functools import partial
+import io
 
 import click
 import pandas as pd
@@ -59,11 +62,6 @@ except ImportError:
     logger.warning("influxdb module not available, --to_db option will not work")
 
 # default parse such objects:
-# LUN(11)
-# Controller(207)
-# Host(21)
-# FrontPort:FC Port(212),bond port(235),Ethernet Port(213),LIF(279),IB_Port(16500)
-#DEFAULT_RESOURCES = ["11", "207", "21", "212", "235", "213", "279", "16500"]
 DEFAULT_RESOURCES = [
     "207", #"Controller"
     "212", #"FC Port"
@@ -74,17 +72,6 @@ DEFAULT_RESOURCES = [
     "11", #LUN
     "21" # "Host"
 ]
-# default parse such data types:
-# Band:Read bandwidth(23),Write bandwidth(26),Block Bandwidth(21)
-# IOPS:Read IOPS(25),Write IOPS(28),Total IOPS(22)
-# response time:Avg. read I/O response timems:197),Avg. write I/O response time(ms:198),Avg. I/O response time(ms:78)
-# Usage(18), Avg. Member Disk Usage (%)(808),"1075": "Disk Max. Usage(%)",,"370": "Avg. I/O Response Time (us)"
-# DEFAULT_METRICS = ["23", "26", "21", "25", "28", "22", "197", "198", "78", "18"]
-#DEFAULT_METRICS = [
-#    "18", "19", "21", "22", "23", "24", "25", "26", "27", "28", "29", "67", "68", "69", "78",  "79", "120", "197", "198",
-#    "110", "120", "218", "333", "384", "385"
-#]
-
 
 DEFAULT_METRICS = [
     "18", #Usage
@@ -147,14 +134,6 @@ DEFAULT_METRICS = [
     "813", #Receiving Bandwidth for replication(KB/s) 
     "1075" #"Disk Max. Usage(%)"
 ]
-
-
-# i="InputFilePath"
-# o="OutputFilePath"
-# l="LogPath"
-# d="AutoDelete"
-# r="Resources"
-# m="Metrics"
 
 
 # -----------------------------------------------------------------------------
@@ -228,165 +207,134 @@ def construct_data_type(data_header):
 
 
 # -----------------------------------------------------------------------------
-def process_perf_file(file_path, output_csv_file_path, resources, metrics, to_db=False):
-    """ read binary perf file
+def process_perf_file_to_memory(file_path, resources, metrics, to_db=False):
+    """ read binary perf file and return CSV lines as a list
     """
-    log_repeat.info("Start to process file->%s", file_path)
+    csv_lines = []
+    
+    try:
+        with open(file_path, "rb") as fin:
+            bit_correct = fin.read(32)
+            bit_msg_version = fin.read(4)
+            bit_equip_sn = fin.read(256).decode('utf-8')
+            bit_equip_name = fin.read(41).decode('utf-8')
+            bit_equip_data_length = fin.read(4)
 
-    if to_db:
-        if not INFLUXDB_AVAILABLE:
-            logger.error("Cannot use --to_db option: influxdb module is not available")
-            return False
-        client = DataFrameClient(
-            host='localhost', port=8428,
-        )
+            process_finish_flag = False
 
-    with open(file_path, "rb") as fin:
-        bit_correct = fin.read(32)
-        bit_msg_version = fin.read(4)
-        bit_equip_sn = fin.read(256).decode('utf-8')
-        bit_equip_name = fin.read(41).decode('utf-8')
-        bit_equip_data_length = fin.read(4)
+            bit_map_type = fin.read(4)
+            bit_map_length, = struct.unpack("<l", fin.read(4))
+            bit_map_value = fin.read(bit_map_length - 8)
+            if len(bit_map_value) < bit_map_length - 8:
+                logger.error("Read Data Header Failed for %s", file_path)
+                return None
 
-        log_repeat.info("bit_equip_sn = %s", bit_equip_sn.replace('\x00', ''))
-        log_repeat.info("bit_equip_name = %s", bit_equip_name.replace('\x00', ''))
+            while not process_finish_flag:
+                result = re.match(
+                    '{(.*),"Map":{(.*)}}', bit_map_value.decode('utf-8')
+                )
+                data_header = construct_data_header(result)
+                list_data_type, size_collect_once = construct_data_type(data_header)
 
-        process_finish_flag = False
+                times_collcet = int(
+                    (int(data_header['EndTime'])-int(data_header['StartTime']))/
+                    int(data_header['Archive'])
+                )
 
-        bit_map_type = fin.read(4)
-        bit_map_length, = struct.unpack("<l", fin.read(4))
-        bit_map_value = fin.read(bit_map_length - 8)
-        if len(bit_map_value) < bit_map_length - 8:
-            log_repeat.error("Read Data Header Failed, Maybe File Is Not Complete!")
-            return False
-
-        with open(output_csv_file_path, 'a', encoding="utf-8") as fout_csv:
-            try:
-                while not process_finish_flag:
-
-                    # log_repeat.info("process data head")
-                    result = re.match(
-                        '{(.*),"Map":{(.*)}}', bit_map_value.decode('utf-8')
-                    )
-                    data_header = construct_data_header(result)
-                    list_data_type, size_collect_once = construct_data_type(data_header)
-
-                    log_repeat.info("DataTypes count: %d ", (size_collect_once/4))
-
-                    times_collcet = int(
-                        (int(data_header['EndTime'])-int(data_header['StartTime']))/
-                        int(data_header['Archive'])
-                    )
-
-                    title_row = "ObjectType,IDs,Names,DataTypes,"
-                    for i in range(times_collcet):
-                        title_row += "C_%03d," % (i + 1)
-                        buffer_read = fin.read(size_collect_once)
-                        if len(buffer_read) < size_collect_once:
-                            log_repeat.error("Data Content may be not enough!")
-                            process_finish_flag = True
-                        for index_in_buffer in range(0, size_collect_once, 4):
-                            bytes_read_4 = buffer_read[index_in_buffer: index_in_buffer + 4]
-                            bytes_read_int, = struct.unpack("<l", bytes_read_4)
-                            list_data_type[int(index_in_buffer / 4)][3].append(str(bytes_read_int))
-                            index_in_buffer += 4
-
-                    start_time = time.strftime(
-                        '%Y-%m-%d %H:%M:%S',
-                        time.localtime(int(data_header['StartTime']))
-                    )
-                    end_time = time.strftime(
-                        '%Y-%m-%d %H:%M:%S',
-                        time.localtime(int(data_header['EndTime']))
-                    )
-                    str_to_csv = "SN,Name,CtrlID,Archive,StartTime,EndTime,Periods\n"
-                    str_to_csv += (
-                        f'{bit_equip_sn};{bit_equip_name};{data_header["CtrlID"]};'
-                        f'{data_header["Archive"]};{start_time};{end_time};{str(times_collcet)}\n'
-                    )
-
-                    start_time = datetime.fromtimestamp(int(data_header['StartTime']))
-                    next_time = start_time
-                    time_list = []
-                    for i, _ in enumerate(list_data_type[0][3]):
-                        time_list.append(next_time)
-                        next_time += timedelta(seconds=int(data_header['Archive']))
-
-                    for i, data_type in enumerate(list_data_type):
-                        if not is_resource_and_datatype_needed(
-                            resource_id=data_type[0], metric_id=data_type[1],
-                            resources=resources, metrics=metrics,
-                        ):
-                            # logger.info("Continue! %s, %s", data_type[0], data_type[1])
-                            continue
-                        # logger.info("Not continue! %s, %s", data_type[0], data_type[1])
-
-                        str_to_csv = ""
-                        str_to_csv += RESOURCE_NAME_DICT.get(str(data_type[0])) + ';'
-                        str_to_csv += METRIC_NAME_DICT.get(str(data_type[1])) + ';'
-                        str_to_csv += data_type[2] + ';'
-                        for index, point_value in enumerate(data_type[3]):
-                            # logger.info("Inside index %s", index)
-                            time_string = time_list[index].strftime("%Y-%m-%dT%H:%M:%SZ")
-                            time_qqq = time.mktime(time_list[index].timetuple())
-                            fout_csv.write(
-                                f'{str_to_csv}{point_value};{time_string};{time_qqq}\n'
-                            )
-                            if to_db:
-                                meas = rename_metric(METRIC_NAME_DICT.get(str(data_type[1])))
-                                resource = rename_metric(RESOURCE_NAME_DICT.get(str(data_type[0])), add_prefix=False)
-                                # logger.info   (f"ingest {resource} {meas}")
-                                # ingest
-                                json_body = pd.DataFrame([{
-                                    "Resource": resource.strip(),
-                                    "Element": data_type[2].strip(),
-                                    "SN": bit_equip_sn.strip(),
-                                    "Name": bit_equip_name.strip(),
-                                    "CtrlID": data_header["CtrlID"].strip(),
-                                    "Archive": data_header["Archive"].strip(),
-                                    "time": start_time,
-                                    "variable": point_value,
-                                }]).set_index("time")
-
-                                tag_columns = ["Resource", "Element", "SN", "Name", "CtrlID", "Archive"]
-                                client.write_points(
-                                    json_body,
-                                    # dataframe=dataframe,
-                                    measurement=meas,
-                                    protocol='line',
-                                    tag_columns=tag_columns,
-                                )
-
-                    bit_map_type = fin.read(4)
-                    # log_repeat.info("bit_map_t%s", bit_map_type)
-                    if bit_map_type == '':
-                        log_repeat.info("Process Finished!")
+                for i in range(times_collcet):
+                    buffer_read = fin.read(size_collect_once)
+                    if len(buffer_read) < size_collect_once:
                         process_finish_flag = True
-                    elif bit_map_type == '\x00\x00\x00\x00':
-                        bit_map_length, = struct.unpack("<l", fin.read(4))
-                        if bit_map_length < 8:
-                            log_repeat.info("bit_map_length less than 8")
-                            process_finish_flag = True
-                        else:
-                            bit_map_value = fin.read(bit_map_length - 8)
-                            if len(bit_map_value) < bit_map_length - 8:
-                                log_repeat.error(
-                                    "Read Data Header Failed, Maybe File Is Not Complete!"
-                                )
-                                return False
-                            else:
-                                log_repeat.info("Find Next Data Header, Need Process!")
+                        break
+                    for index_in_buffer in range(0, size_collect_once, 4):
+                        bytes_read_4 = buffer_read[index_in_buffer: index_in_buffer + 4]
+                        bytes_read_int, = struct.unpack("<l", bytes_read_4)
+                        list_data_type[int(index_in_buffer / 4)][3].append(str(bytes_read_int))
+
+                start_time = datetime.fromtimestamp(int(data_header['StartTime']))
+                next_time = start_time
+                time_list = []
+                for i, _ in enumerate(list_data_type[0][3]):
+                    time_list.append(next_time)
+                    next_time += timedelta(seconds=int(data_header['Archive']))
+
+                for i, data_type in enumerate(list_data_type):
+                    if not is_resource_and_datatype_needed(
+                        resource_id=data_type[0], metric_id=data_type[1],
+                        resources=resources, metrics=metrics,
+                    ):
+                        continue
+
+                    str_to_csv = ""
+                    str_to_csv += RESOURCE_NAME_DICT.get(str(data_type[0])) + ';'
+                    str_to_csv += METRIC_NAME_DICT.get(str(data_type[1])) + ';'
+                    str_to_csv += data_type[2] + ';'
+                    for index, point_value in enumerate(data_type[3]):
+                        time_string = time_list[index].strftime("%Y-%m-%dT%H:%M:%SZ")
+                        time_qqq = time.mktime(time_list[index].timetuple())
+                        csv_lines.append(
+                            f'{str_to_csv}{point_value};{time_string};{time_qqq}\n'
+                        )
+
+                bit_map_type = fin.read(4)
+                if bit_map_type == '':
+                    process_finish_flag = True
+                elif bit_map_type == '\x00\x00\x00\x00':
+                    bit_map_length, = struct.unpack("<l", fin.read(4))
+                    if bit_map_length < 8:
+                        process_finish_flag = True
                     else:
-                        process_finish_flag = True
-            except Exception as exc_info:
-                log_repeat.error(exc_info)
-                return False
-            # logger.info("str_to_csv:")
-            # print (str_to_csv)
-        # fp_csv.close()
-        # fp.close()
-    log_repeat.info("Finish to process file. %s", file_path)
-    return True
+                        bit_map_value = fin.read(bit_map_length - 8)
+                        if len(bit_map_value) < bit_map_length - 8:
+                            return None
+                else:
+                    process_finish_flag = True
+                    
+    except Exception as exc_info:
+        logger.error(f"Error processing {file_path}: {exc_info}")
+        return None
+        
+    return csv_lines
+
+
+# -----------------------------------------------------------------------------
+def process_single_tgz_file(args):
+    """
+    Process a single .tgz file and return CSV lines.
+    This function is designed to be called in parallel.
+    """
+    file_path, resources, metrics, to_db = args
+    
+    try:
+        # Decompress
+        decompressed_file_path = decompress_tgz(file_path)
+        if not decompressed_file_path:
+            return None
+            
+        # Process to memory
+        csv_lines = process_perf_file_to_memory(
+            file_path=decompressed_file_path,
+            resources=resources,
+            metrics=metrics,
+            to_db=to_db,
+        )
+        
+        # Cleanup
+        if decompressed_file_path.exists():
+            decompressed_file_path.unlink()
+            
+        return {
+            'file': file_path,
+            'lines': csv_lines,
+            'success': csv_lines is not None
+        }
+    except Exception as e:
+        logger.error(f"Error in process_single_tgz_file for {file_path}: {e}")
+        return {
+            'file': file_path,
+            'lines': None,
+            'success': False
+        }
 
 
 # -----------------------------------------------------------------------------
@@ -422,9 +370,9 @@ def decompress_zip(zip_path, extract_to=None):
 def decompress_tgz(file_tgz):
     tar = tarfile.open(file_tgz)
     names = tar.getnames()
-    temp_file_path = Path("temp")
+    temp_file_path = Path("temp") / f"temp_{os.getpid()}_{time.time()}"
     if not temp_file_path.is_dir():
-        temp_file_path.mkdir()
+        temp_file_path.mkdir(parents=True)
     if len(names) == 1:
         tar.extract(names[0], temp_file_path)
         return temp_file_path / names[0]
@@ -472,11 +420,6 @@ def split_files_by_sn(files, prefix=None):
 def get_model_from_perf_file_name(file):
     return re.findall(re.compile(r"PerfData_(.+?)_SN"), file.name)[0]
 
-'''
-与内置资源类型对比，
-如果全部存在于内置资源表，返回None
-否则返回第一个不存在于内置资源表的资源
-'''
 # -----------------------------------------------------------------------------
 def find_first_invalid_resource(resources):
     for r in resources:
@@ -484,11 +427,6 @@ def find_first_invalid_resource(resources):
             return r
     return None
 
-'''
-与内置资源类型对比，
-如果全部存在于内置资源表，返回None
-否则返回第一个不存在于内置资源表的资源
-'''
 # -----------------------------------------------------------------------------
 def find_first_invalid_metric(metrics):
     for m in metrics:
@@ -517,10 +455,16 @@ def rename_metric(metric, add_prefix=True):
 
 
 # -----------------------------------------------------------------------------
-def process_perf_file_tgz_dir(input_path, output_path, is_delete_after_parse, resources, metrics, to_db=False, prefix=None):
+def process_perf_file_tgz_dir(input_path, output_path, is_delete_after_parse, resources, metrics, to_db=False, prefix=None, num_workers=None):
     logger.info("%s: start processing  %s", inspect.stack()[0][3], input_path)
     input_path = Path(input_path)
     output_path = Path(output_path)
+    
+    # Определяем количество worker процессов
+    if num_workers is None:
+        num_workers = max(1, cpu_count() - 1)  # Оставляем одно ядро свободным
+    
+    logger.info(f"Using {num_workers} worker processes for parallel processing")
     
     # Проверяем, является ли входной путь zip файлом
     temp_extract_dir = None
@@ -549,39 +493,49 @@ def process_perf_file_tgz_dir(input_path, output_path, is_delete_after_parse, re
     sn_to_perf_file_list = split_files_by_sn(files, prefix=prefix)
 
     for serial, sn_files in sn_to_perf_file_list.items():
-        logger.info("Processing array %s", serial)
+        logger.info("Processing array %s with %d files", serial, len(sn_files))
         sn_files.sort()
 
         output_csv_file_name = f'{serial}.csv'
         output_csv_file_path = output_path / output_csv_file_name
 
         logger.info(f"Writing to CSV: {output_csv_file_path}")
+        
         try:
-            for file in sn_files:
-                logger.info(f"Processing file {file}")
-                decompressed_file_path = decompress_tgz(file)
-                is_process_successful = process_perf_file(
-                    file_path=decompressed_file_path,
-                    output_csv_file_path=output_csv_file_path,
-                    resources=resources,
-                    metrics=metrics,
-                    to_db=to_db,
-                )
-                
-                decompressed_file_path.unlink()
-                if not is_process_successful:
-                    logger.error(f"Failed to process file {file}")
-                    continue
-
-                # Если мы работаем с zip архивом, не перемещаем файлы
-                if not temp_extract_dir:
+            # Prepare arguments for parallel processing
+            process_args = [(f, resources, metrics, to_db) for f in sn_files]
+            
+            # Process files in parallel
+            with Pool(processes=num_workers) as pool:
+                # Use imap_unordered for better performance and progress tracking
+                results = list(tqdm.tqdm(
+                    pool.imap_unordered(process_single_tgz_file, process_args),
+                    total=len(sn_files),
+                    desc=f"Processing {serial}"
+                ))
+            
+            # Write all results to CSV
+            with open(output_csv_file_path, 'a', encoding="utf-8") as fout_csv:
+                for result in results:
+                    if result['success'] and result['lines']:
+                        fout_csv.writelines(result['lines'])
+                        logger.info(f"Successfully processed {result['file'].name}")
+                    else:
+                        logger.error(f"Failed to process {result['file'].name}")
+            
+            # Cleanup source files if needed
+            if not temp_extract_dir:
+                for file_info in results:
+                    file = file_info['file']
                     if is_delete_after_parse:
-                        file.unlink()
+                        if file.exists():
+                            file.unlink()
                     else:
                         parsed_files_path = original_input_path / "parsed_files"
                         if not parsed_files_path.is_dir():
                             parsed_files_path.mkdir()
-                        file.replace(parsed_files_path / file.name)
+                        if file.exists():
+                            file.replace(parsed_files_path / file.name)
                     
             logger.info(f"Finished writing to {output_csv_file_path}")
         except Exception as e:
@@ -591,6 +545,17 @@ def process_perf_file_tgz_dir(input_path, output_path, is_delete_after_parse, re
     if temp_extract_dir and temp_extract_dir.exists():
         logger.info(f"Cleaning up temporary directory {temp_extract_dir}")
         shutil.rmtree(temp_extract_dir)
+        
+    # Cleanup temp directories
+    temp_path = Path("temp")
+    if temp_path.exists():
+        for item in temp_path.iterdir():
+            if item.is_dir() and item.name.startswith("temp_"):
+                try:
+                    shutil.rmtree(item)
+                except:
+                    pass
+
 # -----------------------------------------------------------------------------
 def check_resource_existance(resources):
     """ Resource existence
@@ -621,49 +586,6 @@ def make_dirs(log_path, output_path):
         output_path.mkdir(parents=True)
 
 
-# def usage(argv0):
-#     print ("Usage:")
-#     print ("  python %s -i %s -o %s -r %s -m %s -l %s -d %s" % (argv0,i,o,r,m,l,d))
-#     print ("\n")
-#     print ("Argument introduction:")
-#     print ("  %s:\t%s" %(i,"The path where performance files exported(Mandatory)"))
-#     print ("\n")
-#     print ("  %s:\t%s" %(o,"The path where parsed csv files write(Mandatory)"))
-#     print ("\n")
-#     print ("  %s:\t\t%s" %(l,'''The path where log files write(Optional,)
-#                         current path default)'''))
-#     print ("\n")
-#     print ("  %s:\t\t%s" %(d,'''Whether delete source performance files)
-#                         after parsed.(Optional, default is FALSE)'''))
-#     print ("    \t\t\t%s"% "Y/YES/TRUE means delete after parsed")
-#     print ("    \t\t\t%s"% "N/NO/FALSE means do not delete after parsed")
-#     print ("\n")
-#     print ("  %s:\t\t%s" %(r,'''Resource types you want to collect(Optional)
-#                         Separated by comma.For example:-r 207,11
-#                         Default is
-#                         11:LUN,
-#                         207:Controller,
-#                         21:Host,
-#                         212:FC Port,
-#                         213:Ethernet Port,
-#                         235:Bond Port,
-#                         279:Logical Port,
-#                         16500:IB Port'''))
-#     print ("\n")
-#     print ("  %s:\t\t%s" %(m,'''Metric types you want to collect(Optional)
-#                         Separated by comma.For example:-m 25,26;
-#                         Default is 23:Read bandwidth (MB/s),
-#                         26:Write bandwidth (MB/s),
-#                         21:Block bandwidth (MB/s),
-#                         25:Read IOPS (IO/s),
-#                         28:Write IOPS (IO/s),
-#                         22:Total IOPS (IO/s),
-#                         197:Avg. read I/O response time (ms),
-#                         198:Avg. write I/O response time (ms),
-#                         78:Avg. I/O response time (ms),
-#                         18:Usage (%)'''))
-
-
 # -----------------------------------------------------------------------------
 @click.command()
 @click.option("-i", "--input_path", type=click.Path(exists=True), required=True, help='Path to directory with .tgz files or a .zip archive')
@@ -672,22 +594,19 @@ def make_dirs(log_path, output_path):
 @click.option("-d", "--is_delete_after_parse", is_flag=True, default=False, help='Delete source files after parsing')
 @click.option("-r", "--resources", multiple=True, default=DEFAULT_RESOURCES, help='Resource types to collect (comma-separated)')
 @click.option("-m", "--metrics", multiple=True, default=DEFAULT_METRICS, help='Metric types to collect (comma-separated)')
-@click.option("-p", "--prefix", type=click.STRING, required=False, default=None, help='Optional: Filter files by name prefix (e.g., "PerfData_OceanStorDorado5500V6"). If not specified, all .tgz files will be processed.')
+@click.option("-p", "--prefix", type=click.STRING, required=False, default=None, help='Optional: Filter files by name prefix (e.g., "PerfData_OceanStorDorado5500V6"). If not specified, all .tgz files in the archive will be processed.')
 @click.option("-e", "--ext", type=click.STRING, default="tgz", help='File extension to search for')
 @click.option("--to_db", is_flag=True, show_default=True, required=False, default=False, help='Send data to InfluxDB')
+@click.option("-w", "--num_workers", type=int, default=None, help='Number of parallel workers (default: CPU count - 1)')
 def huawei_collect(
     input_path, output_path, log_path, is_delete_after_parse, resources,
-    metrics, prefix, ext, to_db
+    metrics, prefix, ext, to_db, num_workers
 ):
-    """ process collected data
+    """ process collected data - PARALLEL VERSION
     """
-    # logger.error(1)
-    # if not check_resource_existance(resources) or not check_metric_existance(metrics):
-    #    return
-    #metrics = list(METRIC_NAME_DICT.keys())# - пройтись по всем метрикам в словаре
-    #resources = list(RESOURCE_NAME_DICT.keys())# - пройтись по всем ресурсам в словаре
-
     logger.info("%s: Start", inspect.stack()[0][3])
+    logger.info(f"Available CPU cores: {cpu_count()}")
+    
     make_dirs(Path(log_path), Path(output_path))
     process_perf_file_tgz_dir(
         input_path=input_path,
@@ -697,6 +616,7 @@ def huawei_collect(
         metrics=metrics,
         prefix=prefix,
         to_db=to_db,
+        num_workers=num_workers,
     )
     logger.info("%s: done", inspect.stack()[0][3])
 
@@ -705,11 +625,5 @@ def huawei_collect(
 
 # -----------------------------------------------------------------------------
 if __name__ == "__main__":
-    # logger.error(0)
     huawei_collect()
 
-# logger.error(-1) ЦФЯЫУЧ
-
-# python huawei_pars_v01.py -i /storage/hu/inbox/HistoryPerstat/HistoryPerformanceFile/172.25.18.206/172.25.18.206 \
-    # -o /storage/hu/inbox/HistoryPerstat/out/172.25.18.206
-#nohup python huawei_pars_v01.py -i /storage/hu/vtb/HS_2024/10.7.39.170/10.7.39.170 -o /storage/hu/vtb/HS_2024/10.7.39.170/res -e tgz -p PerfData_OceanStorDorado8000V6_SN --to_db > progress170.log 2>&1 &

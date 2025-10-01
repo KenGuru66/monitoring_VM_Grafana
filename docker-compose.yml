@@ -2,29 +2,47 @@ version: "3.8"
 
 services:
   victoriametrics:
-    image: victoriametrics/victoria-metrics:v1.96.0
+    image: victoriametrics/victoria-metrics:v1.99.0
     restart: unless-stopped
     ports:
-      - "${VM_PORT}:8428"
+      - "${VM_PORT:-8428}:8428"
     command:
       - --storageDataPath=/vmdata
-      - --retentionPeriod=${VM_RETENTION}
+      - --retentionPeriod=${VM_RETENTION:-6}
     volumes:
-      - vmdata:/vmdata            # docker-volume, а не host-path
+      - /data/vmdata:/vmdata      # host-path на быстром диске
+    # Healthcheck временно отключен - порт доступен с хоста, но не из контейнера
+    # healthcheck:
+    #   test: ["CMD", "wget", "-q", "-O-", "http://localhost:8428/health"]
+    #   interval: 10s
+    #   timeout: 5s
+    #   retries: 3
+    #   start_period: 10s
 
   grafana:
-    image: grafana/grafana-oss:11.0.0
+    image: grafana/grafana:12.1.1
+    user: "472"
     restart: unless-stopped
+    depends_on:
+      - victoriametrics
     ports:
-      - "${GRAFANA_PORT}:3000"
+      - "${GRAFANA_PORT:-3000}:3000"
     environment:
-      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASS}
+      - GF_SECURITY_ADMIN_PASSWORD=${GRAFANA_ADMIN_PASS:-changeme}
+      - GF_PATHS_PROVISIONING=/etc/grafana/provisioning
     volumes:
-      - grafana_data:/var/lib/grafana        # основная БД
-      # provisioning (каталоги внутри репозитория → внутрь контейнера)
+      - grafana_data:/var/lib/grafana
       - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
       - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
 
 volumes:
-  vmdata:
   grafana_data:
+    driver_opts:
+      type: none
+      device: /data/grafana
+      o: bind
