@@ -1,0 +1,73 @@
+# default parse such objects:
+DEFAULT_RESOURCES = [
+    "207", #"Controller"
+    "212", #"FC Port"
+    "225", #"FC Replication Link"
+    "216",  #Storage Pool
+    "266", #"Disk Domain"
+    "10", #Disk
+    "11", #LUN
+    "21" # "Host"
+]
+
+DEFAULT_METRICS = [
+    "18", #Usage
+    "22", # "Total IOPS (IO/s)"
+    "25", #"Read IOPS (IO/s)"
+    "28", #"Write IOPS (IO/s)"
+    "23", #"Read bandwidth (MB/s)"
+    "26", #"Write bandwidth (MB/s)"
+    "1079", #"SCSI IOPS(IO/s)"
+    "1073", #"ISCSI IOPS(IO/s)"
+    "627", #"NFS operation count per second"
+    "1074", #"CIFS operation count per second"
+    "240", #"Average queue depth"
+    "1158", #"WRITE SAME Command Bandwidth (MB/s)"
+    "1154", #"Unmap Command Bandwidth (MB/s)"
+    "1162", #"Full Copy Read Request Bandwidth (MB/s)"
+    "1166", #"Full Copy Write Request Bandwidth (MB/s)"
+    "1170", #"ODX Read Request Bandwidth (MB/s)"
+    "1174", #"ODX Write Request Bandwidth (MB/s)
+    "1332", #"Post-Process Deduplication Read Bandwidth(MB/s)",#NEW
+    "1333", #"Post-Process Deduplication Write Bandwidth(MB/s)",#NEW
+    "1334", #"Post-Process Deduplication Fingerprint Read Bandwidth(MB/s)",#NEW
+    "1335", #"Post-Process Deduplication Fingerprint Write Bandwidth(MB/s)",#NEW
+    "1337", #"Post-Process Deduplication and Reduction Read Bandwidth(MB/s)",#NEW
+    "1338", #"Post-Process Deduplication and Reduction Write Bandwidth(MB/s)",#NEW
+    "1633", #"Avg. Corrected CPU usage (%)",#NEW
+    "260", #"Back-End traffic (MB/s)",
+    "261", #"Back-end read traffic (MB/s)",
+    "262", #"Back-end write traffic (MB/s)",
+    "1298", #"Back-End Partition CPU Usage (%)",#NEW
+    "1297", #"Front-End Partition CPU Usage (%)",#NEW
+    "68", #Avg. CPU usage (%)
+    "1299", #KV CPU Usage (%)
+    "1182", #"Read I/O Granularity Distribution: [0K,4K)(%)",#NEW
+    "33", #"Read I/O granularity distribution: [4K,8K) (%)",
+    "34", #"Read I/O granularity distribution: [8K,16K) (%)",
+    "35", #"Read I/O granularity distribution: [16K,32K) (%)",
+    "36", #"Read I/O granularity distribution: [32K,64K) (%)",
+    "37", #"Read I/O granularity distribution: [64K,128K) (%)",
+    "1183", #"Read I/O Granularity Distribution: [128K,+∞)(%)",#NEW
+    "1184", #"Write I/O Granularity Distribution: [0K,4K)(%)",#NEW
+    "44", #"Write I/O granularity distribution: [4K,8K) (%)",
+    "45", #"Write I/O granularity distribution: [8K,16K) (%)",
+    "46", #"Write I/O granularity distribution: [16K,32K) (%)",
+    "47", #"Write I/O granularity distribution: [32K,64K) (%)",
+    "48", #"Write I/O granularity distribution: [64K,128K) (%)",
+    "1185", #"Write I/O Granularity Distribution: [128K,+∞)(%)",#NEW
+    "1188", #"VAAI Bandwidth (MB/s)",#NEW
+    "93", #"Read cache hit ratio (%)"
+    "95", #"Write cache hit ratio (%)"
+    "333", #"Cache water (%)"
+    "384", #"Avg. Read I/O Response Time(us)",
+    "385", #"Avg. Write I/O Response Time(us)",
+    "24", #"Avg. read I/O size (KB)",
+    "27", #"Avg. write I/O size (KB)"
+    "228", #Avg. I/O size (KB)
+    "369", #"Service Time(us)"
+    "808", #Avg. Member Disk Usage (%)
+    "812", #Transmitting Bandwidth for replication(KB/s) 
+    "813", #Receiving Bandwidth for replication(KB/s) 
+    "1075" #"Disk Max. Usage(%)"
+]

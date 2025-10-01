@@ -52,24 +52,32 @@ def detect_delimiter(path: pathlib.Path) -> str:
         return ','
 
 def sanitize_metric_name(name: str) -> str:
-    """Преобразует строку в валидное имя метрики Prometheus."""
-    result = name.strip().lower()
-    result = result.replace(" (%)", "_pct")
-    result = result.replace("(%)", "_pct")
-    result = result.replace(" (mbps)", "_mbps")
-    result = result.replace(" (iops)", "_iops")
+    """
+    Преобразует строку в валидное имя метрики Prometheus.
+    Например: "Avg. CPU Usage (%)" -> "avg_cpu_usage_percent"
+    """
+    # Заменяем % на percent
+    result = name.replace("(%)", "percent").replace(" (%)", "_percent")
     result = result.replace("(", "").replace(")", "")
-    result = result.replace(" ", "_")
-    result = result.replace("-", "_")
-    result = result.replace("/", "_")
-    result = result.replace("%", "percent")
-    result = result.replace(".", "")
-    result = result.replace(",", "")
-    result = result.replace(":", "")
-    result = result.replace("[", "").replace("]", "")
-    result = result.replace("+", "plus")
-    result = result.replace("∞", "inf")
-    return result
+    
+    # Заменяем единицы измерения
+    result = result.replace("(MB/s)", "mb_s").replace("(KB/s)", "kb_s").replace("(KB)", "kb")
+    result = result.replace("(IO/s)", "io_s").replace("(us)", "us").replace("(ms)", "ms")
+    result = result.replace("(Bps)", "bps")
+    
+    # Убираем спецсимволы
+    result = result.replace("/", "_").replace("-", "_").replace(".", "").replace(",", "")
+    result = result.replace(":", "").replace("[", "").replace("]", "")
+    result = result.replace("+∞", "inf").replace("+", "plus").replace("∞", "inf")
+    
+    # Заменяем пробелы на подчеркивания
+    result = "_".join(result.lower().split())
+    
+    # Убираем повторяющиеся подчеркивания
+    while "__" in result:
+        result = result.replace("__", "_")
+    
+    return result.strip("_")
 
 def row_to_prom(row: list, array_sn: str) -> str:
     """Преобразует строку CSV в формат Prometheus."""
@@ -78,7 +86,7 @@ def row_to_prom(row: list, array_sn: str) -> str:
     
     try:
         resource = row[0].strip()
-        metric_name = "hu_" + sanitize_metric_name(row[1]) + "_variable"
+        metric_name = "huawei_" + sanitize_metric_name(row[1])
         element = row[2].strip()
         value = row[3].strip()
         ts_unix_sec = float(row[5].strip())
