@@ -21,6 +21,9 @@ Data2csv/logs/
 temp/
 *.csv
 
+# Dashboard backups
+*.json.backup
+
 # IDE
 .vscode/
 .idea/

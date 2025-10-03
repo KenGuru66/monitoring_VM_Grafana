@@ -652,7 +652,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -797,7 +797,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_full_copy_read_request_size_kb{SN=~\"$SN\", Resource=\"Controller\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_full_copy_read_request_size_kb/1024){SN=~\"$SN\", Resource=\"Controller\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -876,7 +876,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -1021,7 +1021,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_full_copy_write_request_size_kb{SN=~\"$SN\", Resource=\"Controller\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_full_copy_write_request_size_kb/1024){SN=~\"$SN\", Resource=\"Controller\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -1100,7 +1100,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -1245,7 +1245,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_i_o_size_kb{SN=~\"$SN\", Resource=\"Controller\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Controller\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -1324,7 +1324,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -1469,7 +1469,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_odx_read_request_size_kb{SN=~\"$SN\", Resource=\"Controller\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_odx_read_request_size_kb/1024){SN=~\"$SN\", Resource=\"Controller\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -1548,7 +1548,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -1693,7 +1693,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_odx_write_request_size_kb{SN=~\"$SN\", Resource=\"Controller\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_odx_write_request_size_kb/1024){SN=~\"$SN\", Resource=\"Controller\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -1772,7 +1772,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -1917,7 +1917,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_odx_write_zero_request_size_kb{SN=~\"$SN\", Resource=\"Controller\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_odx_write_zero_request_size_kb/1024){SN=~\"$SN\", Resource=\"Controller\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -1996,7 +1996,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -2108,7 +2108,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -2253,7 +2253,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_unmap_command_size_kb{SN=~\"$SN\", Resource=\"Controller\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_unmap_command_size_kb/1024){SN=~\"$SN\", Resource=\"Controller\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -2332,7 +2332,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -2477,7 +2477,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_write_same_command_size_kb{SN=~\"$SN\", Resource=\"Controller\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_write_same_command_size_kb/1024){SN=~\"$SN\", Resource=\"Controller\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -2556,7 +2556,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -2813,7 +2813,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_read_i_o_size_kb{SN=~\"$SN\", Resource=\"Controller\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_read_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Controller\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -2925,7 +2925,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_write_i_o_size_kb{SN=~\"$SN\", Resource=\"Controller\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_write_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Controller\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -5356,7 +5356,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -5501,7 +5501,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_max_i_o_size_kb{SN=~\"$SN\", Resource=\"Controller\", Element=~\"$Element\"}",
+              "expr": "(huawei_max_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Controller\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -5725,7 +5725,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_max_read_i_o_size_kb{SN=~\"$SN\", Resource=\"Controller\", Element=~\"$Element\"}",
+              "expr": "(huawei_max_read_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Controller\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -5837,7 +5837,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_max_write_i_o_size_kb{SN=~\"$SN\", Resource=\"Controller\", Element=~\"$Element\"}",
+              "expr": "(huawei_max_write_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Controller\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -8199,7 +8199,7 @@
               "useBackend": false
             }
           ],
-          "title": "Read I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Read I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -9388,7 +9388,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -10663,7 +10663,7 @@
               "useBackend": false
             }
           ],
-          "title": "Write I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Write I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -11572,7 +11572,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📊 Controller",
+      "title": "\ud83d\udcca Controller",
       "type": "row"
     },
     {
@@ -12015,7 +12015,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_i_o_size_kb{SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -12094,7 +12094,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -12239,7 +12239,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_read_i_o_size_kb{SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_read_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -12351,7 +12351,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_write_i_o_size_kb{SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_write_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -13145,7 +13145,7 @@
               "useBackend": false
             }
           ],
-          "title": "Read I/O Granularity Distribution: [256K,+∞) (%)",
+          "title": "Read I/O Granularity Distribution: [256K,+\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -13705,7 +13705,7 @@
               "useBackend": false
             }
           ],
-          "title": "Read I/O Latency Distribution: [200ms,+∞) (%)",
+          "title": "Read I/O Latency Distribution: [200ms,+\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -15497,7 +15497,7 @@
               "useBackend": false
             }
           ],
-          "title": "Write I/O Granularity Distribution: [256K,+∞) (%)",
+          "title": "Write I/O Granularity Distribution: [256K,+\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -16057,7 +16057,7 @@
               "useBackend": false
             }
           ],
-          "title": "Write I/O Latency Distribution: [200ms,+∞) (%)",
+          "title": "Write I/O Latency Distribution: [200ms,+\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -17414,7 +17414,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📊 Controller NFSV3",
+      "title": "\ud83d\udcca Controller NFSV3",
       "type": "row"
     },
     {
@@ -17857,7 +17857,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_i_o_size_kb{SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -17936,7 +17936,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -18081,7 +18081,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_read_i_o_size_kb{SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_read_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -18193,7 +18193,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_write_i_o_size_kb{SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_write_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -18987,7 +18987,7 @@
               "useBackend": false
             }
           ],
-          "title": "Read I/O Granularity Distribution: [256K,+∞) (%)",
+          "title": "Read I/O Granularity Distribution: [256K,+\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -19547,7 +19547,7 @@
               "useBackend": false
             }
           ],
-          "title": "Read I/O Latency Distribution: [200ms,+∞) (%)",
+          "title": "Read I/O Latency Distribution: [200ms,+\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -21339,7 +21339,7 @@
               "useBackend": false
             }
           ],
-          "title": "Write I/O Granularity Distribution: [256K,+∞) (%)",
+          "title": "Write I/O Granularity Distribution: [256K,+\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -21899,7 +21899,7 @@
               "useBackend": false
             }
           ],
-          "title": "Write I/O Latency Distribution: [200ms,+∞) (%)",
+          "title": "Write I/O Latency Distribution: [200ms,+\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -23256,7 +23256,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📊 Controller NFSV4",
+      "title": "\ud83d\udcca Controller NFSV4",
       "type": "row"
     },
     {
@@ -23699,7 +23699,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_i_o_size_kb{SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -23778,7 +23778,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -23923,7 +23923,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_read_i_o_size_kb{SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_read_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -24035,7 +24035,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_write_i_o_size_kb{SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_write_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -24829,7 +24829,7 @@
               "useBackend": false
             }
           ],
-          "title": "Read I/O Granularity Distribution: [256K,+∞) (%)",
+          "title": "Read I/O Granularity Distribution: [256K,+\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -25389,7 +25389,7 @@
               "useBackend": false
             }
           ],
-          "title": "Read I/O Latency Distribution: [200ms,+∞) (%)",
+          "title": "Read I/O Latency Distribution: [200ms,+\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -27181,7 +27181,7 @@
               "useBackend": false
             }
           ],
-          "title": "Write I/O Granularity Distribution: [256K,+∞) (%)",
+          "title": "Write I/O Granularity Distribution: [256K,+\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -27741,7 +27741,7 @@
               "useBackend": false
             }
           ],
-          "title": "Write I/O Latency Distribution: [200ms,+∞) (%)",
+          "title": "Write I/O Latency Distribution: [200ms,+\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -29098,7 +29098,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📊 Controller NFSV4.1",
+      "title": "\ud83d\udcca Controller NFSV4.1",
       "type": "row"
     },
     {
@@ -29541,7 +29541,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_i_o_size_kb{SN=~\"$SN\", Resource=\"Controller SMB2/3\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Controller SMB2/3\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -29620,7 +29620,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -29765,7 +29765,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_read_i_o_size_kb{SN=~\"$SN\", Resource=\"Controller SMB2/3\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_read_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Controller SMB2/3\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -29877,7 +29877,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_write_i_o_size_kb{SN=~\"$SN\", Resource=\"Controller SMB2/3\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_write_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Controller SMB2/3\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -30671,7 +30671,7 @@
               "useBackend": false
             }
           ],
-          "title": "Read I/O Granularity Distribution: [256K,+∞) (%)",
+          "title": "Read I/O Granularity Distribution: [256K,+\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -31231,7 +31231,7 @@
               "useBackend": false
             }
           ],
-          "title": "Read I/O Latency Distribution: [200ms,+∞) (%)",
+          "title": "Read I/O Latency Distribution: [200ms,+\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -33023,7 +33023,7 @@
               "useBackend": false
             }
           ],
-          "title": "Write I/O Granularity Distribution: [256K,+∞) (%)",
+          "title": "Write I/O Granularity Distribution: [256K,+\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -33583,7 +33583,7 @@
               "useBackend": false
             }
           ],
-          "title": "Write I/O Latency Distribution: [200ms,+∞) (%)",
+          "title": "Write I/O Latency Distribution: [200ms,+\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -34940,7 +34940,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📊 Controller SMB2/3",
+      "title": "\ud83d\udcca Controller SMB2/3",
       "type": "row"
     },
     {
@@ -35014,7 +35014,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -35159,7 +35159,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_i_o_size_kb{SN=~\"$SN\", Resource=\"Disk\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Disk\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -35238,7 +35238,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -35350,7 +35350,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -35495,7 +35495,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_read_i_o_size_kb{SN=~\"$SN\", Resource=\"Disk\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_read_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Disk\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -35607,7 +35607,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_write_i_o_size_kb{SN=~\"$SN\", Resource=\"Disk\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_write_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Disk\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -35798,7 +35798,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -36625,7 +36625,7 @@
               "useBackend": false
             }
           ],
-          "title": "Read I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Read I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -37590,7 +37590,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -38193,7 +38193,7 @@
               "useBackend": false
             }
           ],
-          "title": "Write I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Write I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -38990,7 +38990,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📊 Disk",
+      "title": "\ud83d\udcca Disk",
       "type": "row"
     },
     {
@@ -39176,7 +39176,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -39288,7 +39288,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -39545,7 +39545,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_i_o_size_kb{SN=~\"$SN\", Resource=\"Disk Domain\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Disk Domain\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -39624,7 +39624,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -39736,7 +39736,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -39993,7 +39993,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_read_i_o_size_kb{SN=~\"$SN\", Resource=\"Disk Domain\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_read_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Disk Domain\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -40217,7 +40217,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_write_i_o_size_kb{SN=~\"$SN\", Resource=\"Disk Domain\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_write_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Disk Domain\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -41080,7 +41080,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -42019,7 +42019,7 @@
               "useBackend": false
             }
           ],
-          "title": "Read I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Read I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -43251,7 +43251,7 @@
               "useBackend": false
             }
           ],
-          "title": "Write I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Write I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -44048,7 +44048,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📊 Disk Domain",
+      "title": "\ud83d\udcca Disk Domain",
       "type": "row"
     },
     {
@@ -44122,7 +44122,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -44514,7 +44514,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📊 ETH_EXP_Port",
+      "title": "\ud83d\udcca ETH_EXP_Port",
       "type": "row"
     },
     {
@@ -44588,7 +44588,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -44700,7 +44700,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -44812,7 +44812,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -44924,7 +44924,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -45036,7 +45036,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -45181,7 +45181,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_i_o_size_kb{SN=~\"$SN\", Resource=\"Ethernet Port\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Ethernet Port\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -45260,7 +45260,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -45372,7 +45372,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -45484,7 +45484,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -45596,7 +45596,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -45708,7 +45708,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -45820,7 +45820,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -45932,7 +45932,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -46044,7 +46044,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -46156,7 +46156,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -46268,7 +46268,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -46380,7 +46380,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -46492,7 +46492,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -46637,7 +46637,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_read_i_o_size_kb{SN=~\"$SN\", Resource=\"Ethernet Port\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_read_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Ethernet Port\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -46749,7 +46749,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_write_i_o_size_kb{SN=~\"$SN\", Resource=\"Ethernet Port\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_write_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Ethernet Port\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -47388,7 +47388,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -48775,7 +48775,7 @@
               "useBackend": false
             }
           ],
-          "title": "Read I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Read I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -49628,7 +49628,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -51463,7 +51463,7 @@
               "useBackend": false
             }
           ],
-          "title": "Write I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Write I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -52260,7 +52260,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📊 Ethernet Port",
+      "title": "\ud83d\udcca Ethernet Port",
       "type": "row"
     },
     {
@@ -52334,7 +52334,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -52479,7 +52479,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_full_copy_command_size_kb{SN=~\"$SN\", Resource=\"Host\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_full_copy_command_size_kb/1024){SN=~\"$SN\", Resource=\"Host\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -52558,7 +52558,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -52703,7 +52703,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_i_o_size_kb{SN=~\"$SN\", Resource=\"Host\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Host\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -52782,7 +52782,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -52927,7 +52927,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_odx_command_size_kb{SN=~\"$SN\", Resource=\"Host\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_odx_command_size_kb/1024){SN=~\"$SN\", Resource=\"Host\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -53006,7 +53006,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -53151,7 +53151,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_odx_write_zero_request_size_kb{SN=~\"$SN\", Resource=\"Host\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_odx_write_zero_request_size_kb/1024){SN=~\"$SN\", Resource=\"Host\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -53230,7 +53230,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -53342,7 +53342,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -53454,7 +53454,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -53599,7 +53599,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_unmap_command_size_kb{SN=~\"$SN\", Resource=\"Host\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_unmap_command_size_kb/1024){SN=~\"$SN\", Resource=\"Host\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -53678,7 +53678,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -53823,7 +53823,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_write_same_command_size_kb{SN=~\"$SN\", Resource=\"Host\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_write_same_command_size_kb/1024){SN=~\"$SN\", Resource=\"Host\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -53902,7 +53902,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -54014,7 +54014,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -54159,7 +54159,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_read_i_o_size_kb{SN=~\"$SN\", Resource=\"Host\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_read_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Host\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -54271,7 +54271,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_write_i_o_size_kb{SN=~\"$SN\", Resource=\"Host\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_write_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Host\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -54686,7 +54686,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -55961,7 +55961,7 @@
               "useBackend": false
             }
           ],
-          "title": "Read I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Read I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -56814,7 +56814,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -57641,7 +57641,7 @@
               "useBackend": false
             }
           ],
-          "title": "Write I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Write I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -58438,7 +58438,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📊 Host",
+      "title": "\ud83d\udcca Host",
       "type": "row"
     },
     {
@@ -58512,7 +58512,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -58657,7 +58657,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_dr_read_request_size_kb{SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_dr_read_request_size_kb/1024){SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -58736,7 +58736,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -58848,7 +58848,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -58993,7 +58993,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_dr_write_request_size_kb{SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_dr_write_request_size_kb/1024){SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -59072,7 +59072,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -59217,7 +59217,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_full_copy_read_request_size_kb{SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_full_copy_read_request_size_kb/1024){SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -59296,7 +59296,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -59441,7 +59441,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_full_copy_write_request_size_kb{SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_full_copy_write_request_size_kb/1024){SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -59520,7 +59520,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -59665,7 +59665,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_i_o_size_kb{SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -59744,7 +59744,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -59889,7 +59889,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_odx_read_request_size_kb{SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_odx_read_request_size_kb/1024){SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -59968,7 +59968,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -60113,7 +60113,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_odx_write_request_size_kb{SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_odx_write_request_size_kb/1024){SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -60192,7 +60192,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -60337,7 +60337,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_odx_write_zero_request_size_kb{SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_odx_write_zero_request_size_kb/1024){SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -60416,7 +60416,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -60528,7 +60528,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -60673,7 +60673,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_unmap_command_size_kb{SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_unmap_command_size_kb/1024){SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -60752,7 +60752,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -60897,7 +60897,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_vaai_size_kb{SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_vaai_size_kb/1024){SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -60976,7 +60976,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -61121,7 +61121,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_write_same_command_size_kb{SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_write_same_command_size_kb/1024){SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -61200,7 +61200,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -61345,7 +61345,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_read_i_o_size_kb{SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_read_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -61457,7 +61457,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_write_i_o_size_kb{SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_write_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -62992,7 +62992,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -63137,7 +63137,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_max_i_o_size_kb{SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
+              "expr": "(huawei_max_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -63361,7 +63361,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_max_read_i_o_size_kb{SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
+              "expr": "(huawei_max_read_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -63473,7 +63473,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_max_write_i_o_size_kb{SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
+              "expr": "(huawei_max_write_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -65051,7 +65051,7 @@
               "useBackend": false
             }
           ],
-          "title": "Read I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Read I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -65387,7 +65387,7 @@
               "useBackend": false
             }
           ],
-          "title": "Read I/O Latency Distribution: [10 ms, +∞) (%)",
+          "title": "Read I/O Latency Distribution: [10 ms, +\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -67024,7 +67024,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -68187,7 +68187,7 @@
               "useBackend": false
             }
           ],
-          "title": "Write I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Write I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -68523,7 +68523,7 @@
               "useBackend": false
             }
           ],
-          "title": "Write I/O Latency Distribution: [10 ms, +∞) (%)",
+          "title": "Write I/O Latency Distribution: [10 ms, +\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -69768,7 +69768,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📊 LUN",
+      "title": "\ud83d\udcca LUN",
       "type": "row"
     },
     {
@@ -69842,7 +69842,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -70066,7 +70066,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -70178,7 +70178,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -71130,7 +71130,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📊 LUN Priority",
+      "title": "\ud83d\udcca LUN Priority",
       "type": "row"
     },
     {
@@ -71204,7 +71204,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -71349,7 +71349,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_i_o_size_kb{SN=~\"$SN\", Resource=\"Logical Port\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Logical Port\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -71428,7 +71428,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -71540,7 +71540,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -71652,7 +71652,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -71764,7 +71764,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -71876,7 +71876,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -71988,7 +71988,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -72100,7 +72100,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -72212,7 +72212,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -72324,7 +72324,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -72436,7 +72436,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -72548,7 +72548,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -72660,7 +72660,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -72805,7 +72805,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_read_i_o_size_kb{SN=~\"$SN\", Resource=\"Logical Port\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_read_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Logical Port\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -72917,7 +72917,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_write_i_o_size_kb{SN=~\"$SN\", Resource=\"Logical Port\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_write_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Logical Port\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -73332,7 +73332,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -74607,7 +74607,7 @@
               "useBackend": false
             }
           ],
-          "title": "Read I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Read I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -75460,7 +75460,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -76847,7 +76847,7 @@
               "useBackend": false
             }
           ],
-          "title": "Write I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Write I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -77644,7 +77644,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📊 Logical Port",
+      "title": "\ud83d\udcca Logical Port",
       "type": "row"
     },
     {
@@ -78054,7 +78054,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -78166,7 +78166,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -78278,7 +78278,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -78390,7 +78390,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -78502,7 +78502,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -78647,7 +78647,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_full_copy_command_size_kb{SN=~\"$SN\", Resource=\"Storage Pool\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_full_copy_command_size_kb/1024){SN=~\"$SN\", Resource=\"Storage Pool\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -78726,7 +78726,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -78871,7 +78871,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_i_o_size_kb{SN=~\"$SN\", Resource=\"Storage Pool\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Storage Pool\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -78950,7 +78950,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -79095,7 +79095,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_odx_command_size_kb{SN=~\"$SN\", Resource=\"Storage Pool\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_odx_command_size_kb/1024){SN=~\"$SN\", Resource=\"Storage Pool\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -79174,7 +79174,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -79319,7 +79319,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_odx_write_zero_request_size_kb{SN=~\"$SN\", Resource=\"Storage Pool\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_odx_write_zero_request_size_kb/1024){SN=~\"$SN\", Resource=\"Storage Pool\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -79398,7 +79398,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -79510,7 +79510,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -79655,7 +79655,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_unmap_command_size_kb{SN=~\"$SN\", Resource=\"Storage Pool\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_unmap_command_size_kb/1024){SN=~\"$SN\", Resource=\"Storage Pool\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -79734,7 +79734,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -79879,7 +79879,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_write_same_command_size_kb{SN=~\"$SN\", Resource=\"Storage Pool\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_write_same_command_size_kb/1024){SN=~\"$SN\", Resource=\"Storage Pool\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -79958,7 +79958,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -80103,7 +80103,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_read_i_o_size_kb{SN=~\"$SN\", Resource=\"Storage Pool\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_read_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Storage Pool\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -80215,7 +80215,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_avg_write_i_o_size_kb{SN=~\"$SN\", Resource=\"Storage Pool\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_write_i_o_size_kb/1024){SN=~\"$SN\", Resource=\"Storage Pool\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -82646,7 +82646,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -84145,7 +84145,7 @@
               "useBackend": false
             }
           ],
-          "title": "Read I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Read I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -85110,7 +85110,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -86161,7 +86161,7 @@
               "useBackend": false
             }
           ],
-          "title": "Write I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Write I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -87070,7 +87070,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📊 Storage Pool",
+      "title": "\ud83d\udcca Storage Pool",
       "type": "row"
     }
   ],
@@ -87095,7 +87095,7 @@
           "uid": "P4169E866C3094E38"
         },
         "definition": "label_values(SN)",
-        "description": "Серийный номер массива",
+        "description": "\u0421\u0435\u0440\u0438\u0439\u043d\u044b\u0439 \u043d\u043e\u043c\u0435\u0440 \u043c\u0430\u0441\u0441\u0438\u0432\u0430",
         "includeAll": true,
         "multi": true,
         "name": "SN",
@@ -87122,7 +87122,7 @@
           "uid": "P4169E866C3094E38"
         },
         "definition": "label_values({SN=~\"$SN\"},Resource)",
-        "description": "Тип ресурса (Controller, LUN, Disk и т.д.)",
+        "description": "\u0422\u0438\u043f \u0440\u0435\u0441\u0443\u0440\u0441\u0430 (Controller, LUN, Disk \u0438 \u0442.\u0434.)",
         "includeAll": true,
         "multi": true,
         "name": "Resource",
@@ -87149,7 +87149,7 @@
           "uid": "P4169E866C3094E38"
         },
         "definition": "label_values({SN=~\"$SN\", Resource=~\"$Resource\"},Element)",
-        "description": "Элемент (0A, 0B, CTE0.A.IOM0.P0 и т.д.)",
+        "description": "\u042d\u043b\u0435\u043c\u0435\u043d\u0442 (0A, 0B, CTE0.A.IOM0.P0 \u0438 \u0442.\u0434.)",
         "includeAll": true,
         "multi": true,
         "name": "Element",
