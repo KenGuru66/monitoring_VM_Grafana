@@ -26,18 +26,20 @@ def fix_kb_metrics(dashboard_path):
         nonlocal metrics_fixed
         
         # Паттерн для поиска метрик с _kb или _size_kb в названии
-        # Примеры: huawei_avg_i_o_size_kb, huawei_avg_read_i_o_size_kb
-        pattern = r'(huawei_[a-z_]*(?:size|bandwidth)_kb)\b'
+        # Примеры: huawei_avg_i_o_size_kb{...}, huawei_avg_read_i_o_size_kb{...}
+        # Должен захватить метрику и все её лейблы
+        pattern = r'(huawei_[a-z_]*(?:size|bandwidth)_kb)(\{[^}]*\})?'
         
         matches = re.findall(pattern, expr)
         if matches:
-            for metric in matches:
+            for metric, labels in matches:
                 metrics_with_kb.add(metric)
             
             # Проверяем, не обернуто ли уже в деление
             if '/1024' not in expr and '/ 1024' not in expr:
-                # Оборачиваем метрику в скобки и делим на 1024
-                fixed_expr = re.sub(pattern, r'(\1/1024)', expr)
+                # Оборачиваем метрику С лейблами в скобки и делим на 1024
+                # Правильный синтаксис: (metric{labels})/1024
+                fixed_expr = re.sub(pattern, r'(\1\2)/1024', expr)
                 if fixed_expr != expr:
                     metrics_fixed += 1
                     print(f"   ✅ Исправлено: {metric}")
