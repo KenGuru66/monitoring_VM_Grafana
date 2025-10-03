@@ -1,41 +1,37 @@
 # Python
 __pycache__/
-*.py[cod]
-*$py.class
-*.so
+*.pyc
+*.pyo
+*.pyd
 .Python
+venv/
+env/
+ENV/
 *.egg-info/
-dist/
-build/
 
-# Логи
+# Logs
 *.log
+log/
+logs/
 
-# Временные файлы
-*.tmp
-*.bak
-*.swp
-*~
-.DS_Store
-
-# CSV файлы (создаются автоматически)
-Data2csv/output/*.csv
-Data2csv/temp*/
-
-# Shell скрипты (кроме необходимых)
-*.sh
-
-# Временные текстовые файлы
-*_SUMMARY.txt
-*_REFERENCE.txt
+# Data and temporary files
+Data2csv/output/
+Data2csv/log/
+Data2csv/logs/
+temp/
+*.csv
 
 # IDE
 .vscode/
 .idea/
-*.code-workspace
+*.swp
+*.swo
+*~
 
-# VictoriaMetrics data (если локально)
-victoria-metrics-data/
+# OS
+.DS_Store
+Thumbs.db
 
-# Grafana local data
-grafana/data/
+# Docker volumes data (handled by docker-compose)
+/data/vmdata/
+/data/grafana/

@@ -26,6 +26,13 @@ import click
 import pandas as pd
 import tqdm
 
+# Try to import psutil for smart worker detection
+try:
+    import psutil
+    PSUTIL_AVAILABLE = True
+except ImportError:
+    PSUTIL_AVAILABLE = False
+
 LOGDIR = 'log'
 LOGFILE = 'process_perf_files.log'
 LOGFILE_REPEAT = 'process_perf_files_repeat.log'
@@ -266,8 +273,8 @@ def process_perf_file_to_memory(file_path, resources, metrics, to_db=False):
                         continue
 
                     str_to_csv = ""
-                    str_to_csv += RESOURCE_NAME_DICT.get(str(data_type[0])) + ';'
-                    str_to_csv += METRIC_NAME_DICT.get(str(data_type[1])) + ';'
+                    str_to_csv += RESOURCE_NAME_DICT.get(str(data_type[0]), f"UNKNOWN_RESOURCE_{data_type[0]}") + ';'
+                    str_to_csv += METRIC_NAME_DICT.get(str(data_type[1]), f"UNKNOWN_METRIC_{data_type[1]}") + ';'
                     str_to_csv += data_type[2] + ';'
                     for index, point_value in enumerate(data_type[3]):
                         time_string = time_list[index].strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -300,16 +307,20 @@ def process_perf_file_to_memory(file_path, resources, metrics, to_db=False):
 # -----------------------------------------------------------------------------
 def process_single_tgz_file(args):
     """
-    Process a single .tgz file and return CSV lines.
-    This function is designed to be called in parallel.
+    Process a single .tgz file and write directly to CSV file.
+    Memory optimized - streams data to disk instead of accumulating in memory.
     """
-    file_path, resources, metrics, to_db = args
+    file_path, resources, metrics, to_db, output_file = args
     
     try:
         # Decompress
         decompressed_file_path = decompress_tgz(file_path)
         if not decompressed_file_path:
-            return None
+            return {
+                'file': file_path,
+                'lines_count': 0,
+                'success': False
+            }
             
         # Process to memory
         csv_lines = process_perf_file_to_memory(
@@ -319,20 +330,35 @@ def process_single_tgz_file(args):
             to_db=to_db,
         )
         
-        # Cleanup
+        # Cleanup decompressed file
         if decompressed_file_path.exists():
             decompressed_file_path.unlink()
-            
+        
+        if csv_lines is None:
+            return {
+                'file': file_path,
+                'lines_count': 0,
+                'success': False
+            }
+        
+        # Write to file immediately and release memory
+        lines_count = len(csv_lines)
+        with open(output_file, 'a', encoding="utf-8") as fout:
+            fout.writelines(csv_lines)
+        
+        # Clear memory
+        del csv_lines
+        
         return {
             'file': file_path,
-            'lines': csv_lines,
-            'success': csv_lines is not None
+            'lines_count': lines_count,
+            'success': True
         }
     except Exception as e:
         logger.error(f"Error in process_single_tgz_file for {file_path}: {e}")
         return {
             'file': file_path,
-            'lines': None,
+            'lines_count': 0,
             'success': False
         }
 
@@ -455,16 +481,80 @@ def rename_metric(metric, add_prefix=True):
 
 
 # -----------------------------------------------------------------------------
+def determine_optimal_workers_for_parsing(num_workers=None):
+    """
+    Определяет оптимальное количество worker процессов для парсинга.
+    
+    Учитывает:
+    - Количество CPU ядер
+    - Доступную память
+    - Текущую загрузку системы
+    """
+    if num_workers is not None and num_workers > 0:
+        return num_workers
+    
+    cpu_cores = cpu_count()
+    
+    # Базовое количество workers
+    if cpu_cores <= 4:
+        base_workers = max(1, cpu_cores - 1)
+    elif cpu_cores <= 8:
+        base_workers = cpu_cores - 1
+    elif cpu_cores <= 16:
+        # Для 16 ядер используем 12-14 workers (оставляем 2 ядра системе)
+        base_workers = cpu_cores - 2
+    elif cpu_cores <= 32:
+        # Для больших систем - оставляем больше запаса
+        base_workers = min(20, cpu_cores - 4)
+    else:
+        base_workers = 20  # Максимум 20 workers для парсинга
+    
+    # Если psutil доступен, учитываем память и загрузку
+    if PSUTIL_AVAILABLE:
+        mem = psutil.virtual_memory()
+        available_gb = mem.available / (1024**3)
+        
+        # Оценка: ~500MB на worker для парсинга (с учетом декомпрессии)
+        memory_per_worker_gb = 0.5
+        max_workers_by_memory = int(available_gb / memory_per_worker_gb)
+        
+        # Учитываем загрузку CPU
+        cpu_percent = psutil.cpu_percent(interval=0.1)
+        if cpu_percent > 70:
+            base_workers = max(1, int(base_workers * 0.7))
+        elif cpu_percent > 50:
+            base_workers = max(1, int(base_workers * 0.85))
+        
+        # Финальное значение с учетом памяти
+        final_workers = min(base_workers, max_workers_by_memory)
+    else:
+        final_workers = base_workers
+    
+    return max(1, final_workers)
+
+# -----------------------------------------------------------------------------
 def process_perf_file_tgz_dir(input_path, output_path, is_delete_after_parse, resources, metrics, to_db=False, prefix=None, num_workers=None):
     logger.info("%s: start processing  %s", inspect.stack()[0][3], input_path)
     input_path = Path(input_path)
     output_path = Path(output_path)
     
     # Определяем количество worker процессов
-    if num_workers is None:
-        num_workers = max(1, cpu_count() - 1)  # Оставляем одно ядро свободным
+    optimal_workers = determine_optimal_workers_for_parsing(num_workers)
     
-    logger.info(f"Using {num_workers} worker processes for parallel processing")
+    if PSUTIL_AVAILABLE:
+        mem = psutil.virtual_memory()
+        cpu_cores = cpu_count()
+        logger.info(f"System resources: {cpu_cores} CPU cores, {mem.total / (1024**3):.1f} GB RAM ({mem.available / (1024**3):.1f} GB available)")
+        logger.info(f"CPU load: {psutil.cpu_percent(interval=0.1):.1f}%")
+    else:
+        logger.info(f"System resources: {cpu_count()} CPU cores (psutil not available)")
+    
+    if num_workers is not None:
+        logger.info(f"Using {optimal_workers} worker processes (requested: {num_workers})")
+    else:
+        logger.info(f"Using {optimal_workers} worker processes (auto-detected)")
+    
+    num_workers = optimal_workers
     
     # Проверяем, является ли входной путь zip файлом
     temp_extract_dir = None
@@ -503,7 +593,8 @@ def process_perf_file_tgz_dir(input_path, output_path, is_delete_after_parse, re
         
         try:
             # Prepare arguments for parallel processing
-            process_args = [(f, resources, metrics, to_db) for f in sn_files]
+            # Each worker writes directly to the output file
+            process_args = [(f, resources, metrics, to_db, output_csv_file_path) for f in sn_files]
             
             # Process files in parallel
             with Pool(processes=num_workers) as pool:
@@ -514,14 +605,14 @@ def process_perf_file_tgz_dir(input_path, output_path, is_delete_after_parse, re
                     desc=f"Processing {serial}"
                 ))
             
-            # Write all results to CSV
-            with open(output_csv_file_path, 'a', encoding="utf-8") as fout_csv:
-                for result in results:
-                    if result['success'] and result['lines']:
-                        fout_csv.writelines(result['lines'])
-                        logger.info(f"Successfully processed {result['file'].name}")
-                    else:
-                        logger.error(f"Failed to process {result['file'].name}")
+            # Log results
+            total_lines = 0
+            for result in results:
+                if result['success']:
+                    total_lines += result['lines_count']
+                    logger.info(f"Successfully processed {result['file'].name} ({result['lines_count']:,} lines)")
+                else:
+                    logger.error(f"Failed to process {result['file'].name}")
             
             # Cleanup source files if needed
             if not temp_extract_dir:
@@ -598,14 +689,23 @@ def make_dirs(log_path, output_path):
 @click.option("-e", "--ext", type=click.STRING, default="tgz", help='File extension to search for')
 @click.option("--to_db", is_flag=True, show_default=True, required=False, default=False, help='Send data to InfluxDB')
 @click.option("-w", "--num_workers", type=int, default=None, help='Number of parallel workers (default: CPU count - 1)')
+@click.option("--all-metrics", is_flag=True, default=False, help='Parse ALL metrics and resources from METRIC_DICT and RESOURCE_DICT (instead of DEFAULT lists)')
 def huawei_collect(
     input_path, output_path, log_path, is_delete_after_parse, resources,
-    metrics, prefix, ext, to_db, num_workers
+    metrics, prefix, ext, to_db, num_workers, all_metrics
 ):
     """ process collected data - PARALLEL VERSION
     """
     logger.info("%s: Start", inspect.stack()[0][3])
     logger.info(f"Available CPU cores: {cpu_count()}")
+    
+    # Если установлен флаг --all-metrics, используем ВСЕ метрики и ресурсы из словарей
+    if all_metrics:
+        resources = tuple(RESOURCE_NAME_DICT.keys())
+        metrics = tuple(METRIC_NAME_DICT.keys())
+        logger.info(f"🔥 ALL-METRICS MODE: Parsing ALL resources ({len(resources)}) and ALL metrics ({len(metrics)})")
+    else:
+        logger.info(f"📊 DEFAULT MODE: Parsing {len(resources)} resources and {len(metrics)} metrics")
     
     make_dirs(Path(log_path), Path(output_path))
     process_perf_file_tgz_dir(

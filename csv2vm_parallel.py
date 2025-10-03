@@ -129,9 +129,9 @@ def determine_optimal_workers(file_path: pathlib.Path, requested_workers: int = 
     
     Учитывает:
     - Количество CPU ядер (с разумным ограничением для больших систем)
-    - Доступную память
+    - Доступную память (если psutil доступен)
     - Размер файла
-    - Текущую загрузку системы
+    - Текущую загрузку системы (если psutil доступен)
     
     Адаптируется под системы с 8, 16, 24, 32+ CPU ядрами.
     """
@@ -157,16 +157,21 @@ def determine_optimal_workers(file_path: pathlib.Path, requested_workers: int = 
         # Bottleneck обычно в I/O и сети, а не CPU
         base_workers = 20
     
-    # Проверяем доступную память
-    mem = psutil.virtual_memory()
-    available_gb = mem.available / (1024**3)
-    
     # Размер файла
     file_size_gb = file_path.stat().st_size / (1024**3)
     
-    # Оценка памяти на worker: ~200-300 MB на worker для обработки
-    memory_per_worker_gb = 0.3
-    max_workers_by_memory = int(available_gb / memory_per_worker_gb)
+    # Если psutil доступен, учитываем память и CPU load
+    if PSUTIL_AVAILABLE:
+        # Проверяем доступную память
+        mem = psutil.virtual_memory()
+        available_gb = mem.available / (1024**3)
+        
+        # Оценка памяти на worker: ~200-300 MB на worker для обработки
+        memory_per_worker_gb = 0.3
+        max_workers_by_memory = int(available_gb / memory_per_worker_gb)
+    else:
+        # Без psutil - консервативная оценка
+        max_workers_by_memory = base_workers
     
     # Для маленьких файлов (<100 MB) не имеет смысла много workers
     if file_size_gb < 0.1:
@@ -182,14 +187,15 @@ def determine_optimal_workers(file_path: pathlib.Path, requested_workers: int = 
         # Для огромных файлов можно использовать все доступные workers
         recommended = base_workers
     
-    # Учитываем текущую загрузку CPU
-    cpu_percent = psutil.cpu_percent(interval=0.1)
-    if cpu_percent > 70:
-        # Система уже загружена, уменьшаем workers
-        recommended = max(1, recommended - 1)
-    elif cpu_percent > 50:
-        # Средняя загрузка - немного уменьшаем
-        recommended = max(1, int(recommended * 0.8))
+    # Учитываем текущую загрузку CPU (если psutil доступен)
+    if PSUTIL_AVAILABLE:
+        cpu_percent = psutil.cpu_percent(interval=0.1)
+        if cpu_percent > 70:
+            # Система уже загружена, уменьшаем workers
+            recommended = max(1, recommended - 1)
+        elif cpu_percent > 50:
+            # Средняя загрузка - немного уменьшаем
+            recommended = max(1, int(recommended * 0.8))
     
     # Финальное ограничение по памяти
     final_workers = min(recommended, max_workers_by_memory, base_workers)
@@ -301,15 +307,21 @@ def main_parallel(path: pathlib.Path, url: str, batch_size: int, num_workers: in
     optimal_workers = determine_optimal_workers(path, num_workers)
     
     # Показываем информацию о системе
-    mem = psutil.virtual_memory()
     cpu_cores = cpu_count()
     file_size_gb = path.stat().st_size / (1024**3)
     
     logger.info(f"💻 System info:")
     logger.info(f"   CPU cores: {cpu_cores}")
-    logger.info(f"   Available memory: {mem.available / (1024**3):.1f} GB / {mem.total / (1024**3):.1f} GB")
+    
+    if PSUTIL_AVAILABLE:
+        mem = psutil.virtual_memory()
+        logger.info(f"   Available memory: {mem.available / (1024**3):.1f} GB / {mem.total / (1024**3):.1f} GB")
+        logger.info(f"   CPU load: {psutil.cpu_percent(interval=0.1):.1f}%")
+    else:
+        logger.info(f"   Memory info: N/A (psutil not installed)")
+        logger.info(f"   CPU load: N/A (psutil not installed)")
+    
     logger.info(f"   File size: {file_size_gb:.2f} GB")
-    logger.info(f"   CPU load: {psutil.cpu_percent(interval=0.1):.1f}%")
     
     if num_workers is not None:
         logger.info(f"👷 Workers: {optimal_workers} (requested: {num_workers})")

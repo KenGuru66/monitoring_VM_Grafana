@@ -33,7 +33,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 def run_command(cmd, description):
-    """Выполняет команду и логирует результат."""
+    """Выполняет команду и логирует результат в реальном времени."""
     logger.info(f"{'='*80}")
     logger.info(f"🚀 {description}")
     logger.info(f"Command: {' '.join(cmd)}")
@@ -42,36 +42,44 @@ def run_command(cmd, description):
     start_time = time.time()
     
     try:
-        result = subprocess.run(
+        # Запускаем процесс с потоковым выводом
+        process = subprocess.Popen(
             cmd,
-            check=True,
-            capture_output=True,
-            text=True
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+            bufsize=1,  # Line buffered
+            universal_newlines=True
         )
         
-        elapsed = time.time() - start_time
-        
-        logger.info(f"✅ {description} - УСПЕШНО")
-        logger.info(f"⏱️  Время выполнения: {elapsed:.1f} секунд")
-        
-        # Логируем последние строки вывода
-        if result.stdout:
-            lines = result.stdout.strip().split('\n')
-            logger.info("📊 Вывод (последние 10 строк):")
-            for line in lines[-10:]:
+        # Читаем вывод построчно в реальном времени
+        output_lines = []
+        for line in process.stdout:
+            line = line.rstrip()
+            if line:
                 logger.info(f"   {line}")
+                output_lines.append(line)
         
-        return True, elapsed
+        # Ждем завершения процесса
+        return_code = process.wait()
         
-    except subprocess.CalledProcessError as e:
         elapsed = time.time() - start_time
-        logger.error(f"❌ {description} - ОШИБКА")
+        
+        if return_code == 0:
+            logger.info(f"✅ {description} - УСПЕШНО")
+            logger.info(f"⏱️  Время выполнения: {elapsed:.1f} секунд")
+            return True, elapsed
+        else:
+            logger.error(f"❌ {description} - ОШИБКА")
+            logger.error(f"⏱️  Время до ошибки: {elapsed:.1f} секунд")
+            logger.error(f"Код возврата: {return_code}")
+            return False, elapsed
+        
+    except Exception as e:
+        elapsed = time.time() - start_time
+        logger.error(f"❌ {description} - КРИТИЧЕСКАЯ ОШИБКА")
         logger.error(f"⏱️  Время до ошибки: {elapsed:.1f} секунд")
-        logger.error(f"Код возврата: {e.returncode}")
-        if e.stdout:
-            logger.error(f"Stdout: {e.stdout}")
-        if e.stderr:
-            logger.error(f"Stderr: {e.stderr}")
+        logger.error(f"Ошибка: {str(e)}")
         return False, elapsed
 
 def main():
@@ -92,10 +100,13 @@ def main():
   
   # С указанием URL VictoriaMetrics
   %(prog)s -i "Data2csv/logs/archive.zip" --vm-url "http://victoriametrics:8428/api/v1/import/prometheus"
+  
+  # С парсингом ВСЕХ метрик (вместо DEFAULT списка)
+  %(prog)s -i "Data2csv/logs/archive.zip" --all-metrics
 
 Pipeline выполняет:
-  1. Парсинг .tgz → CSV (параллельно, 7 workers)
-  2. Импорт CSV → VictoriaMetrics (параллельно, 7 workers)
+  1. Парсинг .tgz → CSV (параллельно, авто workers)
+  2. Импорт CSV → VictoriaMetrics (параллельно, авто workers)
   3. Очистка временных файлов (опционально)
         """)
     
@@ -141,6 +152,13 @@ Pipeline выполняет:
         help='Размер батча для импорта (default: 50000)'
     )
     
+    parser.add_argument(
+        '--all-metrics',
+        action='store_true',
+        default=False,
+        help='Парсить ВСЕ метрики и ресурсы из METRIC_DICT и RESOURCE_DICT (вместо DEFAULT списков)'
+    )
+    
     args = parser.parse_args()
     
     # Проверяем существование входного файла
@@ -178,6 +196,9 @@ Pipeline выполняет:
     
     if args.workers:
         parse_cmd.extend(['-w', str(args.workers)])
+    
+    if args.all_metrics:
+        parse_cmd.append('--all-metrics')
     
     success, parse_time = run_command(parse_cmd, "ЭТАП 1: Парсинг .tgz файлов в CSV")
     
