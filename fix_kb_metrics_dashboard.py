@@ -22,13 +22,17 @@ def fix_kb_metrics(dashboard_path):
     metrics_with_kb = set()
     
     def fix_expr(expr):
-        """Исправляет expression, добавляя деление на 1024 для метрик с _kb."""
+        """Исправляет expression, добавляя деление на 1024 для метрик SIZE в KB.
+        
+        НЕ трогает метрики bandwidth_kb_s (это уже KB/s, не нужно делить).
+        """
         nonlocal metrics_fixed
         
-        # Паттерн для поиска метрик с _kb или _size_kb в названии
+        # Паттерн для поиска метрик с _size_kb в названии
         # Примеры: huawei_avg_i_o_size_kb{...}, huawei_avg_read_i_o_size_kb{...}
-        # Должен захватить метрику и все её лейблы
-        pattern = r'(huawei_[a-z_]*(?:size|bandwidth)_kb)(\{[^}]*\})?'
+        # ВАЖНО: НЕ захватываем метрики с _kb_s (это bandwidth в KB/s)
+        # Используем negative lookahead (?!_s) чтобы исключить _kb_s
+        pattern = r'(huawei_[a-z_]*size_kb)(?!_s)(\{[^}]*\})?'
         
         matches = re.findall(pattern, expr)
         if matches:
