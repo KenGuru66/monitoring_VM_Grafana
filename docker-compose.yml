@@ -11,13 +11,8 @@ services:
       - --retentionPeriod=${VM_RETENTION:-6}
     volumes:
       - /data/vmdata:/vmdata      # host-path на быстром диске
-    # Healthcheck временно отключен - порт доступен с хоста, но не из контейнера
-    # healthcheck:
-    #   test: ["CMD", "wget", "-q", "-O-", "http://localhost:8428/health"]
-    #   interval: 10s
-    #   timeout: 5s
-    #   retries: 3
-    #   start_period: 10s
+    networks:
+      - monitoring
 
   grafana:
     image: grafana/grafana:12.1.1
@@ -39,6 +34,50 @@ services:
       interval: 30s
       timeout: 5s
       retries: 3
+    networks:
+      - monitoring
+
+  api:
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "${API_PORT:-8000}:8000"
+    environment:
+      - VM_URL=http://victoriametrics:8428
+      - VM_IMPORT_URL=http://victoriametrics:8428/api/v1/import/prometheus
+      - GRAFANA_URL=${GRAFANA_URL:-http://localhost:3000}
+      - MAX_UPLOAD_SIZE=${MAX_UPLOAD_SIZE:-10737418240}  # 10GB
+      - JOB_TIMEOUT=${JOB_TIMEOUT:-86400}  # 24 hours default
+      - WORKER_CONCURRENCY=${WORKER_CONCURRENCY:-4}
+    volumes:
+      - ./uploads:/app/uploads
+      - ./Data2csv:/app/Data2csv
+      - /data/vmdata:/vmdata  # доступ к VM данным (опционально)
+    depends_on:
+      - victoriametrics
+    networks:
+      - monitoring
+
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+      args:
+        - VITE_API_URL=${VITE_API_URL:-http://localhost:8000}
+        - VITE_GRAFANA_URL=${VITE_GRAFANA_URL:-http://localhost:3000}
+    restart: unless-stopped
+    ports:
+      - "${WEB_PORT:-3001}:80"
+    depends_on:
+      - api
+    networks:
+      - monitoring
+
+networks:
+  monitoring:
+    driver: bridge
 
 volumes:
   grafana_data:

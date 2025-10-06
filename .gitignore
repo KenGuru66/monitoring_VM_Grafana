@@ -1,40 +1,82 @@
 # Python
 __pycache__/
-*.pyc
-*.pyo
-*.pyd
+*.py[cod]
+*$py.class
+*.so
 .Python
 venv/
 env/
 ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
 *.egg-info/
+.installed.cfg
+*.egg
 
 # Logs
 *.log
+pipeline.log
+csv2vm_parallel.log
+api.log
 log/
 logs/
 
-# Data and temporary files
-Data2csv/output/
-Data2csv/log/
-Data2csv/logs/
-temp/
-*.csv
+# Environment
+.env
+.env.local
+.env.*.local
 
-# Dashboard backups
-*.json.backup
-
-# IDE
+# IDEs
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
-
-# OS
 .DS_Store
-Thumbs.db
 
-# Docker volumes data (handled by docker-compose)
+# Temporary files
+temp/
+temp_zip_extract/
+*.tmp
+
+# Data files
+*.csv
+*.zip
+!Data2csv/logs/*.zip
+uploads/*
+!uploads/.gitkeep
+Data2csv/output/*
+!Data2csv/output/.gitkeep
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn-integrity
+
+# Frontend build
+web/dist/
+web/.vite/
+web/.cache/
+
+# Docker
+.dockerignore
+
+# Grafana
+grafana/data/
+
+# VictoriaMetrics data
 /data/vmdata/
 /data/grafana/
