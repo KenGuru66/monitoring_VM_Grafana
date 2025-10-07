@@ -297,37 +297,103 @@ def stream_prometheus_metrics(file_path: Path, array_sn: str, resources: list,
     return metrics_count
 
 
-def send_batch_to_vm(batch: list, vm_url: str) -> bool:
-    """Отправить батч метрик в VictoriaMetrics."""
+def send_batch_to_vm(batch: list, vm_url: str, retries: int = 3) -> bool:
+    """Отправить батч метрик в VictoriaMetrics с повторными попытками."""
     if not batch:
         return True
     
     payload = "".join(batch).encode('utf-8')
     
-    try:
-        response = requests.post(vm_url, data=payload, timeout=30)
-        if response.status_code not in (200, 204):
-            logger.error(f"VM returned {response.status_code}: {response.text[:200]}")
-            return False
-        return True
-    except requests.RequestException as e:
-        logger.error(f"Failed to send batch to VM: {e}")
-        return False
+    for attempt in range(retries):
+        try:
+            response = requests.post(vm_url, data=payload, timeout=30)
+            if response.status_code not in (200, 204):
+                logger.error(f"VM returned {response.status_code}: {response.text[:200]}")
+                if attempt < retries - 1:
+                    time.sleep(2 ** attempt)  # Exponential backoff: 1s, 2s, 4s
+                    continue
+                return False
+            return True
+        except requests.exceptions.ConnectionError as e:
+            if "Failed to resolve" in str(e) or "Name resolution" in str(e):
+                logger.error(f"DNS resolution failed for VM endpoint (attempt {attempt + 1}/{retries}): {e}")
+            else:
+                logger.error(f"Connection error to VM (attempt {attempt + 1}/{retries}): {e}")
+            
+            if attempt < retries - 1:
+                time.sleep(2 ** attempt)  # Exponential backoff
+            else:
+                return False
+        except requests.RequestException as e:
+            logger.error(f"Failed to send batch to VM (attempt {attempt + 1}/{retries}): {e}")
+            if attempt < retries - 1:
+                time.sleep(2 ** attempt)
+            else:
+                return False
+    
+    return False
 
 
 def decompress_tgz(file_tgz: Path) -> Path:
-    """Распаковать .tgz файл."""
-    tar = tarfile.open(file_tgz)
-    names = tar.getnames()
-    temp_file_path = Path("temp") / f"temp_{os.getpid()}_{time.time()}"
-    temp_file_path.mkdir(parents=True, exist_ok=True)
+    """
+    Распаковать .tgz файл с использованием pigz для ускорения.
+    pigz - параллельная версия gzip, дает 20-30% прирост скорости.
+    """
+    import subprocess
+    import shutil
     
-    if len(names) == 1:
-        tar.extract(names[0], temp_file_path)
-        return temp_file_path / names[0]
+    # Проверяем наличие pigz
+    has_pigz = shutil.which('pigz') is not None
     
-    logger.error(f"perf file content error: {file_tgz}")
-    return None
+    if has_pigz:
+        # Используем pigz для быстрой распаковки
+        try:
+            # Сначала узнаем имя файла внутри архива
+            result = subprocess.run(
+                ['tar', '-tzf', str(file_tgz)],
+                capture_output=True,
+                text=True,
+                check=True
+            )
+            names = result.stdout.strip().split('\n')
+            
+            if len(names) == 1:
+                temp_file_path = Path("temp") / f"temp_{os.getpid()}_{time.time()}"
+                temp_file_path.mkdir(parents=True, exist_ok=True)
+                
+                # Распаковываем с pigz (быстрее обычного tar)
+                subprocess.run(
+                    ['tar', '--use-compress-program=pigz', '-xf', str(file_tgz), '-C', str(temp_file_path)],
+                    check=True,
+                    capture_output=True
+                )
+                
+                return temp_file_path / names[0]
+        except subprocess.CalledProcessError as e:
+            stderr_output = e.stderr if hasattr(e, 'stderr') else str(e)
+            if "unexpected end of file" in str(stderr_output).lower() or "ended before" in str(stderr_output).lower():
+                logger.error(f"Compressed file corrupted or incomplete: {file_tgz.name}")
+                return None
+            logger.warning(f"pigz decompression failed, falling back to tarfile: {e}")
+    
+    # Fallback на обычный tarfile если pigz недоступен
+    try:
+        tar = tarfile.open(file_tgz)
+        names = tar.getnames()
+        temp_file_path = Path("temp") / f"temp_{os.getpid()}_{time.time()}"
+        temp_file_path.mkdir(parents=True, exist_ok=True)
+        
+        if len(names) == 1:
+            tar.extract(names[0], temp_file_path)
+            tar.close()
+            return temp_file_path / names[0]
+        
+        tar.close()
+        logger.error(f"perf file content error: {file_tgz}")
+        return None
+    except (tarfile.ReadError, EOFError, OSError) as e:
+        logger.error(f"Compressed file corrupted or incomplete: {file_tgz.name} - {e}")
+        return None
 
 
 def process_single_tgz_streaming(args) -> dict:
@@ -343,16 +409,19 @@ def process_single_tgz_streaming(args) -> dict:
     start_time = time.time()
     metrics_sent = 0
     batches_sent = 0
+    failed_batches = 0
     
     try:
         # Распаковываем
         decompressed_file = decompress_tgz(tgz_file)
         if not decompressed_file:
+            logger.warning(f"[Worker {worker_id}] ⚠️  Skipping corrupted file: {tgz_file.name}")
             return {
                 'file': tgz_file.name,
                 'success': False,
                 'metrics': 0,
-                'time': time.time() - start_time
+                'time': time.time() - start_time,
+                'error': 'Corrupted or incomplete archive'
             }
         
         # Стримим метрики и отправляем батчами
@@ -368,19 +437,19 @@ def process_single_tgz_streaming(args) -> dict:
                     batches_sent += 1
                     batch = []
                 else:
-                    logger.error(f"[Worker {worker_id}] Failed to send batch")
-                    return {
-                        'file': tgz_file.name,
-                        'success': False,
-                        'metrics': metrics_sent,
-                        'time': time.time() - start_time
-                    }
+                    failed_batches += 1
+                    logger.error(f"[Worker {worker_id}] Failed to send batch after retries (failed: {failed_batches})")
+                    # Продолжаем обработку, чтобы попытаться отправить остальные батчи
+                    batch = []
         
         # Отправляем остаток
         if batch:
             if send_batch_to_vm(batch, vm_url):
                 metrics_sent += len(batch)
                 batches_sent += 1
+            else:
+                failed_batches += 1
+                logger.error(f"[Worker {worker_id}] Failed to send final batch")
         
         # Cleanup
         if decompressed_file.exists():
@@ -389,13 +458,17 @@ def process_single_tgz_streaming(args) -> dict:
         elapsed = time.time() - start_time
         rate = metrics_sent / elapsed if elapsed > 0 else 0
         
-        logger.info(f"[Worker {worker_id}] ✅ {tgz_file.name}: {metrics_sent:,} metrics in {elapsed:.1f}s ({rate:,.0f} m/s)")
+        if failed_batches > 0:
+            logger.warning(f"[Worker {worker_id}] ⚠️  {tgz_file.name}: {metrics_sent:,} metrics sent, {failed_batches} batches failed")
+        else:
+            logger.info(f"[Worker {worker_id}] ✅ {tgz_file.name}: {metrics_sent:,} metrics in {elapsed:.1f}s ({rate:,.0f} m/s)")
         
         return {
             'file': tgz_file.name,
-            'success': True,
+            'success': failed_batches == 0,
             'metrics': metrics_sent,
             'batches': batches_sent,
+            'failed_batches': failed_batches,
             'time': elapsed,
             'rate': rate
         }
@@ -406,7 +479,8 @@ def process_single_tgz_streaming(args) -> dict:
             'file': tgz_file.name,
             'success': False,
             'metrics': 0,
-            'time': time.time() - start_time
+            'time': time.time() - start_time,
+            'error': str(e)
         }
 
 
@@ -534,7 +608,10 @@ def main():
     total_time = time.time() - start_time
     total_metrics = sum(r['metrics'] for r in results)
     total_batches = sum(r.get('batches', 0) for r in results)
+    total_failed_batches = sum(r.get('failed_batches', 0) for r in results)
     success_count = sum(1 for r in results if r['success'])
+    failed_count = len(tgz_files) - success_count
+    corrupted_files = [r['file'] for r in results if not r['success'] and r.get('error') == 'Corrupted or incomplete archive']
     
     if monitor:
         monitor.update(total_metrics)
@@ -545,8 +622,14 @@ def main():
     logger.info("="*80)
     logger.info(f"📊 Results:")
     logger.info(f"   Files processed: {success_count}/{len(tgz_files)}")
+    if failed_count > 0:
+        logger.warning(f"   ⚠️  Files failed:  {failed_count}")
+        if corrupted_files:
+            logger.warning(f"   ⚠️  Corrupted:     {len(corrupted_files)} files")
     logger.info(f"   Metrics sent:    {total_metrics:,}")
     logger.info(f"   Batches sent:    {total_batches:,}")
+    if total_failed_batches > 0:
+        logger.warning(f"   ⚠️  Batches failed: {total_failed_batches:,}")
     logger.info(f"   Total time:      {total_time:.1f}s ({total_time/60:.1f} min)")
     logger.info(f"   Throughput:      {total_metrics/total_time:,.0f} metrics/sec")
     logger.info(f"   Array SN:        {array_sn}")
