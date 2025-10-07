@@ -52,7 +52,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Константы
-BATCH_SIZE = 50000  # Строк в батче для отправки в VM
+BATCH_SIZE = 100000  # Строк в батче для отправки в VM (оптимизировано)
 DEFAULT_RESOURCES = ["207", "212", "225", "216", "266", "10", "11", "21"]
 DEFAULT_METRICS = ["18", "22", "25", "28", "23", "26", "1079", "1073", "627", "1074", 
                    "240", "1158", "1154", "1162", "1166", "1170", "1174"]
@@ -458,8 +458,8 @@ def main():
                        help=f'Размер батча (default: {BATCH_SIZE})')
     parser.add_argument('-w', '--workers', type=int, default=None,
                        help='Количество параллельных workers (default: CPU-2)')
-    parser.add_argument('--all-metrics', action='store_true',
-                       help='Парсить ВСЕ метрики (вместо DEFAULT)')
+    parser.add_argument('--all-metrics', action='store_true', default=True,
+                       help='Парсить ВСЕ метрики (по умолчанию: True)')
     parser.add_argument('--monitor', action='store_true',
                        help='Включить подробный мониторинг ресурсов')
     

@@ -9,6 +9,13 @@ services:
     command:
       - --storageDataPath=/vmdata
       - --retentionPeriod=${VM_RETENTION:-6}
+      - --maxInsertRequestSize=128MB
+      - --maxLabelsPerTimeseries=50
+      - -memory.allowedPercent=80
+      - -insert.maxQueueDuration=60s
+      - -search.maxConcurrentRequests=8
+      - -inmemoryDataFlushInterval=5s  # чаще flush (default 1s)
+      - -maxConcurrentInserts=32       # больше параллелизма
     volumes:
       - /data/vmdata:/vmdata      # host-path на быстром диске
     networks:

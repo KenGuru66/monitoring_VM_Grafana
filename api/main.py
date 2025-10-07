@@ -121,9 +121,8 @@ def run_pipeline_sync(job_id: str, zip_path: Path):
         
         cmd = [
             "python3",
-            "/app/huawei_to_vm_pipeline.py",
+            "/app/huawei_streaming_pipeline.py",
             "-i", str(zip_path),
-            "-o", str(OUTPUT_DIR),
             "--vm-url", VM_IMPORT_URL,
             "--batch-size", "50000",
             "--all-metrics"
@@ -140,10 +139,10 @@ def run_pipeline_sync(job_id: str, zip_path: Path):
         )
         
         progress_markers = {
-            "Парсинг": 20,
-            "CSV файлов:": 50,
-            "Импорт": 60,
-            "PIPELINE ЗАВЕРШЁН": 95
+            "Processing TGZ files": 20,
+            "Worker": 50,
+            "metrics in": 70,
+            "STREAMING PIPELINE COMPLETED": 95
         }
         
         for line in process.stdout:

@@ -14,6 +14,7 @@ RUN pip install --no-cache-dir -r /app/api/requirements.txt
 # Copy application code
 COPY api/main.py /app/api/main.py
 COPY huawei_to_vm_pipeline.py /app/huawei_to_vm_pipeline.py
+COPY huawei_streaming_pipeline.py /app/huawei_streaming_pipeline.py
 COPY csv2vm_parallel.py /app/csv2vm_parallel.py
 COPY Data2csv /app/Data2csv
 
