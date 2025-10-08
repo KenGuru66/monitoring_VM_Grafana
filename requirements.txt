@@ -1,14 +1,7 @@
-# Python dependencies for OceanStor Monitoring project
+# Requirements for perf_zip2csv.py
 
-# Core dependencies for CSV import scripts
-requests>=2.31.0
+pandas>=1.5.0
 tqdm>=4.65.0
 
-# Dependencies for Huawei performance parser
-click>=8.1.0
-pandas>=2.0.0
-
-# Optional: for direct DB import (uncomment if needed)
-# influxdb>=5.3.1
-
-psutil>=5.9.0
+# Optional: for testing
+pytest>=7.0.0
