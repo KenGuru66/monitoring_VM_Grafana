@@ -30,8 +30,8 @@ from multiprocessing import Manager, cpu_count
 
 from tqdm import tqdm
 
-# Add Data2csv to path
-sys.path.insert(0, str(Path(__file__).parent / 'Data2csv'))
+# Add parent directory to path to access Data2csv
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from Data2csv.METRIC_DICT import METRIC_NAME_DICT
 from Data2csv.RESOURCE_DICT import RESOURCE_NAME_DICT
