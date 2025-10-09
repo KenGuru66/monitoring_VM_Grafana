@@ -43,47 +43,33 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Resource configuration
+# Resource configuration - ALL METRICS for each resource type
 RESOURCE_CONFIG = {
     '207': {  # Controller
         'filename': 'cpu_output.csv',
         'prefix': 'CPUPERF',
         'meta_fields': ['Serial', 'Slot', 'Type'],
         'metrics': [
-            '93',   # Read cache hit ratio (%)
-            '95',   # Write cache hit ratio (%)
-            '333',  # Cache water (%)
-            '5',    # Max. bandwidth (MB/s)
-            '19',   # Queue length
-            '21',   # Block bandwidth (MB/s)
-            '22',   # Total IOPS (IO/s)
-            '23',   # Read bandwidth (MB/s)
-            '24',   # Avg. read I/O size (KB)
-            '25',   # Read IOPS (IO/s)
-            '26',   # Write bandwidth (MB/s)
-            '27',   # Avg. write I/O size (KB)
-            '28',   # Write IOPS (IO/s)
-            '1182', # Read I/O granularity distribution: [0K,4K) (%)
-            '33',   # Read I/O granularity distribution: [4K,8K) (%)
-            '34',   # Read I/O granularity distribution: [8K,16K) (%)
-            '35',   # Read I/O granularity distribution: [16K,32K) (%)
-            '36',   # Read I/O granularity distribution: [32K,64K) (%)
-            '37',   # Read I/O granularity distribution: [64K,128K) (%)
-            '1183', # Read I/O granularity distribution: [128K,+∞) (%)
-            '1184', # Write I/O granularity distribution: [0K,4K) (%)
-            '44',   # Write I/O granularity distribution: [4K,8K) (%)
-            '45',   # Write I/O granularity distribution: [8K,16K) (%)
-            '46',   # Write I/O granularity distribution: [16K,32K) (%)
-            '47',   # Write I/O granularity distribution: [32K,64K) (%)
-            '48',   # Write I/O granularity distribution: [64K,128K) (%)
-            '1185', # Write I/O granularity distribution: [128K,+∞) (%)
-            '265',  # Ratio of read I/Os to total I/Os (%)
-            '370',  # Avg. I/O Response Time (us)
-            '384',  # Avg. Read I/O Response Time (us)
-            '385',  # Avg. Write I/O Response Time (us)
-            '68',   # Avg. CPU usage (%)
-            '1299', # KV CPU Usage (%)
-            '1075', # Disk Max. Usage (%)
+            # Bandwidth & IOPS
+            '5', '21', '22', '23', '24', '25', '26', '27', '28',
+            # Queue & Usage
+            '18', '19', '67', '68', '217',
+            # Cache
+            '69', '93', '94', '95', '96', '108', '109', '110', '120', '333', '1055', '1056', '1057',
+            # Response Times
+            '78', '79', '370', '371', '384', '385', '523', '524', '525',
+            # CPU Usage
+            '1075', '1296', '1297', '1298', '1299', '1633',
+            # I/O Granularity - Read
+            '1182', '33', '34', '35', '36', '37', '1183',
+            # I/O Granularity - Write  
+            '1184', '44', '45', '46', '47', '48', '1185',
+            # Backend
+            '260', '261', '262', '807',
+            # Ratios
+            '265', '266',
+            # Other
+            '228', '240', '241', '369',
         ]
     },
     '10': {  # Disk (RAID Group)
@@ -91,35 +77,22 @@ RESOURCE_CONFIG = {
         'prefix': 'RGPERF',
         'meta_fields': ['Serial', 'MpCnt', 'Rg', 'PgCnt', 'LdCnt', 'Alias'],
         'metrics': [
-            '5',    # Max. bandwidth (MB/s)
-            '18',   # Usage (%)
-            '19',   # Queue length
-            '21',   # Block bandwidth (MB/s)
-            '22',   # Total IOPS (IO/s)
-            '23',   # Read bandwidth (MB/s)
-            '24',   # Avg. read I/O size (KB)
-            '25',   # Read IOPS (IO/s)
-            '26',   # Write bandwidth (MB/s)
-            '27',   # Avg. write I/O size (KB)
-            '28',   # Write IOPS (IO/s)
-            '1182', # Read I/O granularity distribution: [0K,4K) (%)
-            '33',   # Read I/O granularity distribution: [4K,8K) (%)
-            '34',   # Read I/O granularity distribution: [8K,16K) (%)
-            '35',   # Read I/O granularity distribution: [16K,32K) (%)
-            '36',   # Read I/O granularity distribution: [32K,64K) (%)
-            '37',   # Read I/O granularity distribution: [64K,128K) (%)
-            '1183', # Read I/O granularity distribution: [128K,+∞) (%)
-            '1184', # Write I/O granularity distribution: [0K,4K) (%)
-            '44',   # Write I/O granularity distribution: [4K,8K) (%)
-            '45',   # Write I/O granularity distribution: [8K,16K) (%)
-            '46',   # Write I/O granularity distribution: [16K,32K) (%)
-            '47',   # Write I/O granularity distribution: [32K,64K) (%)
-            '48',   # Write I/O granularity distribution: [64K,128K) (%)
-            '1185', # Write I/O granularity distribution: [128K,+∞) (%)
-            '265',  # Ratio of read I/Os to total I/Os (%)
-            '370',  # Avg. I/O Response Time (us)
-            '384',  # Avg. Read I/O Response Time (us)
-            '385',  # Avg. Write I/O Response Time (us)
+            # Bandwidth & IOPS
+            '5', '21', '22', '23', '24', '25', '26', '27', '28', '211', '1076', '1077', '1078',
+            # Usage & Queue
+            '18', '19', '66', '67', '1075',
+            # Response Times
+            '78', '79', '195', '196', '197', '198', '370', '371', '384', '385', '523', '524', '525',
+            # I/O Granularity - Read
+            '1182', '33', '34', '35', '36', '37', '1183',
+            # I/O Granularity - Write
+            '1184', '44', '45', '46', '47', '48', '1185',
+            # Latency Distribution - Read
+            '199', '200', '201', '202', '203', '204', '392', '393', '394', '395', '396', '397', '530',
+            # Latency Distribution - Write
+            '205', '206', '207', '208', '209', '210', '398', '399', '400', '401', '402', '403', '531',
+            # Ratios & Other
+            '228', '240', '265', '266', '308', '309', '310', '369', '532', '533',
         ]
     },
     '11': {  # LUN
@@ -127,36 +100,36 @@ RESOURCE_CONFIG = {
         'prefix': 'LDEVPERF',
         'meta_fields': ['Serial', 'DefMp', 'DaCnt', 'Rg', 'Ld', 'Alias'],
         'metrics': [
-            '5',    # Max. bandwidth (MB/s)
-            '19',   # Queue length
-            '21',   # Block bandwidth (MB/s)
-            '22',   # Total IOPS (IO/s)
-            '23',   # Read bandwidth (MB/s)
-            '24',   # Avg. read I/O size (KB)
-            '25',   # Read IOPS (IO/s)
-            '26',   # Write bandwidth (MB/s)
-            '27',   # Avg. write I/O size (KB)
-            '28',   # Write IOPS (IO/s)
-            '1182', # Read I/O granularity distribution: [0K,4K) (%)
-            '33',   # Read I/O granularity distribution: [4K,8K) (%)
-            '34',   # Read I/O granularity distribution: [8K,16K) (%)
-            '35',   # Read I/O granularity distribution: [16K,32K) (%)
-            '36',   # Read I/O granularity distribution: [32K,64K) (%)
-            '37',   # Read I/O granularity distribution: [64K,128K) (%)
-            '1183', # Read I/O granularity distribution: [128K,+∞) (%)
-            '1184', # Write I/O granularity distribution: [0K,4K) (%)
-            '44',   # Write I/O granularity distribution: [4K,8K) (%)
-            '45',   # Write I/O granularity distribution: [8K,16K) (%)
-            '46',   # Write I/O granularity distribution: [16K,32K) (%)
-            '47',   # Write I/O granularity distribution: [32K,64K) (%)
-            '48',   # Write I/O granularity distribution: [64K,128K) (%)
-            '1185', # Write I/O granularity distribution: [128K,+∞) (%)
-            '265',  # Ratio of read I/Os to total I/Os (%)
-            '370',  # Avg. I/O Response Time (us)
-            '384',  # Avg. Read I/O Response Time (us)
-            '385',  # Avg. Write I/O Response Time (us)
-            '93',   # Read cache hit ratio (%)
-            '95',   # Write cache hit ratio (%)
+            # Bandwidth & IOPS
+            '5', '21', '22', '23', '24', '25', '26', '27', '28',
+            # Queue & Usage
+            '18', '19', '240',
+            # Cache
+            '93', '94', '95', '96',
+            # Response Times
+            '78', '79', '195', '196', '197', '198', '370', '371', '384', '385', '523', '524', '525',
+            # I/O Granularity - Read
+            '1182', '33', '34', '35', '36', '37', '1183',
+            # I/O Granularity - Write
+            '1184', '44', '45', '46', '47', '48', '1185',
+            # Latency Distribution - Read
+            '199', '200', '201', '202', '203', '204', '392', '393', '394', '395', '396', '397', '530',
+            # Latency Distribution - Write
+            '205', '206', '207', '208', '209', '210', '398', '399', '400', '401', '402', '403', '531',
+            # VAAI & Special Commands
+            '1154', '1155', '1156', '1157', '1158', '1159', '1160', '1161',
+            '1162', '1163', '1164', '1165', '1166', '1167', '1168', '1169',
+            '1170', '1171', '1172', '1173', '1174', '1175', '1176', '1177',
+            '1178', '1179', '1180', '1181', '1188', '1189', '1190', '1191',
+            '1243', '1244', '1245', '1246', '1247', '1248', '1249', '1250',
+            # Data Reduction
+            '1090', '1091', '1092', '1093', '1094',
+            '1332', '1333', '1334', '1335', '1337', '1338',
+            # Ratios & Other
+            '228', '265', '266', '308', '309', '310', '369', '532', '533', '1211', '1233', '1234',
+            # Replication
+            '1192', '1193', '1194', '1195', '1196', '1197', '1198', '1199',
+            '1317', '1318', '1319', '1324', '1325',
         ]
     },
     '21': {  # Host
@@ -164,34 +137,23 @@ RESOURCE_CONFIG = {
         'prefix': 'HAPERF',
         'meta_fields': ['Serial', 'DefMp', 'DaCnt', 'RgCnt', 'PgCnt', 'Alias'],
         'metrics': [
-            '5',    # Max. bandwidth (MB/s)
-            '19',   # Queue length
-            '21',   # Block bandwidth (MB/s)
-            '22',   # Total IOPS (IO/s)
-            '23',   # Read bandwidth (MB/s)
-            '24',   # Avg. read I/O size (KB)
-            '25',   # Read IOPS (IO/s)
-            '26',   # Write bandwidth (MB/s)
-            '27',   # Avg. write I/O size (KB)
-            '28',   # Write IOPS (IO/s)
-            '1182', # Read I/O granularity distribution: [0K,4K) (%)
-            '33',   # Read I/O granularity distribution: [4K,8K) (%)
-            '34',   # Read I/O granularity distribution: [8K,16K) (%)
-            '35',   # Read I/O granularity distribution: [16K,32K) (%)
-            '36',   # Read I/O granularity distribution: [32K,64K) (%)
-            '37',   # Read I/O granularity distribution: [64K,128K) (%)
-            '1183', # Read I/O granularity distribution: [128K,+∞) (%)
-            '1184', # Write I/O granularity distribution: [0K,4K) (%)
-            '44',   # Write I/O granularity distribution: [4K,8K) (%)
-            '45',   # Write I/O granularity distribution: [8K,16K) (%)
-            '46',   # Write I/O granularity distribution: [16K,32K) (%)
-            '47',   # Write I/O granularity distribution: [32K,64K) (%)
-            '48',   # Write I/O granularity distribution: [64K,128K) (%)
-            '1185', # Write I/O granularity distribution: [128K,+∞) (%)
-            '265',  # Ratio of read I/Os to total I/Os (%)
-            '370',  # Avg. I/O Response Time (us)
-            '384',  # Avg. Read I/O Response Time (us)
-            '385',  # Avg. Write I/O Response Time (us)
+            # Bandwidth & IOPS
+            '5', '21', '22', '23', '24', '25', '26', '27', '28',
+            '1073', '1079', '1251', '1252',
+            # Queue & Usage
+            '19', '240',
+            # Response Times
+            '78', '79', '195', '196', '197', '198', '370', '371', '384', '385', '523', '524', '525',
+            # I/O Granularity - Read
+            '1182', '33', '34', '35', '36', '37', '1183',
+            # I/O Granularity - Write
+            '1184', '44', '45', '46', '47', '48', '1185',
+            # Latency Distribution - Read
+            '199', '200', '201', '202', '203', '204', '392', '393', '394', '395', '396', '397', '530',
+            # Latency Distribution - Write
+            '205', '206', '207', '208', '209', '210', '398', '399', '400', '401', '402', '403', '531',
+            # Ratios & Other
+            '228', '265', '266', '369',
         ]
     },
     '212': {  # FC Port
@@ -199,39 +161,23 @@ RESOURCE_CONFIG = {
         'prefix': 'PORTPERF',
         'meta_fields': ['Serial', 'Slot', 'Port', 'Mode', 'Alias'],
         'metrics': [
-            '5',    # Max. bandwidth (MB/s)
-            '18',   # Usage (%)
-            '19',   # Queue length
-            '21',   # Block bandwidth (MB/s)
-            '22',   # Total IOPS (IO/s)
-            '23',   # Read bandwidth (MB/s)
-            '24',   # Avg. read I/O size (KB)
-            '25',   # Read IOPS (IO/s)
-            '26',   # Write bandwidth (MB/s)
-            '27',   # Avg. write I/O size (KB)
-            '28',   # Write IOPS (IO/s)
-            '1182', # Read I/O granularity distribution: [0K,4K) (%)
-            '33',   # Read I/O granularity distribution: [4K,8K) (%)
-            '34',   # Read I/O granularity distribution: [8K,16K) (%)
-            '35',   # Read I/O granularity distribution: [16K,32K) (%)
-            '36',   # Read I/O granularity distribution: [32K,64K) (%)
-            '37',   # Read I/O granularity distribution: [64K,128K) (%)
-            '1183', # Read I/O granularity distribution: [128K,+∞) (%)
-            '1184', # Write I/O granularity distribution: [0K,4K) (%)
-            '44',   # Write I/O granularity distribution: [4K,8K) (%)
-            '45',   # Write I/O granularity distribution: [8K,16K) (%)
-            '46',   # Write I/O granularity distribution: [16K,32K) (%)
-            '47',   # Write I/O granularity distribution: [32K,64K) (%)
-            '48',   # Write I/O granularity distribution: [64K,128K) (%)
-            '1185', # Write I/O granularity distribution: [128K,+∞) (%)
-            '265',  # Ratio of read I/Os to total I/Os (%)
-            '370',  # Avg. I/O Response Time (us)
-            '384',  # Avg. Read I/O Response Time (us)
-            '385',  # Avg. Write I/O Response Time (us)
-            '812',  # Transmitting Bandwidth for Replication (KB/s)
-            '813',  # Receiving Bandwidth for Replication (KB/s)
-            '1140', # Avg. Write I/O Link Transmission Latency (us)
-            '1139', # Avg. Read I/O Link Transmission Latency (us)
+            # Bandwidth & IOPS
+            '5', '21', '22', '23', '24', '25', '26', '27', '28',
+            '236', '295', '296', '297', '298', '299', '300',
+            # Usage & Queue
+            '18', '19',
+            # Response Times
+            '78', '79', '195', '196', '197', '198', '370', '371', '384', '385',
+            # I/O Granularity - Read
+            '1182', '33', '34', '35', '36', '37', '1183',
+            # I/O Granularity - Write
+            '1184', '44', '45', '46', '47', '48', '1185',
+            # Link Latency
+            '1139', '1140',
+            # Replication
+            '812', '813',
+            # Ratios & Other
+            '228', '265', '266', '291', '292', '293', '294',
         ]
     },
     '216': {  # Storage Pool
@@ -239,45 +185,46 @@ RESOURCE_CONFIG = {
         'prefix': 'POOLPERF',
         'meta_fields': ['Serial', 'Mode', 'Alias', 'State', 'Alias2'],
         'metrics': [
-            '1090', # Data Reduction Ratio
-            '1091', # Deduplication Ratio
-            '1092', # Compression Ratio
-            '1093', # Overall Space Saving Ratio
-            '1094', # Thin LUN Space Saving Rate (%)
-            '808',  # Average usage of member disks (%)
-            '19',   # Queue length
-            '21',   # Block bandwidth (MB/s)
-            '22',   # Total IOPS (IO/s)
-            '23',   # Read bandwidth (MB/s)
-            '24',   # Avg. read I/O size (KB)
-            '25',   # Read IOPS (IO/s)
-            '26',   # Write bandwidth (MB/s)
-            '27',   # Avg. write I/O size (KB)
-            '28',   # Write IOPS (IO/s)
-            '1182', # Read I/O granularity distribution: [0K,4K) (%)
-            '33',   # Read I/O granularity distribution: [4K,8K) (%)
-            '34',   # Read I/O granularity distribution: [8K,16K) (%)
-            '35',   # Read I/O granularity distribution: [16K,32K) (%)
-            '36',   # Read I/O granularity distribution: [32K,64K) (%)
-            '37',   # Read I/O granularity distribution: [64K,128K) (%)
-            '1183', # Read I/O granularity distribution: [128K,+∞) (%)
-            '1184', # Write I/O granularity distribution: [0K,4K) (%)
-            '44',   # Write I/O granularity distribution: [4K,8K) (%)
-            '45',   # Write I/O granularity distribution: [8K,16K) (%)
-            '46',   # Write I/O granularity distribution: [16K,32K) (%)
-            '47',   # Write I/O granularity distribution: [32K,64K) (%)
-            '48',   # Write I/O granularity distribution: [64K,128K) (%)
-            '1185', # Write I/O granularity distribution: [128K,+∞) (%)
-            '258',  # Back-end read requests per second
-            '259',  # Back-end write requests per second
-            '261',  # Back-end read traffic (MB/s)
-            '262',  # Back-end write traffic (MB/s)
-            '265',  # Ratio of read I/Os to total I/Os (%)
-            '271',  # BackEnd Read Response Time (us)
-            '272',  # BackEnd Write Response Time (us)
-            '370',  # Avg. I/O Response Time (us)
-            '384',  # Avg. Read I/O Response Time (us)
-            '385',  # Avg. Write I/O Response Time (us)
+            # Bandwidth & IOPS
+            '21', '22', '23', '24', '25', '26', '27', '28',
+            # Queue
+            '19',
+            # Response Times
+            '370', '384', '385',
+            # Data Reduction
+            '1090', '1091', '1092', '1093', '1094',
+            # Member Disks
+            '808',
+            # Backend
+            '258', '259', '260', '261', '262', '271', '272', '276',
+            # I/O Granularity - Read
+            '1182', '33', '34', '35', '36', '37', '1183',
+            # I/O Granularity - Write
+            '1184', '44', '45', '46', '47', '48', '1185',
+            # Ratios
+            '265', '266', '277', '278',
+        ]
+    },
+    '266': {  # Disk Domain
+        'filename': 'disk_domain_output.csv',
+        'prefix': 'DISKDOMAIN',
+        'meta_fields': ['Serial', 'Domain', 'Alias'],
+        'metrics': [
+            # Bandwidth & IOPS
+            '21', '22', '23', '24', '25', '26', '27', '28',
+            # Usage & Response
+            '18', '19', '370', '384', '385',
+        ]
+    },
+    '225': {  # FC Replication Link
+        'filename': 'fc_repl_link_output.csv',
+        'prefix': 'FCREPLLINK',
+        'meta_fields': ['Serial', 'Link', 'Alias'],
+        'metrics': [
+            # Replication Bandwidth
+            '812', '813',
+            # Link metrics
+            '1139', '1140',
         ]
     }
 }
@@ -393,6 +340,12 @@ def parse_element_metadata(element: str, resource_id: str) -> dict:
         metadata['Alias'] = element
         metadata['State'] = "'POLN'"
         metadata['Alias2'] = element
+    elif resource_id == '266':  # Disk Domain
+        metadata['Domain'] = element
+        metadata['Alias'] = element
+    elif resource_id == '225':  # FC Replication Link
+        metadata['Link'] = element
+        metadata['Alias'] = element
     
     return metadata
 
@@ -516,6 +469,7 @@ def format_timestamp(dt: datetime) -> str:
 def write_wide_format_csv(data: dict, serial_number: str, output_dir: Path, file_locks: dict):
     """
     Write data in wide format to CSV files.
+    НЕ нумеруем строки здесь - это будет сделано в конце после сортировки!
     
     data: {
         resource_id: {
@@ -537,12 +491,11 @@ def write_wide_format_csv(data: dict, serial_number: str, output_dir: Path, file
         
         # Собираем все строки для этого ресурса
         rows = []
-        row_num = 1
         
-        for element, timestamps_data in sorted(elements_data.items()):
-            for timestamp, metrics in sorted(timestamps_data.items()):
-                # Формируем строку
-                row_parts = [config['prefix'], str(row_num)]
+        for element, timestamps_data in elements_data.items():
+            for timestamp, metrics in timestamps_data.items():
+                # Формируем строку БЕЗ номера - добавим его позже после сортировки
+                row_parts = [config['prefix'], '']  # Пустое место для номера
                 
                 # Даты
                 time_str = format_timestamp(timestamp)
@@ -563,14 +516,16 @@ def write_wide_format_csv(data: dict, serial_number: str, output_dir: Path, file
                     value = metrics.get(metric_id, '0')
                     row_parts.append(value)
                 
-                rows.append(','.join(row_parts) + '\n')
-                row_num += 1
+                # Сохраняем timestamp для сортировки + строку
+                rows.append((timestamp, ','.join(row_parts) + '\n'))
         
         # Записываем в файл с блокировкой
         if rows:
             with lock:
                 with open(output_file, 'a', encoding='utf-8') as f:
-                    f.writelines(rows)
+                    # Просто пишем строки без сортировки - сортировка будет в конце
+                    for _, row in rows:
+                        f.write(row)
             
             stats[resource_id] = len(rows)
     
@@ -685,6 +640,57 @@ def create_csv_headers(output_dir: Path):
             f.write(header)
 
 
+def sort_and_renumber_csv_files(output_dir: Path):
+    """
+    Сортировка CSV файлов по времени и перенумерация строк.
+    Простой подход - просто перенумеровываем строки последовательно.
+    """
+    for resource_id, config in RESOURCE_CONFIG.items():
+        csv_file = output_dir / config['filename']
+        
+        if not csv_file.exists():
+            continue
+        
+        # Проверяем есть ли данные
+        with open(csv_file, 'r', encoding='utf-8') as f:
+            header = f.readline()
+            first_line = f.readline()
+            if not first_line:
+                continue  # Только заголовок
+        
+        # Создаём временный файл
+        temp_file = csv_file.with_suffix('.tmp')
+        
+        try:
+            row_count = 0
+            
+            with open(csv_file, 'r', encoding='utf-8') as fin:
+                with open(temp_file, 'w', encoding='utf-8') as fout:
+                    # Копируем заголовок
+                    fout.write(fin.readline())
+                    
+                    # Перенумеровываем строки
+                    for row_num, line in enumerate(fin, start=1):
+                        parts = line.strip().split(',')
+                        if len(parts) < 4:
+                            continue
+                        
+                        parts[1] = str(row_num)  # Обновляем номер
+                        fout.write(','.join(parts) + '\n')
+                        row_count += 1
+            
+            # Заменяем оригинальный файл
+            temp_file.replace(csv_file)
+            
+            logger.info(f"  ✓ Renumbered {config['filename']}: {row_count:,} rows")
+            
+        except Exception as e:
+            logger.error(f"  ✗ Error processing {config['filename']}: {e}")
+            if temp_file.exists():
+                temp_file.unlink()
+            raise
+
+
 def process_archive(archive_path: str, output_dir: str, workers: int = None, verbose: bool = False):
     """Основная функция обработки."""
     if verbose:
@@ -782,6 +788,12 @@ def process_archive(archive_path: str, output_dir: str, workers: int = None, ver
     print(f"{'TIME':<30} {elapsed:>15.1f} seconds ({elapsed/60:.1f} min)")
     print(f"{'THROUGHPUT':<30} {total_rows/elapsed:>15,.0f} rows/sec")
     print("="*80)
+    
+    logger.info(f"✓ Processing complete!")
+    
+    # Сортируем и нумеруем CSV файлы
+    logger.info("Sorting and renumbering CSV files...")
+    sort_and_renumber_csv_files(output_dir)
     
     logger.info(f"✓ Complete! Output: {output_dir}")
     

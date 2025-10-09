@@ -57,10 +57,14 @@ services:
       - GRAFANA_URL=${GRAFANA_URL:-http://localhost:3000}
       - MAX_UPLOAD_SIZE=${MAX_UPLOAD_SIZE:-10737418240}  # 10GB
       - JOB_TIMEOUT=${JOB_TIMEOUT:-86400}  # 24 hours default
+      - JOB_TTL_HOURS=${JOB_TTL_HOURS:-24}  # Auto-cleanup after 24 hours
+      - WORK_DIR=/app/jobs  # Job output directory
       - WORKER_CONCURRENCY=${WORKER_CONCURRENCY:-4}
     volumes:
       - ./uploads:/app/uploads
+      - jobs_data:/app/jobs  # Persistent storage for CSV output files
       - ./Data2csv:/app/Data2csv
+      - ./perfmonkey:/app/perfmonkey  # Perfmonkey parser
       - /data/vmdata:/vmdata  # доступ к VM данным (опционально)
     depends_on:
       - victoriametrics
@@ -91,4 +95,9 @@ volumes:
     driver_opts:
       type: none
       device: /data/grafana
+      o: bind
+  jobs_data:
+    driver_opts:
+      type: none
+      device: /data/jobs  # Host directory for job output files
       o: bind

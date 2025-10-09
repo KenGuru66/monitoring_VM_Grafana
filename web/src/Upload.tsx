@@ -1,9 +1,11 @@
 import { useState, useEffect, useCallback } from 'react'
-import { Upload as UploadIcon, CheckCircle, AlertCircle, Loader, ExternalLink } from 'lucide-react'
+import { Upload as UploadIcon, CheckCircle, AlertCircle, Loader, ExternalLink, Download, Trash2, FileText, Database } from 'lucide-react'
 import './App.css'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000'
 const GRAFANA_URL = import.meta.env.VITE_GRAFANA_URL || 'http://localhost:3000'
+
+type ProcessingTarget = 'grafana' | 'csv' | 'perfmonkey'
 
 interface JobStatus {
   job_id: string
@@ -13,6 +15,16 @@ interface JobStatus {
   serial_numbers: string[]
   grafana_url?: string
   error?: string
+  target?: ProcessingTarget
+  files?: FileInfo[]
+}
+
+interface FileInfo {
+  name: string
+  size: number
+  size_mb: number
+  modified: string
+  url: string
 }
 
 function Upload() {
@@ -24,6 +36,8 @@ function Upload() {
   const [jobId, setJobId] = useState<string | null>(null)
   const [jobStatus, setJobStatus] = useState<JobStatus | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [showTargetSelection, setShowTargetSelection] = useState(false)
+  const [fileList, setFileList] = useState<FileInfo[]>([])
 
   // Poll job status
   useEffect(() => {
@@ -37,7 +51,36 @@ function Upload() {
         const status: JobStatus = await response.json()
         setJobStatus(status)
 
-        if (status.status === 'done' || status.status === 'error') {
+        // Poll file list for CSV targets
+        if ((status.target === 'csv' || status.target === 'perfmonkey') && status.status === 'running') {
+          try {
+            const filesResponse = await fetch(`${API_URL}/api/files/${jobId}`)
+            if (filesResponse.ok) {
+              const filesData = await filesResponse.json()
+              setFileList(filesData.files || [])
+            }
+          } catch (err) {
+            console.error('Error fetching files:', err)
+          }
+        }
+
+        if (status.status === 'done') {
+          // Final fetch of files for CSV targets
+          if (status.target === 'csv' || status.target === 'perfmonkey') {
+            try {
+              const filesResponse = await fetch(`${API_URL}/api/files/${jobId}`)
+              if (filesResponse.ok) {
+                const filesData = await filesResponse.json()
+                setFileList(filesData.files || [])
+              }
+            } catch (err) {
+              console.error('Error fetching files:', err)
+            }
+          }
+          clearInterval(pollInterval)
+        }
+
+        if (status.status === 'error') {
           clearInterval(pollInterval)
         }
       } catch (err) {
@@ -81,7 +124,7 @@ function Upload() {
     }
   }, [])
 
-  const handleUpload = async () => {
+  const handleUpload = async (target: ProcessingTarget) => {
     if (!file) return
 
     setUploading(true)
@@ -90,9 +133,12 @@ function Upload() {
     setJobStatus(null)
     setUploadProgress(0)
     setUploadSpeed(0)
+    setFileList([])
+    setShowTargetSelection(false)
 
     const formData = new FormData()
     formData.append('file', file)
+    formData.append('target', target)
 
     try {
       const xhr = new XMLHttpRequest()
@@ -120,8 +166,9 @@ function Upload() {
             job_id: data.job_id,
             status: 'pending',
             progress: 0,
-            message: 'Upload successful, processing started...',
+            message: data.message || 'Upload successful, processing started...',
             serial_numbers: data.serial_numbers || [],
+            target: target,
           })
         } else {
           const errorData = JSON.parse(xhr.responseText)
@@ -145,6 +192,31 @@ function Upload() {
     }
   }
 
+  const handleShowTargetSelection = () => {
+    if (!file) return
+    setShowTargetSelection(true)
+  }
+
+  const handleDeleteFiles = async () => {
+    if (!jobId) return
+
+    try {
+      const response = await fetch(`${API_URL}/api/files/${jobId}`, {
+        method: 'DELETE',
+      })
+
+      if (response.ok) {
+        setFileList([])
+        if (jobStatus) {
+          setJobStatus({ ...jobStatus, files: [] })
+        }
+      }
+    } catch (err) {
+      console.error('Error deleting files:', err)
+      setError('Failed to delete files')
+    }
+  }
+
   const handleReset = () => {
     setFile(null)
     setJobId(null)
@@ -152,6 +224,8 @@ function Upload() {
     setError(null)
     setUploadProgress(0)
     setUploadSpeed(0)
+    setShowTargetSelection(false)
+    setFileList([])
   }
 
   const getStatusIcon = () => {
@@ -238,10 +312,44 @@ function Upload() {
             </div>
           )}
 
-          {file && (
-            <button className="upload-button" onClick={handleUpload}>
-              Run Parsing
+          {file && !showTargetSelection && (
+            <button className="upload-button" onClick={handleShowTargetSelection}>
+              Choose Processing Mode →
             </button>
+          )}
+
+          {file && showTargetSelection && (
+            <div className="target-selection">
+              <h3>Select Processing Mode:</h3>
+              <div className="target-buttons">
+                <button
+                  className="target-button grafana"
+                  onClick={() => handleUpload('grafana')}
+                >
+                  <Database size={24} />
+                  <span>Parse → Grafana</span>
+                  <small>Stream to VictoriaMetrics</small>
+                </button>
+
+                <button
+                  className="target-button csv"
+                  onClick={() => handleUpload('csv')}
+                >
+                  <FileText size={24} />
+                  <span>Parse → CSV (Wide)</span>
+                  <small>Download CSV files (wide format)</small>
+                </button>
+
+                <button
+                  className="target-button perfmonkey"
+                  onClick={() => handleUpload('perfmonkey')}
+                >
+                  <FileText size={24} />
+                  <span>Parse → CSV (Perfmonkey)</span>
+                  <small>Download CSV files (perfmonkey format)</small>
+                </button>
+              </div>
+            </div>
           )}
         </div>
       ) : (
@@ -318,20 +426,82 @@ function Upload() {
               )}
 
               {jobStatus?.status === 'done' && (
-                <div className="action-buttons">
-                  <a
-                    href={jobStatus.grafana_url || GRAFANA_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="grafana-button"
-                  >
-                    <ExternalLink size={20} />
-                    Open in Grafana
-                  </a>
-                  <button onClick={handleReset} className="reset-button">
-                    Upload Another File
-                  </button>
-                </div>
+                <>
+                  {jobStatus.target === 'grafana' && (
+                    <div className="action-buttons">
+                      <a
+                        href={jobStatus.grafana_url || GRAFANA_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="grafana-button"
+                      >
+                        <ExternalLink size={20} />
+                        Open in Grafana
+                      </a>
+                      <button onClick={handleReset} className="reset-button">
+                        Upload Another File
+                      </button>
+                    </div>
+                  )}
+
+                  {(jobStatus.target === 'csv' || jobStatus.target === 'perfmonkey') && (
+                    <div className="csv-results">
+                      <h3>📁 Generated Files ({fileList.length})</h3>
+
+                      {fileList.length > 0 ? (
+                        <>
+                          <div className="files-table">
+                            <table>
+                              <thead>
+                                <tr>
+                                  <th>Filename</th>
+                                  <th>Size</th>
+                                  <th>Modified</th>
+                                  <th>Action</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                {fileList.map((file) => (
+                                  <tr key={file.name}>
+                                    <td className="file-name">{file.name}</td>
+                                    <td>{file.size_mb.toFixed(2)} MB</td>
+                                    <td>{new Date(file.modified).toLocaleString()}</td>
+                                    <td>
+                                      <a
+                                        href={`${API_URL}${file.url}`}
+                                        download
+                                        className="download-link"
+                                      >
+                                        <Download size={16} />
+                                        Download
+                                      </a>
+                                    </td>
+                                  </tr>
+                                ))}
+                              </tbody>
+                            </table>
+                          </div>
+
+                          <div className="file-actions">
+                            <button onClick={handleDeleteFiles} className="delete-button">
+                              <Trash2 size={16} />
+                              Delete All Files
+                            </button>
+                            <button onClick={handleReset} className="reset-button">
+                              Upload Another File
+                            </button>
+                          </div>
+                        </>
+                      ) : (
+                        <div className="files-waiting">
+                          <Loader className="animate-spin" size={32} />
+                          <p>Files are being compressed, please wait...</p>
+                          <small>This may take up to 30 seconds</small>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </>
               )}
 
               {jobStatus?.status === 'error' && (

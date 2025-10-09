@@ -13,15 +13,18 @@ import time
 import re
 import zipfile
 import json
+import gzip
+import shutil
 from pathlib import Path
 from typing import Dict, Optional, List
-from datetime import datetime
+from datetime import datetime, timedelta
 from concurrent.futures import ThreadPoolExecutor
 from queue import Queue
 
-from fastapi import FastAPI, File, UploadFile, HTTPException, BackgroundTasks, Request
+from fastapi import FastAPI, File, UploadFile, HTTPException, BackgroundTasks, Request, Form
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.responses import JSONResponse, StreamingResponse
+from fastapi.responses import JSONResponse, StreamingResponse, FileResponse
+from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 import requests
 
@@ -58,15 +61,18 @@ app.add_middleware(
 # Configuration
 UPLOAD_DIR = Path("/app/uploads")
 OUTPUT_DIR = Path("/app/Data2csv/output")
+WORK_DIR = Path(os.getenv("WORK_DIR", "/app/jobs"))  # Job output directory
 VM_URL = os.getenv("VM_URL", "http://victoriametrics:8428")
 VM_IMPORT_URL = os.getenv("VM_IMPORT_URL", "http://victoriametrics:8428/api/v1/import/prometheus")
 GRAFANA_URL = os.getenv("GRAFANA_URL", "http://localhost:3000")
 MAX_UPLOAD_SIZE = int(os.getenv("MAX_UPLOAD_SIZE", 10 * 1024 * 1024 * 1024))
 JOB_TIMEOUT = int(os.getenv("JOB_TIMEOUT", 86400))  # 24 hours default
+JOB_TTL_HOURS = int(os.getenv("JOB_TTL_HOURS", 24))  # Auto-cleanup after 24 hours
 
 # Ensure directories exist
 UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+WORK_DIR.mkdir(parents=True, exist_ok=True)
 
 # Job storage
 jobs: Dict[str, dict] = {}
@@ -74,6 +80,25 @@ upload_progress: Dict[str, dict] = {}
 
 # Thread pool
 executor = ThreadPoolExecutor(max_workers=4)
+
+
+# Background cleanup task
+async def periodic_cleanup():
+    """Periodically cleanup old job directories."""
+    while True:
+        try:
+            await asyncio.sleep(3600)  # Run every hour
+            cleanup_old_jobs()
+        except Exception as e:
+            logger.error(f"Error in periodic cleanup: {e}")
+
+
+@app.on_event("startup")
+async def startup_event():
+    """Run on application startup."""
+    logger.info("Starting periodic cleanup task...")
+    asyncio.create_task(periodic_cleanup())
+    logger.info("Application startup complete")
 
 
 class JobStatus(BaseModel):
@@ -103,6 +128,299 @@ def extract_serial_numbers(zip_path: Path) -> list[str]:
     except Exception as e:
         logger.error(f"Error extracting serial numbers: {e}")
         return []
+
+
+def gzip_single_file(csv_file: Path) -> dict:
+    """Gzip a single CSV file (for parallel processing)."""
+    try:
+        gz_file = csv_file.with_suffix('.csv.gz')
+        
+        with open(csv_file, 'rb') as f_in:
+            with gzip.open(gz_file, 'wb', compresslevel=6) as f_out:  # compresslevel=6 for speed
+                shutil.copyfileobj(f_in, f_out)
+        
+        # Remove original CSV
+        csv_file.unlink()
+        
+        size_mb = gz_file.stat().st_size / (1024**2)
+        return {
+            'success': True,
+            'file': csv_file.name,
+            'gz_file': gz_file.name,
+            'size_mb': size_mb
+        }
+    except Exception as e:
+        return {
+            'success': False,
+            'file': csv_file.name,
+            'error': str(e)
+        }
+
+
+def gzip_csv_files(directory: Path):
+    """Gzip all CSV files in directory using multiple threads."""
+    from concurrent.futures import ThreadPoolExecutor, as_completed
+    
+    csv_files = list(directory.glob("*.csv"))
+    
+    if not csv_files:
+        logger.info(f"No CSV files to compress in {directory}")
+        return
+    
+    logger.info(f"Compressing {len(csv_files)} CSV files using parallel threads...")
+    
+    # Use multiple threads for parallel compression (I/O bound operation)
+    max_workers = min(16, os.cpu_count() or 4)
+    logger.info(f"Using {max_workers} compression threads")
+    
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = [executor.submit(gzip_single_file, csv_file) for csv_file in csv_files]
+        
+        completed = 0
+        for future in as_completed(futures):
+            result = future.result()
+            completed += 1
+            if result['success']:
+                logger.info(f"  [{completed}/{len(csv_files)}] ✓ {result['file']} -> {result['gz_file']} ({result['size_mb']:.2f} MB)")
+            else:
+                logger.error(f"  [{completed}/{len(csv_files)}] ✗ Failed: {result['file']}: {result['error']}")
+    
+    logger.info(f"✅ Compression complete: {len(csv_files)} files")
+
+
+def get_job_files(job_id: str) -> List[dict]:
+    """Get list of output files for a job."""
+    job_dir = WORK_DIR / job_id
+    
+    if not job_dir.exists():
+        return []
+    
+    files = []
+    for file_path in sorted(job_dir.glob("*.csv.gz")):
+        stat = file_path.stat()
+        files.append({
+            "name": file_path.name,
+            "size": stat.st_size,
+            "size_mb": round(stat.st_size / (1024 ** 2), 2),
+            "modified": datetime.fromtimestamp(stat.st_mtime).isoformat(),
+            "url": f"/api/file/{job_id}/{file_path.name}"
+        })
+    
+    return files
+
+
+def cleanup_old_jobs():
+    """Remove job directories older than JOB_TTL_HOURS."""
+    if not WORK_DIR.exists():
+        return
+    
+    cutoff_time = time.time() - (JOB_TTL_HOURS * 3600)
+    removed_count = 0
+    
+    for job_dir in WORK_DIR.iterdir():
+        if not job_dir.is_dir():
+            continue
+        
+        try:
+            # Check if directory is old enough
+            dir_mtime = job_dir.stat().st_mtime
+            if dir_mtime < cutoff_time:
+                shutil.rmtree(job_dir)
+                removed_count += 1
+                logger.info(f"Cleaned up old job directory: {job_dir.name}")
+        except Exception as e:
+            logger.error(f"Failed to cleanup {job_dir}: {e}")
+    
+    if removed_count > 0:
+        logger.info(f"Cleanup complete: removed {removed_count} old job directories")
+
+
+def run_csv_parser_sync(job_id: str, zip_path: Path):
+    """Run Huawei CSV parser (wide format) - Data2csv/Huawei_perf_parser_v0.2_parallel.py"""
+    import subprocess
+    
+    start_time = time.time()
+    process = None
+    job_dir = WORK_DIR / job_id
+    job_dir.mkdir(parents=True, exist_ok=True)
+    
+    try:
+        jobs[job_id]["status"] = "running"
+        jobs[job_id]["progress"] = 10
+        jobs[job_id]["message"] = "Starting CSV parser (wide format)..."
+        jobs[job_id]["updated_at"] = datetime.now().isoformat()
+        
+        cmd = [
+            "python3",
+            "/app/Data2csv/Huawei_perf_parser_v0.2_parallel.py",
+            "-i", str(zip_path),
+            "-o", str(job_dir),
+            "--all-metrics"
+        ]
+        
+        logger.info(f"Job {job_id}: Running CSV parser: {' '.join(cmd)}")
+        
+        process = subprocess.Popen(
+            cmd,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+            bufsize=1
+        )
+        
+        for line in process.stdout:
+            elapsed = time.time() - start_time
+            if elapsed > JOB_TIMEOUT:
+                logger.error(f"Job {job_id}: Timeout exceeded")
+                process.kill()
+                raise TimeoutError(f"Job timeout after {JOB_TIMEOUT} seconds")
+            
+            line = line.strip()
+            if line:
+                logger.info(f"Job {job_id}: {line}")
+                
+                # Update progress based on output
+                if "Processing array" in line:
+                    jobs[job_id]["progress"] = 30
+                elif "Successfully processed" in line:
+                    jobs[job_id]["progress"] = 60
+                elif "Process End" in line:
+                    jobs[job_id]["progress"] = 80
+                
+                jobs[job_id]["message"] = line[:200]
+                jobs[job_id]["updated_at"] = datetime.now().isoformat()
+        
+        return_code = process.wait(timeout=30)
+        
+        if return_code == 0:
+            # Compress CSV files
+            jobs[job_id]["progress"] = 85
+            jobs[job_id]["message"] = "Compressing CSV files..."
+            jobs[job_id]["updated_at"] = datetime.now().isoformat()
+            
+            gzip_csv_files(job_dir)
+            
+            jobs[job_id]["status"] = "done"
+            jobs[job_id]["progress"] = 100
+            jobs[job_id]["message"] = "CSV files ready for download!"
+            jobs[job_id]["files"] = get_job_files(job_id)
+            
+            logger.info(f"Job {job_id}: CSV parser completed successfully")
+        else:
+            jobs[job_id]["status"] = "error"
+            jobs[job_id]["error"] = f"Parser failed with code {return_code}"
+            logger.error(f"Job {job_id}: Parser failed with code {return_code}")
+        
+        jobs[job_id]["updated_at"] = datetime.now().isoformat()
+        
+        # Cleanup uploaded ZIP
+        try:
+            zip_path.unlink()
+        except Exception as e:
+            logger.warning(f"Failed to cleanup {zip_path}: {e}")
+            
+    except Exception as e:
+        if process and process.poll() is None:
+            process.kill()
+        
+        jobs[job_id]["status"] = "error"
+        jobs[job_id]["error"] = str(e)
+        jobs[job_id]["updated_at"] = datetime.now().isoformat()
+        logger.error(f"Job {job_id}: Error: {e}", exc_info=True)
+
+
+def run_perfmonkey_parser_sync(job_id: str, zip_path: Path):
+    """Run perfmonkey CSV parser - perfmonkey/perf_zip2csv_wide.py"""
+    import subprocess
+    
+    start_time = time.time()
+    process = None
+    job_dir = WORK_DIR / job_id
+    job_dir.mkdir(parents=True, exist_ok=True)
+    
+    try:
+        jobs[job_id]["status"] = "running"
+        jobs[job_id]["progress"] = 10
+        jobs[job_id]["message"] = "Starting perfmonkey parser..."
+        jobs[job_id]["updated_at"] = datetime.now().isoformat()
+        
+        cmd = [
+            "python3",
+            "/app/perfmonkey/perf_zip2csv_wide.py",
+            str(zip_path),
+            "-o", str(job_dir),
+            "--workers", "30"
+        ]
+        
+        logger.info(f"Job {job_id}: Running perfmonkey parser: {' '.join(cmd)}")
+        
+        process = subprocess.Popen(
+            cmd,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            text=True,
+            bufsize=1
+        )
+        
+        for line in process.stdout:
+            elapsed = time.time() - start_time
+            if elapsed > JOB_TIMEOUT:
+                logger.error(f"Job {job_id}: Timeout exceeded")
+                process.kill()
+                raise TimeoutError(f"Job timeout after {JOB_TIMEOUT} seconds")
+            
+            line = line.strip()
+            if line:
+                logger.info(f"Job {job_id}: {line}")
+                
+                # Update progress
+                if "Processing" in line:
+                    jobs[job_id]["progress"] = 40
+                elif "Sorting" in line:
+                    jobs[job_id]["progress"] = 70
+                elif "Complete" in line:
+                    jobs[job_id]["progress"] = 80
+                
+                jobs[job_id]["message"] = line[:200]
+                jobs[job_id]["updated_at"] = datetime.now().isoformat()
+        
+        return_code = process.wait(timeout=30)
+        
+        if return_code == 0:
+            # Compress CSV files
+            jobs[job_id]["progress"] = 85
+            jobs[job_id]["message"] = "Compressing CSV files..."
+            jobs[job_id]["updated_at"] = datetime.now().isoformat()
+            
+            gzip_csv_files(job_dir)
+            
+            jobs[job_id]["status"] = "done"
+            jobs[job_id]["progress"] = 100
+            jobs[job_id]["message"] = "CSV files ready for download!"
+            jobs[job_id]["files"] = get_job_files(job_id)
+            
+            logger.info(f"Job {job_id}: Perfmonkey parser completed successfully")
+        else:
+            jobs[job_id]["status"] = "error"
+            jobs[job_id]["error"] = f"Parser failed with code {return_code}"
+            logger.error(f"Job {job_id}: Parser failed with code {return_code}")
+        
+        jobs[job_id]["updated_at"] = datetime.now().isoformat()
+        
+        # Cleanup uploaded ZIP
+        try:
+            zip_path.unlink()
+        except Exception as e:
+            logger.warning(f"Failed to cleanup {zip_path}: {e}")
+            
+    except Exception as e:
+        if process and process.poll() is None:
+            process.kill()
+        
+        jobs[job_id]["status"] = "error"
+        jobs[job_id]["error"] = str(e)
+        jobs[job_id]["updated_at"] = datetime.now().isoformat()
+        logger.error(f"Job {job_id}: Error: {e}", exc_info=True)
 
 
 def run_pipeline_sync(job_id: str, zip_path: Path):
@@ -232,6 +550,18 @@ async def run_pipeline_async(job_id: str, zip_path: Path):
     await loop.run_in_executor(executor, run_pipeline_sync, job_id, zip_path)
 
 
+async def run_csv_parser_async(job_id: str, zip_path: Path):
+    """Async wrapper to run CSV parser in thread pool."""
+    loop = asyncio.get_event_loop()
+    await loop.run_in_executor(executor, run_csv_parser_sync, job_id, zip_path)
+
+
+async def run_perfmonkey_parser_async(job_id: str, zip_path: Path):
+    """Async wrapper to run perfmonkey parser in thread pool."""
+    loop = asyncio.get_event_loop()
+    await loop.run_in_executor(executor, run_perfmonkey_parser_sync, job_id, zip_path)
+
+
 @app.get("/")
 async def root():
     """Health check endpoint."""
@@ -252,9 +582,19 @@ async def health():
 @app.post("/api/upload")
 async def upload_file(
     background_tasks: BackgroundTasks,
-    file: UploadFile = File(...)
+    file: UploadFile = File(...),
+    target: str = Form("grafana")  # grafana | csv | perfmonkey
 ):
-    """Upload ZIP archive with chunked progress tracking."""
+    """Upload ZIP archive with chunked progress tracking.
+    
+    Args:
+        file: ZIP archive with .tgz files
+        target: Processing target - 'grafana', 'csv' (wide format), or 'perfmonkey' (perfmonkey format)
+    """
+    
+    # Validate target
+    if target not in ["grafana", "csv", "perfmonkey"]:
+        raise HTTPException(status_code=400, detail="Invalid target. Must be 'grafana', 'csv', or 'perfmonkey'")
     
     if not file.filename.endswith('.zip'):
         raise HTTPException(status_code=400, detail="Only .zip files are allowed")
@@ -320,18 +660,30 @@ async def upload_file(
             "created_at": datetime.now().isoformat(),
             "updated_at": datetime.now().isoformat(),
             "error": None,
-            "filename": file.filename
+            "filename": file.filename,
+            "target": target,
+            "files": []
         }
         
-        background_tasks.add_task(run_pipeline_async, job_id, upload_path)
+        # Start appropriate background task based on target
+        if target == "grafana":
+            background_tasks.add_task(run_pipeline_async, job_id, upload_path)
+            message_suffix = "processing started (VictoriaMetrics)"
+        elif target == "csv":
+            background_tasks.add_task(run_csv_parser_async, job_id, upload_path)
+            message_suffix = "processing started (CSV wide format)"
+        elif target == "perfmonkey":
+            background_tasks.add_task(run_perfmonkey_parser_async, job_id, upload_path)
+            message_suffix = "processing started (CSV perfmonkey format)"
         
         return {
             "job_id": job_id,
             "serial_numbers": serial_numbers,
+            "target": target,
             "upload_size": total_size,
             "upload_time": elapsed_total,
             "upload_speed": avg_speed,
-            "message": "Upload successful, processing started"
+            "message": f"Upload successful, {message_suffix}"
         }
         
     except HTTPException:
@@ -403,6 +755,48 @@ async def list_arrays():
         raise HTTPException(status_code=500, detail=f"Failed to fetch arrays: {str(e)}")
 
 
+@app.get("/api/csv-jobs")
+async def list_csv_jobs():
+    """Get list of all CSV processing jobs with their files."""
+    csv_jobs = []
+    
+    # Filter only CSV and perfmonkey jobs
+    for job_id, job_data in jobs.items():
+        if job_data.get("target") in ["csv", "perfmonkey"]:
+            files = get_job_files(job_id)
+            
+            # Determine serial numbers from filenames if not in job_data
+            serial_numbers = job_data.get("serial_numbers", [])
+            if not serial_numbers and files:
+                # Try to extract from filenames (e.g., "2102354JMX10Q3100016.csv.gz")
+                for f in files:
+                    match = re.search(r"([0-9A-Z]{20,})", f["name"])
+                    if match and match.group(1) not in serial_numbers:
+                        serial_numbers.append(match.group(1))
+            
+            csv_jobs.append({
+                "job_id": job_id,
+                "target": job_data.get("target"),
+                "target_label": "CSV Wide" if job_data.get("target") == "csv" else "CSV Perfmonkey",
+                "serial_numbers": serial_numbers,
+                "status": job_data.get("status"),
+                "created_at": job_data.get("created_at"),
+                "updated_at": job_data.get("updated_at"),
+                "filename": job_data.get("filename", ""),
+                "files": files,
+                "total_files": len(files),
+                "total_size_mb": round(sum(f["size"] for f in files) / (1024**2), 2)
+            })
+    
+    # Sort by creation time (newest first)
+    csv_jobs.sort(key=lambda x: x["created_at"], reverse=True)
+    
+    return {
+        "csv_jobs": csv_jobs,
+        "total": len(csv_jobs)
+    }
+
+
 @app.delete("/api/arrays/{sn}")
 async def delete_array(sn: str):
     """Delete all metrics for a specific array (serial number)."""
@@ -470,11 +864,104 @@ async def delete_all_arrays():
         raise HTTPException(status_code=500, detail=f"Failed to delete all arrays: {str(e)}")
 
 
-@app.delete("/api/job/{job_id}")
-async def delete_job(job_id: str):
-    """Delete job record."""
+@app.get("/api/files/{job_id}")
+async def get_job_files_endpoint(job_id: str):
+    """Get list of output files for a job."""
     if job_id not in jobs:
         raise HTTPException(status_code=404, detail="Job not found")
+    
+    files = get_job_files(job_id)
+    
+    return {
+        "job_id": job_id,
+        "files": files,
+        "total": len(files),
+        "total_size": sum(f["size"] for f in files),
+        "total_size_mb": round(sum(f["size"] for f in files) / (1024 ** 2), 2)
+    }
+
+
+@app.get("/api/file/{job_id}/{filename}")
+async def download_file(job_id: str, filename: str, request: Request):
+    """Download a specific output file with HTTP Range support for resumable downloads."""
+    if job_id not in jobs:
+        raise HTTPException(status_code=404, detail="Job not found")
+    
+    job_dir = WORK_DIR / job_id
+    file_path = job_dir / filename
+    
+    # Security check: ensure filename doesn't contain path traversal
+    if ".." in filename or "/" in filename or "\\" in filename:
+        raise HTTPException(status_code=400, detail="Invalid filename")
+    
+    if not file_path.exists():
+        raise HTTPException(status_code=404, detail="File not found")
+    
+    # Determine media type
+    if filename.endswith('.csv.gz'):
+        media_type = "application/gzip"
+    elif filename.endswith('.csv'):
+        media_type = "text/csv"
+    else:
+        media_type = "application/octet-stream"
+    
+    # FileResponse automatically handles Range requests
+    return FileResponse(
+        path=file_path,
+        filename=filename,
+        media_type=media_type,
+        headers={
+            "Accept-Ranges": "bytes",
+            "Content-Disposition": f'attachment; filename="{filename}"'
+        }
+    )
+
+
+@app.delete("/api/files/{job_id}")
+async def delete_job_files(job_id: str):
+    """Delete all output files for a job."""
+    if job_id not in jobs:
+        raise HTTPException(status_code=404, detail="Job not found")
+    
+    job_dir = WORK_DIR / job_id
+    
+    if not job_dir.exists():
+        return {"message": "No files to delete", "job_id": job_id}
+    
+    try:
+        deleted_count = len(list(job_dir.glob("*.csv.gz")))
+        shutil.rmtree(job_dir)
+        
+        # Update job status
+        jobs[job_id]["files"] = []
+        jobs[job_id]["updated_at"] = datetime.now().isoformat()
+        
+        logger.info(f"Deleted {deleted_count} files for job {job_id}")
+        
+        return {
+            "message": f"Deleted {deleted_count} files",
+            "job_id": job_id,
+            "deleted_count": deleted_count
+        }
+    except Exception as e:
+        logger.error(f"Error deleting files for job {job_id}: {e}")
+        raise HTTPException(status_code=500, detail=f"Failed to delete files: {str(e)}")
+
+
+@app.delete("/api/job/{job_id}")
+async def delete_job(job_id: str):
+    """Delete job record and associated files."""
+    if job_id not in jobs:
+        raise HTTPException(status_code=404, detail="Job not found")
+    
+    # Delete files if they exist
+    job_dir = WORK_DIR / job_id
+    if job_dir.exists():
+        try:
+            shutil.rmtree(job_dir)
+            logger.info(f"Deleted files for job {job_id}")
+        except Exception as e:
+            logger.warning(f"Failed to delete files for job {job_id}: {e}")
     
     del jobs[job_id]
     return {"message": f"Job {job_id} deleted"}
