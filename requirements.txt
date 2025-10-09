@@ -1,7 +1,22 @@
-# Requirements for perf_zip2csv.py
+# Python Dependencies for Huawei Storage Performance Monitoring
+# This file lists all dependencies used across different components
 
-pandas>=1.5.0
-tqdm>=4.65.0
+# Core dependencies for parsers
+pandas>=2.2.0
+tqdm>=4.67.0
+click>=8.1.0
+psutil>=6.1.0
+
+# FastAPI backend (see api/requirements.txt for full list)
+fastapi>=0.115.0
+uvicorn[standard]>=0.32.0
+python-multipart>=0.0.12
+pydantic>=2.9.0
+requests>=2.32.0
 
 # Optional: for testing
 pytest>=7.0.0
+
+# Note: Docker containers install dependencies from their respective Dockerfiles
+# - api/ uses api/requirements.txt
+# - web/ uses package.json (Node.js dependencies)

@@ -714,8 +714,8 @@
 
 .array-card {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
     padding: 1.5rem;
     background: white;
     border: 2px solid #e2e8f0;
@@ -729,26 +729,20 @@
     transform: translateY(-2px);
 }
 
-.array-info {
-    flex: 1;
-}
-
 .array-sn {
     font-family: monospace;
     font-size: 1.1rem;
     font-weight: 600;
     color: #1e293b;
-    margin-bottom: 0.25rem;
-}
-
-.array-label {
-    font-size: 0.85rem;
-    color: #64748b;
+    text-align: center;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #e2e8f0;
 }
 
 .array-actions {
     display: flex;
     gap: 0.5rem;
+    justify-content: center;
 }
 
 .grafana-link-button {

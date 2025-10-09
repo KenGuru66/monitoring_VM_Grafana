@@ -157,10 +157,7 @@ function Home() {
           <div className="arrays-grid">
             {arrays.map((sn) => (
               <div key={sn} className="array-card">
-                <div className="array-info">
-                  <div className="array-sn">{sn}</div>
-                  <div className="array-label">Storage Array</div>
-                </div>
+                <div className="array-sn">{sn}</div>
                 <div className="array-actions">
                   <button
                     className="grafana-link-button"

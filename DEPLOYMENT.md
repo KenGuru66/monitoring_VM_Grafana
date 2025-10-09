@@ -1,469 +1,475 @@
-# Deployment Guide - Multi-Mode Processing
+# Deployment Guide
 
-## Quick Start
+Руководство по развертыванию системы мониторинга Huawei Storage Performance.
 
-### 1. Prepare Host Directories
+## 🎯 Системные требования
 
+### Hardware
+- **CPU:** Минимум 4 ядра, рекомендуется 8+ ядер
+- **RAM:** Минимум 8GB, рекомендуется 16GB+
+- **Disk:** 
+  - System: 20GB для Docker images
+  - Data: Зависит от объема данных (рекомендуется SSD)
+  - Temp: ~2x размера загружаемых архивов
+
+### Software
+- **OS:** Linux (Ubuntu 20.04+, CentOS 8+, RHEL 8+)
+- **Docker:** >= 20.10
+- **Docker Compose:** >= 2.0
+- **Ports:** 8000, 8080, 3000, 8428 должны быть свободны
+
+## 📦 Подготовка сервера
+
+### 1. Установка Docker
+
+#### Ubuntu/Debian
 ```bash
-# Create required directories
-sudo mkdir -p /data/jobs /data/vmdata /data/grafana
-sudo chown -R 1000:1000 /data/jobs /data/vmdata /data/grafana
+# Обновление системы
+sudo apt-get update
+sudo apt-get upgrade -y
+
+# Установка Docker
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+
+# Добавление пользователя в группу docker
+sudo usermod -aG docker $USER
+
+# Установка Docker Compose
+sudo apt-get install docker-compose-plugin -y
 ```
 
-### 2. Update Environment Variables (Optional)
-
-Create or update `.env` file:
-
+#### CentOS/RHEL
 ```bash
-# Job processing
-JOB_TTL_HOURS=24          # Auto-cleanup after 24 hours
-MAX_UPLOAD_SIZE=10737418240  # 10GB
+# Установка Docker
+sudo yum install -y yum-utils
+sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+sudo yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
 
-# VictoriaMetrics
-VM_PORT=8428
-VM_RETENTION=6            # months
+# Запуск Docker
+sudo systemctl start docker
+sudo systemctl enable docker
 
-# Grafana
-GRAFANA_PORT=3000
-GRAFANA_ADMIN_PASS=changeme
-
-# API
-API_PORT=8000
-
-# Web UI
-WEB_PORT=3001
+# Добавление пользователя в группу docker
+sudo usermod -aG docker $USER
 ```
 
-### 3. Build and Start Services
+### 2. Настройка firewall
 
 ```bash
-# Build containers
-docker-compose build
+# Ubuntu (ufw)
+sudo ufw allow 8080/tcp comment "Web UI"
+sudo ufw allow 8000/tcp comment "API"
+sudo ufw allow 3000/tcp comment "Grafana"
 
-# Start all services
-docker-compose up -d
-
-# Check status
-docker-compose ps
+# CentOS/RHEL (firewalld)
+sudo firewall-cmd --permanent --add-port=8080/tcp
+sudo firewall-cmd --permanent --add-port=8000/tcp
+sudo firewall-cmd --permanent --add-port=3000/tcp
+sudo firewall-cmd --reload
 ```
 
-### 4. Verify Services
+### 3. Настройка хранилища
+
+```bash
+# Создание директорий для данных
+sudo mkdir -p /data/monitoring/{vm_data,jobs_data,grafana}
+sudo chown -R $(id -u):$(id -g) /data/monitoring
+
+# Опционально: монтирование отдельного диска
+# sudo mkfs.ext4 /dev/sdb
+# sudo mount /dev/sdb /data/monitoring
+# echo "/dev/sdb /data/monitoring ext4 defaults 0 0" | sudo tee -a /etc/fstab
+```
+
+## 🚀 Развертывание
+
+### Шаг 1: Клонирование репозитория
+
+```bash
+cd /opt
+sudo git clone <repository-url> monitoring_VM_Grafana
+cd monitoring_VM_Grafana
+sudo chown -R $USER:$USER .
+```
+
+### Шаг 2: Конфигурация
+
+```bash
+# Копирование примера конфигурации
+cp env.example .env
+
+# Редактирование конфигурации
+nano .env
+```
+
+**Важные параметры .env:**
+
+```bash
+# VictoriaMetrics URLs
+VM_URL=http://victoriametrics:8428
+VM_IMPORT_URL=http://victoriametrics:8428/api/v1/import/prometheus
+
+# Grafana URL (внешний адрес)
+GRAFANA_URL=http://your-server-ip:3000
+
+# Размер загружаемых файлов (в байтах)
+MAX_UPLOAD_SIZE=21474836480  # 20GB
+
+# Таймауты
+JOB_TIMEOUT=86400      # 24 часа
+JOB_TTL_HOURS=24       # Автоудаление jobs через 24 часа
+
+# Рабочая директория для CSV файлов
+WORK_DIR=/app/jobs
+```
+
+### Шаг 3: Настройка docker-compose.yml
+
+Если нужно изменить пути к данным:
+
+```yaml
+volumes:
+  vm_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /data/monitoring/vm_data
+      o: bind
+
+  jobs_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /data/monitoring/jobs_data
+      o: bind
+
+  grafana_data:
+    driver: local
+    driver_opts:
+      type: none
+      device: /data/monitoring/grafana
+      o: bind
+```
+
+### Шаг 4: Запуск
+
+```bash
+# Сборка образов
+docker compose build
+
+# Запуск сервисов
+docker compose up -d
+
+# Проверка статуса
+docker compose ps
+
+# Просмотр логов
+docker compose logs -f
+```
+
+### Шаг 5: Проверка работоспособности
 
 ```bash
 # API health check
 curl http://localhost:8000/health
+# Expected: {"status":"healthy"}
 
-# VictoriaMetrics
-curl http://localhost:8428/health
-
-# Grafana
-curl http://localhost:3000/api/health
+# VictoriaMetrics health
+curl http://localhost:8428/-/healthy
+# Expected: OK
 
 # Web UI
-curl http://localhost:3001
+curl -I http://localhost:8080
+# Expected: HTTP/1.1 200 OK
+
+# Grafana
+curl -I http://localhost:3000
+# Expected: HTTP/1.1 200 OK
 ```
 
-## Upgrade from Previous Version
+## 🔒 Настройка безопасности
 
-### 1. Stop Services
+### 1. Grafana Security
 
 ```bash
-docker-compose down
+# Изменение дефолтного пароля
+docker compose exec grafana grafana-cli admin reset-admin-password <новый_пароль>
+
+# Или через UI:
+# 1. Войти в Grafana (http://localhost:3000)
+# 2. admin / admin
+# 3. Сменить пароль при первом входе
 ```
 
-### 2. Backup Data (Optional but Recommended)
+### 2. Reverse Proxy (Nginx)
+
+Создайте файл `/etc/nginx/sites-available/monitoring`:
+
+```nginx
+server {
+    listen 80;
+    server_name monitoring.yourdomain.com;
+
+    # Redirect to HTTPS
+    return 301 https://$server_name$request_uri;
+}
+
+server {
+    listen 443 ssl http2;
+    server_name monitoring.yourdomain.com;
+
+    ssl_certificate /etc/letsencrypt/live/monitoring.yourdomain.com/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/monitoring.yourdomain.com/privkey.pem;
+
+    # Web UI
+    location / {
+        proxy_pass http://localhost:8080;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+
+    # API
+    location /api {
+        proxy_pass http://localhost:8000;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        
+        # Increase timeouts for large uploads
+        proxy_read_timeout 600s;
+        proxy_send_timeout 600s;
+        client_max_body_size 20G;
+    }
+
+    # Grafana
+    location /grafana/ {
+        proxy_pass http://localhost:3000/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+    }
+}
+```
+
+Активация:
+```bash
+sudo ln -s /etc/nginx/sites-available/monitoring /etc/nginx/sites-enabled/
+sudo nginx -t
+sudo systemctl reload nginx
+```
+
+### 3. Firewall для Production
 
 ```bash
-# Backup VictoriaMetrics data
-sudo tar -czf vmdata-backup-$(date +%Y%m%d).tar.gz /data/vmdata
+# Закрыть прямой доступ к портам (если используется Nginx)
+sudo ufw deny 8080
+sudo ufw deny 8000
+sudo ufw deny 3000
+sudo ufw deny 8428
 
-# Backup Grafana data
-sudo tar -czf grafana-backup-$(date +%Y%m%d).tar.gz /data/grafana
+# Разрешить только Nginx
+sudo ufw allow 80/tcp
+sudo ufw allow 443/tcp
 ```
 
-### 3. Create Jobs Directory
+## 📊 Мониторинг системы
+
+### Создание systemd service для автозапуска
 
 ```bash
-sudo mkdir -p /data/jobs
-sudo chown -R 1000:1000 /data/jobs
+# Создать файл /etc/systemd/system/monitoring.service
+sudo nano /etc/systemd/system/monitoring.service
 ```
 
-### 4. Update Configuration Files
+Содержимое:
+```ini
+[Unit]
+Description=Huawei Storage Monitoring
+Requires=docker.service
+After=docker.service
 
-Replace:
-- `api/main.py` - Updated API with multi-mode support
-- `web/src/Upload.tsx` - Updated frontend
-- `web/src/App.css` - New styles
-- `docker-compose.yml` - New volumes and environment
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+WorkingDirectory=/opt/monitoring_VM_Grafana
+ExecStart=/usr/bin/docker compose up -d
+ExecStop=/usr/bin/docker compose down
+TimeoutStartSec=0
 
-### 5. Rebuild and Start
+[Install]
+WantedBy=multi-user.target
+```
+
+Активация:
+```bash
+sudo systemctl daemon-reload
+sudo systemctl enable monitoring.service
+sudo systemctl start monitoring.service
+sudo systemctl status monitoring.service
+```
+
+### Logrotate для Docker логов
 
 ```bash
-# Rebuild API container (includes new dependencies)
-docker-compose build api
-
-# Rebuild web container (includes new UI)
-docker-compose build web
-
-# Start all services
-docker-compose up -d
+# Создать файл /etc/logrotate.d/docker-monitoring
+sudo nano /etc/logrotate.d/docker-monitoring
 ```
 
-### 6. Verify Upgrade
+Содержимое:
+```
+/var/lib/docker/containers/*/*.log {
+    rotate 7
+    daily
+    compress
+    size=50M
+    missingok
+    delaycompress
+    copytruncate
+}
+```
+
+## 🔧 Обслуживание
+
+### Обновление приложения
 
 ```bash
-# Check API version
-curl http://localhost:8000/ | jq '.version'
-# Should show: "2.0.0"
+cd /opt/monitoring_VM_Grafana
 
-# Test new upload endpoint
-curl -X POST \
-  -F "file=@test.zip" \
-  -F "target=csv" \
-  http://localhost:8000/api/upload
+# Остановка сервисов
+docker compose down
+
+# Обновление кода
+git pull
+
+# Пересборка
+docker compose build --no-cache
+
+# Запуск
+docker compose up -d
+
+# Проверка
+docker compose ps
+docker compose logs -f
 ```
 
-## Service Architecture
-
-```
-┌─────────────────────────────────────────────────────┐
-│                    Host System                      │
-│                                                     │
-│  ┌─────────────┐  ┌─────────────┐  ┌────────────┐ │
-│  │ /data/jobs  │  │ /data/vmdata│  │/data/grafana│ │
-│  └──────┬──────┘  └──────┬──────┘  └─────┬──────┘ │
-│         │                │                │         │
-└─────────┼────────────────┼────────────────┼─────────┘
-          │                │                │
-          │                │                │
-┌─────────┼────────────────┼────────────────┼─────────┐
-│         │  Docker Network (monitoring)    │         │
-│         │                │                │         │
-│    ┌────▼────┐     ┌────▼────┐      ┌───▼────┐    │
-│    │   API   │────▶│   VM    │◀─────│ Grafana│    │
-│    │  :8000  │     │  :8428  │      │  :3000 │    │
-│    └────▲────┘     └─────────┘      └────────┘    │
-│         │                                          │
-│    ┌────┴────┐                                     │
-│    │   Web   │                                     │
-│    │  :3001  │                                     │
-│    └─────────┘                                     │
-│                                                     │
-└─────────────────────────────────────────────────────┘
-```
-
-## Port Mapping
-
-| Service | Internal Port | Host Port | Purpose |
-|---------|--------------|-----------|---------|
-| API | 8000 | 8000 | REST API |
-| Web | 80 | 3001 | Frontend UI |
-| Grafana | 3000 | 3000 | Dashboards |
-| VictoriaMetrics | 8428 | 8428 | Time-series DB |
-
-## Volume Mapping
-
-| Host Path | Container Path | Purpose | Size Estimate |
-|-----------|---------------|---------|---------------|
-| /data/jobs | /app/jobs | CSV output files | ~50GB per job |
-| /data/vmdata | /vmdata | VM time-series data | ~100GB+ |
-| /data/grafana | /var/lib/grafana | Grafana config/dashboards | ~1GB |
-| ./uploads | /app/uploads | Temporary uploads | ~10GB |
-| ./Data2csv | /app/Data2csv | CSV parser (wide) | Read-only |
-| ./perfmonkey | /app/perfmonkey | CSV parser (perfmonkey) | Read-only |
-
-## Resource Requirements
-
-### Minimum
-- CPU: 4 cores
-- RAM: 8GB
-- Disk: 100GB SSD
-- Network: 100Mbps
-
-### Recommended
-- CPU: 16+ cores
-- RAM: 32GB+
-- Disk: 500GB+ NVMe SSD
-- Network: 1Gbps
-
-### For Large Workloads (500GB+ archives)
-- CPU: 32+ cores
-- RAM: 64GB+
-- Disk: 2TB+ NVMe SSD (RAID 0 or ZFS for /data/jobs)
-- Network: 10Gbps
-
-## Monitoring
-
-### Docker Logs
-
-```bash
-# API logs
-docker logs -f huawei-api
-
-# Web logs
-docker logs -f huawei-web
-
-# VictoriaMetrics logs
-docker logs -f huawei-victoriametrics
-
-# Grafana logs
-docker logs -f huawei-grafana
-```
-
-### Disk Usage
-
-```bash
-# Monitor jobs directory
-du -sh /data/jobs/*
-
-# Monitor VM data
-du -sh /data/vmdata
-
-# Find old jobs (manual cleanup if needed)
-find /data/jobs -type d -mtime +1 -ls
-```
-
-### API Endpoints for Monitoring
-
-```bash
-# Health check
-curl http://localhost:8000/health
-
-# List all jobs
-curl http://localhost:8000/api/jobs
-
-# List imported arrays
-curl http://localhost:8000/api/arrays
-```
-
-## Troubleshooting
-
-### Issue: Cannot create /data/jobs directory
-
-**Cause:** Permission denied
-
-**Solution:**
-```bash
-sudo mkdir -p /data/jobs
-sudo chown -R $(id -u):$(id -g) /data/jobs
-```
-
-### Issue: API container fails to start
-
-**Cause:** Port 8000 already in use
-
-**Solution:**
-```bash
-# Check what's using port 8000
-sudo lsof -i :8000
-
-# Change port in .env
-echo "API_PORT=8001" >> .env
-
-# Restart
-docker-compose up -d api
-```
-
-### Issue: Files not downloading
-
-**Cause:** Missing volume mount or wrong permissions
-
-**Solution:**
-```bash
-# Check volume mount
-docker inspect huawei-api | jq '.[0].Mounts'
-
-# Fix permissions
-sudo chown -R 1000:1000 /data/jobs
-
-# Restart API
-docker-compose restart api
-```
-
-### Issue: Out of disk space
-
-**Cause:** Too many old jobs
-
-**Solution:**
-```bash
-# Manual cleanup (deletes jobs older than 1 day)
-find /data/jobs -type d -mtime +1 -exec rm -rf {} +
-
-# Or reduce TTL
-echo "JOB_TTL_HOURS=12" >> .env
-docker-compose restart api
-```
-
-### Issue: CSV generation stuck
-
-**Cause:** Not enough workers or memory
-
-**Solution:**
-```bash
-# Check container resources
-docker stats huawei-api
-
-# Increase memory limit in docker-compose.yml
-# Under api service:
-#   deploy:
-#     resources:
-#       limits:
-#         memory: 16G
-
-# Restart
-docker-compose up -d api
-```
-
-## Backup and Restore
-
-### Backup
+### Backup данных
 
 ```bash
 #!/bin/bash
-BACKUP_DIR="/backup/huawei-$(date +%Y%m%d)"
+# backup.sh
+
+BACKUP_DIR="/backup/monitoring"
+DATE=$(date +%Y%m%d_%H%M%S)
+
+# Создание директории
 mkdir -p $BACKUP_DIR
 
-# Backup VictoriaMetrics data
-sudo tar -czf $BACKUP_DIR/vmdata.tar.gz /data/vmdata
+# Backup VictoriaMetrics
+docker compose exec victoriametrics /victoria-metrics-prod -snapshotCreateURL=http://localhost:8428/snapshot/create
+docker cp monitoring_vm_grafana-victoriametrics-1:/victoria-metrics-data/snapshots $BACKUP_DIR/vm_$DATE
 
 # Backup Grafana
-sudo tar -czf $BACKUP_DIR/grafana.tar.gz /data/grafana
+docker cp monitoring_vm_grafana-grafana-1:/var/lib/grafana $BACKUP_DIR/grafana_$DATE
 
-# Backup current jobs (optional, since they auto-expire)
-sudo tar -czf $BACKUP_DIR/jobs.tar.gz /data/jobs
+# Backup CSV jobs
+tar -czf $BACKUP_DIR/jobs_$DATE.tar.gz /data/monitoring/jobs_data
 
-# Backup config
-cp docker-compose.yml $BACKUP_DIR/
-cp .env $BACKUP_DIR/
+# Очистка старых backup'ов (старше 30 дней)
+find $BACKUP_DIR -name "*.tar.gz" -mtime +30 -delete
+find $BACKUP_DIR -type d -mtime +30 -exec rm -rf {} +
+
+echo "Backup completed: $BACKUP_DIR"
 ```
 
-### Restore
+Настройка cron:
+```bash
+# Ежедневный backup в 2:00
+0 2 * * * /opt/monitoring_VM_Grafana/backup.sh >> /var/log/monitoring_backup.log 2>&1
+```
+
+### Очистка дискового пространства
 
 ```bash
-#!/bin/bash
-BACKUP_DIR="/backup/huawei-20251009"
+# Удаление неиспользуемых Docker образов
+docker image prune -a -f
 
-# Stop services
-docker-compose down
+# Удаление старых volumes
+docker volume prune -f
 
-# Restore VictoriaMetrics
-sudo tar -xzf $BACKUP_DIR/vmdata.tar.gz -C /
-
-# Restore Grafana
-sudo tar -xzf $BACKUP_DIR/grafana.tar.gz -C /
-
-# Fix permissions
-sudo chown -R 1000:1000 /data/vmdata /data/grafana
-
-# Start services
-docker-compose up -d
+# Очистка старых CSV jobs (автоматически через 24 часа)
+# Или вручную через Web UI: Home → CSV Jobs → Delete Files
 ```
 
-## Security Considerations
+## 🚨 Troubleshooting
 
-### 1. Change Default Passwords
+### Проблема: Container не запускается
 
 ```bash
-# Update Grafana admin password
-echo "GRAFANA_ADMIN_PASS=YourStrongPassword123!" >> .env
-docker-compose restart grafana
+# Проверка логов
+docker compose logs <service_name>
+
+# Проверка конфликтов портов
+sudo netstat -tulpn | grep -E '8000|8080|3000|8428'
+
+# Очистка и перезапуск
+docker compose down
+docker compose up -d
 ```
 
-### 2. Firewall Rules
+### Проблема: Нет места на диске
 
 ```bash
-# Allow only local access
-sudo ufw allow from 127.0.0.1 to any port 8000
-sudo ufw allow from 127.0.0.1 to any port 8428
+# Проверка использования
+df -h
+docker system df
 
-# Allow Grafana from specific subnet
-sudo ufw allow from 192.168.1.0/24 to any port 3000
+# Очистка
+docker system prune -a --volumes -f
+
+# Удаление старых CSV jobs
+curl -X DELETE http://localhost:8000/api/files/<job_id>
 ```
 
-### 3. File Upload Size Limits
+### Проблема: Slow performance
 
 ```bash
-# Limit max upload size (10GB default)
-echo "MAX_UPLOAD_SIZE=5368709120" >> .env  # 5GB
-docker-compose restart api
+# Увеличить ресурсы Docker (в /etc/docker/daemon.json)
+{
+  "default-ulimits": {
+    "nofile": {
+      "Name": "nofile",
+      "Hard": 64000,
+      "Soft": 64000
+    }
+  }
+}
+
+# Перезапуск Docker
+sudo systemctl restart docker
+docker compose up -d
 ```
 
-### 4. Job Cleanup
+## 📝 Checklist развертывания
 
-```bash
-# Reduce retention to 12 hours
-echo "JOB_TTL_HOURS=12" >> .env
-docker-compose restart api
-```
+- [ ] Сервер соответствует системным требованиям
+- [ ] Docker и Docker Compose установлены
+- [ ] Firewall настроен
+- [ ] Директории для данных созданы
+- [ ] Файл .env сконфигурирован
+- [ ] docker-compose.yml настроен (если нужно)
+- [ ] Сервисы запущены (`docker compose up -d`)
+- [ ] Health checks пройдены
+- [ ] Grafana пароль изменен
+- [ ] Reverse proxy настроен (production)
+- [ ] SSL сертификаты установлены (production)
+- [ ] Systemd service создан
+- [ ] Backup настроен
+- [ ] Logrotate настроен
+- [ ] Мониторинг системы настроен
 
-## Maintenance
+## 🔗 Полезные ссылки
 
-### Regular Tasks
-
-**Daily:**
-- Check disk space: `df -h /data`
-- Check logs for errors: `docker logs huawei-api | grep ERROR`
-
-**Weekly:**
-- Review job count: `ls -1 /data/jobs | wc -l`
-- Check VM retention: Check Grafana dashboards
-
-**Monthly:**
-- Backup VictoriaMetrics data
-- Update containers: `docker-compose pull && docker-compose up -d`
-
-### Updates
-
-```bash
-# Update containers
-docker-compose pull
-
-# Recreate with new images
-docker-compose up -d
-
-# Cleanup old images
-docker image prune -a
-```
-
-## Performance Tuning
-
-### 1. Increase API Workers
-
-Edit `docker-compose.yml`:
-```yaml
-services:
-  api:
-    environment:
-      - WORKER_CONCURRENCY=8  # Increase from 4
-```
-
-### 2. VictoriaMetrics Optimization
-
-```yaml
-services:
-  victoriametrics:
-    command:
-      - --storageDataPath=/vmdata
-      - --retentionPeriod=6
-      - -memory.allowedPercent=90  # Increase from 80
-      - -insert.maxQueueDuration=120s  # Increase from 60s
-```
-
-### 3. Faster Disk I/O
-
-```bash
-# Use tmpfs for uploads (RAM disk)
-# Add to docker-compose.yml under api service:
-#   tmpfs:
-#     - /app/uploads:size=10G
-
-# Or use faster storage
-sudo mount -t tmpfs -o size=20G tmpfs /data/jobs
-```
-
----
-
-**Version:** 2.0.0  
-**Last Updated:** October 9, 2025
-
+- Docker Documentation: https://docs.docker.com/
+- VictoriaMetrics: https://docs.victoriametrics.com/
+- Grafana: https://grafana.com/docs/
+- FastAPI: https://fastapi.tiangolo.com/
 

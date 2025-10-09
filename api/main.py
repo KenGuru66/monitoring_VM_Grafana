@@ -768,7 +768,7 @@ async def list_csv_jobs():
             # Determine serial numbers from filenames if not in job_data
             serial_numbers = job_data.get("serial_numbers", [])
             if not serial_numbers and files:
-                # Try to extract from filenames (e.g., "2102354JMX10Q3100016.csv.gz")
+                # Try to extract from filenames (e.g., "2102354JMX1****00016.csv.gz")
                 for f in files:
                     match = re.search(r"([0-9A-Z]{20,})", f["name"])
                     if match and match.group(1) not in serial_numbers:
