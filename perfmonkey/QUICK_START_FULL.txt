@@ -12,17 +12,24 @@ AVAILABLE PARSERS:
 2. DISK Parser (Python script) - for Disk metrics
 
 ═══════════════════════════════════════════════════════════════
-📊 PART 1: CONTROLLER PARSER
+📊 PART 1: CONTROLLER PARSER (Python - RECOMMENDED!)
 ═══════════════════════════════════════════════════════════════
 
-SCRIPT: perfmonkey/R_script/parse_1cpu_perfmonkey.R
+SCRIPT: perfmonkey/R_script/parse_1cpu_perfmonkey.py
 
 FEATURES:
 ✓ Automatic Serial Number extraction
-✓ Time sorting (chronological)
+✓ Correct time preservation (no timezone conversion)
 ✓ Separate files for each controller
 ✓ No quotes (PerfMonkey compatible)
 ✓ Metric name cleaning
+✓ 3.3x faster than R script
+✓ 2.3x less memory than R script
+
+PERFORMANCE:
+  • Time: 1.76 seconds
+  • Memory: 67 MB
+  • CPU: Single-threaded
 
 USAGE:
 ------
@@ -31,12 +38,16 @@ FILE="2102353TJWFSP3100020.csv"
 echo "Resource;Metric;InstanceName;Value;Time;UnixTime" > ${FILE}_cpu_all
 awk -F';' '$1 == "Controller"' ${FILE} >> ${FILE}_cpu_all
 
-# Step 2: Run R script
-Rscript perfmonkey/R_script/parse_1cpu_perfmonkey.R ${FILE}_cpu_all
+# Step 2: Run Python script (RECOMMENDED)
+python3 perfmonkey/R_script/parse_1cpu_perfmonkey.py ${FILE}_cpu_all
 
 # Output: Separate files for each controller
 #   2102353TJWFSP3100020_0A_output.csv
 #   2102353TJWFSP3100020_0B_output.csv
+
+ALTERNATIVE (R script - has timezone bug):
+  Rscript perfmonkey/R_script/parse_1cpu_perfmonkey.R ${FILE}_cpu_all
+  Note: R version converts time -2 hours (UTC issue)
 
 EXAMPLE OUTPUT FORMAT:
 ----------------------
@@ -123,16 +134,21 @@ Old R Script (parse_disk.R):
   • Status: Crashes on large files (> 10 GB)
 
 New Python Script (parse_disk_perfmonkey_single.py):
-  • Time: ~40 seconds
-  • Memory: < 2 GB
+  • Time: ~40 seconds (7.5x faster)
+  • Memory: < 2 GB (92% less)
   • Status: Works with files 200+ GB
 
 CONTROLLER PARSER:
 ------------------
-Updated R Script (parse_1cpu_perfmonkey.R):
-  • Time: ~2 minutes
-  • Memory: < 5 GB
-  • Status: Works reliably
+Old R Script (parse_1cpu_perfmonkey.R):
+  • Time: 5.73 seconds
+  • Memory: 153 MB
+  • Status: Works, but has timezone bug (-2 hours)
+
+New Python Script (parse_1cpu_perfmonkey.py):
+  • Time: 1.76 seconds (3.3x faster)
+  • Memory: 67 MB (56% less)
+  • Status: Works correctly, no timezone issues
 
 ═══════════════════════════════════════════════════════════════
 ✅ VALIDATION CHECKS
