@@ -31,8 +31,6 @@ if (length(sn_match) > 0) {
   cat("WARNING: Could not extract SN from filename, using default: 111111\n")
 }
 
-output_file<-paste0(input_file,"_output.csv")
-
 cat("Reading CSV file...\n")
 # Read CSV with semicolon separator
 data <- read.csv(input_file, sep=";", stringsAsFactors = FALSE)
@@ -108,33 +106,47 @@ for(inst in instances) {
   all_instance_data[[inst]] <- inst_output
 }
 
-cat("\nCombining all instances...\n")
-# Combine all instances
-output_df <- do.call(rbind, all_instance_data)
+cat("\nWriting separate files for each instance...\n")
 
-# Add row numbers as second column (after Label)
-output_df <- cbind(
-  output_df[, 1, drop=FALSE],  # Label column
-  "#" = seq(from = 1, to = nrow(output_df), by = 1),
-  output_df[, 2:ncol(output_df)]  # Rest of columns
-)
+output_files <- c()
 
-# Set column names properly
-colnames(output_df) <- c("CPUPERF", "#", "BgnDateTime", "EndDateTime", "Serial", 
-                        "Slot", "Type", metrics)
-
-# Write output WITHOUT quotes for PerfMonkey compatibility
-cat("Writing output...\n")
-write.table(output_df, file = output_file, sep = ",", 
-            row.names = FALSE, col.names = TRUE, 
-            quote = FALSE)  # NO QUOTES!
+for(inst in names(all_instance_data)) {
+  # Get data for this instance
+  inst_df <- all_instance_data[[inst]]
+  
+  # Add row numbers
+  inst_df <- cbind(
+    inst_df[, 1, drop=FALSE],  # Label column
+    "#" = seq(from = 1, to = nrow(inst_df), by = 1),
+    inst_df[, 2:ncol(inst_df)]  # Rest of columns
+  )
+  
+  # Set column names
+  colnames(inst_df) <- c("CPUPERF", "#", "BgnDateTime", "EndDateTime", "Serial", 
+                          "Slot", "Type", metrics)
+  
+  # Create output filename for this instance
+  inst_output_file <- gsub("\\.csv.*$", "", input_file)
+  inst_output_file <- paste0(inst_output_file, "_", inst, "_output.csv")
+  
+  # Write to file
+  write.table(inst_df, file = inst_output_file, sep = ",", 
+              row.names = FALSE, col.names = TRUE, 
+              quote = FALSE)
+  
+  output_files <- c(output_files, inst_output_file)
+  
+  cat(sprintf("  ✓ Instance %s: %s (%d rows)\n", inst, basename(inst_output_file), nrow(inst_df)))
+}
 
 cat(sprintf("\n=== SUCCESS! ===\n"))
-cat(sprintf("Output written to: %s\n", output_file))
-cat(sprintf("Rows: %d (data rows, excluding header)\n", nrow(output_df)))
-cat(sprintf("Columns: %d (7 service + %d metrics)\n", ncol(output_df), length(metrics)))
-cat(sprintf("Serial Number: %s\n", serial))
+cat(sprintf("Created %d files:\n", length(output_files)))
+for(f in output_files) {
+  cat(sprintf("  - %s\n", basename(f)))
+}
+cat(sprintf("\nSerial Number: %s\n", serial))
 cat(sprintf("Instances: %s\n", paste(instances, collapse=", ")))
+cat(sprintf("Columns per file: %d (7 service + %d metrics)\n", 7 + length(metrics), length(metrics)))
 cat("File format: CSV without quotes, commas in metric names replaced with underscores\n")
-cat("Data is sorted by instance and time\n")
+cat("Each instance has its own file, sorted by time\n")
 
