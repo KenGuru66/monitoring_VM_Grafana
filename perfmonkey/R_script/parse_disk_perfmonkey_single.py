@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """
 parse_disk_perfmonkey_single.py - Disk performance parser for PerfMonkey
-Creates ONE output file with all disks, sorted by time
+Creates ONE output file with all disks
+Synchronized: Only common timepoints across all disks
+Same Row # for same timestamp across all disks
 Memory-efficient streaming processing
 """
 
@@ -69,7 +71,7 @@ def process_disk_file(input_file):
     # Data structure: data[instance][time][metric] = value
     data = defaultdict(lambda: defaultdict(dict))
     all_metrics = set()
-    all_times = set()
+    all_times_per_instance = defaultdict(set)  # Track times per instance
     all_instances = set()
     
     # Read all data
@@ -83,18 +85,58 @@ def process_disk_file(input_file):
             
             data[instance][time][metric] = value
             all_metrics.add(metric)
-            all_times.add(time)
+            all_times_per_instance[instance].add(time)
             all_instances.add(instance)
     
-    # Sort everything
+    # Sort instances and metrics
     metrics = sorted(all_metrics)
-    times = sorted(all_times)
     instances = sorted(all_instances)
     
     print(f"  ✓ Instances (disks): {len(instances)}")
-    print(f"  ✓ Timepoints: {len(times)}")
     print(f"  ✓ Metrics: {len(metrics)}")
-    print(f"  ✓ Total rows to write: {len(instances) * len(times)}\n")
+    
+    # Show timepoints per instance
+    print("\n  Timepoints per disk (first 5 disks):")
+    for i, inst in enumerate(instances[:5]):
+        print(f"    • {inst}: {len(all_times_per_instance[inst])} timepoints")
+    if len(instances) > 5:
+        print(f"    ... and {len(instances) - 5} more disks")
+    
+    # Find common timepoints across all disks
+    print("\n  Finding common timepoints across all disks...")
+    if not instances:
+        common_times = []
+    else:
+        common_times_set = set(all_times_per_instance[instances[0]])
+        for inst in instances[1:]:
+            common_times_set = common_times_set.intersection(all_times_per_instance[inst])
+        
+        # Sort common timepoints
+        common_times_candidate = sorted(list(common_times_set))
+        
+        # Additional filter: Keep only times where ALL disks have at least one metric with data
+        common_times = []
+        for time in common_times_candidate:
+            # Check if all disks have at least one non-empty metric for this time
+            all_disks_have_data = True
+            for inst in instances:
+                metric_values = [data[inst][time].get(metric, '') for metric in metrics]
+                if all(v == '' for v in metric_values):
+                    all_disks_have_data = False
+                    break
+            
+            if all_disks_have_data:
+                common_times.append(time)
+    
+    # Calculate filtered out timepoints
+    total_unique_times = len(set().union(*all_times_per_instance.values()))
+    filtered_out = total_unique_times - len(common_times)
+    
+    print(f"  ✓ Total unique timepoints: {total_unique_times}")
+    print(f"  ✓ Common timepoints (all {len(instances)} disks): {len(common_times)}")
+    if filtered_out > 0:
+        print(f"  ⚠ Filtered out {filtered_out} non-common timepoints")
+    print(f"  ✓ Total rows to write: {len(instances) * len(common_times)}\n")
     
     # Create output filename
     output_file = str(input_path).replace('.csv', '').replace('_disk_all', '') + '_DISK_PERFMONKEY.csv'
@@ -110,17 +152,15 @@ def process_disk_file(input_file):
                   'MpCnt', 'Rg', 'PgCnt', 'LdCnt', 'Alias'] + metrics
         writer.writerow(header)
         
-        # Write data: for each timepoint, write all instances
+        # Write data: for each COMMON timepoint, write all instances
         rows_written = 0
-        for time_idx, time in enumerate(times, 1):
+        for time_idx, time in enumerate(common_times, 1):
             formatted_time = parse_datetime(time)
             
             for instance in instances:
-                # Check if this instance has data for this time
-                # Skip row if all metrics are empty
+                # Get metric values for this instance at this time
+                # Since we're using common_times, all instances should have this time
                 metric_values = [data[instance][time].get(metric, '') for metric in metrics]
-                if all(v == '' for v in metric_values):
-                    continue  # Skip this row - no data for this instance at this time
                 
                 row_data = [
                     LABEL,
@@ -143,7 +183,7 @@ def process_disk_file(input_file):
             
             # Progress indicator
             if time_idx % 100 == 0:
-                print(f"  • Processed {time_idx}/{len(times)} timepoints ({rows_written} rows)...")
+                print(f"  • Processed {time_idx}/{len(common_times)} timepoints ({rows_written} rows)...")
     
     print(f"  ✓ Written {rows_written} rows\n")
     
@@ -154,9 +194,14 @@ def process_disk_file(input_file):
     print(f"Output file: {Path(output_file).name}")
     print(f"  • Serial Number: {serial}")
     print(f"  • Disks: {len(instances)}")
-    print(f"  • Timepoints: {len(times)}")
+    print(f"  • Common timepoints: {len(common_times)} (synchronized)")
+    if filtered_out > 0:
+        print(f"  • Filtered out: {filtered_out} non-common timepoints")
     print(f"  • Metrics: {len(metrics)}")
-    print(f"  • Total rows: {rows_written}")
+    print(f"  • Total rows: {rows_written} ({len(instances)} disks × {len(common_times)} timepoints)")
+    print("\nFormat: All disks in ONE file")
+    print("        Same Row # for same timestamp across all disks")
+    print("        Only common timepoints (synchronized)")
     print("\nFile is ready for PerfMonkey import! 🚀\n")
     
     return output_file
@@ -166,7 +211,9 @@ if __name__ == '__main__':
         print("Usage: python3 parse_disk_perfmonkey_single.py <input_file>")
         print("\nExample:")
         print("  python3 parse_disk_perfmonkey_single.py 2102353TJWFSP3100020.csv_disk_all")
-        print("\nCreates ONE output file with all disks sorted by time")
+        print("\nCreates ONE output file with all disks")
+        print("Only common timepoints (synchronized across all disks)")
+        print("Same Row # for same timestamp across all disks")
         sys.exit(1)
     
     input_file = sys.argv[1]
