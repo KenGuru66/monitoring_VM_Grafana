@@ -1,0 +1,46 @@
+Данный набор скриптов предназначен для преобразования вывода скрипта Data2csv/Huawei_perf_parser_v0.2_parallel.py в формат, пригодный для загрузки в PerfMonkey.
+Ограничения:
+1. Поскольку данные, выгруженные разными контроллерами, в общем случае имеют разные метки времени, обработка проводится в отдельности по каждому контроллеру, т. е. экспорт скриптом Parse_Perf_Files.py нужно сделать отдельно по каждому котроллеру.
+2. PerfMonkey не показывает объект, который появляется в данных не с первой временной отметки, поэтому на данных, в которых есть объекты имеющие неполный комплект временных точек, скрипты работать не будут.
+3. Формат даты и времени во входном файле по умолчанию "%Y/%m/%d %H:%M". Если во входном файле формат другой, его нужно указать в командной строке.
+
+Предлагаемая последовательность действий:
+
+1. Экспорт данных из бинарных файлов по отдельности по каждому контроллеру.
+2. Для каждого результирующего файла из п. 1 выполнить следующие команды ($1 - имя файла из п. 1)
+
+sed -e "s/K\,/K_/" $1 > ${1}_out
+
+echo "Resource,Metric,InstanceName,Value,Time,UnixTime" > ${1}_cpu
+echo "Resource,Metric,InstanceName,Value,Time,UnixTime" > ${1}_host
+echo "Resource,Metric,InstanceName,Value,Time,UnixTime" > ${1}_lun
+echo "Resource,Metric,InstanceName,Value,Time,UnixTime" > ${1}_disk
+echo "Resource,Metric,InstanceName,Value,Time,UnixTime" > ${1}_pool
+echo "Resource,Metric,InstanceName,Value,Time,UnixTime" > ${1}_fcport
+echo "Resource,Metric,InstanceName,Value,Time,UnixTime" > ${1}_ethport
+
+grep -E "^Controller" ${1}_out >> ${1}_cpu
+grep -E "^Host" ${1}_out >> ${1}_host
+grep -E "^LUN" ${1}_out >> ${1}_lun
+grep -E "^Disk" ${1}_out | grep -v "Domain" >> ${1}_disk
+grep -E "^Storage" ${1}_out >> ${1}_pool
+grep -E "^FC" ${1}_out >> ${1}_fcport
+grep -E "^Ethernet" ${1}_out >> ${1}_ethport
+
+Rscript ./parse_1cpu.R ${1}_cpu ${1}_cpu_output
+Rscript ./parse_host.R ${1}_host ${1}_host_output
+Rscript ./parse_lun.R ${1}_lun ${1}_lun_output
+Rscript ./parse_disk.R ${1}_disk ${1}_disk_output
+Rscript ./parse_pool.R ${1}_pool ${1}_pool_output
+Rscript ./parse_fcport.R ${1}_fcport ${1}_fcport_output
+Rscript ./parse_fcport.R ${1}_ethport ${1}_ethport_output
+
+cat ${1}_cpu_output | tr -d '"' > ${1}_cpu_output.csv
+cat ${1}_host_output | tr -d '"' > ${1}_host_output.csv
+cat ${1}_lun_output | tr -d '"' > ${1}_lun_output.csv
+cat ${1}_disk_output | tr -d '"' > ${1}_disk_output.csv
+cat ${1}_pool_output | tr -d '"' > ${1}_pool_output.csv
+cat ${1}_fcport_output | tr -d '"' > ${1}_fcport_output.csv
+cat ${1}_ethport_output | tr -d '"' > ${1}_ethport_output.csv
+
+3. Полученные файлы *csv загрузить в PerfMonkey.

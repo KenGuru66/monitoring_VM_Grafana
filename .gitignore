@@ -57,6 +57,7 @@ uploads/*
 !uploads/.gitkeep
 Data2csv/output/*
 !Data2csv/output/.gitkeep
+Data2csv/output_test/*
 
 # Node.js
 node_modules/
