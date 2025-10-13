@@ -115,39 +115,45 @@ def process_controller_file(input_file):
     for inst in instances:
         print(f"  • Instance {inst}: {len(all_times[inst])} timepoints")
     
-    print("\nPass 2: Writing separate file for each controller...")
+    # Find common timepoints across all controllers
+    print("\nFinding common timepoints across all controllers...")
+    common_times = set(all_times[instances[0]])
+    for inst in instances[1:]:
+        common_times = common_times.intersection(set(all_times[inst]))
     
-    output_files = []
+    # Sort common timepoints
+    common_times = sorted(common_times)
     
-    for inst in instances:
-        print(f"\n  Processing controller: {inst}")
+    print(f"  ✓ Common timepoints: {len(common_times)}")
+    if len(common_times) != len(all_times[instances[0]]):
+        print(f"  ⚠ Filtered out {len(all_times[instances[0]]) - len(common_times)} non-common timepoints")
+    
+    print("\nPass 2: Writing combined file with all controllers...")
+    
+    # Create single output filename
+    output_file = str(input_path).replace('.csv', '').replace('_cpu_all', '') + '_ALL_CONTROLLERS.csv'
+    
+    # Write single file with all controllers
+    with open(output_file, 'w', encoding='utf-8', newline='') as f:
+        writer = csv.writer(f)
         
-        # Get timepoints for this instance (already in order)
-        times = all_times[inst]
+        # Write header
+        header = ['CPUPERF', '#', 'BgnDateTime', 'EndDateTime', 'Serial',
+                  'Slot', 'Type'] + metrics
+        writer.writerow(header)
         
-        # Determine controller type
-        controller_type = extract_controller_type(inst)
-        
-        # Create output filename
-        output_file = str(input_path).replace('.csv', '').replace('_cpu_all', '') + f'_{inst}_output.csv'
-        
-        # Write output file
-        with open(output_file, 'w', encoding='utf-8', newline='') as f:
-            writer = csv.writer(f)
+        # Write data rows: for each time, write all controllers
+        total_rows = 0
+        for row_num, time in enumerate(common_times, 1):
+            formatted_time = parse_datetime(time)
             
-            # Write header
-            header = ['CPUPERF', '#', 'BgnDateTime', 'EndDateTime', 'Serial',
-                      'Slot', 'Type'] + metrics
-            writer.writerow(header)
-            
-            # Write data rows
-            rows_written = 0
-            for row_num, time in enumerate(times, 1):
-                formatted_time = parse_datetime(time)
+            # Write row for each controller at this time
+            for inst in instances:
+                controller_type = extract_controller_type(inst)
                 
                 row_data = [
                     LABEL,
-                    row_num,
+                    row_num,  # Same row number for all controllers at this time
                     formatted_time,
                     formatted_time,
                     serial,
@@ -155,30 +161,31 @@ def process_controller_file(input_file):
                     controller_type
                 ]
                 
-                # Add metric values for this time
+                # Add metric values for this controller at this time
                 for metric in metrics:
                     value = data[inst][time].get(metric, '')
                     row_data.append(value)
                 
                 writer.writerow(row_data)
-                rows_written += 1
+                total_rows += 1
         
-        output_files.append(output_file)
-        print(f"    ✓ Written {rows_written} rows to {Path(output_file).name}")
+        print(f"\n  ✓ Written {total_rows} rows ({len(common_times)} timepoints × {len(instances)} controllers)")
+    
+    output_files = [output_file]
     
     # Summary
     print("\n═══════════════════════════════════════════════════════════════")
     print("  ✅ COMPLETED SUCCESSFULLY!")
     print("═══════════════════════════════════════════════════════════════\n")
-    print(f"Created {len(output_files)} files:")
-    for output_file in output_files:
-        print(f"  • {Path(output_file).name}")
-    
+    print(f"Created combined file: {Path(output_file).name}")
     print(f"\nSerial Number: {serial}")
     print(f"Controllers: {', '.join(instances)}")
-    print(f"Columns per file: {7 + len(metrics)} (7 service + {len(metrics)} metrics)")
-    print("Format: CSV without quotes, sorted by time\n")
-    print("Files are ready for PerfMonkey import! 🚀\n")
+    print(f"Total rows: {total_rows} ({len(common_times)} timepoints × {len(instances)} controllers)")
+    print(f"Columns: {7 + len(metrics)} (7 service + {len(metrics)} metrics)")
+    print("\nFormat: All controllers in ONE file")
+    print("        Same Row # for same timestamp across all controllers")
+    print("        CSV without quotes, sorted by time\n")
+    print("File is ready for PerfMonkey import! 🚀\n")
     
     return output_files
 
@@ -187,7 +194,8 @@ if __name__ == '__main__':
         print("Usage: python3 parse_1cpu_perfmonkey.py <input_file>")
         print("\nExample:")
         print("  python3 parse_1cpu_perfmonkey.py 2102353TJWFSP3100020.csv_cpu_all")
-        print("\nCreates separate output files for each controller")
+        print("\nCreates ONE combined file with all controllers")
+        print("Same Row # for same timestamp across all controllers")
         sys.exit(1)
     
     input_file = sys.argv[1]
