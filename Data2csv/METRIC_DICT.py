@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 METRIC_NAME_DICT = {
     "2": "读I/O比率(%)",#Read I/O ratio (%)
     "3": "写I/O比率(%)",#Write I/O ratio (%)

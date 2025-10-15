@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 RESOURCE_NAME_DICT = {
     "10": "Disk",
     "11": "LUN",
