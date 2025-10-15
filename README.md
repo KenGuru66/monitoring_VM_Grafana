@@ -44,6 +44,17 @@
   - Прогресс-бар загрузки и обработки
   - Real-time статус обработки
 
+### 📊 Grafana Dashboards
+- **16 pre-configured секций** с 775+ панелями
+- Поддержка всех типов ресурсов:
+  - Controller (с NFSV3/V4/V4.1, SMB2/3)
+  - Disk, Disk Domain
+  - FC Port (47 метрик) 🆕
+  - ETH_EXP_Port, Ethernet Port, Logical Port
+  - Host, LUN, LUN Priority
+  - Snapshot LUN (3 метрики) 🆕
+  - Storage Pool
+
 ## 📋 Требования
 
 - **Docker** >= 20.10
@@ -347,7 +358,17 @@ victoriametrics:
 
 ## 📝 Changelog
 
-### v2.0.0 (Current)
+### v2.1.0 (Current) - October 16, 2025
+- ✅ **Grafana Dashboards Update**: Добавлены недостающие секции
+  - FC Port section (47 метрик)
+  - Snapshot LUN section (3 метрики)
+  - Всего: 16 секций, 775+ панелей
+- ✅ **Streaming Pipeline Verification**: Полная проверка соответствия CSV
+  - 100% совпадение метрик и ресурсов
+  - 2.4M точек данных обработано за 2.1 сек
+  - Throughput: 1.1M метрик/сек
+
+### v2.0.0
 - ✅ Multi-mode processing (Grafana/CSV Wide/CSV Perfmonkey)
 - ✅ Multi-threaded CSV compression (16 threads)
 - ✅ New Home page with arrays & CSV jobs management

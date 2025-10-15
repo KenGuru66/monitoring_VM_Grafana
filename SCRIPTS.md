@@ -192,6 +192,93 @@ RESOURCE_NAME_DICT = {
 
 ---
 
+## Utility скрипты
+
+### 4. analyze_csv.py
+
+**Назначение:** Анализ CSV файлов - извлечение ресурсов и метрик.
+
+**Использование:**
+```bash
+python analyze_csv.py <csv_file_path>
+```
+
+**Выходные данные:**
+- Общее количество строк
+- Уникальные ресурсы
+- Уникальные метрики
+- Sanitized имена метрик (для Prometheus)
+
+**Использование:** Для проверки содержимого CSV и подготовки к сравнению с VictoriaMetrics
+
+---
+
+### 5. check_vm_metrics.py
+
+**Назначение:** Проверка соответствия метрик между CSV и VictoriaMetrics.
+
+**Использование:**
+```bash
+python check_vm_metrics.py <csv_file_path> <vm_url>
+```
+
+**Параметры:**
+- `csv_file_path` - Путь к эталонному CSV файлу
+- `vm_url` - URL VictoriaMetrics (например, http://localhost:8428)
+
+**Проверяет:**
+- ✅ Все ресурсы из CSV присутствуют в VM
+- ✅ Все метрики из CSV присутствуют в VM
+- ✅ Количество точек данных совпадает
+
+**Особенности:**
+- Автоматически определяет временной диапазон данных
+- Использует Prometheus queries для подсчета
+- Поддерживает sanitized metric names
+
+---
+
+### 6. check_grafana.py
+
+**Назначение:** Проверка доступности метрик в Grafana.
+
+**Использование:**
+```bash
+python check_grafana.py
+```
+
+**Environment variables:**
+- `GRAFANA_URL` - URL Grafana (default: http://localhost:3000)
+- `GRAFANA_API_KEY` - API key или admin:admin
+
+**Проверяет:**
+- ✅ Grafana health
+- ✅ Наличие datasource VictoriaMetrics
+- ✅ Возможность запросов метрик через Grafana API
+
+---
+
+### 7. update_dashboard_file.py
+
+**Назначение:** Обновление Grafana dashboard с добавлением новых секций.
+
+**Использование:**
+```bash
+python update_dashboard_file.py
+```
+
+**Функции:**
+- Добавляет секции для FC Port (47 метрик)
+- Добавляет секции для Snapshot LUN (3 метрики)
+- Обновляет количество панелей в dashboard
+- Создает резервную копию перед изменением
+
+**Выходные файлы:**
+- `grafana/dashboards/huawei_performance.json` - обновленный dashboard
+- `grafana/dashboards/huawei_performance.json.backup_*` - резервная копия
+
+---
+
 ## Вспомогательные функции
 
 ### Multi-threaded Compression (api/main.py)

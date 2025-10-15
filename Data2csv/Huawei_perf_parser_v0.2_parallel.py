@@ -265,16 +265,33 @@ def process_perf_file_to_memory(file_path, resources, metrics, to_db=False):
                     time_list.append(next_time)
                     next_time += timedelta(seconds=int(data_header['Archive']))
 
+                # Собираем статистику по неизвестным ID (для логирования)
+                unknown_resources = set()
+                unknown_metrics = set()
+                
                 for i, data_type in enumerate(list_data_type):
+                    resource_id = str(data_type[0])
+                    metric_id = str(data_type[1])
+                    
                     if not is_resource_and_datatype_needed(
                         resource_id=data_type[0], metric_id=data_type[1],
-                        resources=resources, metrics=metrics,
+                        resources=resources, metrics=metrics, allow_unknown=True
                     ):
                         continue
 
+                    # Проверяем, известны ли ID
+                    resource_name = RESOURCE_NAME_DICT.get(resource_id, f"UNKNOWN_RESOURCE_{resource_id}")
+                    metric_name = METRIC_NAME_DICT.get(metric_id, f"UNKNOWN_METRIC_{metric_id}")
+                    
+                    # Собираем неизвестные ID для логирования
+                    if resource_name.startswith("UNKNOWN_RESOURCE_"):
+                        unknown_resources.add(resource_id)
+                    if metric_name.startswith("UNKNOWN_METRIC_"):
+                        unknown_metrics.add(metric_id)
+                    
                     str_to_csv = ""
-                    str_to_csv += RESOURCE_NAME_DICT.get(str(data_type[0]), f"UNKNOWN_RESOURCE_{data_type[0]}") + ';'
-                    str_to_csv += METRIC_NAME_DICT.get(str(data_type[1]), f"UNKNOWN_METRIC_{data_type[1]}") + ';'
+                    str_to_csv += resource_name + ';'
+                    str_to_csv += metric_name + ';'
                     str_to_csv += data_type[2] + ';'
                     for index, point_value in enumerate(data_type[3]):
                         time_string = time_list[index].strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -282,6 +299,12 @@ def process_perf_file_to_memory(file_path, resources, metrics, to_db=False):
                         csv_lines.append(
                             f'{str_to_csv}{point_value};{time_string};{time_qqq}\n'
                         )
+                
+                # Логируем неизвестные ID если они есть
+                if unknown_resources:
+                    logger.warning(f"Found {len(unknown_resources)} unknown resource IDs in {file_path}: {sorted(unknown_resources)}")
+                if unknown_metrics:
+                    logger.warning(f"Found {len(unknown_metrics)} unknown metric IDs in {file_path}: {sorted(unknown_metrics)}")
 
                 bit_map_type = fin.read(4)
                 if bit_map_type == '':
@@ -365,8 +388,30 @@ def process_single_tgz_file(args):
 
 # -----------------------------------------------------------------------------
 # filter the resource and metrics
-def is_resource_and_datatype_needed(resource_id, metric_id, resources, metrics):
-    return str(resource_id) in resources and str(metric_id) in metrics
+def is_resource_and_datatype_needed(resource_id, metric_id, resources, metrics, allow_unknown=True):
+    """
+    Проверяет, нужны ли данные ресурса и метрики.
+    
+    Args:
+        allow_unknown: Если True, пропускает неизвестные ID (которых нет в словарях).
+                      Они будут записаны как UNKNOWN_RESOURCE_X / UNKNOWN_METRIC_Y
+    """
+    resource_str = str(resource_id)
+    metric_str = str(metric_id)
+    
+    # Проверяем, запрошены ли эти ID
+    resource_requested = resource_str in resources
+    metric_requested = metric_str in metrics
+    
+    # Если allow_unknown=True, принимаем ВСЕ ID (даже неизвестные)
+    if allow_unknown:
+        return resource_requested and metric_requested
+    
+    # Иначе проверяем наличие в словарях
+    resource_known = resource_str in RESOURCE_NAME_DICT
+    metric_known = metric_str in METRIC_NAME_DICT
+    
+    return resource_requested and metric_requested and resource_known and metric_known
 
 # -----------------------------------------------------------------------------
 #decompress zip archive

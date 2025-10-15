@@ -183,10 +183,17 @@ def construct_data_type(data_header):
 
 
 def stream_prometheus_metrics(file_path: Path, array_sn: str, resources: list, 
-                              metrics: list) -> Generator[str, None, int]:
+                              metrics: list, allow_unknown: bool = True) -> Generator[str, None, int]:
     """
     STREAMING генератор метрик в формате Prometheus.
     Возвращает строки готовые для отправки в VictoriaMetrics.
+    
+    Args:
+        file_path: Путь к .dat файлу
+        array_sn: Серийный номер массива
+        resources: Список ID ресурсов для обработки
+        metrics: Список ID метрик для обработки
+        allow_unknown: Если True, обрабатывает ВСЕ ID (даже неизвестные)
     
     Yields:
         str: Метрика в формате Prometheus
@@ -195,6 +202,8 @@ def stream_prometheus_metrics(file_path: Path, array_sn: str, resources: list,
         int: Количество обработанных метрик
     """
     metrics_count = 0
+    unknown_resources = set()
+    unknown_metrics = set()
     
     try:
         with open(file_path, "rb") as fin:
@@ -249,14 +258,24 @@ def stream_prometheus_metrics(file_path: Path, array_sn: str, resources: list,
 
                 # STREAMING: отдаем метрики по одной, не накапливая в памяти
                 for data_type in list_data_type:
+                    resource_id = str(data_type[0])
+                    metric_id = str(data_type[1])
+                    
                     # Фильтруем нужные ресурсы и метрики
-                    if str(data_type[0]) not in resources or str(data_type[1]) not in metrics:
+                    if resource_id not in resources or metric_id not in metrics:
                         continue
 
-                    resource_name = RESOURCE_NAME_DICT.get(str(data_type[0]), f"UNKNOWN_RESOURCE_{data_type[0]}")
-                    metric_name = "huawei_" + sanitize_metric_name(
-                        METRIC_NAME_DICT.get(str(data_type[1]), f"UNKNOWN_METRIC_{data_type[1]}")
-                    )
+                    # Проверяем, известны ли ID
+                    resource_name = RESOURCE_NAME_DICT.get(resource_id, f"UNKNOWN_RESOURCE_{resource_id}")
+                    metric_base_name = METRIC_NAME_DICT.get(metric_id, f"UNKNOWN_METRIC_{metric_id}")
+                    
+                    # Собираем статистику по неизвестным ID
+                    if resource_name.startswith("UNKNOWN_RESOURCE_"):
+                        unknown_resources.add(resource_id)
+                    if metric_base_name.startswith("UNKNOWN_METRIC_"):
+                        unknown_metrics.add(metric_id)
+                    
+                    metric_name = "huawei_" + sanitize_metric_name(metric_base_name)
                     element = data_type[2]
 
                     # Генерируем метрики для каждого временного интервала
@@ -293,6 +312,12 @@ def stream_prometheus_metrics(file_path: Path, array_sn: str, resources: list,
                     
     except Exception as exc_info:
         logger.error(f"Error processing {file_path}: {exc_info}")
+    
+    # Логируем неизвестные ID если они есть
+    if unknown_resources:
+        logger.warning(f"Found {len(unknown_resources)} unknown resource IDs in {file_path.name}: {sorted(unknown_resources)}")
+    if unknown_metrics:
+        logger.warning(f"Found {len(unknown_metrics)} unknown metric IDs in {file_path.name}: {sorted(unknown_metrics)}")
     
     return metrics_count
 
@@ -550,6 +575,9 @@ def main():
     logger.info(f"   Total time:      {total_time:.1f}s ({total_time/60:.1f} min)")
     logger.info(f"   Throughput:      {total_metrics/total_time:,.0f} metrics/sec")
     logger.info(f"   Array SN:        {array_sn}")
+    logger.info("")
+    logger.info(f"💡 Tip: Check logs for 'unknown.*IDs' to find any missing metrics/resources")
+    logger.info(f"   grep -i 'unknown.*IDs' streaming_pipeline.log")
     logger.info("="*80)
     
     # Cleanup

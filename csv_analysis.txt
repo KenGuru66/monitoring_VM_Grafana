@@ -1,0 +1,284 @@
+Analyzing Data2csv/output_csv/2102355THQFSQ2100014.csv...
+  Processed 100,000 lines... (Resources: 14, Metrics: 226)
+  Processed 200,000 lines... (Resources: 14, Metrics: 226)
+  Processed 300,000 lines... (Resources: 14, Metrics: 226)
+  Processed 400,000 lines... (Resources: 14, Metrics: 226)
+  Processed 500,000 lines... (Resources: 14, Metrics: 226)
+  Processed 600,000 lines... (Resources: 14, Metrics: 226)
+  Processed 700,000 lines... (Resources: 14, Metrics: 226)
+  Processed 800,000 lines... (Resources: 14, Metrics: 226)
+  Processed 900,000 lines... (Resources: 14, Metrics: 226)
+  Processed 1,000,000 lines... (Resources: 14, Metrics: 226)
+  Processed 1,100,000 lines... (Resources: 14, Metrics: 226)
+  Processed 1,200,000 lines... (Resources: 14, Metrics: 226)
+  Processed 1,300,000 lines... (Resources: 14, Metrics: 226)
+  Processed 1,400,000 lines... (Resources: 14, Metrics: 226)
+  Processed 1,500,000 lines... (Resources: 14, Metrics: 226)
+  Processed 1,600,000 lines... (Resources: 14, Metrics: 226)
+  Processed 1,700,000 lines... (Resources: 14, Metrics: 226)
+  Processed 1,800,000 lines... (Resources: 14, Metrics: 226)
+  Processed 1,900,000 lines... (Resources: 14, Metrics: 226)
+  Processed 2,000,000 lines... (Resources: 14, Metrics: 226)
+  Processed 2,100,000 lines... (Resources: 14, Metrics: 226)
+  Processed 2,200,000 lines... (Resources: 14, Metrics: 226)
+  Processed 2,300,000 lines... (Resources: 14, Metrics: 226)
+
+✅ Analysis complete!
+   Total lines: 2,390,688
+   Unique resources: 14
+   Unique metrics: 226
+
+================================================================================
+RESOURCES:
+================================================================================
+  - Controller
+  - Controller NFSV3
+  - Controller NFSV4
+  - Controller NFSV4.1
+  - Controller SMB2/3
+  - Disk
+  - Disk Domain
+  - ETH_EXP_Port
+  - FC Port
+  - Host
+  - LUN
+  - LUN Priority
+  - Snapshot LUN
+  - Storage Pool
+
+================================================================================
+METRICS:
+================================================================================
+  - Average Configuration Request Duration (ms)
+  - Average Configuration Request Queue Duration (ms)
+  - Average DataTurbo I/O response time(us)
+  - Average DataTurbo read I/O response time(us)
+  - Average DataTurbo write I/O response time(us)
+  - Average Latency For Operations (ms)
+  - Average Query Request Duration (ms)
+  - Average Query Request Queue Duration (ms)
+  - Average Read OPS Response Time (ms)
+  - Average Write OPS Response Time (ms)
+  - Average response time of other DataTurbo I/Os(us)
+  - Average usage of member disks(%)
+  - Avg. Back-End Response Time (us)
+  - Avg. CPU usage (%)
+  - Avg. DR Read Request Response Time (us)
+  - Avg. DR Read Request Size (KB)
+  - Avg. DR Request Response Time (us)
+  - Avg. DR Write Request Response Time (us)
+  - Avg. DR Write Request Size (KB)
+  - Avg. Full Copy Command Response Time (us)
+  - Avg. Full Copy Command Size (KB)
+  - Avg. Full Copy Read Request Response Time (us)
+  - Avg. Full Copy Read Request Size (KB)
+  - Avg. Full Copy Write Request Response Time (us)
+  - Avg. Full Copy Write Request Size (KB)
+  - Avg. I/O Response Time (us)
+  - Avg. I/O response time (ms)
+  - Avg. I/O size (KB)
+  - Avg. ODX Command Response Time (us)
+  - Avg. ODX Command Size (KB)
+  - Avg. ODX Read Request Response Time (us)
+  - Avg. ODX Read Request Size (KB)
+  - Avg. ODX Write Request Response Time (us)
+  - Avg. ODX Write Request Size (KB)
+  - Avg. ODX Write Zero Request Response Time (us)
+  - Avg. ODX Write Zero Request Size (KB)
+  - Avg. Read I/O Link Transmission Latency(us)
+  - Avg. Read I/O Response Time(us)
+  - Avg. Response Time of Other CIFS I/Os(us)
+  - Avg. Response Time of Other NFS I/Os(us)
+  - Avg. Unmap Command Response Time (us)
+  - Avg. Unmap Command Size (KB)
+  - Avg. VAAI Response Time (us)
+  - Avg. VAAI Size (KB)
+  - Avg. WRITE SAME Command Response Time (us)
+  - Avg. WRITE SAME Command Size (KB)
+  - Avg. Write I/O Link Transmission Latency(us)
+  - Avg. Write I/O Response Time(us)
+  - Avg. cache usage (%)
+  - Avg. read I/O response time (ms)
+  - Avg. read I/O size (KB)
+  - Avg. write I/O response time (ms)
+  - Avg. write I/O size (KB)
+  - Back-End traffic (MB/s)
+  - Back-end read requests per second
+  - Back-end read traffic (MB/s)
+  - Back-end read/write requests per second
+  - Back-end write requests per second
+  - Back-end write traffic (MB/s)
+  - Background Copy Bandwidth (KB/s)
+  - Block bandwidth (MB/s)
+  - CIFS Session Quantity
+  - CIFS Tree Quantity
+  - CIFS operation count per second
+  - Cache chunk utilization (%)
+  - Cache flushes to write requests ratio (%)
+  - Cache flushing bandwidth (MB/s)
+  - Cache page utilization (%)
+  - Cache read usage (%)
+  - Cache water (%)
+  - Cache write usage (%)
+  - Compression Ratio
+  - Configuration Request Frequency (per Second)
+  - DR Read Request Bandwidth (MB/s)
+  - DR Read Request IOPS (IO/s)
+  - DR Request Bandwidth (MB/s)
+  - DR Request IOPS (IO/s)
+  - DR Write Request Bandwidth (MB/s)
+  - DR Write Request IOPS (IO/s)
+  - Data Reduction Ratio
+  - DataTurbo Read Bandwidth (KB/s)
+  - DataTurbo Write Bandwidth (KB/s)
+  - Deduplication Ratio
+  - Disk Max. Usage(%)
+  - File Read Bandwidth (KB/s)
+  - File Write Bandwidth (KB/s)
+  - File bandwidth(MB/s)
+  - Full Copy Command Bandwidth (MB/s)
+  - Full Copy Command IOPS (IO/s)
+  - Full Copy Read Request Bandwidth (MB/s)
+  - Full Copy Read Request IOPS (IO/s)
+  - Full Copy Write Request Bandwidth (MB/s)
+  - Full Copy Write Request IOPS (IO/s)
+  - Hit ratio (%)
+  - I/O Sequentiality(%)
+  - ISCSI IOPS(IO/s)
+  - KV CPU Usage (%)
+  - Max Latency For Operations (ms)
+  - Max. I/O Response Time (us)
+  - Max. I/O Size (KB)
+  - Max. I/O response time (ms)
+  - Max. IOPS (IO/s)
+  - Max. Read I/O Size (KB)
+  - Max. Write I/O Size (KB)
+  - Max. bandwidth (MB/s)
+  - Maximum Configuration Request Duration (ms)
+  - Maximum Configuration Request Queue Duration (ms)
+  - Maximum Query Request Duration (ms)
+  - Maximum Query Request Queue Duration (ms)
+  - Min Latency For Operations (ms)
+  - NAS Migration Copy Bandwidth (KB/s)
+  - NFS Connection Quantity
+  - NFS operation count per second
+  - Number of failed read I/Os
+  - Number of failed write I/Os
+  - ODX Command Bandwidth (MB/s)
+  - ODX Command IOPS (IO/s)
+  - ODX Read Request Bandwidth (MB/s)
+  - ODX Read Request IOPS (IO/s)
+  - ODX Write Request Bandwidth (MB/s)
+  - ODX Write Request IOPS (IO/s)
+  - ODX Write Zero Request Bandwidth (MB/s)
+  - ODX Write Zero Request IOPS (IO/s)
+  - OPS (per second)
+  - Other CIFS OPS
+  - Other DataTurbo OPS
+  - Other NFS OPS
+  - Overall Space Saving Ratio
+  - Query Request Frequency (per Second)
+  - Queue length
+  - Ratio of back-end read requests (%)
+  - Ratio of back-end write requests (%)
+  - Ratio of read I/Os to total I/Os (%)
+  - Ratio of write I/Os to total I/Os (%)
+  - Read Disk IOPS(IO/s)
+  - Read I/O Granularity Distribution: [0,512B) (%)
+  - Read I/O Granularity Distribution: [0K,4K)(%)
+  - Read I/O Granularity Distribution: [128K,+∞)(%)
+  - Read I/O Granularity Distribution: [256K,+∞) (%)
+  - Read I/O Granularity Distribution: [512B,1K) (%)
+  - Read I/O Latency Distribution: [0 us, 500 us) (%)
+  - Read I/O Latency Distribution: [0ms,10ms) (%)
+  - Read I/O Latency Distribution: [1 ms, 2 ms) (%)
+  - Read I/O Latency Distribution: [10 ms, +∞) (%)
+  - Read I/O Latency Distribution: [100ms,200ms) (%)
+  - Read I/O Latency Distribution: [10ms,20ms) (%)
+  - Read I/O Latency Distribution: [2 ms, 5 ms) (%)
+  - Read I/O Latency Distribution: [200ms,+∞) (%)
+  - Read I/O Latency Distribution: [20ms,50ms) (%)
+  - Read I/O Latency Distribution: [500 us, 1 ms) (%)
+  - Read I/O Latency Distribution: [50ms,100ms) (%)
+  - Read I/O Latency Distribution: [5ms,10ms) (%)
+  - Read I/O granularity distribution: [128K,256K) (%)
+  - Read I/O granularity distribution: [16K,32K) (%)
+  - Read I/O granularity distribution: [1K,2K) (%)
+  - Read I/O granularity distribution: [2K,4K) (%)
+  - Read I/O granularity distribution: [32K,64K) (%)
+  - Read I/O granularity distribution: [4K,8K) (%)
+  - Read I/O granularity distribution: [64K,128K) (%)
+  - Read I/O granularity distribution: [8K,16K) (%)
+  - Read IOPS (IO/s)
+  - Read OPS (per second)
+  - Read SmartCache Hit Ratio (%)
+  - Read and Write I/O Latency Distribution: [0 us, 500 us) (%)
+  - Read and Write I/O Latency Distribution: [500 us, 1 ms) (%)
+  - Read bandwidth (KB/s)
+  - Read bandwidth (MB/s)
+  - Read cache hit ratio (%)
+  - Read requests redirected to the source LUN
+  - Read requests to the snapshot LUN
+  - SCSI IOPS(IO/s)
+  - SCSI commands executed per second
+  - Service Time(us)
+  - Service time (ms)
+  - The cache page preservation
+  - Thin LUN Space Saving Rate (%)
+  - Throughput (Bps)
+  - Throughput (MB/s)
+  - Total Block Bandwidth (MB/s)
+  - Total Block IOPS(IO/s)
+  - Total DataTurbo Bandwidth (KB/s)
+  - Total DataTurbo OPS
+  - Total DataTurbo Read OPS
+  - Total DataTurbo write OPS
+  - Total Disk IOPS(IO/s)
+  - Total IOPS (IO/s)
+  - Unmap Command Bandwidth (MB/s)
+  - Unmap Command IOPS (IO/s)
+  - Usage (%)
+  - VAAI Bandwidth (MB/s)
+  - VAAI IOPS (IO/s)
+  - Verify commands per second
+  - WRITE SAME Command Bandwidth (MB/s)
+  - WRITE SAME Command IOPS (IO/s)
+  - Write Disk IOPS(IO/s)
+  - Write I/O Granularity Distribution: [0,512B) (%)
+  - Write I/O Granularity Distribution: [0K,4K)(%)
+  - Write I/O Granularity Distribution: [128K,+∞)(%)
+  - Write I/O Granularity Distribution: [256K,+∞) (%)
+  - Write I/O Granularity Distribution: [512B,1K) (%)
+  - Write I/O Latency Distribution: [0 us, 500 us) (%)
+  - Write I/O Latency Distribution: [0ms,10ms) (%)
+  - Write I/O Latency Distribution: [1 ms, 2 ms) (%)
+  - Write I/O Latency Distribution: [10 ms, +∞) (%)
+  - Write I/O Latency Distribution: [100ms,200ms) (%)
+  - Write I/O Latency Distribution: [10ms,20ms) (%)
+  - Write I/O Latency Distribution: [2 ms, 5 ms) (%)
+  - Write I/O Latency Distribution: [200ms,+∞) (%)
+  - Write I/O Latency Distribution: [20ms,50ms) (%)
+  - Write I/O Latency Distribution: [500 us, 1 ms) (%)
+  - Write I/O Latency Distribution: [50ms,100ms) (%)
+  - Write I/O Latency Distribution: [5ms,10ms) (%)
+  - Write I/O granularity distribution: [128K,256K) (%)
+  - Write I/O granularity distribution: [16K,32K) (%)
+  - Write I/O granularity distribution: [1K,2K) (%)
+  - Write I/O granularity distribution: [2K,4K) (%)
+  - Write I/O granularity distribution: [32K,64K) (%)
+  - Write I/O granularity distribution: [4K,8K) (%)
+  - Write I/O granularity distribution: [64K,128K) (%)
+  - Write I/O granularity distribution: [8K,16K) (%)
+  - Write IOPS (IO/s)
+  - Write OPS (per second)
+  - Write bandwidth (KB/s)
+  - Write bandwidth (MB/s)
+  - Write cache hit ratio (%)
+  - Write requests to the snapshot LUN
+
+================================================================================
+SUMMARY:
+================================================================================
+Total data points: 2,390,688
+Unique resources: 14
+Unique metrics: 226
