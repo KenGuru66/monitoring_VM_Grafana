@@ -1,0 +1,719 @@
+# Cursor Rules для Huawei Storage Performance Monitoring Project
+
+## 🎯 Обзор проекта
+
+Это full-stack приложение для мониторинга и анализа производительности Huawei OceanStor Storage систем.
+
+**Стек:**
+- Backend: Python 3.11+ (FastAPI)
+- Frontend: React + TypeScript (Vite)
+- Infrastructure: Docker Compose, VictoriaMetrics, Grafana
+- Data Processing: Binary parsers, Streaming pipeline
+
+## 🎯 Типичные задачи проекта
+
+**Приоритетные задачи (по частоте):**
+
+1. **Создание/модификация Grafana dashboards** (очень часто)
+   - Добавление новых панелей для метрик
+   - Обновление queries для новых ресурсов
+   - Исправление визуализации
+   - Файл: `grafana/provisioning/dashboards/Huawei-OceanStor-Real-Data.json`
+
+2. **Оптимизация производительности парсеров** (часто)
+   - Streaming vs batch processing
+   - Multiprocessing optimization
+   - Memory management
+   - Файлы: `huawei_streaming_pipeline.py`, `Data2csv/Huawei_perf_parser_v0.2_parallel.py`
+
+3. **Добавление новых метрик в словари** (часто)
+   - Обработка unknown metric IDs из логов
+   - Обновление METRIC_DICT.py и RESOURCE_DICT.py
+   - Файлы: `Data2csv/METRIC_DICT.py`, `Data2csv/RESOURCE_DICT.py`
+
+4. **Разработка новых API endpoints** (средне)
+   - FastAPI endpoints для новых функций
+   - Background job processing
+   - Файл: `api/main.py`
+
+5. **Доработка Web интерфейса** (средне)
+   - React компоненты
+   - API integration
+   - Директория: `web/src/`
+
+6. **Отладка проблем с данными** (часто)
+   - Unknown IDs в логах
+   - Отсутствие данных в VictoriaMetrics
+   - Performance issues
+   - Использование MCP серверов для диагностики
+
+## 📁 Структура проекта
+
+```
+monitoring_VM_Grafana/
+├── api/                              # FastAPI backend
+│   ├── main.py                       # API endpoints, job management
+│   └── requirements.txt
+├── web/                              # React frontend (Vite + TypeScript)
+│   └── src/
+│       ├── App.tsx                   # Main app, routing
+│       ├── Home.tsx                  # Arrays & CSV jobs management
+│       └── Upload.tsx                # File upload interface
+├── Data2csv/                         # CSV parser (wide format)
+│   ├── Huawei_perf_parser_v0.2_parallel.py
+│   ├── METRIC_DICT.py                # 743 метрики
+│   └── RESOURCE_DICT.py              # 51 тип ресурсов
+├── perfmonkey/                       # Perfmonkey format parser
+├── grafana/                          # Grafana provisioning
+│   ├── dashboards/                   # JSON dashboards (775+ panels)
+│   └── datasources/
+├── huawei_streaming_pipeline.py      # Streaming → VictoriaMetrics
+└── docker-compose.yml                # Orchestration
+```
+
+## 🐍 Python Code Standards
+
+### Общие правила
+
+1. **Python версия**: 3.11+
+2. **Type hints**: Обязательны для всех функций
+3. **Docstrings**: Google style для публичных функций/классов
+4. **Imports**: Группировать (stdlib, third-party, local)
+5. **Encoding**: UTF-8, явно указывать в файлах с не-ASCII
+
+### Логирование (Best Practices)
+
+```python
+# ✅ СТРУКТУРИРОВАННОЕ логирование с максимальным контекстом
+# Включайте: что, сколько, для кого, результат
+
+# ✅ Правильно - INFO уровень для нормального flow
+logger.info(f"Processing {len(files)} files for array {serial_number}")
+logger.info(f"Successfully processed {metrics_count:,} metrics in {elapsed:.1f}s ({rate:,.0f} m/s)")
+
+# ✅ Правильно - WARNING для потенциальных проблем (но не критичных)
+logger.warning(f"Found {len(unknown_ids)} unknown metric IDs in {file_name}: {sorted(unknown_ids)}")
+logger.warning(f"Memory usage high: {memory_gb:.2f} GB (threshold: {threshold_gb} GB)")
+
+# ✅ Правильно - ERROR для ошибок с полным контекстом и stack trace
+logger.error(f"Failed to process {file_path}: {error}", exc_info=True)
+logger.error(f"VM connection failed after {retry_count} attempts: {error}")
+
+# ✅ Правильно - DEBUG для детальной отладки (отключен в production)
+logger.debug(f"Batch prepared: {len(batch)} metrics, size: {sys.getsizeof(batch)} bytes")
+
+# ❌ Неправильно - использование print вместо logger
+print("Processing files...")
+
+# ❌ Неправильно - недостаточно контекста
+logger.info("Processing started")
+logger.info("Done")
+
+# ❌ Неправильно - неправильный уровень (ERROR для warning)
+logger.error("Found unknown IDs")  # Это WARNING, не ERROR!
+
+# ❌ Неправильно - нет форматирования больших чисел
+logger.info(f"Processed {count} metrics")  # Используйте :, для читаемости
+```
+
+**Best Practices для логирования:**
+
+1. **Всегда включайте контекст**: файл, массив SN, job_id, количество
+2. **Форматируйте числа**: используйте `:,` для тысяч, `:.2f` для float
+3. **Используйте правильный уровень**:
+   - DEBUG: детальная отладка (отключена в prod)
+   - INFO: нормальный flow операций
+   - WARNING: потенциальные проблемы (unknown IDs, high memory)
+   - ERROR: реальные ошибки, требующие внимания
+4. **Для ERROR всегда добавляйте** `exc_info=True` если есть exception
+5. **Измеряйте производительность**: время, throughput, использование памяти
+6. **Логируйте результаты**: успешно/неуспешно, количество обработанных данных
+```
+
+### Работа с большими данными
+
+```python
+# ✅ Правильно - streaming/generator pattern
+def stream_metrics(file_path) -> Generator[str, None, int]:
+    """Stream metrics line by line без накопления в памяти."""
+    for metric in parse_data(file_path):
+        yield format_metric(metric)
+    return total_count
+
+# ❌ Неправильно - загрузка всего в память
+def load_all_metrics(file_path) -> List[str]:
+    metrics = []  # Может занять десятки GB!
+    for metric in parse_data(file_path):
+        metrics.append(metric)
+    return metrics
+```
+
+### Multiprocessing
+
+```python
+# ✅ Правильно - оптимальное количество workers
+from multiprocessing import Pool, cpu_count
+
+num_workers = max(1, cpu_count() - 2)  # Оставляем запас для системы
+
+with Pool(processes=num_workers) as pool:
+    results = pool.map(process_file, files)
+
+# ❌ Неправильно
+with Pool(processes=32) as pool:  # Hardcoded число
+```
+
+### Обработка ошибок
+
+```python
+# ✅ Правильно - специфичные исключения с контекстом
+try:
+    result = process_file(file_path)
+except FileNotFoundError:
+    logger.error(f"File not found: {file_path}")
+    return None
+except struct.error as e:
+    logger.error(f"Binary parsing error in {file_path}: {e}")
+    return None
+except Exception as e:
+    logger.error(f"Unexpected error processing {file_path}: {e}", exc_info=True)
+    return None
+
+# ❌ Неправильно
+try:
+    result = process_file(file_path)
+except:  # Bare except
+    pass  # Silent failure
+```
+
+## ⚛️ React/TypeScript Standards
+
+### Component Structure
+
+```typescript
+// ✅ Правильно - TypeScript + hooks + proper error handling
+interface UploadProps {
+  onComplete: (jobId: string) => void;
+  maxSize?: number;
+}
+
+export const Upload: React.FC<UploadProps> = ({ onComplete, maxSize = 10 * 1024 * 1024 * 1024 }) => {
+  const [uploading, setUploading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleUpload = async (file: File) => {
+    try {
+      setUploading(true);
+      setError(null);
+      const response = await api.upload(file);
+      onComplete(response.jobId);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Upload failed');
+      console.error('Upload error:', err);
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  return (
+    <div>
+      {error && <Alert severity="error">{error}</Alert>}
+      {/* ... */}
+    </div>
+  );
+};
+```
+
+### API Calls
+
+```typescript
+// ✅ Правильно - proper error handling + types
+interface ApiResponse<T> {
+  data?: T;
+  error?: string;
+}
+
+const fetchArrays = async (): Promise<string[]> => {
+  try {
+    const response = await fetch(`${API_URL}/api/arrays`);
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+    }
+    return await response.json();
+  } catch (error) {
+    console.error('Failed to fetch arrays:', error);
+    throw error;
+  }
+};
+
+// ❌ Неправильно
+const fetchArrays = async () => {
+  const response = await fetch('/api/arrays');  // No error handling
+  return response.json();  // No type safety
+};
+```
+
+## 📊 Data Processing Rules
+
+### Метрики и ресурсы
+
+1. **Всегда используйте словари**: `METRIC_DICT.py` и `RESOURCE_DICT.py`
+2. **Unknown IDs**: НЕ игнорировать! Обрабатывать как `UNKNOWN_METRIC_{id}`
+3. **Логирование unknown**: Всегда логировать warning с списком ID
+
+```python
+# ✅ Правильно
+metric_name = METRIC_NAME_DICT.get(metric_id, f"UNKNOWN_METRIC_{metric_id}")
+if metric_name.startswith("UNKNOWN_METRIC_"):
+    unknown_metrics.add(metric_id)
+
+# После обработки файла
+if unknown_metrics:
+    logger.warning(f"Found {len(unknown_metrics)} unknown metric IDs in {file_name}: {sorted(unknown_metrics)}")
+```
+
+### Naming Conventions
+
+```python
+# ✅ Правильно - sanitize для Prometheus/VictoriaMetrics
+def sanitize_metric_name(name: str) -> str:
+    """Преобразует название метрики в формат Prometheus."""
+    result = name.replace("(%)", "percent").replace(" (%)", "_percent")
+    result = result.replace("(MB/s)", "mb_s").replace("(KB/s)", "kb_s")
+    result = result.replace("/", "_").replace("-", "_").replace(" ", "_")
+    result = result.lower()
+    while "__" in result:
+        result = result.replace("__", "_")
+    return result.strip("_")
+
+# Результат: huawei_read_bandwidth_mb_s
+```
+
+### Timestamps
+
+```python
+# ✅ Правильно - Unix timestamp в миллисекундах для VM
+ts_unix_ms = int(time.mktime(timestamp.timetuple()) * 1000)
+
+# Формат Prometheus/VictoriaMetrics
+metric_line = f'{metric_name}{{Element="{element}",Resource="{resource}",SN="{sn}"}} {value} {ts_unix_ms}\n'
+```
+
+## 🚀 Performance Guidelines
+
+### Memory Management
+
+1. **Streaming processing**: Используйте генераторы для больших файлов
+2. **Batch processing**: Батчи по 100,000 метрик для отправки в VM
+3. **Cleanup**: Явно удаляйте временные файлы и директории
+4. **Memory monitoring**: Используйте psutil для отслеживания
+
+```python
+# ✅ Правильно - batch processing
+batch = []
+for metric in stream_metrics(file_path):
+    batch.append(metric)
+    if len(batch) >= BATCH_SIZE:
+        send_to_vm(batch)
+        batch = []  # Освобождаем память
+if batch:  # Остаток
+    send_to_vm(batch)
+```
+
+### Parallel Processing
+
+```python
+# ✅ Правильно - определение оптимального числа workers
+def determine_optimal_workers(num_workers: Optional[int] = None) -> int:
+    """Автоматическое определение числа workers с учетом ресурсов."""
+    if num_workers:
+        return num_workers
+    
+    cpu_cores = cpu_count()
+    base_workers = max(1, cpu_cores - 2)
+    
+    if PSUTIL_AVAILABLE:
+        mem = psutil.virtual_memory()
+        available_gb = mem.available / (1024**3)
+        memory_per_worker_gb = 0.5  # Оценка
+        max_workers_by_memory = int(available_gb / memory_per_worker_gb)
+        return min(base_workers, max_workers_by_memory)
+    
+    return base_workers
+```
+
+## 🐳 Docker & Infrastructure
+
+### Docker Compose Services
+
+```yaml
+# При изменении конфигурации сервисов:
+# 1. Обновить docker-compose.yml
+# 2. Обновить .env.example если добавлены новые переменные
+# 3. Документировать в README.md
+# 4. Тестировать: docker compose config
+```
+
+### Volume Management
+
+```python
+# ✅ Правильно - cleanup временных директорий
+temp_dir = Path("temp_extract")
+try:
+    # ... работа с файлами
+finally:
+    if temp_dir.exists():
+        shutil.rmtree(temp_dir)
+```
+
+## 📝 Documentation Standards
+
+### Code Comments
+
+```python
+# ✅ ВСЕГДА комментировать на РУССКОМ языке
+# ✅ Комментарии должны быть ПОДРОБНЫМИ
+# ✅ Объяснять "ПОЧЕМУ", а не "ЧТО"
+# ✅ Добавлять контекст и reasoning
+
+# ✅ Правильно - подробный комментарий с контекстом
+# Оставляем 2 ядра свободными для системы и других процессов (Docker, VM, Grafana),
+# чтобы избежать перегрузки CPU и замедления всей системы. При 100% загрузке
+# всех ядер Docker контейнеры могут стать неотзывчивыми.
+num_workers = max(1, cpu_count() - 2)
+
+# ❌ Неправильно - слишком краткий, нет контекста
+# Вычисляем num_workers
+num_workers = max(1, cpu_count() - 2)
+
+# ❌ Неправильно - на английском
+# Calculate number of workers
+num_workers = max(1, cpu_count() - 2)
+```
+
+### Function Docstrings
+
+```python
+def stream_prometheus_metrics(
+    file_path: Path,
+    array_sn: str,
+    resources: list,
+    metrics: list,
+    allow_unknown: bool = True
+) -> Generator[str, None, int]:
+    """
+    STREAMING генератор метрик в формате Prometheus.
+    
+    Обрабатывает .dat файл и генерирует метрики без накопления в памяти.
+    Поддерживает обработку неизвестных ID (allow_unknown=True).
+    
+    Args:
+        file_path: Путь к .dat файлу
+        array_sn: Серийный номер массива
+        resources: Список ID ресурсов для обработки
+        metrics: Список ID метрик для обработки
+        allow_unknown: Если True, обрабатывает неизвестные ID
+    
+    Yields:
+        str: Метрика в формате Prometheus
+    
+    Returns:
+        int: Количество обработанных метрик
+        
+    Example:
+        >>> for metric in stream_prometheus_metrics(path, "SN123", ["10"], ["22"]):
+        ...     send_to_vm(metric)
+    """
+```
+
+## 🔍 Testing Guidelines
+
+### Manual Testing Checklist
+
+При изменениях в парсерах:
+- [ ] Тестировать на маленьком файле (< 100MB)
+- [ ] Тестировать на большом файле (> 1GB)
+- [ ] Проверить логи на unknown IDs
+- [ ] Сравнить результаты с предыдущей версией
+- [ ] Проверить использование памяти (psutil)
+- [ ] Проверить данные в VictoriaMetrics/CSV
+
+### Performance Benchmarks
+
+```bash
+# Всегда измерять производительность для больших изменений
+time python3 huawei_streaming_pipeline.py -i test.zip --monitor
+
+# Ожидаемые показатели (зависят от CPU):
+# - Throughput: 50K-100K metrics/sec
+# - Memory: < 500MB для streaming pipeline
+# - Memory: < 2GB на worker для CSV parser
+```
+
+## 🚨 Common Pitfalls
+
+### 1. Hardcoded Paths
+
+```python
+# ❌ Неправильно
+output_file = "/app/output/result.csv"
+
+# ✅ Правильно
+output_dir = Path(os.getenv("WORK_DIR", "/app/jobs"))
+output_file = output_dir / f"{job_id}_result.csv"
+```
+
+### 2. Ignoring Unknown IDs
+
+```python
+# ❌ Неправильно - потеря данных!
+if metric_id not in METRIC_NAME_DICT:
+    continue  # Пропускаем неизвестное
+
+# ✅ Правильно - обрабатываем все
+metric_name = METRIC_NAME_DICT.get(metric_id, f"UNKNOWN_METRIC_{metric_id}")
+```
+
+### 3. Missing Cleanup
+
+```python
+# ❌ Неправильно - утечка дисков
+for file in temp_files:
+    process_file(file)
+
+# ✅ Правильно
+try:
+    for file in temp_files:
+        process_file(file)
+finally:
+    for file in temp_files:
+        if file.exists():
+            file.unlink()
+```
+
+### 4. Silent Failures
+
+```python
+# ❌ Неправильно
+try:
+    send_to_vm(batch)
+except:
+    pass
+
+# ✅ Правильно
+try:
+    send_to_vm(batch)
+except requests.RequestException as e:
+    logger.error(f"Failed to send batch to VM: {e}")
+    return False
+```
+
+## 🔧 Grafana Dashboard Updates (Часто используется!)
+
+### Структура dashboard JSON
+
+**Файл:** `grafana/provisioning/dashboards/Huawei-OceanStor-Real-Data.json` (92K строк!)
+
+**Основные секции:**
+- `panels[]` - массив всех панелей (775+ панелей)
+- `templating.list[]` - переменные (`$SN`, `$Element`, и т.д.)
+- `rows[]` - группировка панелей (16 секций)
+
+### Правила работы с dashboard
+
+1. **Обновление существующих панелей:**
+   ```json
+   {
+     "title": "Read Bandwidth (MB/s)",  // Понятное название
+     "targets": [{
+       "expr": "huawei_read_bandwidth_mb_s{SN=\"$SN\",Element=\"$Element\"}",
+       "legendFormat": "{{Element}}"
+     }],
+     "fieldConfig": {
+       "defaults": {
+         "unit": "MBs"  // Правильная единица измерения
+       }
+     }
+   }
+   ```
+
+2. **Добавление новых панелей:**
+   - Копировать структуру существующей панели
+   - Обновить `id` (уникальный для dashboard)
+   - Обновить `title`, `targets`, `unit`
+   - Правильно разместить (`gridPos`: x, y, w, h)
+
+3. **Использование переменных:**
+   - `$SN` - серийный номер массива (обязательно!)
+   - `$Element` - конкретный элемент (LUN, Disk, Port и т.д.)
+   - `$__interval` - автоматический интервал агрегации
+
+4. **Units (единицы измерения):**
+   - `MBs` - MB/s (bandwidth)
+   - `iops` - IO/s
+   - `percent` - проценты (0-100)
+   - `ms` - миллисекунды (latency)
+   - `µs` - микросекунды (us)
+   - `bytes` - байты
+   - `short` - обычные числа
+
+5. **После изменений:**
+   ```bash
+   # Проверить валидность JSON
+   jq . grafana/provisioning/dashboards/Huawei-OceanStor-Real-Data.json > /dev/null
+   
+   # Перезапустить Grafana
+   docker compose restart grafana
+   
+   # Проверить логи
+   docker compose logs -f grafana | grep -i error
+   ```
+
+6. **Debugging dashboard issues:**
+   ```bash
+   # Проверить доступность метрики в VM
+   curl "http://localhost:8428/api/v1/query?query=huawei_read_bandwidth_mb_s{SN=\"$SN\"}"
+   
+   # Или через MCP
+   python3 mcp_huawei_server.py array_metrics <SN> | grep bandwidth
+   ```
+
+### Типичные проблемы и решения
+
+**Проблема:** Панель пустая (нет данных)
+```bash
+# Проверьте:
+1. Метрика существует в VM (через MCP или curl)
+2. Правильное имя метрики (huawei_* prefix)
+3. Labels совпадают (SN, Element)
+4. Time range достаточный
+```
+
+**Проблема:** Неправильные единицы измерения
+```json
+// Исправьте unit в fieldConfig.defaults.unit
+"fieldConfig": {
+  "defaults": {
+    "unit": "MBs"  // Было "bytes", должно быть "MBs"
+  }
+}
+```
+
+**Проблема:** Дублирование панелей
+```bash
+# Проверьте уникальность id панелей
+jq '.panels[].id' grafana/provisioning/dashboards/Huawei-OceanStor-Real-Data.json | sort | uniq -d
+```
+
+## 📚 Useful Commands
+
+```bash
+# Проверка данных в VictoriaMetrics
+curl "http://localhost:8428/api/v1/label/SN/values"
+curl "http://localhost:8428/api/v1/label/__name__/values" | grep huawei
+
+# Поиск unknown IDs в логах
+grep -i "unknown.*IDs" streaming_pipeline.log
+grep -i "unknown.*IDs" api/api.log
+
+# Очистка временных файлов
+find . -type d -name "temp_*" -exec rm -rf {} +
+find . -type d -name "__pycache__" -exec rm -rf {} +
+
+# Проверка синтаксиса Python
+python3 -m py_compile huawei_streaming_pipeline.py
+black --check --diff .
+
+# Docker logs
+docker compose logs -f api
+docker compose logs -f victoriametrics | grep -i error
+```
+
+## 🎓 Learning Resources
+
+- **VictoriaMetrics docs**: https://docs.victoriametrics.com/
+- **Prometheus exposition format**: https://prometheus.io/docs/instrumenting/exposition_formats/
+- **Python multiprocessing**: https://docs.python.org/3/library/multiprocessing.html
+- **FastAPI**: https://fastapi.tiangolo.com/
+- **React Query**: https://tanstack.com/query/latest
+
+## ✅ Pre-commit Checklist
+
+Перед коммитом:
+- [ ] Код проходит линтер (black/pylint для Python, eslint для TypeScript)
+- [ ] Нет захардкоженных путей/паролей/URL
+- [ ] Все временные файлы удаляются
+- [ ] Логирование добавлено для важных операций
+- [ ] Обработка ошибок реализована
+- [ ] Документация обновлена (README, docstrings)
+- [ ] Тестирование выполнено на тестовых данных
+
+## 🚨 КРИТИЧЕСКИЕ ПРАВИЛА для AI Assistant
+
+### ❌ НЕ создавать временные файлы без необходимости
+
+**Можно создавать временные файлы, но после проверки удалять:**
+- ❌ Временные helper scripts (analyze_*.py, check_*.py, update_*.py)
+- ❌ Temporary markdown файлы для промежуточных результатов
+- ❌ Debug scripts для одноразового использования
+- ❌ Test files для быстрой проверки
+
+**РАЗРЕШЕНО создавать только:**
+- ✅ Основные функциональные файлы проекта (парсеры, API endpoints)
+- ✅ Конфигурационные файлы (если явно запрошено)
+- ✅ Тесты (в директории tests/, если запрошено)
+
+**Вместо создания файлов:**
+- ✅ Использовать inline код для проверок
+- ✅ Использовать terminal команды
+- ✅ Использовать MCP серверы для анализа
+- ✅ Предлагать изменения в существующих файлах
+
+### 📝 Документация обновляется ТОЛЬКО по запросу
+
+**ПРАВИЛО:** Документацию (README.md, docs/*.md) обновлять ТОЛЬКО когда пользователь явно попросит:
+- "зафиксируй все изменения в README.md"
+- "обнови документацию"
+- "добавь это в README"
+
+**До этого момента:**
+- ✅ Делать изменения в коде
+- ✅ Отвечать на вопросы
+- ✅ Проводить анализ
+- ❌ НЕ создавать CHANGELOG.md, UPDATE_SUMMARY.md и т.п.
+- ❌ НЕ обновлять README.md автоматически
+
+### 🧹 Cleanup обязателен
+
+```python
+# ✅ Правильно - всегда cleanup в finally
+temp_dir = Path("temp_extract")
+try:
+    # ... работа с файлами
+finally:
+    if temp_dir.exists():
+        shutil.rmtree(temp_dir)
+    # Cleanup всех временных файлов
+    for temp_file in temp_files:
+        if temp_file.exists():
+            temp_file.unlink()
+```
+
+## 🤝 AI Assistant Guidelines
+
+При помощи AI assistant'а:
+
+1. **Контекст**: Всегда упоминайте, с каким компонентом работаете (parser/API/frontend)
+2. **Производительность**: Указывайте, если работаете с большими файлами
+3. **Словари**: Напоминайте об использовании METRIC_DICT/RESOURCE_DICT
+4. **Streaming**: Предпочитайте streaming подход для обработки данных
+5. **Type safety**: Используйте type hints в Python, TypeScript для React
+6. **Минимализм**: Не создавать лишние файлы, использовать существующие
+7. **Документация**: Обновлять только по явному запросу пользователя
+
+---
+
+**Проект**: Huawei Storage Performance Monitoring
+**Версия**: 2.1.0
+**Последнее обновление**: October 2025
+
