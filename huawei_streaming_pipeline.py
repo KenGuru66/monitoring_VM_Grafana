@@ -39,6 +39,7 @@ except ImportError:
 
 from Data2csv.METRIC_DICT import METRIC_NAME_DICT
 from Data2csv.RESOURCE_DICT import RESOURCE_NAME_DICT
+from Data2csv.METRIC_CONVERSION import METRIC_CONVERSION
 
 # Настройка логирования
 logging.basicConfig(
@@ -283,8 +284,14 @@ def stream_prometheus_metrics(file_path: Path, array_sn: str, resources: list,
                         try:
                             ts_unix_ms = int(time.mktime(time_list[index].timetuple()) * 1000)
                             
+                            # Применяем конверсию единиц измерения если нужно
+                            # Для метрик, где сырые данные в других единицах (KB/s→MB/s, us→ms)
+                            value = float(point_value)
+                            if metric_id in METRIC_CONVERSION:
+                                value = value / METRIC_CONVERSION[metric_id]
+                            
                             # Формат Prometheus
-                            prom_line = f'{metric_name}{{Element="{element}",Resource="{resource_name}",SN="{array_sn}"}} {point_value} {ts_unix_ms}\n'
+                            prom_line = f'{metric_name}{{Element="{element}",Resource="{resource_name}",SN="{array_sn}"}} {value} {ts_unix_ms}\n'
                             
                             yield prom_line
                             metrics_count += 1

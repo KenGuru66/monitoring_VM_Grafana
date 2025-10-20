@@ -7,6 +7,7 @@ import logging
 from pathlib import Path
 from METRIC_DICT import METRIC_NAME_DICT
 from RESOURCE_DICT import RESOURCE_NAME_DICT
+from METRIC_CONVERSION import METRIC_CONVERSION
 
 
 import re
@@ -296,8 +297,15 @@ def process_perf_file_to_memory(file_path, resources, metrics, to_db=False):
                     for index, point_value in enumerate(data_type[3]):
                         time_string = time_list[index].strftime("%Y-%m-%dT%H:%M:%SZ")
                         time_qqq = time.mktime(time_list[index].timetuple())
+                        
+                        # Применяем конверсию единиц измерения если нужно
+                        # Для метрик, где сырые данные в других единицах (KB/s→MB/s, us→ms)
+                        value = float(point_value)
+                        if metric_id in METRIC_CONVERSION:
+                            value = value / METRIC_CONVERSION[metric_id]
+                        
                         csv_lines.append(
-                            f'{str_to_csv}{point_value};{time_string};{time_qqq}\n'
+                            f'{str_to_csv}{value};{time_string};{time_qqq}\n'
                         )
                 
                 # Логируем неизвестные ID если они есть
