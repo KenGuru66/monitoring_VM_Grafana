@@ -729,14 +729,42 @@
     transform: translateY(-2px);
 }
 
+.array-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
 .array-sn {
     font-family: monospace;
     font-size: 1.1rem;
     font-weight: 600;
     color: #1e293b;
     text-align: center;
-    padding-bottom: 0.75rem;
-    border-bottom: 1px solid #e2e8f0;
+}
+
+.array-metadata {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.interval-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.25rem 0.75rem;
+    background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+    color: white;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: monospace;
+    box-shadow: 0 2px 4px rgba(59, 130, 246, 0.2);
+    cursor: help;
 }
 
 .array-actions {

@@ -12,7 +12,7 @@ set -e
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DASHBOARD_FILE="$SCRIPT_DIR/grafana/provisioning/dashboards/Huawei-OceanStor-Real-Data.json"
-VM_URL="${VM_URL:-http://10.5.10.163:8428}"
+VM_URL="${VM_URL:-http://localhost:8428}"
 
 # Цвета для вывода
 RED='\033[0;31m'

@@ -728,7 +728,7 @@ async def list_jobs():
 
 @app.get("/api/arrays")
 async def list_arrays():
-    """Get list of all imported arrays (serial numbers) from VictoriaMetrics."""
+    """Get list of all imported arrays (serial numbers) from VictoriaMetrics with metadata."""
     try:
         # Query VictoriaMetrics for unique SN labels
         # IMPORTANT: Specify time range to get ALL data (not just recent)
@@ -740,15 +740,58 @@ async def list_arrays():
         }
         response = requests.get(url, params=params, timeout=10)
         
-        if response.status_code == 200:
-            data = response.json()
-            arrays = data.get("data", [])
-            return {
-                "arrays": sorted(arrays),
-                "total": len(arrays)
-            }
-        else:
+        if response.status_code != 200:
             raise HTTPException(status_code=response.status_code, detail="Failed to fetch arrays from VictoriaMetrics")
+        
+        data = response.json()
+        arrays = data.get("data", [])
+        
+        # For each array, get scrape_interval
+        arrays_with_metadata = []
+        for sn in sorted(arrays):
+            # Query for scrape_interval for this specific SN
+            try:
+                series_url = f"{VM_URL}/api/v1/series"
+                series_params = {
+                    "match[]": f'{{SN="{sn}"}}',
+                }
+                series_response = requests.get(series_url, params=series_params, timeout=10)
+                
+                scrape_interval = None
+                if series_response.status_code == 200:
+                    series_data = series_response.json()
+                    series_list = series_data.get("data", [])
+                    
+                    # Extract scrape_interval from first series
+                    if series_list and len(series_list) > 0:
+                        scrape_interval_sec = series_list[0].get("scrape_interval")
+                        if scrape_interval_sec:
+                            # Convert seconds to Grafana format (5s, 1m, 5m, etc.)
+                            interval_sec = int(scrape_interval_sec)
+                            if interval_sec < 60:
+                                scrape_interval = f"{interval_sec}s"
+                            elif interval_sec < 3600:
+                                scrape_interval = f"{interval_sec // 60}m"
+                            else:
+                                scrape_interval = f"{interval_sec // 3600}h"
+                
+                arrays_with_metadata.append({
+                    "sn": sn,
+                    "scrape_interval": scrape_interval
+                })
+            except Exception as e:
+                logger.warning(f"Failed to get scrape_interval for {sn}: {e}")
+                arrays_with_metadata.append({
+                    "sn": sn,
+                    "scrape_interval": None
+                })
+        
+        # Return both old format (for compatibility) and new format
+        return {
+            "arrays": sorted(arrays),  # Legacy format (list of strings)
+            "arrays_metadata": arrays_with_metadata,  # New format with metadata
+            "total": len(arrays)
+        }
     
     except Exception as e:
         logger.error(f"Error fetching arrays: {e}")

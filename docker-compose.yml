@@ -65,6 +65,7 @@ services:
       - jobs_data:/app/jobs  # Persistent storage for CSV output files
       - ./Data2csv:/app/Data2csv
       - ./perfmonkey:/app/perfmonkey  # Perfmonkey parser
+      - ./api:/app/api  # Mount API code for hot-reload
       - /data/vmdata:/vmdata  # доступ к VM данным (опционально)
     depends_on:
       - victoriametrics

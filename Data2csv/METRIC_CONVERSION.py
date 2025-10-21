@@ -23,6 +23,8 @@ METRIC_CONVERSION = {
     "313": 1024,  # Write throughput (MB/s) - реально в KB/s
     "511": 1024,  # File bandwidth(MB/s) - реально в KB/s
     "512": 1024,  # Throughput (MB/s) - реально в KB/s
+    "24": 1024, # "Avg. read I/O size (KB)" - реально в bytes , нужно разделить на 1024
+    "27": 1024, # "Avg. write I/O size (KB)" - реально в bytes , нужно разделить на 1024
     
     # ========================================================================
     # LATENCY / RESPONSE TIME: us → ms (divide by 1000)

@@ -27,8 +27,14 @@ interface FileInfo {
   url: string
 }
 
+interface ArrayMetadata {
+  sn: string
+  scrape_interval: string | null
+}
+
 function Home() {
   const [arrays, setArrays] = useState<string[]>([])
+  const [arraysMetadata, setArraysMetadata] = useState<ArrayMetadata[]>([])
   const [csvJobs, setCsvJobs] = useState<CSVJob[]>([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -44,6 +50,8 @@ function Home() {
       if (arraysResponse.ok) {
         const arraysData = await arraysResponse.json()
         setArrays(arraysData.arrays || [])
+        // Get metadata (with scrape_interval)
+        setArraysMetadata(arraysData.arrays_metadata || [])
       }
 
       // Fetch CSV jobs
@@ -113,9 +121,18 @@ function Home() {
     }
   }
 
-  const openGrafana = (sn?: string) => {
+  const openGrafana = (sn?: string, scrapeInterval?: string | null) => {
     const dashboard = `${GRAFANA_URL}/d/huawei-oceanstor-real/huawei-oceanstor-real-data`
-    const url = sn ? `${dashboard}?var-SN=${sn}` : dashboard
+    let url = dashboard
+    
+    if (sn) {
+      url = `${dashboard}?var-SN=${sn}`
+      // Add min_interval if available
+      if (scrapeInterval) {
+        url += `&var-min_interval=${scrapeInterval}`
+      }
+    }
+    
     window.open(url, '_blank')
   }
 
@@ -155,33 +172,45 @@ function Home() {
 
         {arrays.length > 0 ? (
           <div className="arrays-grid">
-            {arrays.map((sn) => (
-              <div key={sn} className="array-card">
-                <div className="array-sn">{sn}</div>
-                <div className="array-actions">
-                  <button
-                    className="grafana-link-button"
-                    onClick={() => openGrafana(sn)}
-                    title="Open in Grafana"
-                  >
-                    <ExternalLink size={16} />
-                    Grafana
-                  </button>
-                  <button
-                    className="delete-icon-button"
-                    onClick={() => handleDeleteArray(sn)}
-                    disabled={deleting === sn}
-                    title="Delete from VictoriaMetrics"
-                  >
-                    {deleting === sn ? (
-                      <Loader className="animate-spin" size={16} />
-                    ) : (
-                      <Trash2 size={16} />
+            {arraysMetadata.map((arrayData: ArrayMetadata) => {
+              const { sn, scrape_interval } = arrayData
+              return (
+                <div key={sn} className="array-card">
+                  <div className="array-info">
+                    <div className="array-sn">{sn}</div>
+                    {scrape_interval && (
+                      <div className="array-metadata">
+                        <span className="interval-badge" title="Data collection interval">
+                          ⏱️ {scrape_interval}
+                        </span>
+                      </div>
                     )}
-                  </button>
+                  </div>
+                  <div className="array-actions">
+                    <button
+                      className="grafana-link-button"
+                      onClick={() => openGrafana(sn, scrape_interval)}
+                      title={`Open in Grafana${scrape_interval ? ` (interval: ${scrape_interval})` : ''}`}
+                    >
+                      <ExternalLink size={16} />
+                      Grafana
+                    </button>
+                    <button
+                      className="delete-icon-button"
+                      onClick={() => handleDeleteArray(sn)}
+                      disabled={deleting === sn}
+                      title="Delete from VictoriaMetrics"
+                    >
+                      {deleting === sn ? (
+                        <Loader className="animate-spin" size={16} />
+                      ) : (
+                        <Trash2 size={16} />
+                      )}
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            })}
           </div>
         ) : (
           <div className="empty-state">
