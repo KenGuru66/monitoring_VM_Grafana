@@ -236,6 +236,9 @@ def stream_prometheus_metrics(file_path: Path, array_sn: str, resources: list,
                     (int(data_header['EndTime']) - int(data_header['StartTime'])) /
                     int(data_header['Archive'])
                 )
+                
+                # Извлекаем интервал сбора для добавления в label
+                archive_interval = int(data_header['Archive'])
 
                 # Читаем данные блоками
                 for i in range(times_collect):
@@ -290,8 +293,9 @@ def stream_prometheus_metrics(file_path: Path, array_sn: str, resources: list,
                             if metric_id in METRIC_CONVERSION:
                                 value = value / METRIC_CONVERSION[metric_id]
                             
-                            # Формат Prometheus
-                            prom_line = f'{metric_name}{{Element="{element}",Resource="{resource_name}",SN="{array_sn}"}} {value} {ts_unix_ms}\n'
+                            # Формат Prometheus с добавлением scrape_interval для универсальности
+                            # scrape_interval (в секундах) - реальный интервал сбора данных из .dat файла
+                            prom_line = f'{metric_name}{{Element="{element}",Resource="{resource_name}",SN="{array_sn}",scrape_interval="{archive_interval}"}} {value} {ts_unix_ms}\n'
                             
                             yield prom_line
                             metrics_count += 1

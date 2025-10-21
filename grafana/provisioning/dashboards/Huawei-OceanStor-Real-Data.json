@@ -5962,7 +5962,8 @@
               "legendFormat": "{{Element}}",
               "range": true,
               "refId": "A",
-              "useBackend": false
+              "useBackend": false,
+              "interval": "5m"
             }
           ],
           "title": "Max. bandwidth (MB/s)",
@@ -36068,7 +36069,8 @@
               "legendFormat": "{{Element}}",
               "range": true,
               "refId": "A",
-              "useBackend": false
+              "useBackend": false,
+              "interval": "5m"
             }
           ],
           "title": "Max. bandwidth (MB/s)",
@@ -47661,7 +47663,8 @@
               "legendFormat": "{{Element}}",
               "range": true,
               "refId": "A",
-              "useBackend": false
+              "useBackend": false,
+              "interval": "5m"
             }
           ],
           "title": "Max. bandwidth (MB/s)",
@@ -54960,7 +54963,8 @@
               "legendFormat": "{{Element}}",
               "range": true,
               "refId": "A",
-              "useBackend": false
+              "useBackend": false,
+              "interval": "5m"
             }
           ],
           "title": "Max. bandwidth (MB/s)",
@@ -63602,7 +63606,8 @@
               "legendFormat": "{{Element}}",
               "range": true,
               "refId": "A",
-              "useBackend": false
+              "useBackend": false,
+              "interval": "5m"
             }
           ],
           "title": "Max. bandwidth (MB/s)",
@@ -73606,7 +73611,8 @@
               "legendFormat": "{{Element}}",
               "range": true,
               "refId": "A",
-              "useBackend": false
+              "useBackend": false,
+              "interval": "5m"
             }
           ],
           "title": "Max. bandwidth (MB/s)",
@@ -88647,7 +88653,8 @@
               "instant": false,
               "legendFormat": "{{Element}}",
               "range": true,
-              "refId": "A"
+              "refId": "A",
+              "interval": "5m"
             }
           ],
           "title": "Max. bandwidth",
@@ -92075,5 +92082,5 @@
   "timezone": "",
   "title": "Huawei OceanStor - Real Data",
   "uid": "huawei-oceanstor-real",
-  "version": 2
+  "version": 3
 }
