@@ -465,3 +465,4 @@ alias dlogs='docker compose logs -f'
 
 **🎉 Счастливого кодинга с Cursor AI! 🎉**
 
+

@@ -29,11 +29,13 @@ METRIC_CONVERSION = {
     # ========================================================================
     
     # I/O Response Time (основные метрики)
-    "369": 1000,   # Service Time(us)
-    "370": 1000,   # Avg. I/O Response Time (us)
-    "371": 1000,   # Max. I/O Response Time (us)
-    "384": 1000,   # Avg. Read I/O Response Time(us)
-    "385": 1000,   # Avg. Write I/O Response Time(us)
+    #"369": 1000,   # Service Time(us)
+    #"370": 1000,   # Avg. I/O Response Time (us)
+    #"371": 1000,   # Max. I/O Response Time (us)
+    #"384": 1000,   # Avg. Read I/O Response Time(us)
+    #"385": 1000,   # Avg. Write I/O Response Time(us)
+    "1315": 1000,   #"Maximum Configuration Request Duration (ms)",#NEW
+    "1316": 1000,   #"Maximum Configuration Request Queue Duration (ms)",#NEW
     
     # Operations Latency (NFS/CIFS)
     "429": 1000,   # Max Latency For Operations (ms) - реально в us
@@ -58,35 +60,35 @@ METRIC_CONVERSION = {
     "766": 1000,   # Avg. Response Time of Other CIFS I/Os(us)
     
     # Back-End Response Time
-    "807": 1000,   # Avg. Back-End Response Time (us)
+    #"807": 1000,   # Avg. Back-End Response Time (us)
     
     # Link Transmission Latency
-    "1139": 1000,  # Avg. Read I/O Link Transmission Latency(us)
-    "1140": 1000,  # Avg. Write I/O Link Transmission Latency(us)
+    #"1139": 1000,  # Avg. Read I/O Link Transmission Latency(us)
+    #"1140": 1000,  # Avg. Write I/O Link Transmission Latency(us)
     
     # Command Response Time
-    "1157": 1000,  # Avg. Unmap Command Response Time (us)
-    "1161": 1000,  # Avg. WRITE SAME Command Response Time (us)
-    "1165": 1000,  # Avg. Full Copy Read Request Response Time (us)
-    "1169": 1000,  # Avg. Full Copy Write Request Response Time (us)
-    "1173": 1000,  # Avg. ODX Read Request Response Time (us)
-    "1177": 1000,  # Avg. ODX Write Request Response Time (us)
-    "1181": 1000,  # Avg. ODX Write Zero Request Response Time (us)
-    "1191": 1000,  # Avg. VAAI Response Time (us)
-    "1195": 1000,  # Avg. DR Read Request Response Time (us)
-    "1199": 1000,  # Avg. DR Write Request Response Time (us)
-    "1211": 1000,  # Normalized Latency (us)
-    "1246": 1000,  # Avg. Full Copy Command Response Time (us)
-    "1250": 1000,  # Avg. ODX Command Response Time (us)
+    #"1157": 1000,  # Avg. Unmap Command Response Time (us)
+    #"1161": 1000,  # Avg. WRITE SAME Command Response Time (us)
+    #"1165": 1000,  # Avg. Full Copy Read Request Response Time (us)
+    #"1169": 1000,  # Avg. Full Copy Write Request Response Time (us)
+    #"1173": 1000,  # Avg. ODX Read Request Response Time (us)
+    #"1177": 1000,  # Avg. ODX Write Request Response Time (us)
+    #"1181": 1000,  # Avg. ODX Write Zero Request Response Time (us)
+    #"1191": 1000,  # Avg. VAAI Response Time (us)
+    #"1195": 1000,  # Avg. DR Read Request Response Time (us)
+    #"1199": 1000,  # Avg. DR Write Request Response Time (us)
+    #"1211": 1000,  # Normalized Latency (us)
+    #"1246": 1000,  # Avg. Full Copy Command Response Time (us)
+    #"1250": 1000,  # Avg. ODX Command Response Time (us)
     
     # DataTurbo I/O Response Time
-    "1264": 1000,  # Average response time of other DataTurbo I/Os(us)
-    "1271": 1000,  # Average DataTurbo I/O response time(us)
-    "1272": 1000,  # Average DataTurbo read I/O response time(us)
-    "1273": 1000,  # Average DataTurbo write I/O response time(us)
+    #"1264": 1000,  # Average response time of other DataTurbo I/Os(us)
+    #"1271": 1000,  # Average DataTurbo I/O response time(us)
+    #"1272": 1000,  # Average DataTurbo read I/O response time(us)
+    #"1273": 1000,  # Average DataTurbo write I/O response time(us)
     
     # DR Response Time
-    "1319": 1000,  # Avg. DR Request Response Time (us)
+    #"1319": 1000,  # Avg. DR Request Response Time (us)
     
     # NFS OPS Response Time
     "30013": 1000, # NFS write OPS average response time (us)
@@ -122,4 +124,5 @@ if __name__ == "__main__":
             from METRIC_DICT import METRIC_NAME_DICT
             name = METRIC_NAME_DICT.get(metric_id, f"UNKNOWN_{metric_id}")
             print(f"  {metric_id:6s}: {name}")
+
 

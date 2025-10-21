@@ -92,7 +92,7 @@
                   }
                 ]
               },
-              "unit": "percent"
+              "unit": "ms"
             },
             "overrides": []
           },
@@ -204,7 +204,7 @@
                   }
                 ]
               },
-              "unit": "percent"
+              "unit": "ms"
             },
             "overrides": []
           },
@@ -316,7 +316,7 @@
                   }
                 ]
               },
-              "unit": "percent"
+              "unit": "ms"
             },
             "overrides": []
           },
@@ -428,7 +428,7 @@
                   }
                 ]
               },
-              "unit": "percent"
+              "unit": "ms"
             },
             "overrides": []
           },
@@ -540,7 +540,8 @@
                   }
                 ]
               },
-              "unit": "percent"
+              "unit": "percent",
+              "max": 100
             },
             "overrides": []
           },
@@ -2668,7 +2669,8 @@
                   }
                 ]
               },
-              "unit": "percent"
+              "unit": "percent",
+              "max": 100
             },
             "overrides": []
           },
@@ -4012,7 +4014,8 @@
                   }
                 ]
               },
-              "unit": "percent"
+              "unit": "percent",
+              "max": 100
             },
             "overrides": []
           },
@@ -4236,7 +4239,8 @@
                   }
                 ]
               },
-              "unit": "percent"
+              "unit": "percent",
+              "max": 100
             },
             "overrides": []
           },
@@ -4348,7 +4352,7 @@
                   }
                 ]
               },
-              "unit": "percent"
+              "unit": "ops"
             },
             "overrides": []
           },
@@ -4460,7 +4464,8 @@
                   }
                 ]
               },
-              "unit": "percent"
+              "unit": "percent",
+              "max": 100
             },
             "overrides": []
           },
@@ -5244,7 +5249,8 @@
                   }
                 ]
               },
-              "unit": "percent"
+              "unit": "percent",
+              "max": 100
             },
             "overrides": []
           },
@@ -6028,7 +6034,7 @@
                   }
                 ]
               },
-              "unit": "percent"
+              "unit": "ms"
             },
             "overrides": []
           },
@@ -6140,7 +6146,7 @@
                   }
                 ]
               },
-              "unit": "percent"
+              "unit": "ms"
             },
             "overrides": []
           },
@@ -6252,7 +6258,7 @@
                   }
                 ]
               },
-              "unit": "percent"
+              "unit": "ms"
             },
             "overrides": []
           },
@@ -6364,7 +6370,7 @@
                   }
                 ]
               },
-              "unit": "percent"
+              "unit": "ms"
             },
             "overrides": []
           },
@@ -6700,7 +6706,7 @@
                   }
                 ]
               },
-              "unit": "percent"
+              "unit": "ops"
             },
             "overrides": []
           },
@@ -37814,7 +37820,8 @@
                   }
                 ]
               },
-              "unit": "percent"
+              "unit": "percent",
+              "max": 100
             },
             "overrides": []
           },
@@ -39064,7 +39071,8 @@
                   }
                 ]
               },
-              "unit": "percent"
+              "unit": "percent",
+              "max": 100
             },
             "overrides": []
           },
@@ -44458,7 +44466,8 @@
                   }
                 ]
               },
-              "unit": "percent"
+              "unit": "percent",
+              "max": 100
             },
             "overrides": []
           },
@@ -51196,7 +51205,8 @@
                   }
                 ]
               },
-              "unit": "percent"
+              "unit": "percent",
+              "max": 100
             },
             "overrides": []
           },
@@ -76580,7 +76590,8 @@
                   }
                 ]
               },
-              "unit": "percent"
+              "unit": "percent",
+              "max": 100
             },
             "overrides": []
           },
@@ -77942,7 +77953,8 @@
                   }
                 ]
               },
-              "unit": "percent"
+              "unit": "percent",
+              "max": 100
             },
             "overrides": []
           },
@@ -81862,7 +81874,8 @@
                   }
                 ]
               },
-              "unit": "percent"
+              "unit": "percent",
+              "max": 100
             },
             "overrides": []
           },
@@ -87336,7 +87349,8 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "µs",
+              "max": 100
             },
             "overrides": []
           },
@@ -90731,7 +90745,8 @@
                   }
                 ]
               },
-              "unit": "percent"
+              "unit": "percent",
+              "max": 100
             },
             "overrides": []
           },

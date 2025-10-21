@@ -225,3 +225,4 @@ alias drestart='docker compose restart'
 
 **Версия:** 2.1.0 | **Дата:** Oct 2025 | **Статус:** ✅ Ready
 
+

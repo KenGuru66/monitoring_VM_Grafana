@@ -368,3 +368,4 @@ export API_URL=http://api:8000
 **Версия проекта:** 2.1.0
 **Автор:** AI Assistant + Cursor
 
+
