@@ -124,7 +124,7 @@ function Home() {
   const openGrafana = (sn?: string, scrapeInterval?: string | null) => {
     const dashboard = `${GRAFANA_URL}/d/huawei-oceanstor-real/huawei-oceanstor-real-data`
     let url = dashboard
-    
+
     if (sn) {
       url = `${dashboard}?var-SN=${sn}`
       // Add min_interval if available
@@ -132,7 +132,7 @@ function Home() {
         url += `&var-min_interval=${scrapeInterval}`
       }
     }
-    
+
     window.open(url, '_blank')
   }
 

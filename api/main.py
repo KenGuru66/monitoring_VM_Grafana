@@ -749,22 +749,32 @@ async def list_arrays():
         # For each array, get scrape_interval
         arrays_with_metadata = []
         for sn in sorted(arrays):
-            # Query for scrape_interval for this specific SN
+            # Query for scrape_interval for this specific SN using query_range
+            # (series API doesn't work properly with our setup)
             try:
-                series_url = f"{VM_URL}/api/v1/series"
-                series_params = {
-                    "match[]": f'{{SN="{sn}"}}',
+                # Use query_range with a wide time range to get metrics
+                import time
+                end_time = int(time.time())
+                start_time = end_time - (60 * 24 * 60 * 60)  # 60 days ago
+                
+                query_url = f"{VM_URL}/api/v1/query_range"
+                query_params = {
+                    "query": f'huawei_read_bandwidth_mb_s{{SN="{sn}"}}',
+                    "start": str(start_time),
+                    "end": str(end_time),
+                    "step": "7d",  # One sample per week is enough
                 }
-                series_response = requests.get(series_url, params=series_params, timeout=10)
+                query_response = requests.get(query_url, params=query_params, timeout=10)
                 
                 scrape_interval = None
-                if series_response.status_code == 200:
-                    series_data = series_response.json()
-                    series_list = series_data.get("data", [])
+                if query_response.status_code == 200:
+                    query_data = query_response.json()
+                    results = query_data.get("data", {}).get("result", [])
                     
-                    # Extract scrape_interval from first series
-                    if series_list and len(series_list) > 0:
-                        scrape_interval_sec = series_list[0].get("scrape_interval")
+                    # Extract scrape_interval from first result
+                    if results and len(results) > 0:
+                        metric_labels = results[0].get("metric", {})
+                        scrape_interval_sec = metric_labels.get("scrape_interval")
                         if scrape_interval_sec:
                             # Convert seconds to Grafana format (5s, 1m, 5m, etc.)
                             interval_sec = int(scrape_interval_sec)
