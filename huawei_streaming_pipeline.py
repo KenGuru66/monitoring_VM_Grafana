@@ -475,21 +475,21 @@ def main():
 
 Примеры:
 
-  # Базовый запуск
+  # Базовый запуск (используется localhost по умолчанию)
   %(prog)s -i logs.zip
   
   # С мониторингом
   %(prog)s -i logs.zip --monitor
   
-  # Кастомные ресурсы
-  %(prog)s -i logs.zip --vm-url http://vm:8428/api/v1/import/prometheus
+  # Указать другой VM URL
+  %(prog)s -i logs.zip --vm-url http://10.5.10.163:8428/api/v1/import/prometheus
         """)
     
     parser.add_argument('-i', '--input', type=str, required=True,
                        help='ZIP архив с .tgz файлами')
     parser.add_argument('--vm-url', type=str, 
                        default='http://localhost:8428/api/v1/import/prometheus',
-                       help='VictoriaMetrics import endpoint')
+                       help='VictoriaMetrics import endpoint (default: http://localhost:8428/api/v1/import/prometheus)')
     parser.add_argument('--batch-size', type=int, default=BATCH_SIZE,
                        help=f'Размер батча (default: {BATCH_SIZE})')
     parser.add_argument('-w', '--workers', type=int, default=None,

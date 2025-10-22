@@ -749,31 +749,31 @@ async def list_arrays():
         # For each array, get scrape_interval
         arrays_with_metadata = []
         for sn in sorted(arrays):
-            # Query for scrape_interval for this specific SN using query_range
-            # (series API doesn't work properly with our setup)
+            # Query for scrape_interval for this specific SN using series API
             try:
-                # Use query_range with a wide time range to get metrics
+                # Use series API with a wide time range to get metrics
                 import time
                 end_time = int(time.time())
-                start_time = end_time - (60 * 24 * 60 * 60)  # 60 days ago
+                start_time = end_time - (365 * 24 * 60 * 60)  # 365 days ago
                 
-                query_url = f"{VM_URL}/api/v1/query_range"
-                query_params = {
-                    "query": f'huawei_read_bandwidth_mb_s{{SN="{sn}"}}',
-                    "start": str(start_time),
-                    "end": str(end_time),
-                    "step": "7d",  # One sample per week is enough
+                series_url = f"{VM_URL}/api/v1/series"
+                series_params = {
+                    "match[]": f'huawei_read_bandwidth_mb_s{{SN="{sn}"}}',
+                    "start": str(start_time)
                 }
-                query_response = requests.get(query_url, params=query_params, timeout=10)
+                series_response = requests.get(series_url, params=series_params, timeout=10)
                 
                 scrape_interval = None
-                if query_response.status_code == 200:
-                    query_data = query_response.json()
-                    results = query_data.get("data", {}).get("result", [])
+                time_from = None
+                time_to = None
+                
+                if series_response.status_code == 200:
+                    series_data = series_response.json()
+                    results = series_data.get("data", [])
                     
-                    # Extract scrape_interval from first result
+                    # Extract scrape_interval from first series
                     if results and len(results) > 0:
-                        metric_labels = results[0].get("metric", {})
+                        metric_labels = results[0]
                         scrape_interval_sec = metric_labels.get("scrape_interval")
                         if scrape_interval_sec:
                             # Convert seconds to Grafana format (5s, 1m, 5m, etc.)
@@ -785,15 +785,51 @@ async def list_arrays():
                             else:
                                 scrape_interval = f"{interval_sec // 3600}h"
                 
+                # Get time range for this SN (first and last data points)
+                try:
+                    query_url = f"{VM_URL}/api/v1/query_range"
+                    # Query with a wide time range
+                    query_params = {
+                        "query": f'huawei_read_bandwidth_mb_s{{SN="{sn}"}}',
+                        "start": str(start_time),
+                        "end": str(end_time),
+                        "step": "1h"  # Low resolution, we only need first/last timestamps
+                    }
+                    range_response = requests.get(query_url, params=query_params, timeout=10)
+                    
+                    if range_response.status_code == 200:
+                        range_data = range_response.json()
+                        results = range_data.get("data", {}).get("result", [])
+                        
+                        if results and len(results) > 0:
+                            # Get values array from first result
+                            values = results[0].get("values", [])
+                            if values and len(values) > 0:
+                                # First timestamp (in seconds from VM)
+                                first_ts = values[0][0]
+                                # Last timestamp (in seconds from VM)
+                                last_ts = values[-1][0]
+                                
+                                # Convert to milliseconds for Grafana
+                                # Grafana expects Unix timestamp in milliseconds
+                                time_from = int(first_ts * 1000)
+                                time_to = int(last_ts * 1000)
+                except Exception as e:
+                    logger.warning(f"Failed to get time range for {sn}: {e}")
+                
                 arrays_with_metadata.append({
                     "sn": sn,
-                    "scrape_interval": scrape_interval
+                    "scrape_interval": scrape_interval,
+                    "time_from": time_from,
+                    "time_to": time_to
                 })
             except Exception as e:
-                logger.warning(f"Failed to get scrape_interval for {sn}: {e}")
+                logger.warning(f"Failed to get metadata for {sn}: {e}")
                 arrays_with_metadata.append({
                     "sn": sn,
-                    "scrape_interval": None
+                    "scrape_interval": None,
+                    "time_from": None,
+                    "time_to": None
                 })
         
         # Return both old format (for compatibility) and new format

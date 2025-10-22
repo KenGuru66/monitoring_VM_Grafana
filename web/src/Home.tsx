@@ -30,6 +30,8 @@ interface FileInfo {
 interface ArrayMetadata {
   sn: string
   scrape_interval: string | null
+  time_from: number | null
+  time_to: number | null
 }
 
 function Home() {
@@ -121,7 +123,7 @@ function Home() {
     }
   }
 
-  const openGrafana = (sn?: string, scrapeInterval?: string | null) => {
+  const openGrafana = (sn?: string, scrapeInterval?: string | null, timeFrom?: number | null, timeTo?: number | null) => {
     const dashboard = `${GRAFANA_URL}/d/huawei-oceanstor-real/huawei-oceanstor-real-data`
     let url = dashboard
 
@@ -131,6 +133,12 @@ function Home() {
       if (scrapeInterval) {
         url += `&var-min_interval=${scrapeInterval}`
       }
+      // Add time range if available (in milliseconds from epoch)
+      if (timeFrom && timeTo) {
+        url += `&from=${timeFrom}&to=${timeTo}`
+      }
+      // Add other default params
+      url += '&orgId=1&timezone=browser&var-Resource=$__all&var-Element=$__all'
     }
 
     window.open(url, '_blank')
@@ -173,7 +181,7 @@ function Home() {
         {arrays.length > 0 ? (
           <div className="arrays-grid">
             {arraysMetadata.map((arrayData: ArrayMetadata) => {
-              const { sn, scrape_interval } = arrayData
+              const { sn, scrape_interval, time_from, time_to } = arrayData
               return (
                 <div key={sn} className="array-card">
                   <div className="array-info">
@@ -189,7 +197,7 @@ function Home() {
                   <div className="array-actions">
                     <button
                       className="grafana-link-button"
-                      onClick={() => openGrafana(sn, scrape_interval)}
+                      onClick={() => openGrafana(sn, scrape_interval, time_from, time_to)}
                       title={`Open in Grafana${scrape_interval ? ` (interval: ${scrape_interval})` : ''}`}
                     >
                       <ExternalLink size={16} />
