@@ -115,6 +115,7 @@ read_file .env.example
 Важные метрики в VM:
 - huawei_* (все метрики с префиксом)
 - Labels: SN, Element, Resource, scrape_interval
+- При запросе метрики из VictoriaMetrics используй интервал времени последние 6 месяцев 
 ```
 
 ### 5️⃣ Когда НЕ нужна инициализация:

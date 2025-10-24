@@ -90315,7 +90315,7 @@
                 "uid": "P4169E866C3094E38"
               },
               "editorMode": "code",
-              "expr": "huawei_read_i_o_granularity_distribution_128kinf_percent{SN=~\"$SN\", Resource=~\"FC Port\", Element=~\"$Element\"}",
+              "expr": "huawei_read_i_o_granularity_distribution_128kinfpercent{SN=~\"$SN\", Resource=~\"FC Port\", Element=~\"$Element\"}",
               "instant": false,
               "legendFormat": "{{Element}}",
               "range": true,
@@ -91884,7 +91884,7 @@
                 "uid": "P4169E866C3094E38"
               },
               "editorMode": "code",
-              "expr": "huawei_write_i_o_granularity_distribution_128kinf_percent{SN=~\"$SN\", Resource=~\"FC Port\", Element=~\"$Element\"}",
+              "expr": "huawei_write_i_o_granularity_distribution_128kinfpercent{SN=~\"$SN\", Resource=~\"FC Port\", Element=~\"$Element\"}",
               "instant": false,
               "legendFormat": "{{Element}}",
               "range": true,
