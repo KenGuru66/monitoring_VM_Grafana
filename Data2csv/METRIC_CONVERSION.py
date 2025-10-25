@@ -23,10 +23,16 @@ METRIC_CONVERSION = {
     "313": 1024,  # Write throughput (MB/s) - реально в KB/s
     "511": 1024,  # File bandwidth(MB/s) - реально в KB/s
     "512": 1024,  # Throughput (MB/s) - реально в KB/s
-    "24": 1024, # "Avg. read I/O size (KB)" - реально в bytes , нужно разделить на 1024
-    "27": 1024, # "Avg. write I/O size (KB)" - реально в bytes , нужно разделить на 1024
-    "228": 1024, # "Avg. I/O size (KB)" - реально в bytes , нужно разделить на 1024
+    "1164": 1/1024, #"Avg. Full Copy Read Request Size (KB)"
+    "1168": 1/1024, #"Avg. Full Copy Write Request Size (KB)"
+    #"1172": 1/1024, #"Avg. ODX Read Request Size (KB)" - под вопросом
+    #"1176": 1/1024, #"Avg. ODX Write Request Size (KB)" - под вопросом
+    #"1180": 1/1024, #"Avg. ODX Write Zero Request Size (KB)" - под вопросом
+    "1156": 1/1024, #"Avg. Unmap Command Size (KB)" 
+    "1160": 1/1024, #"Avg. WRITE SAME Command Size (KB)" 
     
+
+
     # ========================================================================
     # LATENCY / RESPONSE TIME: us → ms (divide by 1000)
     # ========================================================================
