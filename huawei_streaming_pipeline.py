@@ -606,6 +606,27 @@ def main():
     
     print(f"\n✅ Done! Sent {total_metrics:,} metrics in {total_time:.1f}s")
     print(f"📊 Check VictoriaMetrics: {args.vm_url.replace('/api/v1/import/prometheus', '')}")
+    
+    # Автоматическое обновление словарей если есть unknown IDs
+    auto_update_script = Path(__file__).parent / "auto_update_dictionaries.py"
+    if auto_update_script.exists():
+        logger.info("\n🔄 Запуск автоматического обновления словарей...")
+        try:
+            import subprocess
+            result = subprocess.run(
+                [sys.executable, str(auto_update_script)],
+                capture_output=True,
+                text=True,
+                timeout=30
+            )
+            if result.returncode == 0:
+                print(result.stdout)
+            else:
+                logger.warning(f"⚠️  Auto-update завершился с кодом {result.returncode}")
+                if result.stderr:
+                    logger.warning(result.stderr)
+        except Exception as e:
+            logger.warning(f"⚠️  Не удалось запустить auto-update: {e}")
 
 
 if __name__ == "__main__":
