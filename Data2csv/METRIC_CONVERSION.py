@@ -40,12 +40,6 @@ METRIC_CONVERSION = {
     # LATENCY / RESPONSE TIME: us → ms (divide by 1000)
     # ========================================================================
     
-    # I/O Response Time (основные метрики)
-    #"369": 1000,   # Service Time(us)
-    #"370": 1000,   # Avg. I/O Response Time (us)
-    #"371": 1000,   # Max. I/O Response Time (us)
-    #"384": 1000,   # Avg. Read I/O Response Time(us)
-    #"385": 1000,   # Avg. Write I/O Response Time(us)
     "1315": 1000,   #"Maximum Configuration Request Duration (ms)",#NEW
     "1316": 1000,   #"Maximum Configuration Request Queue Duration (ms)",#NEW
     
