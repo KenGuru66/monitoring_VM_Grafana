@@ -81811,7 +81811,7 @@
                   }
                 ]
               },
-              "unit": "percent"
+              "unit": "short"
             },
             "overrides": []
           },
@@ -82602,8 +82602,7 @@
                   }
                 ]
               },
-              "unit": "percent",
-              "max": 100
+              "unit": "short"
             },
             "overrides": []
           },
@@ -82716,7 +82715,7 @@
                   }
                 ]
               },
-              "unit": "percent"
+              "unit": "short"
             },
             "overrides": []
           },

@@ -30,6 +30,9 @@ METRIC_CONVERSION = {
     #"1180": 1/1024, #"Avg. ODX Write Zero Request Size (KB)" - под вопросом
     "1156": 1/1024, #"Avg. Unmap Command Size (KB)" 
     "1160": 1/1024, #"Avg. WRITE SAME Command Size (KB)" 
+    "1245": 1/1024, #"Avg. Full Copy Command Size (KB)"
+    "1090": 1000, #"Data Reduction Ratio"
+    
     
 
 
