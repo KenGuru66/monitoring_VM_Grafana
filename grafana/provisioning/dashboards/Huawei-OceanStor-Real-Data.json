@@ -11745,8 +11745,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -11815,8 +11818,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -11885,8 +11891,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -11955,8 +11964,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -12025,8 +12037,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -12095,8 +12110,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -12165,8 +12183,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -12235,8 +12256,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -12305,8 +12329,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -12375,8 +12402,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -12445,8 +12475,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -12515,8 +12548,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -12585,8 +12621,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -12655,8 +12694,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -12725,8 +12767,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -12795,8 +12840,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -12865,8 +12913,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -12935,8 +12986,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -13005,8 +13059,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -13075,8 +13132,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -13145,8 +13205,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -13215,8 +13278,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -13285,8 +13351,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -13355,8 +13424,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -13425,8 +13497,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -13495,8 +13570,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -13565,8 +13643,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -13635,8 +13716,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -13705,8 +13789,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -13775,8 +13862,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -13845,8 +13935,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -13915,8 +14008,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -13985,8 +14081,11 @@
       "options": {
         "legend": {
           "calcs": [
+            "lastNotNull",
             "mean",
-            "max"
+            "min",
+            "max",
+            "p95"
           ],
           "displayMode": "table",
           "placement": "bottom",
@@ -14081,8 +14180,14 @@
       "id": 106,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -14194,8 +14299,14 @@
       "id": 107,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -14307,8 +14418,14 @@
       "id": 108,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -14420,8 +14537,14 @@
       "id": 109,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -14533,8 +14656,14 @@
       "id": 110,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -14646,8 +14775,14 @@
       "id": 111,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -14759,8 +14894,14 @@
       "id": 112,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -14872,8 +15013,14 @@
       "id": 113,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -14985,8 +15132,14 @@
       "id": 114,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -15098,8 +15251,14 @@
       "id": 115,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -15211,8 +15370,14 @@
       "id": 116,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -15324,8 +15489,14 @@
       "id": 117,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -15437,8 +15608,14 @@
       "id": 118,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -15550,8 +15727,14 @@
       "id": 119,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -15663,8 +15846,14 @@
       "id": 120,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -15776,8 +15965,14 @@
       "id": 121,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -15889,8 +16084,14 @@
       "id": 122,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -16002,8 +16203,14 @@
       "id": 123,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -16115,8 +16322,14 @@
       "id": 124,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -16228,8 +16441,14 @@
       "id": 125,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -16341,8 +16560,14 @@
       "id": 126,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -16454,8 +16679,14 @@
       "id": 127,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -16567,8 +16798,14 @@
       "id": 128,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -16680,8 +16917,14 @@
       "id": 129,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -16793,8 +17036,14 @@
       "id": 130,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -16906,8 +17155,14 @@
       "id": 131,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -17019,8 +17274,14 @@
       "id": 132,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -17132,8 +17393,14 @@
       "id": 133,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -17245,8 +17512,14 @@
       "id": 134,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -17358,8 +17631,14 @@
       "id": 135,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -17471,8 +17750,14 @@
       "id": 136,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -17584,8 +17869,14 @@
       "id": 137,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -17697,8 +17988,14 @@
       "id": 138,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -17810,8 +18107,14 @@
       "id": 139,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -17923,8 +18226,14 @@
       "id": 140,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -18036,8 +18345,14 @@
       "id": 141,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -18149,8 +18464,14 @@
       "id": 142,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -18262,8 +18583,14 @@
       "id": 143,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -18375,8 +18702,14 @@
       "id": 144,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -18488,8 +18821,14 @@
       "id": 145,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -18601,8 +18940,14 @@
       "id": 146,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -18714,8 +19059,14 @@
       "id": 147,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -18827,8 +19178,14 @@
       "id": 148,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -18940,8 +19297,14 @@
       "id": 149,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -19053,8 +19416,14 @@
       "id": 150,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -19166,8 +19535,14 @@
       "id": 151,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -19279,8 +19654,14 @@
       "id": 152,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -19392,8 +19773,14 @@
       "id": 153,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -19505,8 +19892,14 @@
       "id": 154,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -19618,8 +20011,14 @@
       "id": 155,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -19731,8 +20130,14 @@
       "id": 156,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
@@ -19844,8 +20249,14 @@
       "id": 157,
       "options": {
         "legend": {
-          "calcs": [],
-          "displayMode": "list",
+          "calcs": [
+            "lastNotNull",
+            "mean",
+            "min",
+            "max",
+            "p95"
+          ],
+          "displayMode": "table",
           "placement": "bottom",
           "showLegend": true
         },
