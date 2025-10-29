@@ -11763,12 +11763,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_remove_opsnumber_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_remove_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "✅ REMOVE OPS",
+      "title": "✅ Total NFS remove OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -11833,12 +11833,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_getattr_opsnumber_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_getattr_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "✅ GETATTR OPS",
+      "title": "✅ Total NFS getattr OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -11903,12 +11903,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_lookup_opsnumber_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_lookup_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "✅ LOOKUP OPS (95%)",
+      "title": "✅ Total NFS lookup OPS (Number/s) (95%)",
       "type": "timeseries"
     },
     {
@@ -11973,12 +11973,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_null_opsnumber_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_null_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "❌ NULL OPS",
+      "title": "❌ Total NFS null OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -12043,12 +12043,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_create_opsnumber_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_create_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "⚠️ CREATE OPS",
+      "title": "⚠️ Total NFS create OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -12113,12 +12113,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_access_opsnumber_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_access_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "❌ ACCESS OPS",
+      "title": "❌ Total NFS access OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -12183,12 +12183,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_readlink_opsnumber_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_readlink_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "🔍 READLINK OPS",
+      "title": "🔍 Total NFS readlink OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -12253,12 +12253,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_read_opsnumber_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_read_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "🔍 READ OPS",
+      "title": "🔍 Total NFS read OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -12323,12 +12323,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_write_opsnumber_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_write_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "🔍 WRITE OPS",
+      "title": "🔍 Total NFS write OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -12393,12 +12393,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_mkdir_opsnumber_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_mkdir_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "🔍 MKDIR OPS",
+      "title": "🔍 Total NFS mkdir OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -12463,12 +12463,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_symlink_opsnumber_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_symlink_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "🔍 SYMLINK OPS",
+      "title": "🔍 Total NFS symlink OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -12533,12 +12533,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_mknod_opsnumber_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_mknod_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "❌ MKNOD OPS",
+      "title": "❌ Total NFS mkdir OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -12603,12 +12603,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_rename_opsnumber_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_rename_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "❌ RENAME OPS",
+      "title": "❌ Total NFS rename OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -12673,12 +12673,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_readdir_opsnumber_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_readdir_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "🔍 READDIR OPS",
+      "title": "🔍 Total NFS readdir OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -12743,12 +12743,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_readdirplus_opsnumber_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_readdir_plus_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "🔍 READDIRPLUS OPS",
+      "title": "🔍 Total NFS readdir plus OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -12813,12 +12813,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_fsstat_opsnumber_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_fsstat_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "🔍 FSSTAT OPS",
+      "title": "🔍 Total NFS fsstat OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -12883,12 +12883,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_fsinfo_opsnumber_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_fsinfo_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "🔍 FSINFO OPS",
+      "title": "🔍 Total NFS fsinfo OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -12953,12 +12953,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_pathconf_opsnumber_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_pathconf_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "🔍 PATHCONF OPS",
+      "title": "🔍 Total NFS pathconf OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -13023,12 +13023,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_commit_opsnumber_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_commit_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "🔍 COMMIT OPS",
+      "title": "🔍 Total NFS commit OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -13093,12 +13093,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_lookup_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_nfs_lookup_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "✅ LOOKUP RT (95%)",
+      "title": "✅ NFS lookup response time(us) (95%)",
       "type": "timeseries"
     },
     {
@@ -13163,12 +13163,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_pathconf_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_nfs_pathconf_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "⚠️ PATHCONF RT",
+      "title": "⚠️ NFS pathconf response time(us)",
       "type": "timeseries"
     },
     {
@@ -13233,12 +13233,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_readdir_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_nfs_readdir_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "⚠️ READDIR RT",
+      "title": "⚠️ NFS readdir response time(us)",
       "type": "timeseries"
     },
     {
@@ -13303,12 +13303,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_getattr_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_nfs_getattr_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "❌ GETATTR RT",
+      "title": "❌ NFS getattr response time(us)",
       "type": "timeseries"
     },
     {
@@ -13373,12 +13373,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_mkdir_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_nfs_mkdir_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "❌ MKDIR RT",
+      "title": "❌ NFS mkdir response time(us)",
       "type": "timeseries"
     },
     {
@@ -13443,12 +13443,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_access_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_nfs_access_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "❌ ACCESS RT",
+      "title": "❌ NFS access response time(us)",
       "type": "timeseries"
     },
     {
@@ -13513,12 +13513,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_readdirplus_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_nfs_readdir_plus_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "❌ READDIRPLUS RT",
+      "title": "❌ NFS readdir plus response time(us)",
       "type": "timeseries"
     },
     {
@@ -13583,12 +13583,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_open_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_nfs_open_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "❌ OPEN RT",
+      "title": "❌ NFS open response time(us)",
       "type": "timeseries"
     },
     {
@@ -13653,12 +13653,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_readlink_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_nfs_readlink_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "❌ READLINK RT",
+      "title": "❌ NFS readlink response time(us)",
       "type": "timeseries"
     },
     {
@@ -13723,12 +13723,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_symlink_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_nfs_symlink_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "❌ SYMLINK RT",
+      "title": "❌ NFS symlink response time(us)",
       "type": "timeseries"
     },
     {
@@ -13793,12 +13793,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_rename_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_nfs_rename_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "🔍 RENAME RT",
+      "title": "🔍 NFS rename response time(us)",
       "type": "timeseries"
     },
     {
@@ -13863,12 +13863,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_link_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_nfs_link_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "🔍 LINK RT",
+      "title": "🔍 NFS link response time(us)",
       "type": "timeseries"
     },
     {
@@ -13933,12 +13933,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_fsstat_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_nfs_fsstat_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "❌ FSSTAT RT",
+      "title": "❌ NFS fsstat response time(us)",
       "type": "timeseries"
     },
     {
@@ -14003,12 +14003,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_v3_fsinfo_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_nfs_fsinfo_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "🔍 FSINFO RT",
+      "title": "🔍 NFS fsinfo response time(us)",
       "type": "timeseries"
     },
     {
