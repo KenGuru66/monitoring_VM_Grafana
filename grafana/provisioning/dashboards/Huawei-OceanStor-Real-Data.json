@@ -99720,6 +99720,290 @@
       ],
       "title": "🔌 ETH Expansion Port (CTE0) - Network Metrics",
       "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": {
+        "type": "prometheus",
+        "uid": "P4169E866C3094E38"
+      },
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 5038,
+      "panels": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P4169E866C3094E38"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "tooltip": false,
+                  "viz": false,
+                  "legend": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 2,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 1
+          },
+          "id": 5039,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "min",
+                "max",
+                "p95"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "P4169E866C3094E38"
+              },
+              "editorMode": "code",
+              "expr": "{__name__=~\"huawei_.*\", SN=~\"$SN\", Resource=~\"$Resource_Q1\", Element=~\"$Element_Q1\"}",
+              "hide": false,
+              "legendFormat": "Q1: {{Resource}} - {{Element}} - {{__name__}}",
+              "range": true,
+              "refId": "Q1"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "P4169E866C3094E38"
+              },
+              "editorMode": "code",
+              "expr": "{__name__=~\"huawei_.*\", SN=~\"$SN\", Resource=~\"$Resource_Q2\", Element=~\"$Element_Q2\"}",
+              "hide": false,
+              "legendFormat": "Q2: {{Resource}} - {{Element}} - {{__name__}}",
+              "range": true,
+              "refId": "Q2"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "P4169E866C3094E38"
+              },
+              "editorMode": "code",
+              "expr": "{__name__=~\"huawei_.*\", SN=~\"$SN\", Resource=~\"$Resource_Q3\", Element=~\"$Element_Q3\"}",
+              "hide": false,
+              "legendFormat": "Q3: {{Resource}} - {{Element}} - {{__name__}}",
+              "range": true,
+              "refId": "Q3"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "P4169E866C3094E38"
+              },
+              "editorMode": "code",
+              "expr": "{__name__=~\"huawei_.*\", SN=~\"$SN\", Resource=~\"$Resource_Q4\", Element=~\"$Element_Q4\"}",
+              "hide": false,
+              "legendFormat": "Q4: {{Resource}} - {{Element}} - {{__name__}}",
+              "range": true,
+              "refId": "Q4"
+            }
+          ],
+          "title": "🔍 Multi-Resource Analysis #1 (4 Queries)",
+          "type": "timeseries"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "P4169E866C3094E38"
+          },
+          "fieldConfig": {
+            "defaults": {
+              "color": {
+                "mode": "palette-classic"
+              },
+              "custom": {
+                "axisBorderShow": false,
+                "axisCenteredZero": false,
+                "axisColorMode": "text",
+                "axisLabel": "",
+                "axisPlacement": "auto",
+                "barAlignment": 0,
+                "drawStyle": "line",
+                "fillOpacity": 10,
+                "gradientMode": "none",
+                "hideFrom": {
+                  "tooltip": false,
+                  "viz": false,
+                  "legend": false
+                },
+                "insertNulls": false,
+                "lineInterpolation": "linear",
+                "lineWidth": 2,
+                "pointSize": 5,
+                "scaleDistribution": {
+                  "type": "linear"
+                },
+                "showPoints": "never",
+                "spanNulls": false,
+                "stacking": {
+                  "group": "A",
+                  "mode": "none"
+                },
+                "thresholdsStyle": {
+                  "mode": "off"
+                }
+              },
+              "mappings": [],
+              "thresholds": {
+                "mode": "absolute",
+                "steps": [
+                  {
+                    "color": "green",
+                    "value": null
+                  }
+                ]
+              },
+              "unit": "short"
+            },
+            "overrides": []
+          },
+          "gridPos": {
+            "h": 10,
+            "w": 24,
+            "x": 0,
+            "y": 11
+          },
+          "id": 5040,
+          "options": {
+            "legend": {
+              "calcs": [
+                "mean",
+                "min",
+                "max",
+                "p95"
+              ],
+              "displayMode": "table",
+              "placement": "bottom",
+              "showLegend": true
+            },
+            "tooltip": {
+              "mode": "multi",
+              "sort": "none"
+            }
+          },
+          "targets": [
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "P4169E866C3094E38"
+              },
+              "editorMode": "code",
+              "expr": "{__name__=~\"huawei_.*\", SN=~\"$SN\", Resource=~\"$Resource_Q1\", Element=~\"$Element_Q1\"}",
+              "hide": false,
+              "legendFormat": "Q1: {{Resource}} - {{Element}} - {{__name__}}",
+              "range": true,
+              "refId": "Q1"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "P4169E866C3094E38"
+              },
+              "editorMode": "code",
+              "expr": "{__name__=~\"huawei_.*\", SN=~\"$SN\", Resource=~\"$Resource_Q2\", Element=~\"$Element_Q2\"}",
+              "hide": false,
+              "legendFormat": "Q2: {{Resource}} - {{Element}} - {{__name__}}",
+              "range": true,
+              "refId": "Q2"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "P4169E866C3094E38"
+              },
+              "editorMode": "code",
+              "expr": "{__name__=~\"huawei_.*\", SN=~\"$SN\", Resource=~\"$Resource_Q3\", Element=~\"$Element_Q3\"}",
+              "hide": false,
+              "legendFormat": "Q3: {{Resource}} - {{Element}} - {{__name__}}",
+              "range": true,
+              "refId": "Q3"
+            },
+            {
+              "datasource": {
+                "type": "prometheus",
+                "uid": "P4169E866C3094E38"
+              },
+              "editorMode": "code",
+              "expr": "{__name__=~\"huawei_.*\", SN=~\"$SN\", Resource=~\"$Resource_Q4\", Element=~\"$Element_Q4\"}",
+              "hide": false,
+              "legendFormat": "Q4: {{Resource}} - {{Element}} - {{__name__}}",
+              "range": true,
+              "refId": "Q4"
+            }
+          ],
+          "title": "🔍 Multi-Resource Analysis #2 (4 Queries)",
+          "type": "timeseries"
+        }
+      ],
+      "title": "🔬 Analyze - Multi-Resource Comparison",
+      "type": "row"
     }
   ],
   "preload": false,
@@ -99870,6 +100154,230 @@
         "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P4169E866C3094E38"
+        },
+        "definition": "label_values({SN=~\"$SN\"},Resource)",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "Resource_Q1",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values({SN=~\"$SN\"},Resource)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query",
+        "label": "Q1 Resource"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P4169E866C3094E38"
+        },
+        "definition": "label_values({SN=~\"$SN\", Resource=~\"$Resource_Q1\"},Element)",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "Element_Q1",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values({SN=~\"$SN\", Resource=~\"$Resource_Q1\"},Element)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query",
+        "label": "Q1 Element"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P4169E866C3094E38"
+        },
+        "definition": "label_values({SN=~\"$SN\"},Resource)",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "Resource_Q2",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values({SN=~\"$SN\"},Resource)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query",
+        "label": "Q2 Resource"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P4169E866C3094E38"
+        },
+        "definition": "label_values({SN=~\"$SN\", Resource=~\"$Resource_Q2\"},Element)",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "Element_Q2",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values({SN=~\"$SN\", Resource=~\"$Resource_Q2\"},Element)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query",
+        "label": "Q2 Element"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P4169E866C3094E38"
+        },
+        "definition": "label_values({SN=~\"$SN\"},Resource)",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "Resource_Q3",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values({SN=~\"$SN\"},Resource)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query",
+        "label": "Q3 Resource"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P4169E866C3094E38"
+        },
+        "definition": "label_values({SN=~\"$SN\", Resource=~\"$Resource_Q3\"},Element)",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "Element_Q3",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values({SN=~\"$SN\", Resource=~\"$Resource_Q3\"},Element)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query",
+        "label": "Q3 Element"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P4169E866C3094E38"
+        },
+        "definition": "label_values({SN=~\"$SN\"},Resource)",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "Resource_Q4",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values({SN=~\"$SN\"},Resource)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query",
+        "label": "Q4 Resource"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "All",
+          "value": "$__all"
+        },
+        "datasource": {
+          "type": "prometheus",
+          "uid": "P4169E866C3094E38"
+        },
+        "definition": "label_values({SN=~\"$SN\", Resource=~\"$Resource_Q4\"},Element)",
+        "hide": 0,
+        "includeAll": true,
+        "multi": true,
+        "name": "Element_Q4",
+        "options": [],
+        "query": {
+          "qryType": 1,
+          "query": "label_values({SN=~\"$SN\", Resource=~\"$Resource_Q4\"},Element)",
+          "refId": "PrometheusVariableQueryEditor-VariableQuery"
+        },
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 1,
+        "type": "query",
+        "label": "Q4 Element"
       }
     ]
   },
