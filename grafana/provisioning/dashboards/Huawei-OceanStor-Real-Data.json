@@ -99822,7 +99822,7 @@
                 "uid": "P4169E866C3094E38"
               },
               "editorMode": "code",
-              "expr": "{__name__=~\"huawei_.*\", SN=~\"$SN\", Resource=~\"$Resource_Q1\", Element=~\"$Element_Q1\"}",
+              "expr": "{__name__=~\"$Metric_Q1\", SN=~\"$SN\", Resource=~\"$Resource_Q1\", Element=~\"$Element_Q1\"}",
               "hide": false,
               "legendFormat": "Q1: {{Resource}} - {{Element}} - {{__name__}}",
               "range": true,
@@ -99834,7 +99834,7 @@
                 "uid": "P4169E866C3094E38"
               },
               "editorMode": "code",
-              "expr": "{__name__=~\"huawei_.*\", SN=~\"$SN\", Resource=~\"$Resource_Q2\", Element=~\"$Element_Q2\"}",
+              "expr": "{__name__=~\"$Metric_Q2\", SN=~\"$SN\", Resource=~\"$Resource_Q2\", Element=~\"$Element_Q2\"}",
               "hide": false,
               "legendFormat": "Q2: {{Resource}} - {{Element}} - {{__name__}}",
               "range": true,
@@ -99846,7 +99846,7 @@
                 "uid": "P4169E866C3094E38"
               },
               "editorMode": "code",
-              "expr": "{__name__=~\"huawei_.*\", SN=~\"$SN\", Resource=~\"$Resource_Q3\", Element=~\"$Element_Q3\"}",
+              "expr": "{__name__=~\"$Metric_Q3\", SN=~\"$SN\", Resource=~\"$Resource_Q3\", Element=~\"$Element_Q3\"}",
               "hide": false,
               "legendFormat": "Q3: {{Resource}} - {{Element}} - {{__name__}}",
               "range": true,
@@ -99858,7 +99858,7 @@
                 "uid": "P4169E866C3094E38"
               },
               "editorMode": "code",
-              "expr": "{__name__=~\"huawei_.*\", SN=~\"$SN\", Resource=~\"$Resource_Q4\", Element=~\"$Element_Q4\"}",
+              "expr": "{__name__=~\"$Metric_Q4\", SN=~\"$SN\", Resource=~\"$Resource_Q4\", Element=~\"$Element_Q4\"}",
               "hide": false,
               "legendFormat": "Q4: {{Resource}} - {{Element}} - {{__name__}}",
               "range": true,
@@ -99955,7 +99955,7 @@
                 "uid": "P4169E866C3094E38"
               },
               "editorMode": "code",
-              "expr": "{__name__=~\"huawei_.*\", SN=~\"$SN\", Resource=~\"$Resource_Q1\", Element=~\"$Element_Q1\"}",
+              "expr": "{__name__=~\"$Metric_Q1\", SN=~\"$SN\", Resource=~\"$Resource_Q1\", Element=~\"$Element_Q1\"}",
               "hide": false,
               "legendFormat": "Q1: {{Resource}} - {{Element}} - {{__name__}}",
               "range": true,
@@ -99967,7 +99967,7 @@
                 "uid": "P4169E866C3094E38"
               },
               "editorMode": "code",
-              "expr": "{__name__=~\"huawei_.*\", SN=~\"$SN\", Resource=~\"$Resource_Q2\", Element=~\"$Element_Q2\"}",
+              "expr": "{__name__=~\"$Metric_Q2\", SN=~\"$SN\", Resource=~\"$Resource_Q2\", Element=~\"$Element_Q2\"}",
               "hide": false,
               "legendFormat": "Q2: {{Resource}} - {{Element}} - {{__name__}}",
               "range": true,
@@ -99979,7 +99979,7 @@
                 "uid": "P4169E866C3094E38"
               },
               "editorMode": "code",
-              "expr": "{__name__=~\"huawei_.*\", SN=~\"$SN\", Resource=~\"$Resource_Q3\", Element=~\"$Element_Q3\"}",
+              "expr": "{__name__=~\"$Metric_Q3\", SN=~\"$SN\", Resource=~\"$Resource_Q3\", Element=~\"$Element_Q3\"}",
               "hide": false,
               "legendFormat": "Q3: {{Resource}} - {{Element}} - {{__name__}}",
               "range": true,
@@ -99991,7 +99991,7 @@
                 "uid": "P4169E866C3094E38"
               },
               "editorMode": "code",
-              "expr": "{__name__=~\"huawei_.*\", SN=~\"$SN\", Resource=~\"$Resource_Q4\", Element=~\"$Element_Q4\"}",
+              "expr": "{__name__=~\"$Metric_Q4\", SN=~\"$SN\", Resource=~\"$Resource_Q4\", Element=~\"$Element_Q4\"}",
               "hide": false,
               "legendFormat": "Q4: {{Resource}} - {{Element}} - {{__name__}}",
               "range": true,
@@ -100378,6 +100378,690 @@
         "sort": 1,
         "type": "query",
         "label": "Q4 Element"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "huawei_cpu_usage_percent"
+          ],
+          "value": [
+            "huawei_cpu_usage_percent"
+          ]
+        },
+        "hide": 0,
+        "includeAll": false,
+        "multi": true,
+        "name": "Metric_Q1",
+        "options": [
+          {
+            "selected": false,
+            "text": "huawei_cpu_usage_percent",
+            "value": "huawei_cpu_usage_percent"
+          },
+          {
+            "selected": false,
+            "text": "huawei_memory_usage_percent",
+            "value": "huawei_memory_usage_percent"
+          },
+          {
+            "selected": false,
+            "text": "huawei_read_bandwidth_mb_s",
+            "value": "huawei_read_bandwidth_mb_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_write_bandwidth_mb_s",
+            "value": "huawei_write_bandwidth_mb_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_total_bandwidth_mb_s",
+            "value": "huawei_total_bandwidth_mb_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_read_iops_number_s",
+            "value": "huawei_read_iops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_write_iops_number_s",
+            "value": "huawei_write_iops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_total_iops_number_s",
+            "value": "huawei_total_iops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_average_read_response_timeus",
+            "value": "huawei_average_read_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_average_write_response_timeus",
+            "value": "huawei_average_write_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_average_response_timeus",
+            "value": "huawei_average_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_max_read_response_timeus",
+            "value": "huawei_max_read_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_max_write_response_timeus",
+            "value": "huawei_max_write_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_total_nfs_read_ops_number_s",
+            "value": "huawei_total_nfs_read_ops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_total_nfs_write_ops_number_s",
+            "value": "huawei_total_nfs_write_ops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_total_nfs_lookup_ops_number_s",
+            "value": "huawei_total_nfs_lookup_ops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_total_nfs_getattr_ops_number_s",
+            "value": "huawei_total_nfs_getattr_ops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_total_nfs_remove_ops_number_s",
+            "value": "huawei_total_nfs_remove_ops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_nfs_read_response_timeus",
+            "value": "huawei_nfs_read_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_nfs_write_response_timeus",
+            "value": "huawei_nfs_write_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_nfs_lookup_response_timeus",
+            "value": "huawei_nfs_lookup_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_nfs_pathconf_response_timeus",
+            "value": "huawei_nfs_pathconf_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_cache_hit_ratiopercent",
+            "value": "huawei_cache_hit_ratiopercent"
+          },
+          {
+            "selected": false,
+            "text": "huawei_read_cache_hit_ratiopercent",
+            "value": "huawei_read_cache_hit_ratiopercent"
+          },
+          {
+            "selected": false,
+            "text": "huawei_write_cache_hit_ratiopercent",
+            "value": "huawei_write_cache_hit_ratiopercent"
+          },
+          {
+            "selected": false,
+            "text": "huawei_utilizationpercent",
+            "value": "huawei_utilizationpercent"
+          },
+          {
+            "selected": false,
+            "text": "huawei_used_capacitygb",
+            "value": "huawei_used_capacitygb"
+          },
+          {
+            "selected": false,
+            "text": "huawei_free_capacitygb",
+            "value": "huawei_free_capacitygb"
+          },
+          {
+            "selected": false,
+            "text": "huawei_avg_read_i_o_link_transmission_latencyus_y2",
+            "value": "huawei_avg_read_i_o_link_transmission_latencyus_y2"
+          },
+          {
+            "selected": false,
+            "text": "huawei_avg_write_i_o_link_transmission_latencyus_y2",
+            "value": "huawei_avg_write_i_o_link_transmission_latencyus_y2"
+          }
+        ],
+        "query": "huawei_cpu_usage_percent,huawei_memory_usage_percent,huawei_read_bandwidth_mb_s,huawei_write_bandwidth_mb_s,huawei_total_bandwidth_mb_s,huawei_read_iops_number_s,huawei_write_iops_number_s,huawei_total_iops_number_s,huawei_average_read_response_timeus,huawei_average_write_response_timeus,huawei_average_response_timeus,huawei_max_read_response_timeus,huawei_max_write_response_timeus,huawei_total_nfs_read_ops_number_s,huawei_total_nfs_write_ops_number_s,huawei_total_nfs_lookup_ops_number_s,huawei_total_nfs_getattr_ops_number_s,huawei_total_nfs_remove_ops_number_s,huawei_nfs_read_response_timeus,huawei_nfs_write_response_timeus,huawei_nfs_lookup_response_timeus,huawei_nfs_pathconf_response_timeus,huawei_cache_hit_ratiopercent,huawei_read_cache_hit_ratiopercent,huawei_write_cache_hit_ratiopercent,huawei_utilizationpercent,huawei_used_capacitygb,huawei_free_capacitygb,huawei_avg_read_i_o_link_transmission_latencyus_y2,huawei_avg_write_i_o_link_transmission_latencyus_y2",
+        "skipUrlSync": false,
+        "type": "custom",
+        "label": "Q1 Metric"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "huawei_cpu_usage_percent"
+          ],
+          "value": [
+            "huawei_cpu_usage_percent"
+          ]
+        },
+        "hide": 0,
+        "includeAll": false,
+        "multi": true,
+        "name": "Metric_Q2",
+        "options": [
+          {
+            "selected": false,
+            "text": "huawei_cpu_usage_percent",
+            "value": "huawei_cpu_usage_percent"
+          },
+          {
+            "selected": false,
+            "text": "huawei_memory_usage_percent",
+            "value": "huawei_memory_usage_percent"
+          },
+          {
+            "selected": false,
+            "text": "huawei_read_bandwidth_mb_s",
+            "value": "huawei_read_bandwidth_mb_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_write_bandwidth_mb_s",
+            "value": "huawei_write_bandwidth_mb_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_total_bandwidth_mb_s",
+            "value": "huawei_total_bandwidth_mb_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_read_iops_number_s",
+            "value": "huawei_read_iops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_write_iops_number_s",
+            "value": "huawei_write_iops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_total_iops_number_s",
+            "value": "huawei_total_iops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_average_read_response_timeus",
+            "value": "huawei_average_read_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_average_write_response_timeus",
+            "value": "huawei_average_write_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_average_response_timeus",
+            "value": "huawei_average_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_max_read_response_timeus",
+            "value": "huawei_max_read_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_max_write_response_timeus",
+            "value": "huawei_max_write_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_total_nfs_read_ops_number_s",
+            "value": "huawei_total_nfs_read_ops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_total_nfs_write_ops_number_s",
+            "value": "huawei_total_nfs_write_ops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_total_nfs_lookup_ops_number_s",
+            "value": "huawei_total_nfs_lookup_ops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_total_nfs_getattr_ops_number_s",
+            "value": "huawei_total_nfs_getattr_ops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_total_nfs_remove_ops_number_s",
+            "value": "huawei_total_nfs_remove_ops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_nfs_read_response_timeus",
+            "value": "huawei_nfs_read_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_nfs_write_response_timeus",
+            "value": "huawei_nfs_write_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_nfs_lookup_response_timeus",
+            "value": "huawei_nfs_lookup_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_nfs_pathconf_response_timeus",
+            "value": "huawei_nfs_pathconf_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_cache_hit_ratiopercent",
+            "value": "huawei_cache_hit_ratiopercent"
+          },
+          {
+            "selected": false,
+            "text": "huawei_read_cache_hit_ratiopercent",
+            "value": "huawei_read_cache_hit_ratiopercent"
+          },
+          {
+            "selected": false,
+            "text": "huawei_write_cache_hit_ratiopercent",
+            "value": "huawei_write_cache_hit_ratiopercent"
+          },
+          {
+            "selected": false,
+            "text": "huawei_utilizationpercent",
+            "value": "huawei_utilizationpercent"
+          },
+          {
+            "selected": false,
+            "text": "huawei_used_capacitygb",
+            "value": "huawei_used_capacitygb"
+          },
+          {
+            "selected": false,
+            "text": "huawei_free_capacitygb",
+            "value": "huawei_free_capacitygb"
+          },
+          {
+            "selected": false,
+            "text": "huawei_avg_read_i_o_link_transmission_latencyus_y2",
+            "value": "huawei_avg_read_i_o_link_transmission_latencyus_y2"
+          },
+          {
+            "selected": false,
+            "text": "huawei_avg_write_i_o_link_transmission_latencyus_y2",
+            "value": "huawei_avg_write_i_o_link_transmission_latencyus_y2"
+          }
+        ],
+        "query": "huawei_cpu_usage_percent,huawei_memory_usage_percent,huawei_read_bandwidth_mb_s,huawei_write_bandwidth_mb_s,huawei_total_bandwidth_mb_s,huawei_read_iops_number_s,huawei_write_iops_number_s,huawei_total_iops_number_s,huawei_average_read_response_timeus,huawei_average_write_response_timeus,huawei_average_response_timeus,huawei_max_read_response_timeus,huawei_max_write_response_timeus,huawei_total_nfs_read_ops_number_s,huawei_total_nfs_write_ops_number_s,huawei_total_nfs_lookup_ops_number_s,huawei_total_nfs_getattr_ops_number_s,huawei_total_nfs_remove_ops_number_s,huawei_nfs_read_response_timeus,huawei_nfs_write_response_timeus,huawei_nfs_lookup_response_timeus,huawei_nfs_pathconf_response_timeus,huawei_cache_hit_ratiopercent,huawei_read_cache_hit_ratiopercent,huawei_write_cache_hit_ratiopercent,huawei_utilizationpercent,huawei_used_capacitygb,huawei_free_capacitygb,huawei_avg_read_i_o_link_transmission_latencyus_y2,huawei_avg_write_i_o_link_transmission_latencyus_y2",
+        "skipUrlSync": false,
+        "type": "custom",
+        "label": "Q2 Metric"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "huawei_cpu_usage_percent"
+          ],
+          "value": [
+            "huawei_cpu_usage_percent"
+          ]
+        },
+        "hide": 0,
+        "includeAll": false,
+        "multi": true,
+        "name": "Metric_Q3",
+        "options": [
+          {
+            "selected": false,
+            "text": "huawei_cpu_usage_percent",
+            "value": "huawei_cpu_usage_percent"
+          },
+          {
+            "selected": false,
+            "text": "huawei_memory_usage_percent",
+            "value": "huawei_memory_usage_percent"
+          },
+          {
+            "selected": false,
+            "text": "huawei_read_bandwidth_mb_s",
+            "value": "huawei_read_bandwidth_mb_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_write_bandwidth_mb_s",
+            "value": "huawei_write_bandwidth_mb_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_total_bandwidth_mb_s",
+            "value": "huawei_total_bandwidth_mb_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_read_iops_number_s",
+            "value": "huawei_read_iops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_write_iops_number_s",
+            "value": "huawei_write_iops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_total_iops_number_s",
+            "value": "huawei_total_iops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_average_read_response_timeus",
+            "value": "huawei_average_read_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_average_write_response_timeus",
+            "value": "huawei_average_write_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_average_response_timeus",
+            "value": "huawei_average_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_max_read_response_timeus",
+            "value": "huawei_max_read_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_max_write_response_timeus",
+            "value": "huawei_max_write_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_total_nfs_read_ops_number_s",
+            "value": "huawei_total_nfs_read_ops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_total_nfs_write_ops_number_s",
+            "value": "huawei_total_nfs_write_ops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_total_nfs_lookup_ops_number_s",
+            "value": "huawei_total_nfs_lookup_ops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_total_nfs_getattr_ops_number_s",
+            "value": "huawei_total_nfs_getattr_ops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_total_nfs_remove_ops_number_s",
+            "value": "huawei_total_nfs_remove_ops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_nfs_read_response_timeus",
+            "value": "huawei_nfs_read_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_nfs_write_response_timeus",
+            "value": "huawei_nfs_write_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_nfs_lookup_response_timeus",
+            "value": "huawei_nfs_lookup_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_nfs_pathconf_response_timeus",
+            "value": "huawei_nfs_pathconf_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_cache_hit_ratiopercent",
+            "value": "huawei_cache_hit_ratiopercent"
+          },
+          {
+            "selected": false,
+            "text": "huawei_read_cache_hit_ratiopercent",
+            "value": "huawei_read_cache_hit_ratiopercent"
+          },
+          {
+            "selected": false,
+            "text": "huawei_write_cache_hit_ratiopercent",
+            "value": "huawei_write_cache_hit_ratiopercent"
+          },
+          {
+            "selected": false,
+            "text": "huawei_utilizationpercent",
+            "value": "huawei_utilizationpercent"
+          },
+          {
+            "selected": false,
+            "text": "huawei_used_capacitygb",
+            "value": "huawei_used_capacitygb"
+          },
+          {
+            "selected": false,
+            "text": "huawei_free_capacitygb",
+            "value": "huawei_free_capacitygb"
+          },
+          {
+            "selected": false,
+            "text": "huawei_avg_read_i_o_link_transmission_latencyus_y2",
+            "value": "huawei_avg_read_i_o_link_transmission_latencyus_y2"
+          },
+          {
+            "selected": false,
+            "text": "huawei_avg_write_i_o_link_transmission_latencyus_y2",
+            "value": "huawei_avg_write_i_o_link_transmission_latencyus_y2"
+          }
+        ],
+        "query": "huawei_cpu_usage_percent,huawei_memory_usage_percent,huawei_read_bandwidth_mb_s,huawei_write_bandwidth_mb_s,huawei_total_bandwidth_mb_s,huawei_read_iops_number_s,huawei_write_iops_number_s,huawei_total_iops_number_s,huawei_average_read_response_timeus,huawei_average_write_response_timeus,huawei_average_response_timeus,huawei_max_read_response_timeus,huawei_max_write_response_timeus,huawei_total_nfs_read_ops_number_s,huawei_total_nfs_write_ops_number_s,huawei_total_nfs_lookup_ops_number_s,huawei_total_nfs_getattr_ops_number_s,huawei_total_nfs_remove_ops_number_s,huawei_nfs_read_response_timeus,huawei_nfs_write_response_timeus,huawei_nfs_lookup_response_timeus,huawei_nfs_pathconf_response_timeus,huawei_cache_hit_ratiopercent,huawei_read_cache_hit_ratiopercent,huawei_write_cache_hit_ratiopercent,huawei_utilizationpercent,huawei_used_capacitygb,huawei_free_capacitygb,huawei_avg_read_i_o_link_transmission_latencyus_y2,huawei_avg_write_i_o_link_transmission_latencyus_y2",
+        "skipUrlSync": false,
+        "type": "custom",
+        "label": "Q3 Metric"
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": [
+            "huawei_cpu_usage_percent"
+          ],
+          "value": [
+            "huawei_cpu_usage_percent"
+          ]
+        },
+        "hide": 0,
+        "includeAll": false,
+        "multi": true,
+        "name": "Metric_Q4",
+        "options": [
+          {
+            "selected": false,
+            "text": "huawei_cpu_usage_percent",
+            "value": "huawei_cpu_usage_percent"
+          },
+          {
+            "selected": false,
+            "text": "huawei_memory_usage_percent",
+            "value": "huawei_memory_usage_percent"
+          },
+          {
+            "selected": false,
+            "text": "huawei_read_bandwidth_mb_s",
+            "value": "huawei_read_bandwidth_mb_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_write_bandwidth_mb_s",
+            "value": "huawei_write_bandwidth_mb_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_total_bandwidth_mb_s",
+            "value": "huawei_total_bandwidth_mb_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_read_iops_number_s",
+            "value": "huawei_read_iops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_write_iops_number_s",
+            "value": "huawei_write_iops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_total_iops_number_s",
+            "value": "huawei_total_iops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_average_read_response_timeus",
+            "value": "huawei_average_read_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_average_write_response_timeus",
+            "value": "huawei_average_write_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_average_response_timeus",
+            "value": "huawei_average_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_max_read_response_timeus",
+            "value": "huawei_max_read_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_max_write_response_timeus",
+            "value": "huawei_max_write_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_total_nfs_read_ops_number_s",
+            "value": "huawei_total_nfs_read_ops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_total_nfs_write_ops_number_s",
+            "value": "huawei_total_nfs_write_ops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_total_nfs_lookup_ops_number_s",
+            "value": "huawei_total_nfs_lookup_ops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_total_nfs_getattr_ops_number_s",
+            "value": "huawei_total_nfs_getattr_ops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_total_nfs_remove_ops_number_s",
+            "value": "huawei_total_nfs_remove_ops_number_s"
+          },
+          {
+            "selected": false,
+            "text": "huawei_nfs_read_response_timeus",
+            "value": "huawei_nfs_read_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_nfs_write_response_timeus",
+            "value": "huawei_nfs_write_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_nfs_lookup_response_timeus",
+            "value": "huawei_nfs_lookup_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_nfs_pathconf_response_timeus",
+            "value": "huawei_nfs_pathconf_response_timeus"
+          },
+          {
+            "selected": false,
+            "text": "huawei_cache_hit_ratiopercent",
+            "value": "huawei_cache_hit_ratiopercent"
+          },
+          {
+            "selected": false,
+            "text": "huawei_read_cache_hit_ratiopercent",
+            "value": "huawei_read_cache_hit_ratiopercent"
+          },
+          {
+            "selected": false,
+            "text": "huawei_write_cache_hit_ratiopercent",
+            "value": "huawei_write_cache_hit_ratiopercent"
+          },
+          {
+            "selected": false,
+            "text": "huawei_utilizationpercent",
+            "value": "huawei_utilizationpercent"
+          },
+          {
+            "selected": false,
+            "text": "huawei_used_capacitygb",
+            "value": "huawei_used_capacitygb"
+          },
+          {
+            "selected": false,
+            "text": "huawei_free_capacitygb",
+            "value": "huawei_free_capacitygb"
+          },
+          {
+            "selected": false,
+            "text": "huawei_avg_read_i_o_link_transmission_latencyus_y2",
+            "value": "huawei_avg_read_i_o_link_transmission_latencyus_y2"
+          },
+          {
+            "selected": false,
+            "text": "huawei_avg_write_i_o_link_transmission_latencyus_y2",
+            "value": "huawei_avg_write_i_o_link_transmission_latencyus_y2"
+          }
+        ],
+        "query": "huawei_cpu_usage_percent,huawei_memory_usage_percent,huawei_read_bandwidth_mb_s,huawei_write_bandwidth_mb_s,huawei_total_bandwidth_mb_s,huawei_read_iops_number_s,huawei_write_iops_number_s,huawei_total_iops_number_s,huawei_average_read_response_timeus,huawei_average_write_response_timeus,huawei_average_response_timeus,huawei_max_read_response_timeus,huawei_max_write_response_timeus,huawei_total_nfs_read_ops_number_s,huawei_total_nfs_write_ops_number_s,huawei_total_nfs_lookup_ops_number_s,huawei_total_nfs_getattr_ops_number_s,huawei_total_nfs_remove_ops_number_s,huawei_nfs_read_response_timeus,huawei_nfs_write_response_timeus,huawei_nfs_lookup_response_timeus,huawei_nfs_pathconf_response_timeus,huawei_cache_hit_ratiopercent,huawei_read_cache_hit_ratiopercent,huawei_write_cache_hit_ratiopercent,huawei_utilizationpercent,huawei_used_capacitygb,huawei_free_capacitygb,huawei_avg_read_i_o_link_transmission_latencyus_y2,huawei_avg_write_i_o_link_transmission_latencyus_y2",
+        "skipUrlSync": false,
+        "type": "custom",
+        "label": "Q4 Metric"
       }
     ]
   },
