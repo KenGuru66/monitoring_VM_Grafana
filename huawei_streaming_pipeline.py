@@ -273,10 +273,11 @@ def stream_prometheus_metrics(file_path: Path, array_sn: str, resources: list,
                     resource_name = RESOURCE_NAME_DICT.get(resource_id, f"UNKNOWN_RESOURCE_{resource_id}")
                     metric_base_name = METRIC_NAME_DICT.get(metric_id, f"UNKNOWN_METRIC_{metric_id}")
                     
-                    # Собираем статистику по неизвестным ID
-                    if resource_name.startswith("UNKNOWN_RESOURCE_"):
+                    # Собираем ТОЛЬКО те ID, которых НЕТ в словарях (для логирования)
+                    # Если ID уже добавлен в словарь (даже с именем UNKNOWN_XXX), warning не нужен
+                    if resource_id not in RESOURCE_NAME_DICT:
                         unknown_resources.add(resource_id)
-                    if metric_base_name.startswith("UNKNOWN_METRIC_"):
+                    if metric_id not in METRIC_NAME_DICT:
                         unknown_metrics.add(metric_id)
                     
                     metric_name = "huawei_" + sanitize_metric_name(metric_base_name)

@@ -45,10 +45,13 @@ RESOURCE_NAME_DICT = {
     "16400": "Directory",
     "16401": "NFS Share",
     "16402": "CIFS Share",
+    "16452": "UNKNOWN_RESOURCE_16452",  # Найден в Perf_3000v6_NFSv3.zip (2025-10-29)
+    "16453": "UNKNOWN_RESOURCE_16453",  # Найден в Perf_3000v6_NFSv3.zip (2025-10-29)
     "16458": "Quota Tree",
     "16500": "IB Port",
     "20486": "IP Replication Link",
     "57636": "Controller NFSV4.1",
     "57791": "RAID",
     "57867": "ETH_EXP_Port",
+    "57890": "ETH Expansion Port",  # Ethernet расширенные порты CTE0 (2025-10-29)
 }
