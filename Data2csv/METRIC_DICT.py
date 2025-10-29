@@ -602,34 +602,34 @@ METRIC_NAME_DICT = {
     # Отчёт: NFSv3_Metric_IDs_FINAL_REPORT.md
     
     # ✅ ПОДТВЕРЖДЁННЫЕ OPS метрики (высокая уверенность 90-99%):
-    "1101": "NFS V3 REMOVE OPS(Number/s)",  # ✅ 95%: max=10,941, близко к эталону 8932
-    "1102": "NFS V3 LOOKUP OPS(Number/s)",  # ✅ 95%: max=2,298, корреляция с LOOKUP RT
-    "1114": "NFS V3 GETATTR OPS(Number/s)", # ✅ 95%: max=5,705, значимые OPS
-    "1105": "NFS V3 READ OPS(Number/s)",    # ✅ 90%: max=161
-    "1106": "NFS V3 WRITE OPS(Number/s)",   # ✅ 95%: max=32,393, очень активная
-    "1108": "NFS V3 MKDIR OPS(Number/s)",   # ✅ 90%: max=163
-    "1115": "NFS V3 READDIR OPS(Number/s)", # ✅ 95%: max=74,322, ОЧЕНЬ активная!
-    "1116": "NFS V3 READDIRPLUS OPS(Number/s)", # ✅ 95%: max=30,128, активная
-    "1117": "NFS V3 FSSTAT OPS(Number/s)",  # ✅ 90%: max=4,603
-    "1118": "NFS V3 FSINFO OPS(Number/s)",  # ✅ 90%: max=91,413, ОЧЕНЬ активная!
-    "1119": "NFS V3 PATHCONF OPS(Number/s)", # ✅ 99%: max=263,440, САМАЯ активная!
-    "1120": "NFS V3 COMMIT OPS(Number/s)",  # ✅ 90%: max=6,869
+    "1101": "Total NFS remove OPS (Number/s)",  # ✅ 95%: max=10,941, близко к эталону 8932
+    "1102": "Total NFS lookup OPS (Number/s)",  # ✅ 95%: max=2,298, корреляция с LOOKUP RT
+    "1114": "Total NFS getattr OPS (Number/s)", # ✅ 95%: max=5,705, значимые OPS
+    "1105": "Total NFS read OPS (Number/s)",    # ✅ 90%: max=161
+    "1106": "Total NFS write OPS (Number/s)",   # ✅ 95%: max=32,393, очень активная
+    "1108": "Total NFS mkdir OPS (Number/s)",   # ✅ 90%: max=163
+    "1115": "Total NFS readdir OPS (Number/s)", # ✅ 95%: max=74,322, ОЧЕНЬ активная!
+    "1116": "Total NFS readdir plus OPS (Number/s)", # ✅ 95%: max=30,128, активная
+    "1117": "Total NFS fsstat OPS (Number/s)",  # ✅ 90%: max=4,603
+    "1118": "Total NFS fsinfo OPS (Number/s)",  # ✅ 90%: max=91,413, ОЧЕНЬ активная!
+    "1119": "Total NFS pathconf OPS (Number/s)", # ✅ 99%: max=263,440, САМАЯ активная!
+    "1120": "Total NFS commit OPS (Number/s)",  # ✅ 90%: max=6,869
     
     # ⚠️ ПРОБЛЕМНЫЕ OPS метрики (требуют проверки):
-    "1099": "NFS V3 NULL OPS(Number/s)",    # ⚠️ 70%: max=32,392, ДИНАМИЧЕСКАЯ! Дублирует другие OPS?
-    "1100": "NFS V3 CREATE OPS(Number/s)",  # ⚠️ 70%: max=10,158 (подозрительно высокое!), ДУБЛИКАТ 1107?
-    "1103": "NFS V3 ACCESS OPS(Number/s)",  # ⚠️ 70%: max=1, очень низкие значения
-    "1104": "NFS V3 READLINK OPS(Number/s)", # ✅ 80%: max=27, низкие значения
-    "1107": "NFS V3 CREATE OPS(Number/s)",  # ⚠️ ДУБЛИКАТ 1100! Возможно один из них SETATTR?
-    "1109": "NFS V3 SYMLINK OPS(Number/s)", # ✅ 80%: max=0 (неактивная)
+    "1099": "Total NFS null OPS (Number/s)",    # ⚠️ 70%: max=32,392, ДИНАМИЧЕСКАЯ! Дублирует другие OPS?
+    "1100": "Total NFS create OPS (Number/s)",  # ⚠️ 70%: max=10,158 (подозрительно высокое!), ДУБЛИКАТ 1107?
+    "1103": "Total NFS access OPS (Number/s)",  # ⚠️ 70%: max=1, очень низкие значения
+    "1104": "Total NFS readlink OPS (Number/s)", # ✅ 80%: max=27, низкие значения
+    "1107": "Total NFS create OPS (Number/s)",  # ⚠️ ДУБЛИКАТ 1100! Возможно один из них SETATTR?
+    "1109": "Total NFS symlink OPS (Number/s)", # ✅ 80%: max=0 (неактивная)
     
     # ❌ ОТСУТСТВУЮЩИЕ OPS метрики (НЕ СУЩЕСТВУЮТ в .dat файлах!):
     # ПРОВЕРЕНО: Прямое извлечение из бинарных .dat файлов показало, что
     # эти Metric IDs отсутствуют в Map структуре заголовков.
-    "1110": "NFS V3 MKNOD OPS(Number/s)",   # ❌ НЕ СУЩЕСТВУЕТ в .dat файлах
-    "1111": "NFS V3 RMDIR OPS(Number/s)",   # ❌ НЕ СУЩЕСТВУЕТ в .dat файлах
-    "1112": "NFS V3 RENAME OPS(Number/s)",  # ❌ НЕ СУЩЕСТВУЕТ в .dat файлах (эталон: 9 OPS!)
-    "1113": "NFS V3 LINK OPS(Number/s)",    # ❌ НЕ СУЩЕСТВУЕТ в .dat файлах
+    "1110": "Total NFS mknod OPS (Number/s)",   # ❌ НЕ СУЩЕСТВУЕТ в .dat файлах
+    "1111": "Total NFS rmdir OPS (Number/s)",   # ❌ НЕ СУЩЕСТВУЕТ в .dat файлах
+    "1112": "Total NFS rename OPS (Number/s)",  # ❌ НЕ СУЩЕСТВУЕТ в .dat файлах (эталон: 9 OPS!)
+    "1113": "Total NFS link OPS (Number/s)",    # ❌ НЕ СУЩЕСТВУЕТ в .dat файлах
     
     # ============================================================================
     # NFSv3 Response Times (us) - Resource ID 1000 (Controller NFSV3)
@@ -639,35 +639,35 @@ METRIC_NAME_DICT = {
     # Активны ТОЛЬКО 3 RT метрики: ID 1121, 1122, 1123
     
     # ✅ ПОДТВЕРЖДЁННЫЕ RT метрики (высокая уверенность):
-    "1121": "NFS V3 LOOKUP Response Time(us)",    # ✅ 95%: max=17,610us, активная метрика
-    "1122": "NFS V3 PATHCONF Response Time(us)",  # ✅ 99%: max=10,283us (было: CREATE RT - ИСПРАВЛЕНО!)
-                                                   # Доказательство: max RT=10,283us близко к эталону create RT=9,221us
-                                                   # В момент 04:50: значение=67us (активная), дубликат 1138=0 (неактивный)
-    "1123": "NFS V3 READDIR Response Time(us)",   # ✅ 85%: max=65,919us, САМЫЙ ВЫСОКИЙ RT! (было: REMOVE RT)
-                                                   # Возможно также MKDIR RT или FSSTAT RT
+    "1121": "NFS lookup response time(us)",    # ✅ 95%: max=17,610us, активная метрика
+    "1122": "NFS pathconf response time(us)",  # ✅ 99%: max=10,283us (было: CREATE RT - ИСПРАВЛЕНО!)
+                                                # Доказательство: max RT=10,283us близко к эталону create RT=9,221us
+                                                # В момент 04:50: значение=67us (активная), дубликат 1138=0 (неактивный)
+    "1123": "NFS readdir response time(us)",   # ✅ 85%: max=65,919us, САМЫЙ ВЫСОКИЙ RT! (было: REMOVE RT)
+                                                # Возможно также MKDIR RT или FSSTAT RT
     
     # ⚠️ RT метрики с низкой активностью:
-    "1134": "NFS V3 RENAME Response Time(us)",    # ⚠️ 60%: max=73us (эталон=9,189us - не совпадает!)
-    "1135": "NFS V3 LINK Response Time(us)",      # ✅ 70%: max=31us
-    "1137": "NFS V3 FSINFO Response Time(us)",    # ✅ 70%: max=1us (почти неактивная)
+    "1134": "NFS rename response time(us)",    # ⚠️ 60%: max=73us (эталон=9,189us - не совпадает!)
+    "1135": "NFS link response time(us)",      # ✅ 70%: max=31us
+    "1137": "NFS fsinfo response time(us)",    # ✅ 70%: max=1us (почти неактивная)
     
     # ❌ RT метрики с КРИТИЧЕСКИМИ ПРОБЛЕМАМИ:
     
     # НЕ СУЩЕСТВУЮТ в .dat файлах (проверено извлечением из Map):
-    "1124": "NFS V3 GETATTR Response Time(us)",   # ❌ НЕ СУЩЕСТВУЕТ в .dat! (эталон: 133us)
-    "1125": "NFS V3 SETATTR Response Time(us)",   # ❌ НЕ СУЩЕСТВУЕТ в .dat!
-    "1126": "NFS V3 MKDIR Response Time(us)",     # ❌ НЕ СУЩЕСТВУЕТ в .dat! (эталон: 13,575us!)
-    "1127": "NFS V3 RMDIR Response Time(us)",     # ❌ НЕ СУЩЕСТВУЕТ в .dat!
+    "1124": "NFS getattr response time(us)",   # ❌ НЕ СУЩЕСТВУЕТ в .dat! (эталон: 133us)
+    "1125": "NFS setattr response time(us)",   # ❌ НЕ СУЩЕСТВУЕТ в .dat!
+    "1126": "NFS mkdir response time(us)",     # ❌ НЕ СУЩЕСТВУЕТ в .dat! (эталон: 13,575us!)
+    "1127": "NFS rmdir response time(us)",     # ❌ НЕ СУЩЕСТВУЕТ в .dat!
     
     # Присутствуют в .dat, но НЕАКТИВНЫ (возвращают только 0):
-    "1128": "NFS V3 READDIR Response Time(us)",   # ⚠️ В .dat, но RT=0 ВСЕГДА (ДУБЛИКАТ 1123!)
-    "1129": "NFS V3 ACCESS Response Time(us)",    # ⚠️ В .dat, но RT=0 ВСЕГДА (эталон: 123us)
-    "1130": "NFS V3 READDIRPLUS Response Time(us)", # ⚠️ В .dat, но RT=0 ВСЕГДА (эталон: 382us!)
-    "1131": "NFS V3 OPEN Response Time(us)",      # ⚠️ В .dat, но RT=0 ВСЕГДА (OPEN не в NFSv3)
-    "1132": "NFS V3 READLINK Response Time(us)",  # ⚠️ В .dat, но RT=0 ВСЕГДА
-    "1133": "NFS V3 SYMLINK Response Time(us)",   # ⚠️ В .dat, но RT=0 ВСЕГДА
-    "1136": "NFS V3 FSSTAT Response Time(us)",    # ⚠️ В .dat, но RT=0 ВСЕГДА (эталон: 10,091us!)
-    "1138": "NFS V3 PATHCONF Response Time(us)",  # ⚠️ В .dat, RT=0, ДУБЛИКАТ 1122
+    "1128": "NFS readdir response time(us)",   # ⚠️ В .dat, но RT=0 ВСЕГДА (ДУБЛИКАТ 1123!)
+    "1129": "NFS access response time(us)",    # ⚠️ В .dat, но RT=0 ВСЕГДА (эталон: 123us)
+    "1130": "NFS readdir plus response time(us)", # ⚠️ В .dat, но RT=0 ВСЕГДА (эталон: 382us!)
+    "1131": "NFS open response time(us)",      # ⚠️ В .dat, но RT=0 ВСЕГДА (OPEN не в NFSv3)
+    "1132": "NFS readlink response time(us)",  # ⚠️ В .dat, но RT=0 ВСЕГДА
+    "1133": "NFS symlink response time(us)",   # ⚠️ В .dat, но RT=0 ВСЕГДА
+    "1136": "NFS fsstat response time(us)",    # ⚠️ В .dat, но RT=0 ВСЕГДА (эталон: 10,091us!)
+    "1138": "NFS pathconf response time(us)",  # ⚠️ В .dat, RT=0, ДУБЛИКАТ 1122
     "1139": "Avg. Read I/O Link Transmission Latency(us)",#NEW
     "1140": "Avg. Write I/O Link Transmission Latency(us)",#NEW
     "1141": "CIFS Tree Quantity",#NEW
