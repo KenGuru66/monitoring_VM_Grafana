@@ -99824,7 +99824,7 @@
               "editorMode": "code",
               "expr": "{__name__=~\"$Metric_Q1\", SN=~\"$SN\", Resource=~\"$Resource_Q1\", Element=~\"$Element_Q1\"}",
               "hide": false,
-              "legendFormat": "Q1: {{Resource}} - {{Element}} - {{__name__}}",
+              "legendFormat": "Q1: {{Resource}} | {{Element}} | {{__name__}}",
               "range": true,
               "refId": "Q1"
             },
@@ -99836,7 +99836,7 @@
               "editorMode": "code",
               "expr": "{__name__=~\"$Metric_Q2\", SN=~\"$SN\", Resource=~\"$Resource_Q2\", Element=~\"$Element_Q2\"}",
               "hide": false,
-              "legendFormat": "Q2: {{Resource}} - {{Element}} - {{__name__}}",
+              "legendFormat": "Q2: {{Resource}} | {{Element}} | {{__name__}}",
               "range": true,
               "refId": "Q2"
             },
@@ -99848,7 +99848,7 @@
               "editorMode": "code",
               "expr": "{__name__=~\"$Metric_Q3\", SN=~\"$SN\", Resource=~\"$Resource_Q3\", Element=~\"$Element_Q3\"}",
               "hide": false,
-              "legendFormat": "Q3: {{Resource}} - {{Element}} - {{__name__}}",
+              "legendFormat": "Q3: {{Resource}} | {{Element}} | {{__name__}}",
               "range": true,
               "refId": "Q3"
             },
@@ -99860,7 +99860,7 @@
               "editorMode": "code",
               "expr": "{__name__=~\"$Metric_Q4\", SN=~\"$SN\", Resource=~\"$Resource_Q4\", Element=~\"$Element_Q4\"}",
               "hide": false,
-              "legendFormat": "Q4: {{Resource}} - {{Element}} - {{__name__}}",
+              "legendFormat": "Q4: {{Resource}} | {{Element}} | {{__name__}}",
               "range": true,
               "refId": "Q4"
             }
@@ -99957,7 +99957,7 @@
               "editorMode": "code",
               "expr": "{__name__=~\"$Metric_Q1\", SN=~\"$SN\", Resource=~\"$Resource_Q1\", Element=~\"$Element_Q1\"}",
               "hide": false,
-              "legendFormat": "Q1: {{Resource}} - {{Element}} - {{__name__}}",
+              "legendFormat": "Q1: {{Resource}} | {{Element}} | {{__name__}}",
               "range": true,
               "refId": "Q1"
             },
@@ -99969,7 +99969,7 @@
               "editorMode": "code",
               "expr": "{__name__=~\"$Metric_Q2\", SN=~\"$SN\", Resource=~\"$Resource_Q2\", Element=~\"$Element_Q2\"}",
               "hide": false,
-              "legendFormat": "Q2: {{Resource}} - {{Element}} - {{__name__}}",
+              "legendFormat": "Q2: {{Resource}} | {{Element}} | {{__name__}}",
               "range": true,
               "refId": "Q2"
             },
@@ -99981,7 +99981,7 @@
               "editorMode": "code",
               "expr": "{__name__=~\"$Metric_Q3\", SN=~\"$SN\", Resource=~\"$Resource_Q3\", Element=~\"$Element_Q3\"}",
               "hide": false,
-              "legendFormat": "Q3: {{Resource}} - {{Element}} - {{__name__}}",
+              "legendFormat": "Q3: {{Resource}} | {{Element}} | {{__name__}}",
               "range": true,
               "refId": "Q3"
             },
@@ -99993,7 +99993,7 @@
               "editorMode": "code",
               "expr": "{__name__=~\"$Metric_Q4\", SN=~\"$SN\", Resource=~\"$Resource_Q4\", Element=~\"$Element_Q4\"}",
               "hide": false,
-              "legendFormat": "Q4: {{Resource}} - {{Element}} - {{__name__}}",
+              "legendFormat": "Q4: {{Resource}} | {{Element}} | {{__name__}}",
               "range": true,
               "refId": "Q4"
             }
