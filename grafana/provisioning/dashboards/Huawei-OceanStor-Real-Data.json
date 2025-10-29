@@ -11681,7 +11681,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📊 Controller",
+      "title": "🎛️ Controller",
       "type": "row"
     },
     {
@@ -11698,7 +11698,7 @@
       },
       "id": 105,
       "panels": [],
-      "title": "📊 Controller NFSV3",
+      "title": "📁 Controller NFSV3",
       "type": "row"
     },
     {
@@ -25778,7 +25778,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📊 Controller NFSV4",
+      "title": "📂 Controller NFSV4",
       "type": "row"
     },
     {
@@ -31672,7 +31672,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📊 Controller NFSV4.1",
+      "title": "📋 Controller NFSV4.1",
       "type": "row"
     },
     {
@@ -37566,7 +37566,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📊 Controller SMB2/3",
+      "title": "🗃️ Controller SMB2/3",
       "type": "row"
     },
     {
@@ -41653,7 +41653,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📊 Disk",
+      "title": "💿 Disk",
       "type": "row"
     },
     {
@@ -46757,7 +46757,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📊 Disk Domain",
+      "title": "💽 Disk Domain",
       "type": "row"
     },
     {
@@ -47228,7 +47228,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📊 ETH_EXP_Port",
+      "title": "🌐 ETH_EXP_Port",
       "type": "row"
     },
     {
@@ -55044,7 +55044,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📊 Ethernet Port",
+      "title": "🔗 Ethernet Port",
       "type": "row"
     },
     {
@@ -61277,7 +61277,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📊 Host",
+      "title": "🖥️ Host",
       "type": "row"
     },
     {
@@ -72708,7 +72708,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📊 LUN",
+      "title": "💾 LUN",
       "type": "row"
     },
     {
@@ -74082,7 +74082,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📊 LUN Priority",
+      "title": "⭐ LUN Priority",
       "type": "row"
     },
     {
@@ -80655,7 +80655,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📊 Logical Port",
+      "title": "🔌 Logical Port",
       "type": "row"
     },
     {
@@ -90166,7 +90166,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📊 Storage Pool",
+      "title": "🏊 Storage Pool",
       "type": "row"
     },
     {
@@ -94792,7 +94792,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📊 FC Port",
+      "title": "⚡ FC Port",
       "type": "row"
     },
     {
@@ -95104,7 +95104,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📊 Snapshot LUN",
+      "title": "📸 Snapshot LUN",
       "type": "row"
     },
     {
