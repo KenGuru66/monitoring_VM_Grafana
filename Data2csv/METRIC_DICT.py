@@ -773,6 +773,10 @@ METRIC_NAME_DICT = {
     "1338": "Post-Process Deduplication and Reduction Write Bandwidth(MB/s)",#NEW
     "1627": "Read OPS",  # 📊 PDF Documentation (File System Performance Indicators)
     "1628": "Write OPS",  # 📊 PDF Documentation (File System Performance Indicators)
+    "1629": "Read Bandwidth (MB/s)",  # 📊 PDF Documentation - pdfplumber (Block Storage Performance Indicators)
+    "1630": "Write Bandwidth (MB/s)",  # 📊 PDF Documentation - pdfplumber (Block Storage Performance Indicators)
+    "1631": "Avg. Read OPS Response Time (us)",  # 📊 PDF Documentation - pdfplumber (Block Storage Performance Indicators)
+    "1632": "Avg. Write OPS Response Time (us)",  # 📊 PDF Documentation - pdfplumber (Block Storage Performance Indicators)
     "1633": "Avg. Corrected CPU usage (%)",#NEW
     "1635": "% Read",  # 📊 PDF Documentation (Data Protection Performance Indicators)
     "1636": "% Write",  # 📊 PDF Documentation (File System Performance Indicators)
