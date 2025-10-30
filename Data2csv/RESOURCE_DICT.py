@@ -54,4 +54,14 @@ RESOURCE_NAME_DICT = {
     "57791": "RAID",
     "57867": "ETH_EXP_Port",
     "57890": "ETH Expansion Port",  # Ethernet расширенные порты CTE0 (2025-10-29)
+    # ============================================================================
+    # 📄 Новые ресурсы из PDF документации (добавлено 2025-10-30)
+    # ============================================================================
+    # Источник: OceanStor Dorado V700R001C10 REST Interface Reference.pdf
+    # Извлечено автоматически из Appendix: Performance Indicators
+    "824": "Remote Replication Pair",  # 📄 PDF Documentation
+    "1006": "SmartPartition",  # 📄 PDF Documentation
+    "1053": "Controller SMB3",  # 📄 PDF Documentation
+    "11110": "SmartQoS Service Level Objective",  # 📄 PDF Documentation
+    "11111": "SmartQoS Workload",  # 📄 PDF Documentation
 }

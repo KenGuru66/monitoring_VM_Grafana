@@ -858,4 +858,78 @@ METRIC_NAME_DICT = {
     "1644": "SmartMobility Migration Bandwidth (MB/s)",  # 📊 Vendor Documentation
     "1645": "SmartMobility Recall Bandwidth (MB/s)",  # 📊 Vendor Documentation
     "90057": "Bandwidth for Copying Cone Files on a File System (KB/s)",  # 📊 Vendor Documentation
+    # ============================================================================
+    # 📊 Новые метрики из PDF документации (добавлено 2025-10-30)
+    # ============================================================================
+    # Источник: OceanStor Dorado V700R001C10 REST Interface Reference.pdf
+    # Извлечено автоматически из Appendix: Performance Indicators
+    # Эти метрики присутствуют в PDF, но не были обнаружены в реальных .dat файлах
+    # Добавлены для полноты на случай появления в будущих версиях прошивки
+    "382": "Max. Read I/O Response Time (us)",  # 📄 PDF Documentation
+    "383": "Max. Write I/O Response Time (us)",  # 📄 PDF Documentation
+    "699": "Time Difference (s)",  # 📄 PDF Documentation
+    "700": "Write Requests Less than Grain Size to Snapshot LUN",  # 📄 PDF Documentation
+    "800": "Max. Bandwidth (KB/s)",  # 📄 PDF Documentation
+    "801": "Bandwidth (KB/s)",  # 📄 PDF Documentation
+    "805": "Back-End Read Response Time (us)",  # 📄 PDF Documentation
+    "806": "Back-End Write Response Time (us)",  # 📄 PDF Documentation
+    "809": "Logical Bandwidth (KB/s)",  # 📄 PDF Documentation
+    "810": "Normalized IOPS (IO/s)",  # 📄 PDF Documentation
+    "811": "Total Bandwidth (KB/s)",  # 📄 PDF Documentation
+    "812": "Transmitting Bandwidth for Replication (KB/s)",  # 📄 PDF Documentation
+    "813": "Receiving Bandwidth for Replication (KB/s)",  # 📄 PDF Documentation
+    "1262": "Link Bandwidth Reduction Ratio",  # 📄 PDF Documentation
+    "1326": "CIFS Offload Read OPS",  # 📄 PDF Documentation
+    "1327": "CIFS Offload Write OPS",  # 📄 PDF Documentation
+    "1328": "Avg. Response Time of CIFS Offload Read I/Os (us)",  # 📄 PDF Documentation
+    "1329": "Avg. Response Time of CIFS Offload Write I/Os (us)",  # 📄 PDF Documentation
+    "1330": "CIFS Offload Read Bandwidth (MB/s)",  # 📄 PDF Documentation
+    "1331": "CIFS Offload Write Bandwidth (MB/s)",  # 📄 PDF Documentation
+    "1634": "Link Write Bandwidth Reduction Ratio",  # 📄 PDF Documentation
+    "1638": "Bandwidth (MB/s)",  # 📄 PDF Documentation
+    "1639": "Cumulative Count of I/Os",  # 📄 PDF Documentation
+    "1640": "Cumulative Count of Data Transferred (KB)",  # 📄 PDF Documentation
+    "1641": "Cumulative Count of All Writes",  # 📄 PDF Documentation
+    "1642": "Cumulative Count of Data Written (KB)",  # 📄 PDF Documentation
+    "1643": "Average IO Size (KB)",  # 📄 PDF Documentation
+    "90086": "Head Object OPS",  # 📄 PDF Documentation
+    "90087": "Put Object OPS",  # 📄 PDF Documentation
+    "90088": "Get Object OPS",  # 📄 PDF Documentation
+    "90089": "Post Object OPS",  # 📄 PDF Documentation
+    "90090": "Delete Object OPS",  # 📄 PDF Documentation
+    "90091": "List Bucket OPS",  # 📄 PDF Documentation
+    "90092": "Delete Bucket OPS",  # 📄 PDF Documentation
+    "90093": "Get Bucket ACL OPS",  # 📄 PDF Documentation
+    "90094": "Put Bucket ACL OPS",  # 📄 PDF Documentation
+    "90095": "Create Bucket OPS",  # 📄 PDF Documentation
+    "90096": "Head Bucket OPS",  # 📄 PDF Documentation
+    "90097": "Get Object ACL OPS",  # 📄 PDF Documentation
+    "90098": "Put Object ACL OPS",  # 📄 PDF Documentation
+    "90099": "Initiate Multipart Upload OPS",  # 📄 PDF Documentation
+    "90100": "Upload Part OPS",  # 📄 PDF Documentation
+    "90101": "Complete Multipart Upload OPS",  # 📄 PDF Documentation
+    "90102": "Abort Multipart Upload OPS",  # 📄 PDF Documentation
+    "90103": "List Parts OPS",  # 📄 PDF Documentation
+    "90104": "List Multipart Uploads OPS",  # 📄 PDF Documentation
+    "90105": "Upload Part Copy OPS",  # 📄 PDF Documentation
+    "90106": "Copy Object OPS",  # 📄 PDF Documentation
+    "90107": "Get Bucket Versioning OPS",  # 📄 PDF Documentation
+    "90108": "Put Bucket Versioning OPS",  # 📄 PDF Documentation
+    "90109": "Delete Multiple Objects OPS",  # 📄 PDF Documentation
+    "90110": "Get Bucket Location OPS",  # 📄 PDF Documentation
+    "90111": "Get Service OPS",  # 📄 PDF Documentation
+    "90112": "Options Object OPS",  # 📄 PDF Documentation
+    "90118": "Restore Object OPS",  # 📄 PDF Documentation
+    "90119": "Select Object Content OPS",  # 📄 PDF Documentation
+    "90120": "Put Object Tagging OPS",  # 📄 PDF Documentation
+    "90121": "Get Object Tagging OPS",  # 📄 PDF Documentation
+    "90122": "Delete Object Tagging OPS",  # 📄 PDF Documentation
+    "90123": "List Bucket Versions OPS",  # 📄 PDF Documentation
+    "90130": "Append Object OPS",  # 📄 PDF Documentation
+    "90131": "Put Bucket Lifecycle OPS",  # 📄 PDF Documentation
+    "90132": "Get Bucket Lifecycle OPS",  # 📄 PDF Documentation
+    "90133": "Delete Bucket Lifecycle OPS",  # 📄 PDF Documentation
+    "90134": "Put Bucket Policy OPS",  # 📄 PDF Documentation
+    "90135": "Get Bucket Policy OPS",  # 📄 PDF Documentation
+    "90136": "Delete Bucket Policy OPS",  # 📄 PDF Documentation
 }
