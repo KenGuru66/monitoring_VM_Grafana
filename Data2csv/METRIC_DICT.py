@@ -20,33 +20,33 @@ METRIC_NAME_DICT = {
     "20": "响应时间(ms)",#Response time (ms)
     "21": "Block bandwidth (MB/s)",
     "22": "Total IOPS (IO/s)",
-    "23": "Read bandwidth (MB/s)",
-    "24": "Avg. read I/O size (KB)",
+    "23": "Read Bandwidth (MB/s)",  # 📊 Vendor Documentation
+    "24": "Avg. read I/O size(KB)",  # 📊 Vendor Documentation
     "25": "Read IOPS (IO/s)",
-    "26": "Write bandwidth (MB/s)",
-    "27": "Avg. write I/O size (KB)",
+    "26": "Write Bandwidth (MB/s)",  # 📊 Vendor Documentation
+    "27": "Avg. write I/O size(KB)",  # 📊 Vendor Documentation
     "28": "Write IOPS (IO/s)",
     "29": "Service time (ms)",
     "30": "Read I/O granularity distribution: [0K,1K) (%)",
-    "31": "Read I/O granularity distribution: [1K,2K) (%)",
-    "32": "Read I/O granularity distribution: [2K,4K) (%)",
-    "33": "Read I/O granularity distribution: [4K,8K) (%)",
-    "34": "Read I/O granularity distribution: [8K,16K) (%)",
-    "35": "Read I/O granularity distribution: [16K,32K) (%)",
-    "36": "Read I/O granularity distribution: [32K,64K) (%)",
-    "37": "Read I/O granularity distribution: [64K,128K) (%)",
-    "38": "Read I/O granularity distribution: [128K,256K) (%)",
+    "31": "Read I/O Granularity Distribution: [1 KB, 2 KB) (%)",  # 📊 Vendor Documentation
+    "32": "Read I/O Granularity Distribution: [2 KB, 4 KB) (%)",  # 📊 Vendor Documentation
+    "33": "Read I/O Granularity Distribution: [4 KB, 8 KB) (%)",  # 📊 Vendor Documentation
+    "34": "Read I/O Granularity Distribution: [8 KB, 16 KB) (%)",  # 📊 Vendor Documentation
+    "35": "Read I/O Granularity Distribution: [16 KB, 32 KB) (%)",  # 📊 Vendor Documentation
+    "36": "Read I/O Granularity Distribution: [32 KB, 64 KB) (%)",  # 📊 Vendor Documentation
+    "37": "Read I/O Granularity Distribution: [64 KB, 128 KB) (%)",  # 📊 Vendor Documentation
+    "38": "Read I/O Granularity Distribution: [128 KB, 256 KB) (%)",  # 📊 Vendor Documentation
     "39": "Read I/O granularity distribution: [256K,512K) (%)",
     "40": "Read I/O granularity distribution: [512K,+∞) (%)",
     "41": "Write I/O granularity distribution: [0K,1K) (%)",
-    "42": "Write I/O granularity distribution: [1K,2K) (%)",
-    "43": "Write I/O granularity distribution: [2K,4K) (%)",
-    "44": "Write I/O granularity distribution: [4K,8K) (%)",
-    "45": "Write I/O granularity distribution: [8K,16K) (%)",
-    "46": "Write I/O granularity distribution: [16K,32K) (%)",
-    "47": "Write I/O granularity distribution: [32K,64K) (%)",
-    "48": "Write I/O granularity distribution: [64K,128K) (%)",
-    "49": "Write I/O granularity distribution: [128K,256K) (%)",
+    "42": "Write I/O Granularity Distribution: [1 KB, 2 KB) (%)",  # 📊 Vendor Documentation
+    "43": "Write I/O Granularity Distribution: [2 KB, 4 KB) (%)",  # 📊 Vendor Documentation
+    "44": "Write I/O Granularity Distribution: [4 KB, 8 KB) (%)",  # 📊 Vendor Documentation
+    "45": "Write I/O Granularity Distribution: [8 KB, 16 KB) (%)",  # 📊 Vendor Documentation
+    "46": "Write I/O Granularity Distribution: [16 KB, 32 KB) (%)",  # 📊 Vendor Documentation
+    "47": "Write I/O Granularity Distribution: [32 KB, 64 KB) (%)",  # 📊 Vendor Documentation
+    "48": "Write I/O Granularity Distribution: [64 KB, 128 KB) (%)",  # 📊 Vendor Documentation
+    "49": "Write I/O Granularity Distribution: [128 KB, 256 KB) (%)",  # 📊 Vendor Documentation
     "50": "Write I/O granularity distribution: [256K,512K) (%)",
     "51": "Write I/O granularity distribution: [512K,+∞) (%)",
     "52": "读写I/O分布：512B",#Read/Write I/O distribution: 512B
@@ -120,8 +120,8 @@ METRIC_NAME_DICT = {
     "120": "Cache write usage (%)",
     "121": "Cache写盘I/O数(个)",#Number of cache write disk I/Os
     "122": "Cache写盘页面数(个)",#Number of cache write disk pages
-    "123": "Read bandwidth (KB/s)",
-    "124": "Write bandwidth (KB/s)",
+    "123": "Read Bandwidth (KB/s)",  # 📊 Vendor Documentation
+    "124": "Write Bandwidth (KB/s)",  # 📊 Vendor Documentation
     "125": "读I/O平均大小(A控)(KB)",#Average read I/O size (Controller A) (KB)
     "126": "写I/O平均大小(A控)(KB)",#Average write I/O size (Controller A) (KB)
     "127": "最大I/O响应时间(A控)(ms)",#Max I/O response time (Controller A) (ms)
@@ -179,7 +179,7 @@ METRIC_NAME_DICT = {
     "179": "读写I/O粒度分布：<= 1M(%)",
     "180": "读写I/O粒度分布：<= 2M(%)",
     "181": "读写I/O粒度分布：> 2M(%)",
-    "182": "OPS (per second)",#Filesystem IOPS
+    "182": "OPS",  # 📊 Vendor Documentation (обновлено)
     "183": "在线用户数",#Number of online users
     "184": "硬配额空间容量",#Hard quota space capacity
     "185": "已用容量",#Used capacity
@@ -196,17 +196,17 @@ METRIC_NAME_DICT = {
     "196": "Max. write I/O response time (ms)",
     "197": "Avg. read I/O response time (ms)",
     "198": "Avg. write I/O response time (ms)",
-    "199": "Read I/O Latency Distribution: [0ms,10ms) (%)",
-    "200": "Read I/O Latency Distribution: [10ms,20ms) (%)",
-    "201": "Read I/O Latency Distribution: [20ms,50ms) (%)",
-    "202": "Read I/O Latency Distribution: [50ms,100ms) (%)",
-    "203": "Read I/O Latency Distribution: [100ms,200ms) (%)",
+    "199": "Read I/O Latency Distribution: [0 ms, 10 ms) (%)",  # 📊 Vendor Documentation
+    "200": "Read I/O Latency Distribution: [10 ms, 20 ms) (%)",  # 📊 Vendor Documentation
+    "201": "Read I/O Latency Distribution: [20 ms, 50 ms) (%)",  # 📊 Vendor Documentation
+    "202": "Read I/O Latency Distribution: [50 ms, 100 ms) (%)",  # 📊 Vendor Documentation
+    "203": "Read I/O Latency Distribution: [100 ms, 200 ms) (%)",  # 📊 Vendor Documentation
     "204": "Read I/O Latency Distribution: [200ms,+∞) (%)",
-    "205": "Write I/O Latency Distribution: [0ms,10ms) (%)",
-    "206": "Write I/O Latency Distribution: [10ms,20ms) (%)",
-    "207": "Write I/O Latency Distribution: [20ms,50ms) (%)",
-    "208": "Write I/O Latency Distribution: [50ms,100ms) (%)",
-    "209": "Write I/O Latency Distribution: [100ms,200ms) (%)",
+    "205": "Write I/O Latency Distribution: [0 ms, 10 ms) (%)",  # 📊 Vendor Documentation
+    "206": "Write I/O Latency Distribution: [10 ms, 20 ms) (%)",  # 📊 Vendor Documentation
+    "207": "Write I/O Latency Distribution: [20 ms, 50 ms) (%)",  # 📊 Vendor Documentation
+    "208": "Write I/O Latency Distribution: [50 ms, 100 ms) (%)",  # 📊 Vendor Documentation
+    "209": "Write I/O Latency Distribution: [100 ms, 200 ms) (%)",  # 📊 Vendor Documentation
     "210": "Write I/O Latency Distribution: [200ms,+∞) (%)",
     "211": "磁盘IOPS(IO/s)",#Disk IOPS (IO/s)
     "217": "Max. CPU usage (%)",
@@ -220,12 +220,12 @@ METRIC_NAME_DICT = {
     "225": "Number of connected clients",
     "226": "Number of connected NFS clients",
     "227": "Number of connected CIFS clients",
-    "228": "Avg. I/O size (KB)",
+    "228": "Avg. I/O size(KB)",  # 📊 Vendor Documentation
     "229": "Network packet stream speed (per second)",
     "230": "Network packet input stream speed (per second)",
     "231": "Network packet output stream speed (per second)",
-    "232": "Read OPS (per second)",
-    "233": "Write OPS (per second)",
+    "232": "Read OPS",  # 📊 Vendor Documentation
+    "233": "Write OPS",  # 📊 Vendor Documentation
     "236": "Bandwidth (KB/s)",
     "240": "Average queue depth",
     "241": "SCSI commands executed per second",
@@ -343,20 +343,20 @@ METRIC_NAME_DICT = {
     "463": "Space Size (MB)",
     "464": "Average Read OPS Response Time (ms)",
     "465": "Average Write OPS Response Time (ms)",
-    "466": "Read I/O Granularity Distribution: [0,512B) (%)",
-    "467": "Read I/O Granularity Distribution: [512B,1K) (%)",
-    "468": "Read I/O Granularity Distribution: [256K,+∞) (%)",
-    "469": "Write I/O Granularity Distribution: [0,512B) (%)",
-    "470": "Write I/O Granularity Distribution: [512B,1K) (%)",
-    "471": "Write I/O Granularity Distribution: [256K,+∞) (%)",
+    "466": "Read I/O Granularity Distribution: [0 Bytes, 512 Bytes) (%)",  # 📊 Vendor Documentation
+    "467": "Read I/O Granularity Distribution: [512B,1K)(%)",  # 📊 Vendor Documentation
+    "468": "Read I/O Granularity Distribution: [256K,+∞)(%)",  # 📊 Vendor Documentation
+    "469": "Write I/O Granularity Distribution: [0 Bytes, 512 Bytes) (%)",  # 📊 Vendor Documentation
+    "470": "Write I/O Granularity Distribution: [512B,1K)(%)",  # 📊 Vendor Documentation
+    "471": "Write I/O Granularity Distribution: [256K,+∞)(%)",  # 📊 Vendor Documentation
     "472": "Min Latency For Operations (ms)",
     "473": "Logical Bandwidth (MB/s)",
     "475": "File bandwidth(B/s)",
     "476": "File OPS(per second)",
-    "508": "Average Latency For Operations (ms)",#Avg. Operation Response Time (us)
-    "509": "Max Latency For Operations (ms)",
-    "510": "Min Latency For Operations (ms)",
-    "511": "File bandwidth(MB/s)",#File Bandwidth (KB/s)
+    "508": "Avg. Operation Response Time (us)",  # 📊 Vendor Documentation (обновлено)
+    "509": "Max. Operation Response Time (us)",  # 📊 Vendor Documentation
+    "510": "Min. Operation Response Time (us)",  # 📊 Vendor Documentation
+    "511": "File Bandwidth (KB/s)",  # 📊 Vendor Documentation (обновлено)
     "512": "Throughput (MB/s)",
     "513": "Total amount of migrated data",
     "514": "Amount of data migrated to SSDs",
@@ -368,9 +368,9 @@ METRIC_NAME_DICT = {
     "520": "Amount of data migrated from NL-SAS disks to SAS disks",
     "521": "Amount of data migrated from SSDs to NL-SAS disks",
     "522": "Amount of data migrated from SSDs to NL-SAS disks",
-    "523": "Service time (ms)",#Service Time(Excluding Queue Time)(us)
-    "524": "Average Read OPS Response Time (ms)",#Avg. Read OPS Response Time (us)
-    "525": "Average Write OPS Response Time (ms)",#Avg. Write OPS Response Time (us)
+    "523": "Service Time(Excluding Queue Time)(us)",  # 📊 Vendor Documentation (обновлено)
+    "524": "Avg. Read OPS Response Time (us)",  # 📊 Vendor Documentation (обновлено)
+    "525": "Avg. Write OPS Response Time (us)",  # 📊 Vendor Documentation (обновлено)
     "530": "Read I/O Latency Distribution: [0ms,5ms) (%)",
     "531": "Write I/O Latency Distribution: [0ms,5ms) (%)",
     "532": "Number of failed read I/Os",
@@ -568,8 +568,8 @@ METRIC_NAME_DICT = {
     "1055": "Cache page utilization (%)",
     "1056": "Cache chunk utilization (%)",
     "1057": "Cache pageUnit utilization (%)",
-    "1059": "The cache page preservation",
-    "1060": "The cache chunk preservation",
+    "1059": "Cache Page Preservation (%)",  # 📊 Vendor Documentation
+    "1060": "Cache Chunk Preservation (%)",  # 📊 Vendor Documentation
     "1061": "S3 Head Number",
     "1062": "S3 Head Failed Number",
     "1063": "S3 Head Failed Number(client's cause)",
@@ -602,34 +602,33 @@ METRIC_NAME_DICT = {
     # Отчёт: NFSv3_Metric_IDs_FINAL_REPORT.md
     
     # ✅ ПОДТВЕРЖДЁННЫЕ OPS метрики (высокая уверенность 90-99%):
-    "1101": "Total NFS remove OPS (Number/s)",  # ✅ 95%: max=10,941, близко к эталону 8932
-    "1102": "Total NFS lookup OPS (Number/s)",  # ✅ 95%: max=2,298, корреляция с LOOKUP RT
-    "1114": "Total NFS getattr OPS (Number/s)", # ✅ 95%: max=5,705, значимые OPS
-    "1105": "Total NFS read OPS (Number/s)",    # ✅ 90%: max=161
-    "1106": "Total NFS write OPS (Number/s)",   # ✅ 95%: max=32,393, очень активная
-    "1108": "Total NFS mkdir OPS (Number/s)",   # ✅ 90%: max=163
-    "1115": "Total NFS readdir OPS (Number/s)", # ✅ 95%: max=74,322, ОЧЕНЬ активная!
-    "1116": "Total NFS readdir plus OPS (Number/s)", # ✅ 95%: max=30,128, активная
-    "1117": "Total NFS fsstat OPS (Number/s)",  # ✅ 90%: max=4,603
-    "1118": "Total NFS fsinfo OPS (Number/s)",  # ✅ 90%: max=91,413, ОЧЕНЬ активная!
-    "1119": "Total NFS pathconf OPS (Number/s)", # ✅ 99%: max=263,440, САМАЯ активная!
-    "1120": "Total NFS commit OPS (Number/s)",  # ✅ 90%: max=6,869
+    "1101": "Total NFS remove OPS",  # 📊 Vendor Documentation (обновлено)
+    "1102": "Total NFS getattr OPS",  # 📊 Vendor Documentation (обновлено)
+    "1114": "Avg. NFS lookup response time(us)", # ✅ 95%: max=5,705, значимые OPS
+    "1105": "Total NFS rmdir OPS",  # 📊 Vendor Documentation (обновлено)
+    "1106": "Total NFS access OPS",  # 📊 Vendor Documentation (обновлено)
+    "1108": "Total NFS readdir plus OPS",  # 📊 Vendor Documentation (обновлено)
+    "1115": "Avg. NFS create response time(us)", # ✅ 95%: max=74,322, ОЧЕНЬ активная!
+    "1116": "Avg. NFS remove response time(us)", # ✅ 95%: max=30,128, активная
+    "1117": "Avg. NFS getattr response time(us)",  # ✅ 90%: max=4,603
+    "1118": "Avg. NFS setattr response time(us)",  # ✅ 90%: max=91,413, ОЧЕНЬ активная!
+    "1119": "Avg. NFS mkdir response time(us)", # ✅ 99%: max=263,440, САМАЯ активная!
+    "1120": "Avg. NFS rmdir response time(us)",  # ✅ 90%: max=6,869
     
-    # ⚠️ ПРОБЛЕМНЫЕ OPS метрики (требуют проверки):
-    "1099": "Total NFS null OPS (Number/s)",    # ⚠️ 70%: max=32,392, ДИНАМИЧЕСКАЯ! Дублирует другие OPS?
-    "1100": "Total NFS create OPS (Number/s)",  # ⚠️ 70%: max=10,158 (подозрительно высокое!), ДУБЛИКАТ 1107?
-    "1103": "Total NFS access OPS (Number/s)",  # ⚠️ 70%: max=1, очень низкие значения
-    "1104": "Total NFS readlink OPS (Number/s)", # ✅ 80%: max=27, низкие значения
-    "1107": "Total NFS create OPS (Number/s)",  # ⚠️ ДУБЛИКАТ 1100! Возможно один из них SETATTR?
-    "1109": "Total NFS symlink OPS (Number/s)", # ✅ 80%: max=0 (неактивная)
+    "1099": "Total NFS lookup OPS",  # 📊 Vendor Documentation (обновлено)
+    "1100": "Total NFS create OPS",  # 📊 Vendor Documentation (обновлено)
+    "1103": "Total NFS setattr OPS",  # 📊 Vendor Documentation (обновлено)
+    "1104": "Total NFS mkdir OPS",  # 📊 Vendor Documentation (обновлено)
+    "1107": "Total NFS readdir OPS",  # 📊 Vendor Documentation (обновлено)
+    "1109": "Total NFS open OPS",  # 📊 Vendor Documentation (обновлено)
     
     # ❌ ОТСУТСТВУЮЩИЕ OPS метрики (НЕ СУЩЕСТВУЮТ в .dat файлах!):
     # ПРОВЕРЕНО: Прямое извлечение из бинарных .dat файлов показало, что
     # эти Metric IDs отсутствуют в Map структуре заголовков.
-    "1110": "Total NFS mknod OPS (Number/s)",   # ❌ НЕ СУЩЕСТВУЕТ в .dat файлах
-    "1111": "Total NFS rmdir OPS (Number/s)",   # ❌ НЕ СУЩЕСТВУЕТ в .dat файлах
-    "1112": "Total NFS rename OPS (Number/s)",  # ❌ НЕ СУЩЕСТВУЕТ в .dat файлах (эталон: 9 OPS!)
-    "1113": "Total NFS link OPS (Number/s)",    # ❌ НЕ СУЩЕСТВУЕТ в .dat файлах
+    "1110": "Total CIFS create OPS",  # 📊 Vendor Documentation (обновлено)
+    "1111": "Total CIFS queryinfo OPS",  # 📊 Vendor Documentation (обновлено)
+    "1112": "Total CIFS querydir OPS",  # 📊 Vendor Documentation (обновлено)
+    "1113": "Total CIFS setinfo OPS",  # 📊 Vendor Documentation (обновлено)
     
     # ============================================================================
     # NFSv3 Response Times (us) - Resource ID 1000 (Controller NFSV3)
@@ -639,35 +638,35 @@ METRIC_NAME_DICT = {
     # Активны ТОЛЬКО 3 RT метрики: ID 1121, 1122, 1123
     
     # ✅ ПОДТВЕРЖДЁННЫЕ RT метрики (высокая уверенность):
-    "1121": "NFS lookup response time(us)",    # ✅ 95%: max=17,610us, активная метрика
-    "1122": "NFS pathconf response time(us)",  # ✅ 99%: max=10,283us (было: CREATE RT - ИСПРАВЛЕНО!)
+    "1121": "Avg. NFS readdir response time(us)",    # ✅ 95%: max=17,610us, активная метрика
+    "1122": "Avg. NFS access response time(us)",  # ✅ 99%: max=10,283us (было: CREATE RT - ИСПРАВЛЕНО!)
                                                 # Доказательство: max RT=10,283us близко к эталону create RT=9,221us
                                                 # В момент 04:50: значение=67us (активная), дубликат 1138=0 (неактивный)
-    "1123": "NFS readdir response time(us)",   # ✅ 85%: max=65,919us, САМЫЙ ВЫСОКИЙ RT! (было: REMOVE RT)
+    "1123": "Avg. NFS readdir plus response time(us)",   # ✅ 85%: max=65,919us, САМЫЙ ВЫСОКИЙ RT! (было: REMOVE RT)
                                                 # Возможно также MKDIR RT или FSSTAT RT
     
     # ⚠️ RT метрики с низкой активностью:
-    "1134": "NFS rename response time(us)",    # ⚠️ 60%: max=73us (эталон=9,189us - не совпадает!)
-    "1135": "NFS link response time(us)",      # ✅ 70%: max=31us
-    "1137": "NFS fsinfo response time(us)",    # ✅ 70%: max=1us (почти неактивная)
+    "1134": "Write I/O Latency Distribution: [200ms, 1s)(%)",  # 📊 Vendor Documentation (обновлено)
+    "1135": "Write I/O Latency Distribution: [1s, 3s)(%)",  # 📊 Vendor Documentation (обновлено)
+    "1137": "Write I/O Latency Distribution: [5s, 8s)(%)",  # 📊 Vendor Documentation (обновлено)
     
     # ❌ RT метрики с КРИТИЧЕСКИМИ ПРОБЛЕМАМИ:
     
     # НЕ СУЩЕСТВУЮТ в .dat файлах (проверено извлечением из Map):
-    "1124": "NFS getattr response time(us)",   # ❌ НЕ СУЩЕСТВУЕТ в .dat! (эталон: 133us)
-    "1125": "NFS setattr response time(us)",   # ❌ НЕ СУЩЕСТВУЕТ в .dat!
-    "1126": "NFS mkdir response time(us)",     # ❌ НЕ СУЩЕСТВУЕТ в .dat! (эталон: 13,575us!)
-    "1127": "NFS rmdir response time(us)",     # ❌ НЕ СУЩЕСТВУЕТ в .dat!
+    "1124": "Avg. CIFS create response time(us)",   # ❌ НЕ СУЩЕСТВУЕТ в .dat! (эталон: 133us)
+    "1125": "Avg. CIFS queryinfo response time(us)",   # ❌ НЕ СУЩЕСТВУЕТ в .dat!
+    "1126": "Avg. CIFS querydir response time(us)",     # ❌ НЕ СУЩЕСТВУЕТ в .dat! (эталон: 13,575us!)
+    "1127": "Avg. CIFS setinfo response time(us)",     # ❌ НЕ СУЩЕСТВУЕТ в .dat!
     
     # Присутствуют в .dat, но НЕАКТИВНЫ (возвращают только 0):
-    "1128": "NFS readdir response time(us)",   # ⚠️ В .dat, но RT=0 ВСЕГДА (ДУБЛИКАТ 1123!)
-    "1129": "NFS access response time(us)",    # ⚠️ В .dat, но RT=0 ВСЕГДА (эталон: 123us)
-    "1130": "NFS readdir plus response time(us)", # ⚠️ В .dat, но RT=0 ВСЕГДА (эталон: 382us!)
-    "1131": "NFS open response time(us)",      # ⚠️ В .dat, но RT=0 ВСЕГДА (OPEN не в NFSv3)
-    "1132": "NFS readlink response time(us)",  # ⚠️ В .dat, но RT=0 ВСЕГДА
-    "1133": "NFS symlink response time(us)",   # ⚠️ В .dat, но RT=0 ВСЕГДА
-    "1136": "NFS fsstat response time(us)",    # ⚠️ В .dat, но RT=0 ВСЕГДА (эталон: 10,091us!)
-    "1138": "NFS pathconf response time(us)",  # ⚠️ В .dat, RT=0, ДУБЛИКАТ 1122
+    "1128": "Avg. NFS open response time(us)",   # ⚠️ В .dat, но RT=0 ВСЕГДА (ДУБЛИКАТ 1123!)
+    "1129": "Read I/O Latency Distribution: [200ms, 1s)(%)",  # 📊 Vendor Documentation (обновлено)
+    "1130": "Read I/O Latency Distribution: [1s, 3s)(%)",  # 📊 Vendor Documentation (обновлено)
+    "1131": "Read I/O Latency Distribution: [3s, 5s)(%)",  # 📊 Vendor Documentation (обновлено)
+    "1132": "Read I/O Latency Distribution: [5s, 8s)(%)",  # 📊 Vendor Documentation (обновлено)
+    "1133": "Read I/O Latency Distribution: [8s, +∞)(%)",  # 📊 Vendor Documentation (обновлено)
+    "1136": "Write I/O Latency Distribution: [3s, 5s)(%)",  # 📊 Vendor Documentation (обновлено)
+    "1138": "Write I/O Latency Distribution: [8s, +∞)(%)",  # 📊 Vendor Documentation (обновлено)
     "1139": "Avg. Read I/O Link Transmission Latency(us)",#NEW
     "1140": "Avg. Write I/O Link Transmission Latency(us)",#NEW
     "1141": "CIFS Tree Quantity",#NEW
@@ -821,24 +820,34 @@ METRIC_NAME_DICT = {
     # Новые метрики, найденные в Perf_3000v6_NFSv3.zip (2025-10-29)
     # ============================================================================
     # Resource ID 1000 (Controller NFSV3) - дополнительные метрики
-    "1212": "UNKNOWN_METRIC_1212",  # Найдена для Resource 1000 (NFSv3)
-    "1213": "UNKNOWN_METRIC_1213",  # Найдена для Resource 1000 (NFSv3)
-    "1214": "UNKNOWN_METRIC_1214",  # Найдена для Resource 1000 (NFSv3)
-    "1215": "UNKNOWN_METRIC_1215",  # Найдена для Resource 1000 (NFSv3)
-    "1216": "UNKNOWN_METRIC_1216",  # Найдена для Resource 1000 (NFSv3)
-    "1217": "UNKNOWN_METRIC_1217",  # Найдена для Resource 1000 (NFSv3)
-    "1218": "UNKNOWN_METRIC_1218",  # Найдена для Resource 1000 (NFSv3)
-    "1219": "UNKNOWN_METRIC_1219",  # Найдена для Resource 1000 (NFSv3)
-    "1220": "UNKNOWN_METRIC_1220",  # Найдена для Resource 1000 (NFSv3)
-    "1221": "UNKNOWN_METRIC_1221",  # Найдена для Resource 1000 (NFSv3)
-    "1254": "UNKNOWN_METRIC_1254",  # Найдена для Resource 1000 (NFSv3)
-    "1255": "UNKNOWN_METRIC_1255",  # Найдена для Resource 1000 (NFSv3)
-    "1278": "UNKNOWN_METRIC_1278",  # Найдена для Resource 1000 (NFSv3)
-    "1279": "UNKNOWN_METRIC_1279",  # Найдена для Resource 1000 (NFSv3)
-    "1281": "UNKNOWN_METRIC_1281",  # Найдена для Resource 1000 (NFSv3)
-    "1282": "UNKNOWN_METRIC_1282",  # Найдена для Resource 1000 (NFSv3)
-    "1284": "UNKNOWN_METRIC_1284",  # Найдена для Resource 1000 (NFSv3)
-    "1285": "UNKNOWN_METRIC_1285",  # Найдена для Resource 1000 (NFSv3)
-    "1287": "UNKNOWN_METRIC_1287",  # Найдена для Resource 1000 (NFSv3)
-    "1288": "UNKNOWN_METRIC_1288",  # Найдена для Resource 1000 (NFSv3)
+    "1212": "Total NFS readlink OPS",  # 📊 Vendor Documentation (обновлено)
+    "1213": "Total NFS symlink OPS",  # 📊 Vendor Documentation (обновлено)
+    "1214": "Total NFS rename OPS",  # 📊 Vendor Documentation (обновлено)
+    "1215": "Total NFS link OPS",  # 📊 Vendor Documentation (обновлено)
+    "1216": "Total NFS fsstat OPS",  # 📊 Vendor Documentation (обновлено)
+    "1217": "Avg. NFS readlink response time(us)",  # 📊 Vendor Documentation (обновлено)
+    "1218": "Avg. NFS symlink response time(us)",  # 📊 Vendor Documentation (обновлено)
+    "1219": "Avg. NFS rename response time(us)",  # 📊 Vendor Documentation (обновлено)
+    "1220": "Avg. NFS link response time(us)",  # 📊 Vendor Documentation (обновлено)
+    "1221": "Avg. NFS fsstat response time(us)",  # 📊 Vendor Documentation (обновлено)
+    "1254": "NFSv4 Compound Requests",  # 📊 Vendor Documentation (обновлено)
+    "1255": "Avg. NFS compound response time(us)",  # 📊 Vendor Documentation (обновлено)
+    "1278": "NFSv4 getAcl OPS",  # 📊 Vendor Documentation (обновлено)
+    "1279": "NFSv3 getAcl OPS",  # 📊 Vendor Documentation (обновлено)
+    "1281": "NFSv4 setAcl OPS",  # 📊 Vendor Documentation (обновлено)
+    "1282": "NFSv3 setAcl OPS",  # 📊 Vendor Documentation (обновлено)
+    "1284": "Avg. NFSv4 getAcl response time(us)",  # 📊 Vendor Documentation (обновлено)
+    "1285": "Avg. NFSv3 getAcl response time(us)",  # 📊 Vendor Documentation (обновлено)
+    "1286": "Avg. CIFS getAcl response time(us)",  # 📊 Vendor Documentation
+    "1287": "Avg. NFSv4 setAcl response time(us)",  # 📊 Vendor Documentation (обновлено)
+    "1288": "Avg. NFSv3 setAcl response time(us)",  # 📊 Vendor Documentation (обновлено)
+    "1289": "Avg. CIFS setAcl response time(us)",  # 📊 Vendor Documentation
+    # ============================================================================
+    # 📊 Дополнительные метрики из официальной документации Huawei
+    # ============================================================================
+    "1280": "CIFS getAcl OPS",  # 📊 Vendor Documentation
+    "1283": "CIFS setAcl OPS",  # 📊 Vendor Documentation
+    "1644": "SmartMobility Migration Bandwidth (MB/s)",  # 📊 Vendor Documentation
+    "1645": "SmartMobility Recall Bandwidth (MB/s)",  # 📊 Vendor Documentation
+    "90057": "Bandwidth for Copying Cone Files on a File System (KB/s)",  # 📊 Vendor Documentation
 }
