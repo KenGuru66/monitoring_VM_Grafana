@@ -771,7 +771,11 @@ METRIC_NAME_DICT = {
     "1336": "NAS Migration Copy Bandwidth (KB/s)",#NEW
     "1337": "Post-Process Deduplication and Reduction Read Bandwidth(MB/s)",#NEW
     "1338": "Post-Process Deduplication and Reduction Write Bandwidth(MB/s)",#NEW
+    "1627": "Read OPS",  # 📊 PDF Documentation (File System Performance Indicators)
+    "1628": "Write OPS",  # 📊 PDF Documentation (File System Performance Indicators)
     "1633": "Avg. Corrected CPU usage (%)",#NEW
+    "1635": "% Read",  # 📊 PDF Documentation (Data Protection Performance Indicators)
+    "1636": "% Write",  # 📊 PDF Documentation (File System Performance Indicators)
     "1298": "Back-End Partition CPU Usage (%)",#NEW
     "1297": "Front-End Partition CPU Usage (%)",#NEW
     "1296": "Network Partition CPU Usage (%)",#NEW
