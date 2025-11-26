@@ -801,7 +801,7 @@
                   }
                 ]
               },
-              "unit": "deckbytes"
+              "unit": "Mbytes"
             },
             "overrides": []
           },
@@ -94732,7 +94732,7 @@
                 "uid": "P4169E866C3094E38"
               },
               "editorMode": "code",
-              "expr": "huawei_avg_i_o_sizekb{SN=~\"$SN\", Resource=~\"FC Port\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_i_o_sizekb{SN=~\"$SN\", Resource=~\"FC Port\", Element=~\"$Element\"})/1024",
               "instant": false,
               "legendFormat": "{{Element}}",
               "range": true,
@@ -94740,7 +94740,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Avg. I/O size",
+          "title": "Avg. I/O size (KB)",
           "type": "timeseries"
         },
         {
@@ -95041,7 +95041,7 @@
                 "uid": "P4169E866C3094E38"
               },
               "editorMode": "code",
-              "expr": "huawei_avg_read_i_o_sizekb{SN=~\"$SN\", Resource=~\"FC Port\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_read_i_o_sizekb{SN=~\"$SN\", Resource=~\"FC Port\", Element=~\"$Element\"})/1024",
               "instant": false,
               "legendFormat": "{{Element}}",
               "range": true,
@@ -95049,7 +95049,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Avg. read I/O size",
+          "title": "Avg. read I/O size (KB)",
           "type": "timeseries"
         },
         {
@@ -95350,7 +95350,7 @@
                 "uid": "P4169E866C3094E38"
               },
               "editorMode": "code",
-              "expr": "huawei_avg_write_i_o_sizekb{SN=~\"$SN\", Resource=~\"FC Port\", Element=~\"$Element\"}",
+              "expr": "(huawei_avg_write_i_o_sizekb{SN=~\"$SN\", Resource=~\"FC Port\", Element=~\"$Element\"})/1024",
               "instant": false,
               "legendFormat": "{{Element}}",
               "range": true,
