@@ -74,6 +74,7 @@ web/.cache/
 
 # Docker
 .dockerignore
+docker-compose.override.yml  # Локальные переопределения (если используются)
 
 # Grafana
 grafana/data/

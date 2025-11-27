@@ -1,0 +1,39 @@
+# docker-compose.prod.yml - Production конфигурация с bind mounts к /data/
+# Использование: docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+#
+# Требуется создать директории на хосте:
+#   sudo mkdir -p /data/vmdata /data/grafana /data/jobs
+#   sudo chown -R $(id -u):$(id -g) /data/vmdata /data/grafana /data/jobs
+
+services:
+  victoriametrics:
+    volumes:
+      - /data/vmdata:/vmdata  # Bind mount на быстрый диск
+
+  api:
+    volumes:
+      - ./uploads:/app/uploads
+      - /data/jobs:/app/jobs  # Bind mount для CSV файлов
+      - ./parsers:/app/parsers
+      - ./tools:/app/tools
+      - ./perfmonkey:/app/perfmonkey
+      - ./api:/app/api
+
+# Переопределяем volumes на bind mounts для production
+volumes:
+  vmdata:
+    driver_opts:
+      type: none
+      device: /data/vmdata
+      o: bind
+  grafana_data:
+    driver_opts:
+      type: none
+      device: /data/grafana
+      o: bind
+  jobs_data:
+    driver_opts:
+      type: none
+      device: /data/jobs
+      o: bind
+
