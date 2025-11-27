@@ -21,6 +21,13 @@ import time
 import argparse
 import logging
 from pathlib import Path
+
+# Поддержка .7z архивов
+try:
+    import py7zr
+    PY7ZR_AVAILABLE = True
+except ImportError:
+    PY7ZR_AVAILABLE = False
 from datetime import datetime, timedelta
 from multiprocessing import Pool, cpu_count, Manager
 import requests
@@ -533,15 +540,30 @@ def main():
     
     start_time = time.time()
     
-    # Извлекаем ZIP
+    # Извлекаем архив (поддержка .zip и .7z)
     temp_dir = Path("temp_streaming_extract")
     if temp_dir.exists():
         shutil.rmtree(temp_dir)
     temp_dir.mkdir()
     
-    logger.info(f"📦 Extracting ZIP...")
-    with zipfile.ZipFile(input_path, 'r') as zip_ref:
-        zip_ref.extractall(temp_dir)
+    # Определяем тип архива и извлекаем
+    input_suffix = input_path.suffix.lower()
+    
+    if input_suffix == '.7z':
+        if not PY7ZR_AVAILABLE:
+            logger.error("❌ py7zr не установлен! Установите: pip install py7zr")
+            sys.exit(1)
+        logger.info(f"📦 Extracting 7z archive...")
+        with py7zr.SevenZipFile(input_path, mode='r') as archive:
+            archive.extractall(temp_dir)
+    elif input_suffix == '.zip':
+        logger.info(f"📦 Extracting ZIP...")
+        with zipfile.ZipFile(input_path, 'r') as zip_ref:
+            zip_ref.extractall(temp_dir)
+    else:
+        logger.error(f"❌ Неподдерживаемый формат архива: {input_suffix}")
+        logger.error("   Поддерживаются: .zip, .7z")
+        sys.exit(1)
     
     # Находим .tgz файлы
     tgz_files = list(temp_dir.rglob("*.tgz"))

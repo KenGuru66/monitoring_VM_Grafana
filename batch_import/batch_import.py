@@ -25,6 +25,14 @@ from pathlib import Path
 from datetime import datetime, timedelta
 from typing import Optional, Tuple, List, Dict, Any
 from dataclasses import dataclass, field
+import shutil
+
+# Поддержка .7z архивов
+try:
+    import py7zr
+    PY7ZR_AVAILABLE = True
+except ImportError:
+    PY7ZR_AVAILABLE = False
 
 # Добавляем путь к VictoriaMetricsClient из соседнего проекта
 sys.path.insert(0, '/data/projects/Huawei_health_check')
@@ -111,42 +119,121 @@ def setup_logging(log_dir: Path = Path(".")) -> Tuple[logging.Logger, str]:
     return logger, log_filename
 
 
-def extract_serial_number(zip_path: Path) -> Optional[str]:
+def extract_serial_number(archive_path: Path) -> Optional[str]:
     """
-    Извлекает серийный номер массива из имени .tgz файлов внутри ZIP архива.
+    Извлекает серийный номер массива из имени .tgz файлов внутри архива.
     
-    Использует zipfile для просмотра содержимого без полной распаковки.
-    Ищет паттерн: PerfData_*_SN_<SERIAL>_SP*
+    Поддерживает .zip и .7z архивы.
+    Ищет паттерн: PerfData_*_SN_<SERIAL>_SP* или извлекает из имени файла.
     
     Args:
-        zip_path: Путь к ZIP архиву
+        archive_path: Путь к архиву (.zip или .7z)
         
     Returns:
         Серийный номер или None если не найден
     """
     try:
-        with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-            # Получаем список файлов в архиве
-            file_list = zip_ref.namelist()
-            
-            # Ищем .tgz файлы с паттерном SN
-            pattern = r"PerfData_.*_SN_([0-9A-Z]+)_SP"
-            
-            for filename in file_list:
-                if filename.endswith('.tgz'):
-                    match = re.search(pattern, filename)
-                    if match:
-                        return match.group(1)
+        file_list = []
+        suffix = archive_path.suffix.lower()
         
-        # Fallback: попробуем извлечь из имени архива (если есть паттерн)
-        match = re.search(r"\(([0-9.]+)\)", zip_path.name)
+        # Получаем список файлов в архиве в зависимости от формата
+        if suffix == '.zip':
+            with zipfile.ZipFile(archive_path, 'r') as zip_ref:
+                file_list = zip_ref.namelist()
+        elif suffix == '.7z':
+            if not PY7ZR_AVAILABLE:
+                logger.warning(f"py7zr не установлен, не могу прочитать .7z архив")
+            else:
+                with py7zr.SevenZipFile(archive_path, mode='r') as archive:
+                    file_list = archive.getnames()
+        
+        # Ищем .tgz файлы с паттерном SN
+        pattern = r"PerfData_.*_SN_([0-9A-Z]+)_SP"
+        
+        for filename in file_list:
+            if filename.endswith('.tgz'):
+                match = re.search(pattern, filename)
+                if match:
+                    return match.group(1)
+        
+        # Fallback 1: Ищем серийный номер в имени архива
+        # Формат имени: Data_<Model>_<Timestamp>_<SN>.7z
+        # Например: Data_Dorado6000V3_20251023163227_2102352KRR10KC000013.7z
+        # SN всегда начинается с "21" и содержит 20+ символов (цифры и буквы)
+        match = re.search(r"_(21[0-9A-Z]{18,})\.(zip|7z)$", archive_path.name, re.IGNORECASE)
+        if match:
+            return match.group(1)
+        
+        # Fallback 2: Серийный номер в имени родительской директории
+        # Формат: IP_SN (например: 10.105.152.20_2102352KRR10KC000013)
+        parent_name = archive_path.parent.name
+        match = re.search(r"_(21[0-9A-Z]{18,})$", parent_name)
+        if match:
+            return match.group(1)
+        
+        # Fallback 3: попробуем извлечь IP из имени (старый формат)
+        match = re.search(r"\(([0-9.]+)\)", archive_path.name)
         if match:
             return match.group(1).replace(".", "_")
         
         return None
         
     except Exception as e:
-        logger.error(f"Ошибка при извлечении SN из {zip_path.name}: {e}")
+        logger.error(f"Ошибка при извлечении SN из {archive_path.name}: {e}")
+        return None
+
+
+def extract_perf_zip_from_7z(archive_path: Path, temp_dir: Path, logger: logging.Logger) -> Optional[Path]:
+    """
+    Извлекает Perf ZIP файл из .7z архива.
+    
+    Структура внутри .7z:
+    DataCollect/History_Performance_Data/<IP>/(<IP>)..._Perf_*.zip
+    
+    Args:
+        archive_path: Путь к .7z архиву
+        temp_dir: Временная директория для извлечения
+        logger: Logger
+        
+    Returns:
+        Путь к извлечённому .zip файлу или None
+    """
+    if not PY7ZR_AVAILABLE:
+        logger.error("❌ py7zr не установлен! Установите: pip install py7zr")
+        return None
+    
+    try:
+        with py7zr.SevenZipFile(archive_path, mode='r') as archive:
+            all_names = archive.getnames()
+            
+            # Ищем файлы с паттерном *_Perf_*.zip в History_Performance_Data
+            perf_zip_files = [
+                name for name in all_names 
+                if '_Perf_' in name and name.endswith('.zip') and 'History_Performance_Data' in name
+            ]
+            
+            if not perf_zip_files:
+                logger.warning(f"⚠️  Perf ZIP файлы не найдены внутри {archive_path.name}")
+                return None
+            
+            if len(perf_zip_files) > 1:
+                logger.info(f"📦 Найдено {len(perf_zip_files)} Perf ZIP файлов, используем первый")
+            
+            perf_zip_name = perf_zip_files[0]
+            logger.info(f"📦 Извлекаю: {perf_zip_name}")
+            
+            # Извлекаем только нужный файл
+            archive.extract(temp_dir, targets=[perf_zip_name])
+            
+            extracted_path = temp_dir / perf_zip_name
+            if extracted_path.exists():
+                return extracted_path
+            else:
+                logger.error(f"❌ Файл не найден после извлечения: {extracted_path}")
+                return None
+                
+    except Exception as e:
+        logger.error(f"❌ Ошибка при извлечении из .7z: {e}")
         return None
 
 
@@ -259,7 +346,7 @@ def verify_data_in_vm(client: VictoriaMetricsClient, sn: str, logger: logging.Lo
 
 
 def process_archive(
-    zip_path: Path,
+    archive_path: Path,
     vm_url: str,
     vm_client: Optional[VictoriaMetricsClient],
     skip_existing: bool,
@@ -269,8 +356,15 @@ def process_archive(
     """
     Обработка одного архива.
     
+    Поддерживает:
+    - .zip файлы с Perf данными (прямой запуск pipeline)
+    - .7z файлы с вложенной структурой (извлечение Perf .zip и запуск)
+    
+    Структура .7z:
+    DataCollect/History_Performance_Data/<IP>/(<IP>)..._Perf_*.zip → .tgz файлы
+    
     Args:
-        zip_path: Путь к ZIP архиву
+        archive_path: Путь к архиву (.zip или .7z)
         vm_url: URL VictoriaMetrics
         vm_client: VictoriaMetricsClient или None
         skip_existing: Пропускать если данные уже есть в VM
@@ -280,83 +374,129 @@ def process_archive(
     Returns:
         ImportResult с результатами обработки
     """
-    result = ImportResult(archive_name=zip_path.name)
+    result = ImportResult(archive_name=archive_path.name)
     start_time = time.time()
+    temp_dir = None
     
     logger.info("="*80)
-    logger.info(f"📦 Обработка: {zip_path.name}")
+    logger.info(f"📦 Обработка: {archive_path.name}")
     logger.info("="*80)
     
-    # Шаг 1: Извлечение серийного номера
-    logger.info("🔍 Извлечение серийного номера...")
-    sn = extract_serial_number(zip_path)
-    result.serial_number = sn
-    
-    if sn:
-        logger.info(f"✅ Серийный номер: {sn}")
-    else:
-        logger.warning(f"⚠️  Не удалось извлечь серийный номер из {zip_path.name}")
-        sn = f"UNKNOWN_{zip_path.stem}"
+    try:
+        # Шаг 1: Извлечение серийного номера
+        logger.info("🔍 Извлечение серийного номера...")
+        sn = extract_serial_number(archive_path)
         result.serial_number = sn
-    
-    # Шаг 2: Проверка существующих данных (если skip_existing)
-    if skip_existing and vm_client and sn:
-        logger.info("🔍 Проверка наличия данных в VictoriaMetrics...")
-        data_exists, last_date = verify_data_in_vm(vm_client, sn, logger)
         
-        if data_exists:
-            logger.info(f"⏭️  Пропуск: данные уже есть в VM (последняя точка: {last_date})")
+        if sn:
+            logger.info(f"✅ Серийный номер: {sn}")
+        else:
+            logger.warning(f"⚠️  Не удалось извлечь серийный номер из {archive_path.name}")
+            sn = f"UNKNOWN_{archive_path.stem}"
+            result.serial_number = sn
+        
+        # Шаг 2: Проверка существующих данных (если skip_existing)
+        if skip_existing and vm_client and sn and not sn.startswith("UNKNOWN_"):
+            logger.info("🔍 Проверка наличия данных в VictoriaMetrics...")
+            data_exists, last_date = verify_data_in_vm(vm_client, sn, logger)
+            
+            if data_exists:
+                logger.info(f"⏭️  Пропуск: данные уже есть в VM (последняя точка: {last_date})")
+                result.status = "skipped"
+                result.data_in_vm = True
+                result.last_datapoint = last_date
+                result.import_time = time.time() - start_time
+                return result
+        
+        # Шаг 3: Dry-run режим
+        if dry_run:
+            logger.info("🧪 DRY-RUN режим: импорт не выполняется")
             result.status = "skipped"
-            result.data_in_vm = True
-            result.last_datapoint = last_date
             result.import_time = time.time() - start_time
             return result
-    
-    # Шаг 3: Dry-run режим
-    if dry_run:
-        logger.info("🧪 DRY-RUN режим: импорт не выполняется")
-        result.status = "skipped"
-        result.import_time = time.time() - start_time
-        return result
-    
-    # Шаг 4: Запуск streaming pipeline
-    logger.info("🚀 Запуск streaming pipeline...")
-    success, output, metrics_sent = run_streaming_pipeline(zip_path, vm_url, logger)
-    result.metrics_sent = metrics_sent
-    
-    if not success:
-        logger.error(f"❌ Импорт завершился с ошибкой")
-        result.status = "failed"
-        result.error_message = "Pipeline execution failed"
-        result.import_time = time.time() - start_time
-        return result
-    
-    logger.info(f"✅ Pipeline завершился успешно. Метрик отправлено: {metrics_sent:,}")
-    
-    # Шаг 5: Проверка данных в VM (если доступен клиент)
-    if vm_client and sn:
-        logger.info("🔍 Проверка импортированных данных в VictoriaMetrics...")
-        # Даем VM время на индексацию (небольшая задержка)
-        time.sleep(2)
         
-        data_exists, last_date = verify_data_in_vm(vm_client, sn, logger)
-        result.data_in_vm = data_exists
-        result.last_datapoint = last_date
+        # Шаг 4: Определяем тип архива и получаем путь к Perf ZIP
+        suffix = archive_path.suffix.lower()
+        perf_zip_path = None
         
-        if data_exists:
-            result.status = "success"
+        if suffix == '.zip':
+            # Прямой .zip файл с Perf данными
+            perf_zip_path = archive_path
+            logger.info(f"📦 Тип: ZIP (прямой Perf файл)")
+            
+        elif suffix == '.7z':
+            # .7z архив с вложенной структурой - извлекаем Perf ZIP
+            logger.info(f"📦 Тип: 7z (вложенная структура)")
+            
+            # Создаём временную директорию для извлечения
+            temp_dir = Path(f"temp_batch_extract_{archive_path.stem}")
+            if temp_dir.exists():
+                shutil.rmtree(temp_dir)
+            temp_dir.mkdir()
+            
+            # Извлекаем Perf ZIP из .7z
+            perf_zip_path = extract_perf_zip_from_7z(archive_path, temp_dir, logger)
+            
+            if not perf_zip_path:
+                logger.error(f"❌ Не удалось извлечь Perf ZIP из {archive_path.name}")
+                result.status = "failed"
+                result.error_message = "Failed to extract Perf ZIP from 7z"
+                result.import_time = time.time() - start_time
+                return result
         else:
-            result.status = "success"  # Pipeline успешен, но данных не видно (может быть задержка индексации)
-            logger.warning("⚠️  Данные не найдены в VM, но pipeline выполнен успешно")
-    else:
-        # VM client недоступен - считаем успешным если pipeline завершился без ошибок
-        result.status = "success"
-        logger.info("✅ Импорт завершен (проверка VM пропущена)")
-    
-    result.import_time = time.time() - start_time
-    logger.info(f"⏱️  Время обработки: {result.import_time:.1f}s")
-    
-    return result
+            logger.error(f"❌ Неподдерживаемый формат: {suffix}")
+            result.status = "failed"
+            result.error_message = f"Unsupported format: {suffix}"
+            result.import_time = time.time() - start_time
+            return result
+        
+        # Шаг 5: Запуск streaming pipeline
+        logger.info("🚀 Запуск streaming pipeline...")
+        success, output, metrics_sent = run_streaming_pipeline(perf_zip_path, vm_url, logger)
+        result.metrics_sent = metrics_sent
+        
+        if not success:
+            logger.error(f"❌ Импорт завершился с ошибкой")
+            result.status = "failed"
+            result.error_message = "Pipeline execution failed"
+            result.import_time = time.time() - start_time
+            return result
+        
+        logger.info(f"✅ Pipeline завершился успешно. Метрик отправлено: {metrics_sent:,}")
+        
+        # Шаг 6: Проверка данных в VM (если доступен клиент)
+        if vm_client and sn and not sn.startswith("UNKNOWN_"):
+            logger.info("🔍 Проверка импортированных данных в VictoriaMetrics...")
+            # Даем VM время на индексацию (небольшая задержка)
+            time.sleep(2)
+            
+            data_exists, last_date = verify_data_in_vm(vm_client, sn, logger)
+            result.data_in_vm = data_exists
+            result.last_datapoint = last_date
+            
+            if data_exists:
+                result.status = "success"
+            else:
+                result.status = "success"  # Pipeline успешен, но данных не видно (может быть задержка индексации)
+                logger.warning("⚠️  Данные не найдены в VM, но pipeline выполнен успешно")
+        else:
+            # VM client недоступен - считаем успешным если pipeline завершился без ошибок
+            result.status = "success"
+            logger.info("✅ Импорт завершен (проверка VM пропущена)")
+        
+        result.import_time = time.time() - start_time
+        logger.info(f"⏱️  Время обработки: {result.import_time:.1f}s")
+        
+        return result
+        
+    finally:
+        # Cleanup: удаляем временные файлы
+        if temp_dir and temp_dir.exists():
+            try:
+                shutil.rmtree(temp_dir)
+                logger.debug(f"🧹 Временная директория удалена: {temp_dir}")
+            except Exception as e:
+                logger.warning(f"⚠️  Не удалось удалить временную директорию: {e}")
 
 
 def generate_report(stats: BatchStats, log_filename: str, logger: logging.Logger):
@@ -527,32 +667,51 @@ def main():
     else:
         logger.warning("⚠️  VictoriaMetricsClient не доступен, проверка данных будет пропущена")
     
-    # Поиск ZIP файлов
-    logger.info("🔍 Поиск ZIP архивов...")
-    zip_files = sorted(log_dir_path.glob("*.zip"))
+    # Поиск архивов (.zip и .7z) - рекурсивно во всех поддиректориях
+    logger.info("🔍 Поиск архивов (.zip, .7z)...")
     
-    if not zip_files:
-        logger.error(f"❌ ZIP файлы не найдены в {log_dir_path}")
+    # Рекурсивный поиск всех поддерживаемых форматов
+    archive_files = []
+    archive_files.extend(log_dir_path.rglob("*.zip"))
+    archive_files.extend(log_dir_path.rglob("*.7z"))
+    
+    # Сортируем по имени для предсказуемого порядка
+    archive_files = sorted(archive_files, key=lambda x: x.name)
+    
+    if not archive_files:
+        logger.error(f"❌ Архивы (.zip, .7z) не найдены в {log_dir_path}")
         sys.exit(1)
     
-    logger.info(f"✅ Найдено {len(zip_files)} ZIP архивов")
+    # Статистика по типам архивов
+    zip_count = sum(1 for f in archive_files if f.suffix.lower() == '.zip')
+    sevenz_count = sum(1 for f in archive_files if f.suffix.lower() == '.7z')
+    
+    logger.info(f"✅ Найдено {len(archive_files)} архивов:")
+    if zip_count > 0:
+        logger.info(f"   - ZIP: {zip_count}")
+    if sevenz_count > 0:
+        logger.info(f"   - 7z:  {sevenz_count}")
+        if not PY7ZR_AVAILABLE:
+            logger.warning("⚠️  py7zr не установлен! .7z файлы будут пропущены")
+            logger.warning("   Установите: pip install py7zr")
+            archive_files = [f for f in archive_files if f.suffix.lower() != '.7z']
     logger.info("")
     
     # Инициализация статистики
-    stats = BatchStats(total_archives=len(zip_files))
+    stats = BatchStats(total_archives=len(archive_files))
     start_time = time.time()
     
     # Обработка архивов
-    for idx, zip_file in enumerate(zip_files, 1):
+    for idx, archive_file in enumerate(archive_files, 1):
         if INTERRUPTED:
             logger.warning("⚠️  Прервано пользователем")
             break
         
-        logger.info(f"[{idx}/{len(zip_files)}] Обработка {zip_file.name}...")
+        logger.info(f"[{idx}/{len(archive_files)}] Обработка {archive_file.name}...")
         
         try:
             result = process_archive(
-                zip_file,
+                archive_file,
                 args.vm_url,
                 vm_client,
                 args.skip_existing,
@@ -571,9 +730,9 @@ def main():
                 stats.skipped += 1
             
         except Exception as e:
-            logger.error(f"❌ Необработанная ошибка при обработке {zip_file.name}: {e}")
+            logger.error(f"❌ Необработанная ошибка при обработке {archive_file.name}: {e}")
             result = ImportResult(
-                archive_name=zip_file.name,
+                archive_name=archive_file.name,
                 status="failed",
                 error_message=str(e)
             )
