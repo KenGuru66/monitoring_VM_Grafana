@@ -1,0 +1,935 @@
+# -*- coding: utf-8 -*-
+METRIC_NAME_DICT = {
+    "2": "读I/O比率(%)",#Read I/O ratio (%)
+    "3": "写I/O比率(%)",#Write I/O ratio (%)
+    "4": "当前带宽(MB/s)",#Current bandwidth (MB/s)
+    "5": "Max. bandwidth (MB/s)",
+    "6": "当前IOPS",#Current IOPS
+    "8": "最大延迟",#Max latency
+    "9": "平均延迟",#Average latency
+    "10": "Cache hit ratio (%)",
+    "11": "本地写Cache利用率(%)",#Local write cache utilization (%)
+    "12": "Mirror write cache usage (%)",
+    "13": "读I/O流量",#Read I/O traffic
+    "14": "写I/O流量",#Write I/O traffic
+    "15": "最大功耗",#Max power consumption
+    "16": "平均功耗",#Average power consumption
+    "17": "最小功耗",#Min power consumption
+    "18": "Usage (%)",
+    "19": "Queue length",
+    "20": "响应时间(ms)",#Response time (ms)
+    "21": "Block bandwidth (MB/s)",
+    "22": "Total IOPS (IO/s)",
+    "23": "Read Bandwidth (MB/s)",  # 📊 Vendor Documentation
+    "24": "Avg. read I/O size(KB)",  # 📊 Vendor Documentation
+    "25": "Read IOPS (IO/s)",
+    "26": "Write Bandwidth (MB/s)",  # 📊 Vendor Documentation
+    "27": "Avg. write I/O size(KB)",  # 📊 Vendor Documentation
+    "28": "Write IOPS (IO/s)",
+    "29": "Service time (ms)",
+    "30": "Read I/O granularity distribution: [0K,1K) (%)",
+    "31": "Read I/O Granularity Distribution: [1 KB, 2 KB) (%)",  # 📊 Vendor Documentation
+    "32": "Read I/O Granularity Distribution: [2 KB, 4 KB) (%)",  # 📊 Vendor Documentation
+    "33": "Read I/O Granularity Distribution: [4 KB, 8 KB) (%)",  # 📊 Vendor Documentation
+    "34": "Read I/O Granularity Distribution: [8 KB, 16 KB) (%)",  # 📊 Vendor Documentation
+    "35": "Read I/O Granularity Distribution: [16 KB, 32 KB) (%)",  # 📊 Vendor Documentation
+    "36": "Read I/O Granularity Distribution: [32 KB, 64 KB) (%)",  # 📊 Vendor Documentation
+    "37": "Read I/O Granularity Distribution: [64 KB, 128 KB) (%)",  # 📊 Vendor Documentation
+    "38": "Read I/O Granularity Distribution: [128 KB, 256 KB) (%)",  # 📊 Vendor Documentation
+    "39": "Read I/O granularity distribution: [256K,512K) (%)",
+    "40": "Read I/O granularity distribution: [512K,+∞) (%)",
+    "41": "Write I/O granularity distribution: [0K,1K) (%)",
+    "42": "Write I/O Granularity Distribution: [1 KB, 2 KB) (%)",  # 📊 Vendor Documentation
+    "43": "Write I/O Granularity Distribution: [2 KB, 4 KB) (%)",  # 📊 Vendor Documentation
+    "44": "Write I/O Granularity Distribution: [4 KB, 8 KB) (%)",  # 📊 Vendor Documentation
+    "45": "Write I/O Granularity Distribution: [8 KB, 16 KB) (%)",  # 📊 Vendor Documentation
+    "46": "Write I/O Granularity Distribution: [16 KB, 32 KB) (%)",  # 📊 Vendor Documentation
+    "47": "Write I/O Granularity Distribution: [32 KB, 64 KB) (%)",  # 📊 Vendor Documentation
+    "48": "Write I/O Granularity Distribution: [64 KB, 128 KB) (%)",  # 📊 Vendor Documentation
+    "49": "Write I/O Granularity Distribution: [128 KB, 256 KB) (%)",  # 📊 Vendor Documentation
+    "50": "Write I/O granularity distribution: [256K,512K) (%)",
+    "51": "Write I/O granularity distribution: [512K,+∞) (%)",
+    "52": "读写I/O分布：512B",#Read/Write I/O distribution: 512B
+    "53": "读写I/O分布：1KB",#Read/Write I/O distribution: 1KB
+    "54": "读写I/O分布：2KB",#Read/Write I/O distribution: 2KB
+    "55": "读写I/O分布：4KB",#Read/Write I/O distribution: 4KB
+    "56": "读写I/O分布：8KB",#Read/Write I/O distribution: 8KB
+    "57": "读写I/O分布：16KB",#Read/Write I/O distribution: 16KB
+    "58": "读写I/O分布：32KB",#Read/Write I/O distribution: 32KB
+    "59": "读写I/O分布：64KB",#Read/Write I/O distribution: 64KB
+    "60": "周期内写I/O总数",#Total write I/Os during the period
+    "61": "周期内读I/O总数",#Total read I/Os during the period
+    "62": "读写I/O分布：512KB",#Read/Write I/O distribution: 512KB
+    "63": "周期内写I/O总数",#Total write I/Os during the period
+    "64": "周期内读I/O总数",#Total read I/Os during the period
+    "65": "随机顺序比例",#Random vs sequential ratio
+    "66": "使用率(%)",#Usage (%)
+    "67": "Usage (%)",
+    "68": "Avg. CPU usage (%)",
+    "69": "Avg. cache usage (%)",
+    "70": "交换分区占用率(%)",#Swap partition usage (%)
+    "71": "读吞吐量(MB/s)",#Read throughput (MB/s)
+    "72": "写吞吐量(MB/s)",#Write throughput (MB/s)
+    "73": "网络当前进包数量",#Current incoming network packets
+    "74": "网络当前出包数量",#Current outgoing network packets
+    "75": "工作温度",#Operating temperature
+    "76": "功耗",#Power consumption
+    "77": "电压",#Voltage
+    "78": "Avg. I/O response time (ms)",
+    "79": "Max. I/O response time (ms)",
+    "80": "Dirty page ratio (%)",
+    "81": "Cache flushes to write requests ratio (%)",
+    "82": "Cache flushing bandwidth (MB/s)",
+    "83": "Cache flushes caused by high watermark",
+    "84": "Cache flushes caused by the timer",
+    "85": "Low watermark reaching times",
+    "86": "Full-stripe write request ratio (%)",
+    "87": "Prefetch traffic (MB/s)",
+    "88": "Prefetch rate (%)",
+    "89": "Read cache hits per second",
+    "90": "Read cache misses per second",
+    "91": "Write cache hits by reads per second",
+    "92": "Read cache hits by reads per second",
+    "93": "Read cache hit ratio (%)",
+    "94": "Read cache rehit ratio (%)",
+    "95": "Write cache hit ratio (%)",
+    "96": "Write cache rehit ratio (%)",
+    "97": "Write cache hits per second", 
+    "98": "Write cache misses per second",
+    "99": "Time since last synchronization (s)",
+    "100": "Unsynchronized data amount (MB)",
+    "101": "Read requests to the snapshot LUN",
+    "102": "Read requests redirected to the source LUN",
+    "103": "COW requests to the source LUN",
+    "104": "COW requests from the snapshot LUN",
+    "105": "Write requests to the snapshot LUN",
+    "106": "Write requests to the source LUN exceeding the grain size",
+    "107": "Chunks used by the snapshot copy",
+    "108": "本地Cache利用率(%)",#Local cache usage (%)
+    "109": "镜像Cache利用率(%)",#Mirror cache usage (%)
+    "110": "Cache read usage (%)",#Cache read usage (%)
+    "111": "主机下发数据的耗时(ms)",#Time taken to send data from host (ms)
+    "112": "设备保存写数据的耗时(ms)",#Time taken to save write data by device (ms)
+    "113": "释放写请求资源的耗时(ms)",#Time taken to release write request resources (ms)
+    "114": "执行读请求的耗时(ms)",#Time taken to execute read request (ms)
+    "115": "释放读请求资源的耗时(ms)",#Time taken to release read request resources (ms)
+    "116": "Cache读I/O响应时间(ms)",#Cache read I/O response time (ms)
+    "117": "Cache写I/O响应时间(ms)",#Cache write I/O response time (ms)
+    "118": "Cache镜像I/O响应时间(ms)",#Cache mirror I/O response time (ms)
+    "119": "写请求申请内存的耗时(ms)",#Time taken to allocate memory for write request (ms)
+    "120": "Cache write usage (%)",
+    "121": "Cache写盘I/O数(个)",#Number of cache write disk I/Os
+    "122": "Cache写盘页面数(个)",#Number of cache write disk pages
+    "123": "Read Bandwidth (KB/s)",  # 📊 Vendor Documentation
+    "124": "Write Bandwidth (KB/s)",  # 📊 Vendor Documentation
+    "125": "读I/O平均大小(A控)(KB)",#Average read I/O size (Controller A) (KB)
+    "126": "写I/O平均大小(A控)(KB)",#Average write I/O size (Controller A) (KB)
+    "127": "最大I/O响应时间(A控)(ms)",#Max I/O response time (Controller A) (ms)
+    "128": "平均I/O响应时间(A控)(ms)",#Average I/O response time (Controller A) (ms)
+    "129": "利用率(A控)(%)",#Usage (Controller A) (%)
+    "130": "队列长度(A控)(个)",#Queue length (Controller A)
+    "131": "服务时间(A控)(ms)",#Service time (Controller A) (ms)
+    "132": "每秒合并读I/O的个数(A控)(个/秒)",#Number of merged read I/Os per second (Controller A)
+    "133": "每秒合并写I/O的个数(A控)(个/秒)",#Number of merged write I/Os per second (Controller A)
+    "134": "读等待时间(A控)(ms)",#Read wait time (Controller A) (ms)
+    "135": "写等待时间(A控)(ms)",#Write wait time (Controller A) (ms)
+    "136": "I/O平均大小(A控)(sector)",#Average I/O size (Controller A) (sectors)
+    "137": "读I/O平均大小(B控)(KB)",#Average read I/O size (Controller B) (KB)
+    "138": "写I/O平均大小(B控)(KB)",#Average write I/O size (Controller B) (KB)
+    "139": "最大I/O响应时间(B控)(ms)",#Max I/O response time (Controller B) (ms)
+    "140": "平均I/O响应时间(B控)(ms)",#Average I/O response time (Controller B) (ms)
+    "141": "利用率(B控)(%)",#Usage (Controller B) (%)
+    "142": "队列长度(B控)(个)",#Queue length (Controller B)
+    "143": "服务时间(B控)(ms)",#Service time (Controller B) (ms)
+    "144": "每秒合并读I/O的个数(B控)(个/秒)",#Number of merged read I/Os per second (Controller B)
+    "145": "每秒合并写I/O的个数(个/秒)",#Number of merged write I/Os per second (Controller B)
+    "146": "读等待时间(B控)(ms)",#Read wait time (Controller B) (ms)
+    "147": "写等待时间(B控)(ms)",#Write wait time (Controller B) (ms)
+    "148": "I/O平均大小(B控)(sector)",#Average I/O size (Controller B) (sectors)
+    "149": "读I/O粒度分布：< 4K(%)",#Read I/O granularity distribution: < 4K (%)
+    "150": "读I/O粒度分布：≤ 8K(%)",
+    "151": "读I/O粒度分布：≤ 16K(%)",
+    "152": "读I/O粒度分布：≤ 32K(%)",
+    "153": "读I/O粒度分布：≤ 64K(%)",
+    "154": "读I/O粒度分布：≤ 128K(%)",
+    "155": "读I/O粒度分布：≤ 256K(%)",
+    "156": "读I/O粒度分布：≤ 512K(%)",
+    "157": "读I/O粒度分布：≤ 1M(%)",
+    "158": "读I/O粒度分布：≤ 2M(%)",
+    "159": "读I/O粒度分布：> 2M(%)",
+    "160": "写I/O粒度分布：< 4K(%)",#Write I/O granularity distribution: < 4K (%)
+    "161": "写I/O粒度分布：<= 8K(%)",
+    "162": "写I/O粒度分布：<= 16K(%)",
+    "163": "写I/O粒度分布：<= 32K(%)",
+    "164": "写I/O粒度分布：<= 64K(%)",
+    "165": "写I/O粒度分布：<= 128K(%)",
+    "166": "写I/O粒度分布：<= 256K(%)",
+    "167": "写I/O粒度分布：<= 512K(%)",
+    "168": "写I/O粒度分布：<= 1M(%)",
+    "169": "写I/O粒度分布：<= 2M(%)",
+    "170": "写I/O粒度分布：> 2M(%)",
+    "171": "读写I/O粒度分布：< 4K(%)",#Read/Write I/O granularity distribution: < 4K (%)
+    "172": "读写I/O粒度分布：<= 8K(%)",
+    "173": "读写I/O粒度分布：<= 16K(%)",
+    "174": "读写I/O粒度分布：<= 32K(%)",
+    "175": "读写I/O粒度分布：<= 64K(%)",
+    "176": "读写I/O粒度分布：<= 128K(%)",
+    "177": "读写I/O粒度分布：<= 256K(%)",
+    "178": "读写I/O粒度分布：<= 512K(%)",
+    "179": "读写I/O粒度分布：<= 1M(%)",
+    "180": "读写I/O粒度分布：<= 2M(%)",
+    "181": "读写I/O粒度分布：> 2M(%)",
+    "182": "OPS",  # 📊 Vendor Documentation (обновлено)
+    "183": "在线用户数",#Number of online users
+    "184": "硬配额空间容量",#Hard quota space capacity
+    "185": "已用容量",#Used capacity
+    "186": "总容量",#Total capacity
+    "187": "重删率(%)",#Deduplication rate (%)
+    "188": "包传输速率(Packets/s)",#Packet transmission rate (Packets/s)
+    "189": "丢包率(%)",#Packet loss rate (%)
+    "190": "错误包率(%)",#Packet error rate (%)
+    "191": "包溢出率(%)",#Packet overflow rate (%)
+    "192": "Access frequency (%)",
+    "193": "包吞吐率(%)",#Packet throughput rate (%)
+    "194": "远程复制带宽(KB/s)",#Remote replication bandwidth (KB/s)
+    "195": "Max. read I/O response time (ms)",
+    "196": "Max. write I/O response time (ms)",
+    "197": "Avg. read I/O response time (ms)",
+    "198": "Avg. write I/O response time (ms)",
+    "199": "Read I/O Latency Distribution: [0 ms, 10 ms) (%)",  # 📊 Vendor Documentation
+    "200": "Read I/O Latency Distribution: [10 ms, 20 ms) (%)",  # 📊 Vendor Documentation
+    "201": "Read I/O Latency Distribution: [20 ms, 50 ms) (%)",  # 📊 Vendor Documentation
+    "202": "Read I/O Latency Distribution: [50 ms, 100 ms) (%)",  # 📊 Vendor Documentation
+    "203": "Read I/O Latency Distribution: [100 ms, 200 ms) (%)",  # 📊 Vendor Documentation
+    "204": "Read I/O Latency Distribution: [200ms,+∞) (%)",
+    "205": "Write I/O Latency Distribution: [0 ms, 10 ms) (%)",  # 📊 Vendor Documentation
+    "206": "Write I/O Latency Distribution: [10 ms, 20 ms) (%)",  # 📊 Vendor Documentation
+    "207": "Write I/O Latency Distribution: [20 ms, 50 ms) (%)",  # 📊 Vendor Documentation
+    "208": "Write I/O Latency Distribution: [50 ms, 100 ms) (%)",  # 📊 Vendor Documentation
+    "209": "Write I/O Latency Distribution: [100 ms, 200 ms) (%)",  # 📊 Vendor Documentation
+    "210": "Write I/O Latency Distribution: [200ms,+∞) (%)",
+    "211": "磁盘IOPS(IO/s)",#Disk IOPS (IO/s)
+    "217": "Max. CPU usage (%)",
+    "218": "Max. memory usage (%)",
+    "219": "NFS bandwidth (KB/s)",
+    "220": "NFS write bandwidth (KB/s)",
+    "221": "NFS read bandwidth (KB/s)",
+    "222": "CIFS bandwidth (KB/s)",
+    "223": "CIFS write bandwidth (KB/s)",
+    "224": "CIFS read bandwidth (KB/s)",
+    "225": "Number of connected clients",
+    "226": "Number of connected NFS clients",
+    "227": "Number of connected CIFS clients",
+    "228": "Avg. I/O size(KB)",  # 📊 Vendor Documentation
+    "229": "Network packet stream speed (per second)",
+    "230": "Network packet input stream speed (per second)",
+    "231": "Network packet output stream speed (per second)",
+    "232": "Read OPS",  # 📊 Vendor Documentation
+    "233": "Write OPS",  # 📊 Vendor Documentation
+    "236": "Bandwidth (KB/s)",
+    "240": "Average queue depth",
+    "241": "SCSI commands executed per second",
+    "242": "Verify commands per second",
+    "247": "Number of dirty data pages",
+    "248": "Threshold for dirty data page quantity (%)",
+    "249": "Ratio of dirty data pages to total pages (%)",
+    "250": "Used cache ratio (%)",
+    "251": "Number of sent-by-host read/write I/Os that can be immediately found in the cache per second",
+    "252": "Number of sent-by-host read I/Os that can be immediately found in the cache per second",
+    "253": "Number of sent-by-host write I/Os that can be immediately found in the cache per second",
+    "254": "Number of sent-by-host read/write I/Os that cannot be immediately found in the cache per second",
+    "255": "Number of sent-by-host read I/Os that cannot be immediately found in the cache per second",
+    "256": "Number of sent-by-host write I/Os that cannot be immediately found in the cache per second",
+    "257": "Back-end read/write requests per second",
+    "258": "Back-end read requests per second",
+    "259": "Back-end write requests per second",
+    "260": "Back-End traffic (MB/s)",
+    "261": "Back-end read traffic (MB/s)",
+    "262": "Back-end write traffic (MB/s)",
+    "263": "Read miss response time (ms)",
+    "264": "Write miss response time (ms)",
+    "265": "Ratio of read I/Os to total I/Os (%)",
+    "266": "Ratio of write I/Os to total I/Os (%)",
+    "267": "Ratio of read I/Os to total read I/Os (%)",
+    "268": "Ratio of write I/Os to total write I/Os (%)",
+    "269": "Ratio of lost read requests (%)",
+    "270": "Ratio of lost write requests (%)",
+    "271": "Back-end read request time (ms)",
+    "272": "Back-end write request time (ms)",
+    "273": "Back-end read request queuing time (ms)",
+    "274": "Back-end read response time (ms)",
+    "275": "Back-end write response time (ms)",
+    "276": "Avg. back-end response time (ms)",
+    "277": "Ratio of back-end read requests (%)",
+    "278": "Ratio of back-end write requests (%)",
+    "279": "Number of data transfer requests from front-end host ports to cache per second",
+    "280": "Number of data transfer read requests from front-end host ports to cache per second",
+    "281": "Number of data transfer write requests from front-end host ports to cache per second",
+    "282": "Number of hit read requests sent by front-end host ports per second",
+    "283": "Number of hit write requests sent by front-end host ports per second",
+    "284": "Number of lost requests per second",
+    "285": "Number of lost read requests on all the front-end host ports per second",
+    "286": "Number of lost write requests on all the front-end host ports per second",
+    "287": "Ratio of read requests to total requests (%)",
+    "288": "Ratio of write requests to total requests (%)",
+    "289": "Hit ratio of read/write requests (%)",
+    "290": "Read request hit ratio (%)",
+    "291": "I/Os per second",
+    "292": "Data transfer requests per second",
+    "293": "Data transfer read  requests per second",
+    "294": "Data transfer write  requests per second",
+    "295": "Read/write traffic (MB/s)",
+    "296": "Read/write traffic on ports (MB/s)",
+    "297": "Read/write IOPS on ports",
+    "298": "Back-end read traffic (MB/s)",
+    "299": "Back-end write traffic (MB/s)",
+    "300": "Port average requests size",
+    "301": "Max. number of dirty data pages",
+    "302": "Number of randomly hit requests per second",
+    "303": "Hit ratio (%)",
+    "304": "Miss ratio (%)",
+    "305": "Random read ratio (%)",
+    "306": "Random write ratio (%)",
+    "307": "Max. IOPS (IO/s)",
+    "308": "Total number of failed I/Os",
+    "309": "Number of failed I/Os per second",
+    "310": "Faulty I/O ratio (%)",
+    "311": "Throughput (MB/s)",
+    "312": "Read throughput (MB/s)",
+    "313": "Write throughput (MB/s)",
+    "333": "Cache water (%)",
+    "369": "Service Time(us)",#NEW
+    "370": "Avg. I/O Response Time (us)",#NEW
+    "371": "Max. I/O Response Time (us)",#NEW
+    "384": "Avg. Read I/O Response Time(us)",
+    "385": "Avg. Write I/O Response Time(us)",
+    "392": "Read I/O Latency Distribution: [0 us, 500 us) (%)",#NEW
+    "393": "Read I/O Latency Distribution: [500 us, 1 ms) (%)",#NEW
+    "394": "Read I/O Latency Distribution: [1 ms, 2 ms) (%)",#NEW   
+    "395": "Read I/O Latency Distribution: [2 ms, 5 ms) (%)",#NEW   
+    "396": "Read I/O Latency Distribution: [5ms,10ms) (%)",
+    "397": "Read I/O Latency Distribution: [10 ms, +∞) (%)",#NEW 
+    "398": "Write I/O Latency Distribution: [0 us, 500 us) (%)",#NEW 
+    "399": "Write I/O Latency Distribution: [500 us, 1 ms) (%)",#NEW 
+    "400": "Write I/O Latency Distribution: [1 ms, 2 ms) (%)",#NEW
+    "401": "Write I/O Latency Distribution: [2 ms, 5 ms) (%)",#NEW
+    "402": "Write I/O Latency Distribution: [5ms,10ms) (%)",
+    "403": "Write I/O Latency Distribution: [10 ms, +∞) (%)",#NEW
+    "404": "Read and Write I/O Latency Distribution: [0 us, 500 us) (%)",#NEW
+    "405": "Read and Write I/O Latency Distribution: [500 us, 1 ms) (%)",#NEW
+    "410": "Protocol Operations Average Latency For NFS (ms)",
+    "411": "Protocol Operations Max Latency For NFS (ms)",
+    "412": "Protocol Write Operation Average Latency For NFS (ms)",
+    "413": "Protocol Write Operation Max Latency For NFS (ms)",
+    "414": "Protocol Read Operation Average Latency For NFS (ms)",
+    "415": "Protocol Read Operation Max Latency For NFS (ms)",
+    "416": "Protocol Operations Average Latency For CIFS (ms)",
+    "417": "Protocol Operations Max Latency For CIFS (ms)",
+    "418": "Protocol Write Operation Average Latency For CIFS (ms)",
+    "419": "Protocol Write Operation Max Latency For CIFS (ms)",
+    "420": "Protocol Read Operation Average Latency For CIFS (ms)",
+    "421": "Protocol Read Operation Max Latency For CIFS (ms)",
+    "428": "Average Latency For Operations (ms)",
+    "429": "Max Latency For Operations (ms)",
+    "430": "Average Latency For Write Operation (ms)",
+    "431": "Max Latency For Write Operation (ms)",
+    "432": "Average Latency For Read Operation (ms)",
+    "433": "Max Latency For Read Operation (ms)",
+    "435": "Count Of Protocol Read Operation Large Latency Continuous Occurred For CIFS",
+    "436": "Count Of Protocol Read Operation Large Latency Continuous Occurred For NFS",
+    "437": "Count Of Protocol Read Operation Large Latency Continuous Occurred",
+    "439": "Throughput (Bps)",
+    "462": "Space Usage (%)",
+    "463": "Space Size (MB)",
+    "464": "Average Read OPS Response Time (ms)",
+    "465": "Average Write OPS Response Time (ms)",
+    "466": "Read I/O Granularity Distribution: [0 Bytes, 512 Bytes) (%)",  # 📊 Vendor Documentation
+    "467": "Read I/O Granularity Distribution: [512B,1K)(%)",  # 📊 Vendor Documentation
+    "468": "Read I/O Granularity Distribution: [256K,+∞)(%)",  # 📊 Vendor Documentation
+    "469": "Write I/O Granularity Distribution: [0 Bytes, 512 Bytes) (%)",  # 📊 Vendor Documentation
+    "470": "Write I/O Granularity Distribution: [512B,1K)(%)",  # 📊 Vendor Documentation
+    "471": "Write I/O Granularity Distribution: [256K,+∞)(%)",  # 📊 Vendor Documentation
+    "472": "Min Latency For Operations (ms)",
+    "473": "Logical Bandwidth (MB/s)",
+    "475": "File bandwidth(B/s)",
+    "476": "File OPS(per second)",
+    "508": "Avg. Operation Response Time (us)",  # 📊 Vendor Documentation (обновлено)
+    "509": "Max. Operation Response Time (us)",  # 📊 Vendor Documentation
+    "510": "Min. Operation Response Time (us)",  # 📊 Vendor Documentation
+    "511": "File Bandwidth (KB/s)",  # 📊 Vendor Documentation (обновлено)
+    "512": "Throughput (MB/s)",
+    "513": "Total amount of migrated data",
+    "514": "Amount of data migrated to SSDs",
+    "515": "Amount of data migrated to SAS disks",
+    "516": "Amount of data migrated to NL-SAS disks",
+    "517": "Amount of data migrated from SAS disks to SSDs",
+    "518": "Amount of data migrated from NL-SAS disks to SSDs",
+    "519": "Amount of data migrated from SSDs to SAS disks",
+    "520": "Amount of data migrated from NL-SAS disks to SAS disks",
+    "521": "Amount of data migrated from SSDs to NL-SAS disks",
+    "522": "Amount of data migrated from SSDs to NL-SAS disks",
+    "523": "Service Time(Excluding Queue Time)(us)",  # 📊 Vendor Documentation (обновлено)
+    "524": "Avg. Read OPS Response Time (us)",  # 📊 Vendor Documentation (обновлено)
+    "525": "Avg. Write OPS Response Time (us)",  # 📊 Vendor Documentation (обновлено)
+    "530": "Read I/O Latency Distribution: [0ms,5ms) (%)",
+    "531": "Write I/O Latency Distribution: [0ms,5ms) (%)",
+    "532": "Number of failed read I/Os",
+    "533": "Number of failed write I/Os",
+    "534": "File System Bandwidth (KB/s)",
+    "535": "File System Read Bandwidth (KB/s)",
+    "536": "File System Write Bandwidth (KB/s)",
+    "537": "S3 Bandwidth (KB/s)",
+    "538": "S3 Read Bandwidth (KB/s)",
+    "539": "S3 Write Bandwidth (KB/s)",
+    "540": "S3 Delete Number",
+    "541": "S3 Delete Failed Number",
+    "542": "S3 Delete Failed Number(client's cause)",
+    "543": "S3 Get Number",
+    "544": "S3 Get Failed Number",
+    "545": "S3 Get Failed Number(client's cause)",
+    "546": "S3 Put Number",
+    "547": "S3 Put Failed Number",
+    "548": "S3 Put Failed Number(client's cause)",
+    "549": "S3 Connect Failed Rate(%)",
+    "550": "Swift Bandwidth (KB/s)",
+    "551": "Swift Read Bandwidth (KB/s)",
+    "552": "Swift Write Bandwidth (KB/s)",
+    "553": "Swift Delete Number",
+    "554": "Swift Delete Failed Number",
+    "555": "Swift Delete Failed Number(client's cause)",
+    "556": "Swift Get Number",
+    "557": "Swift Get Failed Number",
+    "558": "Swift Get Failed Number(client's cause)",
+    "559": "Swift Put Number",
+    "560": "Swift Put Failed Number",
+    "561": "Swift Put Failed Number(client's cause)",
+    "562": "Swift Connect Failed Rate(%)",
+    "563": "NFS V3 NULL procedure count",
+    "564": "NFS V3 GETATTR procedure count",
+    "565": "NFS V3 SETATTR procedure count",
+    "566": "NFS V3 LOOKUP procedure count",
+    "567": "NFS V3 ACCESS procedure count",
+    "568": "NFS V3 READLINK procedure count",
+    "569": "NFS V3 READ procedure count",
+    "570": "NFS V3 WRITE procedure count",
+    "571": "NFS V3 CREATE procedure count",
+    "572": "NFS V3 MKDIR procedure count",
+    "573": "NFS V3 SYMLINK procedure count",
+    "574": "NFS V3 MKNOD procedure count",
+    "575": "NFS V3 REMOVE procedure count",
+    "576": "NFS V3 RMDIR procedure count",
+    "577": "NFS V3 RENAME procedure count",
+    "578": "NFS V3 LINK procedure count",
+    "579": "NFS V3 READDIR procedure count",
+    "580": "NFS V3 READDIRPLUS procedure count",
+    "581": "NFS V3 FSSTAT procedure count",
+    "582": "NFS V3 FSINFO procedure count",
+    "583": "NFS V3 PATHCONF procedure count",
+    "584": "NFS V3 COMMIT procedure count",
+    "585": "NFS V3 extendcmd procedure count",
+    "586": "NFS V4 NULL procedure count",
+    "587": "NFS V4 COMPOUND procedure count",
+    "588": "NFS V4 ACCESS operation count",
+    "589": "NFS V4 CLOSE operation count",
+    "590": "NFS V4 COMMIT operation count",
+    "591": "NFS V4 CREATE operation count",
+    "592": "NFS V4 DELEGPURGE operation count",
+    "593": "NFS V4 DELEGRETURN operation count",
+    "594": "NFS V4 GETATTR operation count",
+    "595": "NFS V4 GETFH operation count",
+    "596": "NFS V4 LINK operation count",
+    "597": "NFS V4 LOCK operation count",
+    "598": "NFS V4 LOCKT operation count",
+    "599": "NFS V4 LOCKU operation count",
+    "600": "NFS V4 LOOKUP operation count",
+    "601": "NFS V4 LOOKUPP operation count",
+    "602": "NFS V4 NVERIFY operation count",
+    "603": "NFS V4 OPEN operation count",
+    "604": "NFS V4 OPENATTR operation count",
+    "605": "NFS V4 OPEN_CONFIRM operation count",
+    "606": "NFS V4 OPEN_DOWNGRADE operation count",
+    "607": "NFS V4 PUTFH operation count",
+    "608": "NFS V4 PUTPUBFH operation count",
+    "609": "NFS V4 PUTROOTFH operation count",
+    "610": "NFS V4 READ operation count",
+    "611": "NFS V4 READDIR operation count",
+    "612": "NFS V4 READLINK operation count",
+    "613": "NFS V4 REMOVE operation count",
+    "614": "NFS V4 RENAME operation count",
+    "615": "NFS V4 RENEW operation count",
+    "616": "NFS V4 RESTOREFH operation count",
+    "617": "NFS V4 SAVEFH operation count",
+    "618": "NFS V4 SECINFO operation count",
+    "619": "NFS V4 SETATTR operation count",
+    "620": "NFS V4 SETCLIENTID operation count",
+    "621": "NFS V4 SETCLIENTID_CONFIRM operation count",
+    "622": "NFS V4 VERIFY operation count",
+    "623": "NFS V4 WRITE operation count",
+    "624": "NFS V4 RELEASE_LOCKOWNER operation count",
+    "625": "NFS V3 procedures average latency excluding read and write",
+    "626": "NFS V4 operations average latency excluding read and write",
+    "627": "NFS operation count per second",
+    "628": "NFS V3 Read I/O count: [0K,512B)",
+    "629": "NFS V3 Read I/O count: [512B,1K)",
+    "630": "NFS V3 Read I/O count: [1K,2K)",
+    "631": "NFS V3 Read I/O count: [2K,4K)",
+    "632": "NFS V3 Read I/O count: [4K,8K)",
+    "633": "NFS V3 Read I/O count: [8K,16K)",
+    "634": "NFS V3 Read I/O count: [16K,32K)",
+    "635": "NFS V3 Read I/O count: [32K,64K)",
+    "636": "NFS V3 Read I/O count: [64K,128K)",
+    "637": "NFS V3 Read I/O count: [128K,256K)",
+    "638": "NFS V3 Read I/O count: [256K,+∞)",
+    "639": "NFS V3 Write I/O count: [0K,512B)",
+    "640": "NFS V3 Write I/O count: [512B,1K)",
+    "641": "NFS V3 Write I/O count: [1K,2K)",
+    "642": "NFS V3 Write I/O count: [2K,4K)",
+    "643": "NFS V3 Write I/O count: [4K,8K)",
+    "644": "NFS V3 Write I/O count: [8K,16K)",
+    "645": "NFS V3 Write I/O count: [16K,32K)",
+    "646": "NFS V3 Write I/O count: [32K,64K)",
+    "647": "NFS V3 Write I/O count: [64K,128K)",
+    "648": "NFS V3 Write I/O count: [128K,256K)",
+    "649": "NFS V3 Write I/O count: [256K,+∞)",
+    "650": "NFS V4 Read I/O count: [0K,512B)",
+    "651": "NFS V4 Read I/O count: [512B,1K)",
+    "652": "NFS V4 Read I/O count: [1K,2K)",
+    "653": "NFS V4 Read I/O count: [2K,4K)",
+    "654": "NFS V4 Read I/O count: [4K,8K)",
+    "655": "NFS V4 Read I/O count: [8K,16K)",
+    "656": "NFS V4 Read I/O count: [16K,32K)",
+    "657": "NFS V4 Read I/O count: [32K,64K)",
+    "658": "NFS V4 Read I/O count: [64K,128K)",
+    "659": "NFS V4 Read I/O count: [128K,256K)",
+    "660": "NFS V4 Read I/O count: [256K,+∞)",
+    "661": "NFS V4 Write I/O count: [0K,512B)",
+    "662": "NFS V4 Write I/O count: [512B,1K)",
+    "663": "NFS V4 Write I/O count: [1K,2K)",
+    "664": "NFS V4 Write I/O count: [2K,4K)",
+    "665": "NFS V4 Write I/O count: [4K,8K)",
+    "666": "NFS V4 Write I/O count: [8K,16K)",
+    "667": "NFS V4 Write I/O count: [16K,32K)",
+    "668": "NFS V4 Write I/O count: [32K,64K)",
+    "669": "NFS V4 Write I/O count: [64K,128K)",
+    "670": "NFS V4 Write I/O count: [128K,256K)",
+    "671": "NFS V4 Write I/O count: [256K,+∞)",
+    "672": "NFS Read I/O count: [0K,512B)",
+    "673": "NFS Read I/O count: [512B,1K)",
+    "674": "NFS Read I/O count: [1K,2K)",
+    "675": "NFS Read I/O count: [2K,4K)",
+    "676": "NFS Read I/O count: [4K,8K)",
+    "677": "NFS Read I/O count: [8K,16K)",
+    "678": "NFS Read I/O count: [16K,32K)",
+    "679": "NFS Read I/O count: [32K,64K)",
+    "680": "NFS Read I/O count: [64K,128K)",
+    "681": "NFS Read I/O count: [128K,256K)",
+    "682": "NFS Read I/O count: [256K,+∞)",
+    "683": "NFS Write I/O count: [0K,512B)",
+    "684": "NFS Write I/O count: [512B,1K)",
+    "685": "NFS Write I/O count: [1K,2K)",
+    "686": "NFS Write I/O count: [2K,4K)",
+    "687": "NFS Write I/O count: [4K,8K)",
+    "688": "NFS Write I/O count: [8K,16K)",
+    "689": "NFS Write I/O count: [16K,32K)",
+    "690": "NFS Write I/O count: [32K,64K)",
+    "691": "NFS Write I/O count: [64K,128K)",
+    "692": "NFS Write I/O count: [128K,256K)",
+    "693": "NFS Write I/O count: [256K,+∞)",
+    "703": "Total NFS Bandwidth (KB/s)",#NEW
+    "706": "Total CIFS Bandwidth (KB/s)",#NEW
+    "709": "NFS Read Bandwidth (KB/s)",#NEW
+    "712": "CIFS Read Bandwidth (KB/s)",#NEW
+    "715": "NFS Write Bandwidth (KB/s)",#NEW
+    "718": "CIFS Write Bandwidth (KB/s)",#NEW
+    "721": "Total NFS OPS",#NEW
+    "724": "Total CIFS OPS",#NEW
+    "727": "Total NFS Read OPS",#NEW
+    "730": "Total CIFS read OPS",#NEW
+    "733": "Total NFS write OPS",#NEW
+    "736": "Total CIFS Write OPS",#NEW
+    "739": "Other NFS OPS",#NEW
+    "742": "Other CIFS OPS",#NEW
+    "745": "Avg. Response Time of NFS I/Os(us)",#NEW
+    "748": "Avg. Response Time of CIFS I/Os(us)",#NEW
+    "751": "Avg. Response Time of NFS Read I/Os(us)",#NEW
+    "754": "Avg. Response Time of CIFS Read I/Os(us)",#NEW
+    "757": "Avg. Response Time of NFS Write I/Os(us)",#NEW
+    "760": "Avg. Response Time of CIFS Write I/Os(us)",#NEW
+    "763": "Avg. Response Time of Other NFS I/Os(us)",#NEW
+    "766": "Avg. Response Time of Other CIFS I/Os(us)",#NEW
+    "770": "File Read Bandwidth (KB/s)",#NEW
+    "771": "File Write Bandwidth (KB/s)",#NEW
+    "802": "Max. Read I/O Size (KB)",#NEW
+    "803": "Max. Write I/O Size (KB)",#NEW
+    "804": "Max. I/O Size (KB)",#NEW
+    "807": "Avg. Back-End Response Time (us)",#NEW
+    "808": "Average usage of member disks(%)",#Avg. Member Disk Usage (%)
+    "1054": "Synchronization Duration (s)",
+    "1055": "Cache page utilization (%)",
+    "1056": "Cache chunk utilization (%)",
+    "1057": "Cache pageUnit utilization (%)",
+    "1059": "Cache Page Preservation (%)",  # 📊 Vendor Documentation
+    "1060": "Cache Chunk Preservation (%)",  # 📊 Vendor Documentation
+    "1061": "S3 Head Number",
+    "1062": "S3 Head Failed Number",
+    "1063": "S3 Head Failed Number(client's cause)",
+    "1064": "S3 Post Number",
+    "1065": "S3 Post Failed Number",
+    "1066": "S3 Post Failed Number(client's cause)",
+    "1067": "Swift Head Number",
+    "1068": "Swift Head Failed Number",
+    "1069": "Swift Head Failed Number(client's cause)",
+    "1070": "Swift Post Number",
+    "1071": "Swift Post Failed Number",
+    "1072": "Swift Post Failed Number(client's cause)",
+    "1073": "ISCSI IOPS(IO/s)",
+    "1074": "CIFS operation count per second",
+    "1075": "Disk Max. Usage(%)",
+    "1076": "Total Disk IOPS(IO/s)",
+    "1077": "Read Disk IOPS(IO/s)",
+    "1078": "Write Disk IOPS(IO/s)",
+    "1079": "SCSI IOPS(IO/s)",
+    "1090": "Data Reduction Ratio",
+    "1091": "Deduplication Ratio",
+    "1092": "Compression Ratio",
+    "1093": "Overall Space Saving Ratio",
+    "1094": "Thin LUN Space Saving Rate (%)",
+    # ============================================================================
+    # NFSv3 Procedure Counts (OPS) - Resource ID 1000 (Controller NFSV3)
+    # ============================================================================
+    # 📊 ОБНОВЛЕНО: 2025-10-29 - Детальный анализ реальных данных (Perf_3000v6_NFSv3.zip)
+    # Источник: 814,320 записей, диапазон 2025-10-11 → 2025-10-17
+    # Отчёт: NFSv3_Metric_IDs_FINAL_REPORT.md
+    
+    # ✅ ПОДТВЕРЖДЁННЫЕ OPS метрики (высокая уверенность 90-99%):
+    "1101": "Total NFS remove OPS",  # 📊 Vendor Documentation (обновлено)
+    "1102": "Total NFS getattr OPS",  # 📊 Vendor Documentation (обновлено)
+    "1114": "Avg. NFS lookup response time(us)", # ✅ 95%: max=5,705, значимые OPS
+    "1105": "Total NFS rmdir OPS",  # 📊 Vendor Documentation (обновлено)
+    "1106": "Total NFS access OPS",  # 📊 Vendor Documentation (обновлено)
+    "1108": "Total NFS readdir plus OPS",  # 📊 Vendor Documentation (обновлено)
+    "1115": "Avg. NFS create response time(us)", # ✅ 95%: max=74,322, ОЧЕНЬ активная!
+    "1116": "Avg. NFS remove response time(us)", # ✅ 95%: max=30,128, активная
+    "1117": "Avg. NFS getattr response time(us)",  # ✅ 90%: max=4,603
+    "1118": "Avg. NFS setattr response time(us)",  # ✅ 90%: max=91,413, ОЧЕНЬ активная!
+    "1119": "Avg. NFS mkdir response time(us)", # ✅ 99%: max=263,440, САМАЯ активная!
+    "1120": "Avg. NFS rmdir response time(us)",  # ✅ 90%: max=6,869
+    
+    "1099": "Total NFS lookup OPS",  # 📊 Vendor Documentation (обновлено)
+    "1100": "Total NFS create OPS",  # 📊 Vendor Documentation (обновлено)
+    "1103": "Total NFS setattr OPS",  # 📊 Vendor Documentation (обновлено)
+    "1104": "Total NFS mkdir OPS",  # 📊 Vendor Documentation (обновлено)
+    "1107": "Total NFS readdir OPS",  # 📊 Vendor Documentation (обновлено)
+    "1109": "Total NFS open OPS",  # 📊 Vendor Documentation (обновлено)
+    
+    # ❌ ОТСУТСТВУЮЩИЕ OPS метрики (НЕ СУЩЕСТВУЮТ в .dat файлах!):
+    # ПРОВЕРЕНО: Прямое извлечение из бинарных .dat файлов показало, что
+    # эти Metric IDs отсутствуют в Map структуре заголовков.
+    "1110": "Total CIFS create OPS",  # 📊 Vendor Documentation (обновлено)
+    "1111": "Total CIFS queryinfo OPS",  # 📊 Vendor Documentation (обновлено)
+    "1112": "Total CIFS querydir OPS",  # 📊 Vendor Documentation (обновлено)
+    "1113": "Total CIFS setinfo OPS",  # 📊 Vendor Documentation (обновлено)
+    
+    # ============================================================================
+    # NFSv3 Response Times (us) - Resource ID 1000 (Controller NFSV3)
+    # ============================================================================
+    # 📊 ОБНОВЛЕНО: 2025-10-29 - Анализ 814,320 записей из реальных данных
+    # ⚠️ КРИТИЧЕСКАЯ ПРОБЛЕМА: Большинство RT Metric IDs возвращают только 0!
+    # Активны ТОЛЬКО 3 RT метрики: ID 1121, 1122, 1123
+    
+    # ✅ ПОДТВЕРЖДЁННЫЕ RT метрики (высокая уверенность):
+    "1121": "Avg. NFS readdir response time(us)",    # ✅ 95%: max=17,610us, активная метрика
+    "1122": "Avg. NFS access response time(us)",  # ✅ 99%: max=10,283us (было: CREATE RT - ИСПРАВЛЕНО!)
+                                                # Доказательство: max RT=10,283us близко к эталону create RT=9,221us
+                                                # В момент 04:50: значение=67us (активная), дубликат 1138=0 (неактивный)
+    "1123": "Avg. NFS readdir plus response time(us)",   # ✅ 85%: max=65,919us, САМЫЙ ВЫСОКИЙ RT! (было: REMOVE RT)
+                                                # Возможно также MKDIR RT или FSSTAT RT
+    
+    # ⚠️ RT метрики с низкой активностью:
+    "1134": "Write I/O Latency Distribution: [200ms, 1s)(%)",  # 📊 Vendor Documentation (обновлено)
+    "1135": "Write I/O Latency Distribution: [1s, 3s)(%)",  # 📊 Vendor Documentation (обновлено)
+    "1137": "Write I/O Latency Distribution: [5s, 8s)(%)",  # 📊 Vendor Documentation (обновлено)
+    
+    # ❌ RT метрики с КРИТИЧЕСКИМИ ПРОБЛЕМАМИ:
+    
+    # НЕ СУЩЕСТВУЮТ в .dat файлах (проверено извлечением из Map):
+    "1124": "Avg. CIFS create response time(us)",   # ❌ НЕ СУЩЕСТВУЕТ в .dat! (эталон: 133us)
+    "1125": "Avg. CIFS queryinfo response time(us)",   # ❌ НЕ СУЩЕСТВУЕТ в .dat!
+    "1126": "Avg. CIFS querydir response time(us)",     # ❌ НЕ СУЩЕСТВУЕТ в .dat! (эталон: 13,575us!)
+    "1127": "Avg. CIFS setinfo response time(us)",     # ❌ НЕ СУЩЕСТВУЕТ в .dat!
+    
+    # Присутствуют в .dat, но НЕАКТИВНЫ (возвращают только 0):
+    "1128": "Avg. NFS open response time(us)",   # ⚠️ В .dat, но RT=0 ВСЕГДА (ДУБЛИКАТ 1123!)
+    "1129": "Read I/O Latency Distribution: [200ms, 1s)(%)",  # 📊 Vendor Documentation (обновлено)
+    "1130": "Read I/O Latency Distribution: [1s, 3s)(%)",  # 📊 Vendor Documentation (обновлено)
+    "1131": "Read I/O Latency Distribution: [3s, 5s)(%)",  # 📊 Vendor Documentation (обновлено)
+    "1132": "Read I/O Latency Distribution: [5s, 8s)(%)",  # 📊 Vendor Documentation (обновлено)
+    "1133": "Read I/O Latency Distribution: [8s, +∞)(%)",  # 📊 Vendor Documentation (обновлено)
+    "1136": "Write I/O Latency Distribution: [3s, 5s)(%)",  # 📊 Vendor Documentation (обновлено)
+    "1138": "Write I/O Latency Distribution: [8s, +∞)(%)",  # 📊 Vendor Documentation (обновлено)
+    "1139": "Avg. Read I/O Link Transmission Latency(us)",#NEW
+    "1140": "Avg. Write I/O Link Transmission Latency(us)",#NEW
+    "1141": "CIFS Tree Quantity",#NEW
+    "1142": "CIFS Session Quantity",#NEW
+    "1143": "NFS Connection Quantity",#NEW
+    "1154": "Unmap Command Bandwidth (MB/s)",#NEW
+    "1155": "Unmap Command IOPS (IO/s)",#NEW
+    "1156": "Avg. Unmap Command Size (KB)",#NEW
+    "1157": "Avg. Unmap Command Response Time (us)",#NEW
+    "1158": "WRITE SAME Command Bandwidth (MB/s)",#NEW
+    "1159": "WRITE SAME Command IOPS (IO/s)",#NEW
+    "1160": "Avg. WRITE SAME Command Size (KB)",#NEW
+    "1161": "Avg. WRITE SAME Command Response Time (us)",#NEW
+    "1162": "Full Copy Read Request Bandwidth (MB/s)",#NEW
+    "1163": "Full Copy Read Request IOPS (IO/s)",#NEW
+    "1164": "Avg. Full Copy Read Request Size (KB)",#NEW
+    "1165": "Avg. Full Copy Read Request Response Time (us)",#NEW
+    "1166": "Full Copy Write Request Bandwidth (MB/s)",#NEW
+    "1167": "Full Copy Write Request IOPS (IO/s)",#NEW
+    "1168": "Avg. Full Copy Write Request Size (KB)",#NEW
+    "1169": "Avg. Full Copy Write Request Response Time (us)",#NEW
+    "1170": "ODX Read Request Bandwidth (MB/s)",#NEW
+    "1171": "ODX Read Request IOPS (IO/s)",#NEW
+    "1172": "Avg. ODX Read Request Size (KB)",#NEW
+    "1173": "Avg. ODX Read Request Response Time (us)",#NEW
+    "1174": "ODX Write Request Bandwidth (MB/s)",#NEW
+    "1175": "ODX Write Request IOPS (IO/s)",#NEW
+    "1176": "Avg. ODX Write Request Size (KB)",#NEW
+    "1177": "Avg. ODX Write Request Response Time (us)",#NEW
+    "1178": "ODX Write Zero Request Bandwidth (MB/s)",#NEW
+    "1179": "ODX Write Zero Request IOPS (IO/s)",#NEW
+    "1180": "Avg. ODX Write Zero Request Size (KB)",#NEW
+    "1181": "Avg. ODX Write Zero Request Response Time (us)",#NEW
+    "1182": "Read I/O Granularity Distribution: [0K,4K)(%)",#NEW
+    "1183": "Read I/O Granularity Distribution: [128K,+∞)(%)",#NEW
+    "1184": "Write I/O Granularity Distribution: [0K,4K)(%)",#NEW
+    "1185": "Write I/O Granularity Distribution: [128K,+∞)(%)",#NEW
+    "1188": "VAAI Bandwidth (MB/s)",#NEW
+    "1189": "VAAI IOPS (IO/s)",#NEW
+    "1190": "Avg. VAAI Size (KB)",#NEW
+    "1191": "Avg. VAAI Response Time (us)",#NEW
+    "1192": "DR Read Request Bandwidth (MB/s)",#NEW
+    "1193": "DR Read Request IOPS (IO/s)",#NEW
+    "1194": "Avg. DR Read Request Size (KB)",#NEW
+    "1195": "Avg. DR Read Request Response Time (us)",#NEW
+    "1196": "DR Write Request Bandwidth (MB/s)",#NEW
+    "1197": "DR Write Request IOPS (IO/s)",#NEW
+    "1198": "Avg. DR Write Request Size (KB)",#NEW
+    "1199": "Avg. DR Write Request Response Time (us)",#NEW
+    "1200": "OBS Storage total bandwidth (KB/s)",#NEW
+    "1201": "OBS Storage read bamdwidth (KB/s)",#NEW
+    "1202": "OBS Storage write bamdwidth (KB/s)",#NEW
+    "1211": "Normalized Latency (us)",#NEW
+    "1233": "I/O Sequentiality(%)",#NEW
+    "1234": "Read SmartCache Hit Ratio (%)",#NEW
+    "1243": "Full Copy Command Bandwidth (MB/s)",#NEW
+    "1244": "Full Copy Command IOPS (IO/s)",#NEW
+    "1245": "Avg. Full Copy Command Size (KB)",#NEW
+    "1246": "Avg. Full Copy Command Response Time (us)",#NEW
+    "1247": "ODX Command Bandwidth (MB/s)",#NEW
+    "1248": "ODX Command IOPS (IO/s)",#NEW
+    "1249": "Avg. ODX Command Size (KB)",#NEW
+    "1250": "Avg. ODX Command Response Time (us)",#NEW
+    "1251": "Total Block IOPS(IO/s)",#NEW
+    "1252": "Total Block Bandwidth (MB/s)",#NEW
+    "1263": "Other DataTurbo OPS",#NEW
+    "1264": "Average response time of other DataTurbo I/Os(us)",#NEW
+    "1265": "Total DataTurbo Bandwidth (KB/s)",#NEW
+    "1266": "DataTurbo Read Bandwidth (KB/s)",#NEW
+    "1267": "DataTurbo Write Bandwidth (KB/s)",#NEW
+    "1268": "Total DataTurbo OPS",#NEW
+    "1269": "Total DataTurbo Read OPS",#NEW
+    "1270": "Total DataTurbo write OPS",#NEW
+    "1271": "Average DataTurbo I/O response time(us)",#NEW
+    "1272": "Average DataTurbo read I/O response time(us)",#NEW
+    "1273": "Average DataTurbo write I/O response time(us)",#NEW
+    "1277": "Background Copy Bandwidth (KB/s)",#NEW
+    "1299": "KV CPU Usage (%)",#NEW
+    "1303": "RX Packets",#NEW
+    "1304": "TX Packets",#NEW
+    "1305": "RX Bandwidth (KB/s)",#NEW
+    "1306": "TX Bandwidth (KB/s)",#NEW
+    "1307": "Query Request Frequency (per Second)",#NEW
+    "1308": "Average Query Request Queue Duration (ms)",#NEW
+    "1309": "Average Query Request Duration (ms)",#NEW
+    "1310": "Maximum Query Request Duration (ms)",#NEW
+    "1311": "Maximum Query Request Queue Duration (ms)",#NEW
+    "1312": "Configuration Request Frequency (per Second)",#NEW
+    "1313": "Average Configuration Request Queue Duration (ms)",#NEW
+    "1314": "Average Configuration Request Duration (ms)",#NEW
+    "1315": "Maximum Configuration Request Duration (ms)",#NEW
+    "1316": "Maximum Configuration Request Queue Duration (ms)",#NEW
+    "1317": "DR Request Bandwidth (MB/s)",#NEW
+    "1318": "DR Request IOPS (IO/s)",#NEW
+    "1319": "Avg. DR Request Response Time (us)",#NEW
+    "1324": "Normalized Read IOPS (IO/s)",#NEW
+    "1325": "Normalized Write IOPS (IO/s)",#NEW
+    "1332": "Post-Process Deduplication Read Bandwidth(MB/s)",#NEW
+    "1333": "Post-Process Deduplication Write Bandwidth(MB/s)",#NEW
+    "1334": "Post-Process Deduplication Fingerprint Read Bandwidth(MB/s)",#NEW
+    "1335": "Post-Process Deduplication Fingerprint Write Bandwidth(MB/s)",#NEW
+    "1336": "NAS Migration Copy Bandwidth (KB/s)",#NEW
+    "1337": "Post-Process Deduplication and Reduction Read Bandwidth(MB/s)",#NEW
+    "1338": "Post-Process Deduplication and Reduction Write Bandwidth(MB/s)",#NEW
+    "1627": "Read OPS",  # 📊 PDF Documentation (File System Performance Indicators)
+    "1628": "Write OPS",  # 📊 PDF Documentation (File System Performance Indicators)
+    "1629": "Read Bandwidth (MB/s)",  # 📊 PDF Documentation - pdfplumber (Block Storage Performance Indicators)
+    "1630": "Write Bandwidth (MB/s)",  # 📊 PDF Documentation - pdfplumber (Block Storage Performance Indicators)
+    "1631": "Avg. Read OPS Response Time (us)",  # 📊 PDF Documentation - pdfplumber (Block Storage Performance Indicators)
+    "1632": "Avg. Write OPS Response Time (us)",  # 📊 PDF Documentation - pdfplumber (Block Storage Performance Indicators)
+    "1633": "Avg. Corrected CPU usage (%)",#NEW
+    "1635": "% Read",  # 📊 PDF Documentation (Data Protection Performance Indicators)
+    "1636": "% Write",  # 📊 PDF Documentation (File System Performance Indicators)
+    "1298": "Back-End Partition CPU Usage (%)",#NEW
+    "1297": "Front-End Partition CPU Usage (%)",#NEW
+    "1296": "Network Partition CPU Usage (%)",#NEW
+    "30001": "NFS read bandwidth (KB/s)",#NEW
+    "30002": "NFS write bandwidth (KB/s)",#NEW
+    "30003": "NFS Total bandwidth (KB/s)",#NEW
+    "30004": "NFS read OPS",#NEW
+    "30005": "NFS write OPS",#NEW
+    "30006": "NFS total OPS",#NEW
+    "30008": "NFS connected client Number",#NEW
+    "30013": "NFS write OPS average response time (us)",#NEW
+    "30015": "NFS read OPS average response time (us)",#NEW
+    "30043": "DPC read bandwidth (MB/s)",#NEW
+    "30044": "DPC write bandwidth (MB/s)",#NEW
+    "30045": "DPC read OPS",#NEW
+    "30046": "DPC write OPS",#NEW
+    "30051": "DPC total bandwidth (MB/s)",#NEW
+    "30052": "DPC Total OPS",#NEW
+    "30053": "CIFS read bandwidth (KB/s)",#NEW
+    "30054": "CIFS write bandwidth (KB/s)",#NEW
+    "30055": "CIFS total bandwidth (KB/s)",#NEW
+    "30056": "CIFS read OPS",#NEW
+    "30057": "CIFS write OPS",#NEW
+    "30058": "CIFS total OPS",#NEW
+    "50001": "OBS read bandwidth (KB/s)",#NEW
+    "50002": "OBS write bandwidth (KB/s)",#NEW
+    "50003": "OBS total bandwidth (KB/s)",#NEW
+    "50004": "OBS read OPS",#NEW
+    "50005": "OBS write OPS",#NEW
+    "50006": "OBS total OPS",#NEW
+    "60002": "Read/write requests to the source LUN",
+    "60003": "Read/write requests to the snapshot pool",
+    "90001": "Total capacity (MB)",
+    "90002": "Used capacity (MB)",
+    "90003": "Free capacity (MB)",
+    "90004": "Capacity usage (%)",
+    "90005": "Allocated capacity (MB)",
+    "90006": "Free capacity ratio (%)",
+    "90016": "Space Hard Quota(MB)",
+    "90017": "Space Soft Quota(MB)",
+    "90018": "Used Space Quota(MB)",
+    "90019": "File Quantity Hard Quota",
+    "90020": "File Quantity Soft Quota",
+    "90021": "Used File Quantity Quota",
+    # ============================================================================
+    # Новые метрики, найденные в Perf_3000v6_NFSv3.zip (2025-10-29)
+    # ============================================================================
+    # Resource ID 1000 (Controller NFSV3) - дополнительные метрики
+    "1212": "Total NFS readlink OPS",  # 📊 Vendor Documentation (обновлено)
+    "1213": "Total NFS symlink OPS",  # 📊 Vendor Documentation (обновлено)
+    "1214": "Total NFS rename OPS",  # 📊 Vendor Documentation (обновлено)
+    "1215": "Total NFS link OPS",  # 📊 Vendor Documentation (обновлено)
+    "1216": "Total NFS fsstat OPS",  # 📊 Vendor Documentation (обновлено)
+    "1217": "Avg. NFS readlink response time(us)",  # 📊 Vendor Documentation (обновлено)
+    "1218": "Avg. NFS symlink response time(us)",  # 📊 Vendor Documentation (обновлено)
+    "1219": "Avg. NFS rename response time(us)",  # 📊 Vendor Documentation (обновлено)
+    "1220": "Avg. NFS link response time(us)",  # 📊 Vendor Documentation (обновлено)
+    "1221": "Avg. NFS fsstat response time(us)",  # 📊 Vendor Documentation (обновлено)
+    "1254": "NFSv4 Compound Requests",  # 📊 Vendor Documentation (обновлено)
+    "1255": "Avg. NFS compound response time(us)",  # 📊 Vendor Documentation (обновлено)
+    "1278": "NFSv4 getAcl OPS",  # 📊 Vendor Documentation (обновлено)
+    "1279": "NFSv3 getAcl OPS",  # 📊 Vendor Documentation (обновлено)
+    "1281": "NFSv4 setAcl OPS",  # 📊 Vendor Documentation (обновлено)
+    "1282": "NFSv3 setAcl OPS",  # 📊 Vendor Documentation (обновлено)
+    "1284": "Avg. NFSv4 getAcl response time(us)",  # 📊 Vendor Documentation (обновлено)
+    "1285": "Avg. NFSv3 getAcl response time(us)",  # 📊 Vendor Documentation (обновлено)
+    "1286": "Avg. CIFS getAcl response time(us)",  # 📊 Vendor Documentation
+    "1287": "Avg. NFSv4 setAcl response time(us)",  # 📊 Vendor Documentation (обновлено)
+    "1288": "Avg. NFSv3 setAcl response time(us)",  # 📊 Vendor Documentation (обновлено)
+    "1289": "Avg. CIFS setAcl response time(us)",  # 📊 Vendor Documentation
+    # ============================================================================
+    # 📊 Дополнительные метрики из официальной документации Huawei
+    # ============================================================================
+    "1280": "CIFS getAcl OPS",  # 📊 Vendor Documentation
+    "1283": "CIFS setAcl OPS",  # 📊 Vendor Documentation
+    "1644": "SmartMobility Migration Bandwidth (MB/s)",  # 📊 Vendor Documentation
+    "1645": "SmartMobility Recall Bandwidth (MB/s)",  # 📊 Vendor Documentation
+    "90057": "Bandwidth for Copying Cone Files on a File System (KB/s)",  # 📊 Vendor Documentation
+    # ============================================================================
+    # 📊 Новые метрики из PDF документации (добавлено 2025-10-30)
+    # ============================================================================
+    # Источник: OceanStor Dorado V700R001C10 REST Interface Reference.pdf
+    # Извлечено автоматически из Appendix: Performance Indicators
+    # Эти метрики присутствуют в PDF, но не были обнаружены в реальных .dat файлах
+    # Добавлены для полноты на случай появления в будущих версиях прошивки
+    "382": "Max. Read I/O Response Time (us)",  # 📄 PDF Documentation
+    "383": "Max. Write I/O Response Time (us)",  # 📄 PDF Documentation
+    "699": "Time Difference (s)",  # 📄 PDF Documentation
+    "700": "Write Requests Less than Grain Size to Snapshot LUN",  # 📄 PDF Documentation
+    "800": "Max. Bandwidth (KB/s)",  # 📄 PDF Documentation
+    "801": "Bandwidth (KB/s)",  # 📄 PDF Documentation
+    "805": "Back-End Read Response Time (us)",  # 📄 PDF Documentation
+    "806": "Back-End Write Response Time (us)",  # 📄 PDF Documentation
+    "809": "Logical Bandwidth (KB/s)",  # 📄 PDF Documentation
+    "810": "Normalized IOPS (IO/s)",  # 📄 PDF Documentation
+    "811": "Total Bandwidth (KB/s)",  # 📄 PDF Documentation
+    "812": "Transmitting Bandwidth for Replication (KB/s)",  # 📄 PDF Documentation
+    "813": "Receiving Bandwidth for Replication (KB/s)",  # 📄 PDF Documentation
+    "1262": "Link Bandwidth Reduction Ratio",  # 📄 PDF Documentation
+    "1326": "CIFS Offload Read OPS",  # 📄 PDF Documentation
+    "1327": "CIFS Offload Write OPS",  # 📄 PDF Documentation
+    "1328": "Avg. Response Time of CIFS Offload Read I/Os (us)",  # 📄 PDF Documentation
+    "1329": "Avg. Response Time of CIFS Offload Write I/Os (us)",  # 📄 PDF Documentation
+    "1330": "CIFS Offload Read Bandwidth (MB/s)",  # 📄 PDF Documentation
+    "1331": "CIFS Offload Write Bandwidth (MB/s)",  # 📄 PDF Documentation
+    "1634": "Link Write Bandwidth Reduction Ratio",  # 📄 PDF Documentation
+    "1638": "Bandwidth (MB/s)",  # 📄 PDF Documentation
+    "1639": "Cumulative Count of I/Os",  # 📄 PDF Documentation
+    "1640": "Cumulative Count of Data Transferred (KB)",  # 📄 PDF Documentation
+    "1641": "Cumulative Count of All Writes",  # 📄 PDF Documentation
+    "1642": "Cumulative Count of Data Written (KB)",  # 📄 PDF Documentation
+    "1643": "Average IO Size (KB)",  # 📄 PDF Documentation
+    "90086": "Head Object OPS",  # 📄 PDF Documentation
+    "90087": "Put Object OPS",  # 📄 PDF Documentation
+    "90088": "Get Object OPS",  # 📄 PDF Documentation
+    "90089": "Post Object OPS",  # 📄 PDF Documentation
+    "90090": "Delete Object OPS",  # 📄 PDF Documentation
+    "90091": "List Bucket OPS",  # 📄 PDF Documentation
+    "90092": "Delete Bucket OPS",  # 📄 PDF Documentation
+    "90093": "Get Bucket ACL OPS",  # 📄 PDF Documentation
+    "90094": "Put Bucket ACL OPS",  # 📄 PDF Documentation
+    "90095": "Create Bucket OPS",  # 📄 PDF Documentation
+    "90096": "Head Bucket OPS",  # 📄 PDF Documentation
+    "90097": "Get Object ACL OPS",  # 📄 PDF Documentation
+    "90098": "Put Object ACL OPS",  # 📄 PDF Documentation
+    "90099": "Initiate Multipart Upload OPS",  # 📄 PDF Documentation
+    "90100": "Upload Part OPS",  # 📄 PDF Documentation
+    "90101": "Complete Multipart Upload OPS",  # 📄 PDF Documentation
+    "90102": "Abort Multipart Upload OPS",  # 📄 PDF Documentation
+    "90103": "List Parts OPS",  # 📄 PDF Documentation
+    "90104": "List Multipart Uploads OPS",  # 📄 PDF Documentation
+    "90105": "Upload Part Copy OPS",  # 📄 PDF Documentation
+    "90106": "Copy Object OPS",  # 📄 PDF Documentation
+    "90107": "Get Bucket Versioning OPS",  # 📄 PDF Documentation
+    "90108": "Put Bucket Versioning OPS",  # 📄 PDF Documentation
+    "90109": "Delete Multiple Objects OPS",  # 📄 PDF Documentation
+    "90110": "Get Bucket Location OPS",  # 📄 PDF Documentation
+    "90111": "Get Service OPS",  # 📄 PDF Documentation
+    "90112": "Options Object OPS",  # 📄 PDF Documentation
+    "90118": "Restore Object OPS",  # 📄 PDF Documentation
+    "90119": "Select Object Content OPS",  # 📄 PDF Documentation
+    "90120": "Put Object Tagging OPS",  # 📄 PDF Documentation
+    "90121": "Get Object Tagging OPS",  # 📄 PDF Documentation
+    "90122": "Delete Object Tagging OPS",  # 📄 PDF Documentation
+    "90123": "List Bucket Versions OPS",  # 📄 PDF Documentation
+    "90130": "Append Object OPS",  # 📄 PDF Documentation
+    "90131": "Put Bucket Lifecycle OPS",  # 📄 PDF Documentation
+    "90132": "Get Bucket Lifecycle OPS",  # 📄 PDF Documentation
+    "90133": "Delete Bucket Lifecycle OPS",  # 📄 PDF Documentation
+    "90134": "Put Bucket Policy OPS",  # 📄 PDF Documentation
+    "90135": "Get Bucket Policy OPS",  # 📄 PDF Documentation
+    "90136": "Delete Bucket Policy OPS",  # 📄 PDF Documentation
+}

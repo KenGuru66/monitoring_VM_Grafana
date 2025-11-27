@@ -252,7 +252,7 @@ def run_csv_parser_sync(job_id: str, zip_path: Path):
         
         cmd = [
             "python3",
-            "/app/Data2csv/Huawei_perf_parser_v0.2_parallel.py",
+            "/app/parsers/csv_wide_parser.py",
             "-i", str(zip_path),
             "-o", str(job_dir),
             "--all-metrics"
@@ -346,7 +346,7 @@ def run_perfmonkey_parser_sync(job_id: str, zip_path: Path):
         
         cmd = [
             "python3",
-            "/app/perfmonkey/perf_zip2csv_wide.py",
+            "/app/parsers/perfmonkey_parser.py",
             str(zip_path),
             "-o", str(job_dir),
             "--workers", "30"
@@ -439,7 +439,7 @@ def run_pipeline_sync(job_id: str, zip_path: Path):
         
         cmd = [
             "python3",
-            "/app/huawei_streaming_pipeline.py",
+            "/app/parsers/streaming_pipeline.py",
             "-i", str(zip_path),
             "--vm-url", VM_IMPORT_URL,
             "--batch-size", "50000",

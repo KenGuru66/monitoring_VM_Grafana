@@ -17,10 +17,10 @@
 5. api/requirements.txt               # Python зависимости
 
 # Парсеры (Core Logic)
-6. huawei_streaming_pipeline.py      # Streaming парсер → VictoriaMetrics (основной)
-7. Data2csv/Huawei_perf_parser_v0.2_parallel.py  # CSV парсер (wide format)
-8. Data2csv/METRIC_DICT.py            # 743+ метрик (важно для unknown IDs)
-9. Data2csv/RESOURCE_DICT.py          # 51+ типов ресурсов
+6. parsers/streaming_pipeline.py      # Streaming парсер → VictoriaMetrics (основной)
+7. parsers/csv_wide_parser.py         # CSV парсер (wide format)
+8. parsers/dictionaries/METRIC_DICT.py  # 743+ метрик (важно для unknown IDs)
+9. parsers/dictionaries/RESOURCE_DICT.py  # 51+ типов ресурсов
 
 # Frontend (Web UI)
 10. web/src/App.tsx                   # Main app, routing
@@ -73,7 +73,7 @@ read_file .env.example
 - "Как работает парсинг?" → codebase_search "How does binary parsing work?"
 - "Где обрабатываются метрики?" → codebase_search "Where are metrics processed and formatted?"
 - "Как работает API?" → codebase_search "How does the FastAPI job management work?"
-- "Unknown IDs" → read_file Data2csv/METRIC_DICT.py, RESOURCE_DICT.py
+- "Unknown IDs" → read_file parsers/dictionaries/METRIC_DICT.py, RESOURCE_DICT.py
 ```
 
 ### 3️⃣ Проактивное поведение:
@@ -103,14 +103,15 @@ read_file .env.example
 Ключевые директории:
 - /api/          → Backend (Python/FastAPI)
 - /web/src/      → Frontend (React/TypeScript)
-- /Data2csv/     → CSV parsers + METRIC/RESOURCE dictionaries
-- /grafana/      → Dashboards (775+ panels)
-- /jobs/         → Temporary processing (Docker volume)
+- /parsers/      → Все парсеры + dictionaries (METRIC/RESOURCE)
+- /tools/        → Утилиты (batch_import, victoriametrics_client)
+- /grafana/      → Dashboards (808+ panels)
+- /test_data/    → Тестовые ZIP архивы
 
 Основные команды:
 - docker compose up -d              → Запуск всех сервисов
 - docker compose logs -f [service]  → Просмотр логов
-- python3 huawei_streaming_pipeline.py -i file.zip --monitor  → Парсинг → VM
+- python3 parsers/streaming_pipeline.py -i file.zip --monitor  → Парсинг → VM
 
 Важные метрики в VM:
 - huawei_* (все метрики с префиксом)
@@ -150,12 +151,12 @@ read_file .env.example
    - Streaming vs batch processing
    - Multiprocessing optimization
    - Memory management
-   - Файлы: `huawei_streaming_pipeline.py`, `Data2csv/Huawei_perf_parser_v0.2_parallel.py`
+   - Файлы: `parsers/streaming_pipeline.py`, `parsers/csv_wide_parser.py`
 
 3. **Добавление новых метрик в словари** (часто)
    - Обработка unknown metric IDs из логов
    - Обновление METRIC_DICT.py и RESOURCE_DICT.py
-   - Файлы: `Data2csv/METRIC_DICT.py`, `Data2csv/RESOURCE_DICT.py`
+   - Файлы: `parsers/dictionaries/METRIC_DICT.py`, `parsers/dictionaries/RESOURCE_DICT.py`
 
 4. **Разработка новых API endpoints** (средне)
    - FastAPI endpoints для новых функций
@@ -178,21 +179,31 @@ read_file .env.example
 monitoring_VM_Grafana/
 ├── api/                              # FastAPI backend
 │   ├── main.py                       # API endpoints, job management
+│   ├── Dockerfile
 │   └── requirements.txt
 ├── web/                              # React frontend (Vite + TypeScript)
 │   └── src/
 │       ├── App.tsx                   # Main app, routing
 │       ├── Home.tsx                  # Arrays & CSV jobs management
 │       └── Upload.tsx                # File upload interface
-├── Data2csv/                         # CSV parser (wide format)
-│   ├── Huawei_perf_parser_v0.2_parallel.py
-│   ├── METRIC_DICT.py                # 743 метрики
-│   └── RESOURCE_DICT.py              # 51 тип ресурсов
-├── perfmonkey/                       # Perfmonkey format parser
+├── parsers/                          # Все парсеры
+│   ├── streaming_pipeline.py         # Streaming → VictoriaMetrics
+│   ├── csv_wide_parser.py            # CSV wide format
+│   ├── perfmonkey_parser.py          # Perfmonkey format
+│   └── dictionaries/
+│       ├── METRIC_DICT.py            # 743+ метрик
+│       ├── RESOURCE_DICT.py          # 51+ ресурсов
+│       └── METRIC_CONVERSION.py      # Конверсия единиц
+├── tools/                            # Утилиты
+│   ├── batch_import.py               # Массовый импорт
+│   ├── victoriametrics_client.py     # VM API клиент
+│   └── pdf_extractor/                # Извлечение метрик из PDF
 ├── grafana/                          # Grafana provisioning
-│   ├── dashboards/                   # JSON dashboards (775+ panels)
-│   └── datasources/
-├── huawei_streaming_pipeline.py      # Streaming → VictoriaMetrics
+│   └── provisioning/
+│       ├── dashboards/               # JSON dashboards (808+ panels)
+│       └── datasources/
+├── test_data/                        # Тестовые ZIP архивы
+├── perfmonkey/                       # Perfmonkey (legacy)
 └── docker-compose.yml                # Orchestration
 ```
 

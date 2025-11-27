@@ -63,8 +63,9 @@ services:
     volumes:
       - ./uploads:/app/uploads
       - jobs_data:/app/jobs  # Persistent storage for CSV output files
-      - ./Data2csv:/app/Data2csv
-      - ./perfmonkey:/app/perfmonkey  # Perfmonkey parser
+      - ./parsers:/app/parsers  # Все парсеры
+      - ./tools:/app/tools  # Утилиты
+      - ./perfmonkey:/app/perfmonkey  # Perfmonkey (legacy)
       - ./api:/app/api  # Mount API code for hot-reload
       - /data/vmdata:/vmdata  # доступ к VM данным (опционально)
     depends_on:
