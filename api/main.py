@@ -833,11 +833,11 @@ async def list_arrays():
                 start_time = end_time - (365 * 24 * 60 * 60)  # 365 days ago
                 
                 series_url = f"{VM_URL}/api/v1/series"
-                series_params = {
-                    "match[]": f'huawei_read_bandwidth_mb_s{{SN="{sn}"}}',
+                series_data_req = {
+                    "match[]": f'{{SN="{sn}"}}',
                     "start": str(start_time)
                 }
-                series_response = requests.get(series_url, params=series_params, timeout=10)
+                series_response = requests.post(series_url, data=series_data_req, timeout=10)
                 
                 scrape_interval = None
                 time_from = None
@@ -861,35 +861,30 @@ async def list_arrays():
                             else:
                                 scrape_interval = f"{interval_sec // 3600}h"
                 
-                # Get time range for this SN (first and last data points)
+                # Get time range for this SN using export API (works for any data age)
                 try:
-                    query_url = f"{VM_URL}/api/v1/query_range"
-                    # Query with a wide time range
-                    query_params = {
-                        "query": f'huawei_read_bandwidth_mb_s{{SN="{sn}"}}',
-                        "start": str(start_time),
-                        "end": str(end_time),
-                        "step": "1h"  # Low resolution, we only need first/last timestamps
+                    export_url = f"{VM_URL}/api/v1/export"
+                    export_data = {
+                        "match[]": f'{{SN="{sn}"}}',
+                        "max_rows_per_line": "1"
                     }
-                    range_response = requests.get(query_url, params=query_params, timeout=10)
+                    export_response = requests.post(export_url, data=export_data, timeout=15, stream=True)
                     
-                    if range_response.status_code == 200:
-                        range_data = range_response.json()
-                        results = range_data.get("data", {}).get("result", [])
-                        
-                        if results and len(results) > 0:
-                            # Get values array from first result
-                            values = results[0].get("values", [])
-                            if values and len(values) > 0:
-                                # First timestamp (in seconds from VM)
-                                first_ts = values[0][0]
-                                # Last timestamp (in seconds from VM)
-                                last_ts = values[-1][0]
-                                
-                                # Convert to milliseconds for Grafana
-                                # Grafana expects Unix timestamp in milliseconds
-                                time_from = int(first_ts * 1000)
-                                time_to = int(last_ts * 1000)
+                    if export_response.status_code == 200:
+                        for line in export_response.iter_lines(decode_unicode=True):
+                            if line and not line.startswith("remoteAddr"):
+                                try:
+                                    import json
+                                    data = json.loads(line)
+                                    timestamps = data.get("timestamps", [])
+                                    if timestamps:
+                                        # timestamps уже в миллисекундах
+                                        time_from = timestamps[0]
+                                        time_to = timestamps[-1]
+                                    break
+                                except:
+                                    continue
+                        export_response.close()
                 except Exception as e:
                     logger.warning(f"Failed to get time range for {sn}: {e}")
                 
