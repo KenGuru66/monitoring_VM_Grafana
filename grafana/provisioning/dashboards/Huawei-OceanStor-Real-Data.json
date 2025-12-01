@@ -683,7 +683,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -919,7 +919,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -1155,7 +1155,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -1391,7 +1391,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -1627,7 +1627,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -1863,7 +1863,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -2099,7 +2099,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -2217,7 +2217,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -2453,7 +2453,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -2689,7 +2689,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -5644,7 +5644,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -8643,7 +8643,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Read I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Read I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -9892,7 +9892,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -11239,7 +11239,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Write I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Write I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -12196,7 +12196,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "🎛️ Controller",
+      "title": "\ud83c\udf9b\ufe0f Controller",
       "type": "row"
     },
     {
@@ -12213,7 +12213,7 @@
       },
       "id": 105,
       "panels": [],
-      "title": "📁 Controller NFSV3",
+      "title": "\ud83d\udcc1 Controller NFSV3",
       "type": "row"
     },
     {
@@ -12285,7 +12285,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "✅ Total NFS remove OPS (Number/s)",
+      "title": "\u2705 Total NFS remove OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -12357,7 +12357,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "✅ Total NFS getattr OPS (Number/s)",
+      "title": "\u2705 Total NFS getattr OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -12429,7 +12429,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "✅ Total NFS lookup OPS (Number/s) (95%)",
+      "title": "\u2705 Total NFS lookup OPS (Number/s) (95%)",
       "type": "timeseries"
     },
     {
@@ -12501,7 +12501,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "❌ Total NFS null OPS (Number/s)",
+      "title": "\u274c Total NFS null OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -12573,7 +12573,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "⚠️ Total NFS create OPS (Number/s)",
+      "title": "\u26a0\ufe0f Total NFS create OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -12645,7 +12645,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "❌ Total NFS access OPS (Number/s)",
+      "title": "\u274c Total NFS access OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -12717,7 +12717,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "🔍 Total NFS readlink OPS (Number/s)",
+      "title": "\ud83d\udd0d Total NFS readlink OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -12789,7 +12789,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "🔍 Total NFS read OPS (Number/s)",
+      "title": "\ud83d\udd0d Total NFS read OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -12861,7 +12861,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "🔍 Total NFS write OPS (Number/s)",
+      "title": "\ud83d\udd0d Total NFS write OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -12933,7 +12933,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "🔍 Total NFS mkdir OPS (Number/s)",
+      "title": "\ud83d\udd0d Total NFS mkdir OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -13005,7 +13005,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "🔍 Total NFS symlink OPS (Number/s)",
+      "title": "\ud83d\udd0d Total NFS symlink OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -13077,7 +13077,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "❌ Total NFS mkdir OPS (Number/s)",
+      "title": "\u274c Total NFS mkdir OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -13149,7 +13149,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "❌ Total NFS rename OPS (Number/s)",
+      "title": "\u274c Total NFS rename OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -13221,7 +13221,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "🔍 Total NFS readdir OPS (Number/s)",
+      "title": "\ud83d\udd0d Total NFS readdir OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -13293,7 +13293,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "🔍 Total NFS readdir plus OPS (Number/s)",
+      "title": "\ud83d\udd0d Total NFS readdir plus OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -13365,7 +13365,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "🔍 Total NFS fsstat OPS (Number/s)",
+      "title": "\ud83d\udd0d Total NFS fsstat OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -13437,7 +13437,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "🔍 Total NFS fsinfo OPS (Number/s)",
+      "title": "\ud83d\udd0d Total NFS fsinfo OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -13509,7 +13509,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "🔍 Total NFS pathconf OPS (Number/s)",
+      "title": "\ud83d\udd0d Total NFS pathconf OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -13581,7 +13581,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "🔍 Total NFS commit OPS (Number/s)",
+      "title": "\ud83d\udd0d Total NFS commit OPS (Number/s)",
       "type": "timeseries"
     },
     {
@@ -13615,7 +13615,7 @@
               }
             ]
           },
-          "unit": "µs"
+          "unit": "\u00b5s"
         }
       },
       "gridPos": {
@@ -13653,7 +13653,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "✅ NFS lookup response time(us) (95%)",
+      "title": "\u2705 NFS lookup response time(us) (95%)",
       "type": "timeseries"
     },
     {
@@ -13687,7 +13687,7 @@
               }
             ]
           },
-          "unit": "µs"
+          "unit": "\u00b5s"
         }
       },
       "gridPos": {
@@ -13725,7 +13725,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "⚠️ NFS pathconf response time(us)",
+      "title": "\u26a0\ufe0f NFS pathconf response time(us)",
       "type": "timeseries"
     },
     {
@@ -13759,7 +13759,7 @@
               }
             ]
           },
-          "unit": "µs"
+          "unit": "\u00b5s"
         }
       },
       "gridPos": {
@@ -13797,7 +13797,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "⚠️ NFS readdir response time(us)",
+      "title": "\u26a0\ufe0f NFS readdir response time(us)",
       "type": "timeseries"
     },
     {
@@ -13831,7 +13831,7 @@
               }
             ]
           },
-          "unit": "µs"
+          "unit": "\u00b5s"
         }
       },
       "gridPos": {
@@ -13869,7 +13869,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "❌ NFS getattr response time(us)",
+      "title": "\u274c NFS getattr response time(us)",
       "type": "timeseries"
     },
     {
@@ -13903,7 +13903,7 @@
               }
             ]
           },
-          "unit": "µs"
+          "unit": "\u00b5s"
         }
       },
       "gridPos": {
@@ -13941,7 +13941,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "❌ NFS mkdir response time(us)",
+      "title": "\u274c NFS mkdir response time(us)",
       "type": "timeseries"
     },
     {
@@ -13975,7 +13975,7 @@
               }
             ]
           },
-          "unit": "µs"
+          "unit": "\u00b5s"
         }
       },
       "gridPos": {
@@ -14013,7 +14013,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "❌ NFS access response time(us)",
+      "title": "\u274c NFS access response time(us)",
       "type": "timeseries"
     },
     {
@@ -14047,7 +14047,7 @@
               }
             ]
           },
-          "unit": "µs"
+          "unit": "\u00b5s"
         }
       },
       "gridPos": {
@@ -14085,7 +14085,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "❌ NFS readdir plus response time(us)",
+      "title": "\u274c NFS readdir plus response time(us)",
       "type": "timeseries"
     },
     {
@@ -14119,7 +14119,7 @@
               }
             ]
           },
-          "unit": "µs"
+          "unit": "\u00b5s"
         }
       },
       "gridPos": {
@@ -14157,7 +14157,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "❌ NFS open response time(us)",
+      "title": "\u274c NFS open response time(us)",
       "type": "timeseries"
     },
     {
@@ -14191,7 +14191,7 @@
               }
             ]
           },
-          "unit": "µs"
+          "unit": "\u00b5s"
         }
       },
       "gridPos": {
@@ -14229,7 +14229,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "❌ NFS readlink response time(us)",
+      "title": "\u274c NFS readlink response time(us)",
       "type": "timeseries"
     },
     {
@@ -14263,7 +14263,7 @@
               }
             ]
           },
-          "unit": "µs"
+          "unit": "\u00b5s"
         }
       },
       "gridPos": {
@@ -14301,7 +14301,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "❌ NFS symlink response time(us)",
+      "title": "\u274c NFS symlink response time(us)",
       "type": "timeseries"
     },
     {
@@ -14335,7 +14335,7 @@
               }
             ]
           },
-          "unit": "µs"
+          "unit": "\u00b5s"
         }
       },
       "gridPos": {
@@ -14373,7 +14373,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "🔍 NFS rename response time(us)",
+      "title": "\ud83d\udd0d NFS rename response time(us)",
       "type": "timeseries"
     },
     {
@@ -14407,7 +14407,7 @@
               }
             ]
           },
-          "unit": "µs"
+          "unit": "\u00b5s"
         }
       },
       "gridPos": {
@@ -14445,7 +14445,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "🔍 NFS link response time(us)",
+      "title": "\ud83d\udd0d NFS link response time(us)",
       "type": "timeseries"
     },
     {
@@ -14479,7 +14479,7 @@
               }
             ]
           },
-          "unit": "µs"
+          "unit": "\u00b5s"
         }
       },
       "gridPos": {
@@ -14517,7 +14517,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "❌ NFS fsstat response time(us)",
+      "title": "\u274c NFS fsstat response time(us)",
       "type": "timeseries"
     },
     {
@@ -14551,7 +14551,7 @@
               }
             ]
           },
-          "unit": "µs"
+          "unit": "\u00b5s"
         }
       },
       "gridPos": {
@@ -14589,7 +14589,7 @@
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "🔍 NFS fsinfo response time(us)",
+      "title": "\ud83d\udd0d NFS fsinfo response time(us)",
       "type": "timeseries"
     },
     {
@@ -15121,7 +15121,7 @@
               }
             ]
           },
-          "unit": "µs"
+          "unit": "\u00b5s"
         },
         "overrides": []
       },
@@ -16232,7 +16232,7 @@
           "interval": "$min_interval"
         }
       ],
-      "title": "Read I/O Granularity Distribution: [256K,+∞) (%)",
+      "title": "Read I/O Granularity Distribution: [256K,+\u221e) (%)",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -16822,7 +16822,7 @@
           "interval": "$min_interval"
         }
       ],
-      "title": "Read I/O Latency Distribution: [200ms,+∞) (%)",
+      "title": "Read I/O Latency Distribution: [200ms,+\u221e) (%)",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -18710,7 +18710,7 @@
           "interval": "$min_interval"
         }
       ],
-      "title": "Write I/O Granularity Distribution: [256K,+∞) (%)",
+      "title": "Write I/O Granularity Distribution: [256K,+\u221e) (%)",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -19300,7 +19300,7 @@
           "interval": "$min_interval"
         }
       ],
-      "title": "Write I/O Latency Distribution: [200ms,+∞) (%)",
+      "title": "Write I/O Latency Distribution: [200ms,+\u221e) (%)",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -21271,7 +21271,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -22382,7 +22382,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Read I/O Granularity Distribution: [256K,+∞) (%)",
+          "title": "Read I/O Granularity Distribution: [256K,+\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -22972,7 +22972,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Read I/O Latency Distribution: [200ms,+∞) (%)",
+          "title": "Read I/O Latency Distribution: [200ms,+\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -24860,7 +24860,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Write I/O Granularity Distribution: [256K,+∞) (%)",
+          "title": "Write I/O Granularity Distribution: [256K,+\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -25450,7 +25450,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Write I/O Latency Distribution: [200ms,+∞) (%)",
+          "title": "Write I/O Latency Distribution: [200ms,+\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -26879,7 +26879,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📂 Controller NFSV4",
+      "title": "\ud83d\udcc2 Controller NFSV4",
       "type": "row"
     },
     {
@@ -27425,7 +27425,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -28536,7 +28536,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Read I/O Granularity Distribution: [256K,+∞) (%)",
+          "title": "Read I/O Granularity Distribution: [256K,+\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -29126,7 +29126,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Read I/O Latency Distribution: [200ms,+∞) (%)",
+          "title": "Read I/O Latency Distribution: [200ms,+\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -31014,7 +31014,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Write I/O Granularity Distribution: [256K,+∞) (%)",
+          "title": "Write I/O Granularity Distribution: [256K,+\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -31604,7 +31604,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Write I/O Latency Distribution: [200ms,+∞) (%)",
+          "title": "Write I/O Latency Distribution: [200ms,+\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -33033,7 +33033,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📋 Controller NFSV4.1",
+      "title": "\ud83d\udccb Controller NFSV4.1",
       "type": "row"
     },
     {
@@ -33579,7 +33579,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -34690,7 +34690,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Read I/O Granularity Distribution: [256K,+∞) (%)",
+          "title": "Read I/O Granularity Distribution: [256K,+\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -35280,7 +35280,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Read I/O Latency Distribution: [200ms,+∞) (%)",
+          "title": "Read I/O Latency Distribution: [200ms,+\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -37168,7 +37168,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Write I/O Granularity Distribution: [256K,+∞) (%)",
+          "title": "Write I/O Granularity Distribution: [256K,+\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -37758,7 +37758,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Write I/O Latency Distribution: [200ms,+∞) (%)",
+          "title": "Write I/O Latency Distribution: [200ms,+\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -39187,7 +39187,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "🗃️ Controller SMB2/3",
+      "title": "\ud83d\uddc3\ufe0f Controller SMB2/3",
       "type": "row"
     },
     {
@@ -39261,7 +39261,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -39497,7 +39497,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -39615,7 +39615,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -40087,7 +40087,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -40962,7 +40962,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Read I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Read I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -41975,7 +41975,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -42615,7 +42615,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Write I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Write I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -43454,7 +43454,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "💿 Disk",
+      "title": "\ud83d\udcbf Disk",
       "type": "row"
     },
     {
@@ -43647,7 +43647,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -43765,7 +43765,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -44119,7 +44119,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -44237,7 +44237,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -45653,7 +45653,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -46646,7 +46646,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Read I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Read I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -47944,7 +47944,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Write I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Write I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -48783,7 +48783,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "💽 Disk Domain",
+      "title": "\ud83d\udcbd Disk Domain",
       "type": "row"
     },
     {
@@ -48857,7 +48857,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -49274,7 +49274,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "🌐 ETH_EXP_Port",
+      "title": "\ud83c\udf10 ETH_EXP_Port",
       "type": "row"
     },
     {
@@ -49348,7 +49348,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -49466,7 +49466,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -49584,7 +49584,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -49702,7 +49702,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -49820,7 +49820,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -50056,7 +50056,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -50174,7 +50174,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -50292,7 +50292,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -50410,7 +50410,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -50528,7 +50528,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -50646,7 +50646,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -50764,7 +50764,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -50882,7 +50882,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -51000,7 +51000,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -51118,7 +51118,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -51236,7 +51236,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -51354,7 +51354,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -52298,7 +52298,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -53763,7 +53763,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Read I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Read I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -54658,7 +54658,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -56596,7 +56596,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Write I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Write I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -57435,7 +57435,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "🔗 Ethernet Port",
+      "title": "\ud83d\udd17 Ethernet Port",
       "type": "row"
     },
     {
@@ -57509,7 +57509,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -57745,7 +57745,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -57981,7 +57981,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -58217,7 +58217,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -58453,7 +58453,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -58571,7 +58571,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -58689,7 +58689,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -58925,7 +58925,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -59161,7 +59161,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -59279,7 +59279,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -59987,7 +59987,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -61334,7 +61334,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Read I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Read I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -62229,7 +62229,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -63104,7 +63104,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Write I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Write I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -63943,7 +63943,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "🖥️ Host",
+      "title": "\ud83d\udda5\ufe0f Host",
       "type": "row"
     },
     {
@@ -64017,7 +64017,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -64253,7 +64253,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -64371,7 +64371,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -64607,7 +64607,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -64843,7 +64843,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -65079,7 +65079,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -65315,7 +65315,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -65551,7 +65551,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -65787,7 +65787,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -66023,7 +66023,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -66141,7 +66141,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -66377,7 +66377,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -66613,7 +66613,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -66849,7 +66849,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -68737,7 +68737,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -70910,7 +70910,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Read I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Read I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -71264,7 +71264,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Read I/O Latency Distribution: [10 ms, +∞) (%)",
+          "title": "Read I/O Latency Distribution: [10 ms, +\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -72985,7 +72985,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -74214,7 +74214,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Write I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Write I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -74568,7 +74568,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Write I/O Latency Distribution: [10 ms, +∞) (%)",
+          "title": "Write I/O Latency Distribution: [10 ms, +\u221e) (%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -75879,7 +75879,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "💾 LUN",
+      "title": "\ud83d\udcbe LUN",
       "type": "row"
     },
     {
@@ -75953,7 +75953,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -76189,7 +76189,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -76307,7 +76307,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -77313,7 +77313,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "⭐ LUN Priority",
+      "title": "\u2b50 LUN Priority",
       "type": "row"
     },
     {
@@ -77387,7 +77387,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -77623,7 +77623,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -77741,7 +77741,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -77859,7 +77859,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -77977,7 +77977,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -78095,7 +78095,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -78213,7 +78213,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -78331,7 +78331,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -78449,7 +78449,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -78567,7 +78567,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -78685,7 +78685,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -78803,7 +78803,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -78921,7 +78921,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -79629,7 +79629,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -80976,7 +80976,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Read I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Read I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -81871,7 +81871,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -83337,7 +83337,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Write I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Write I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -84176,7 +84176,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "🔌 Logical Port",
+      "title": "\ud83d\udd0c Logical Port",
       "type": "row"
     },
     {
@@ -84605,7 +84605,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -84723,7 +84723,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -84841,7 +84841,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -84959,7 +84959,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -85077,7 +85077,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -85313,7 +85313,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -85549,7 +85549,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -85785,7 +85785,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -86021,7 +86021,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -86139,7 +86139,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -86375,7 +86375,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -86611,7 +86611,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -89443,7 +89443,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -91026,7 +91026,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Read I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Read I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -92039,7 +92039,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -93150,7 +93150,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Write I/O Granularity Distribution: [128K,+∞)(%)",
+          "title": "Write I/O Granularity Distribution: [128K,+\u221e)(%)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -94107,7 +94107,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "🏊 Storage Pool",
+      "title": "\ud83c\udfca Storage Pool",
       "type": "row"
     },
     {
@@ -94179,7 +94179,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -94282,7 +94282,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -94385,7 +94385,7 @@
                   }
                 ]
               },
-              "unit": "µs",
+              "unit": "\u00b5s",
               "max": 100
             },
             "overrides": []
@@ -94489,7 +94489,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -94592,7 +94592,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -94798,7 +94798,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -94901,7 +94901,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -95107,7 +95107,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -95210,7 +95210,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -95931,7 +95931,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -96697,7 +96697,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Read I/O Granularity Distribution: [128K,+∞)",
+          "title": "Read I/O Granularity Distribution: [128K,+\u221e)",
           "type": "timeseries"
         },
         {
@@ -97373,7 +97373,7 @@
                   }
                 ]
               },
-              "unit": "µs"
+              "unit": "\u00b5s"
             },
             "overrides": []
           },
@@ -98346,7 +98346,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Write I/O Granularity Distribution: [128K,+∞)",
+          "title": "Write I/O Granularity Distribution: [128K,+\u221e)",
           "type": "timeseries"
         },
         {
@@ -98968,7 +98968,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "⚡ FC Port",
+      "title": "\u26a1 FC Port",
       "type": "row"
     },
     {
@@ -99295,7 +99295,7 @@
           "type": "timeseries"
         }
       ],
-      "title": "📸 Snapshot LUN",
+      "title": "\ud83d\udcf8 Snapshot LUN",
       "type": "row"
     },
     {
@@ -99718,7 +99718,7 @@
           "refId": "A"
         }
       ],
-      "title": "🔌 ETH Expansion Port (CTE0) - Network Metrics",
+      "title": "\ud83d\udd0c ETH Expansion Port (CTE0) - Network Metrics",
       "type": "row"
     },
     {
@@ -99865,11 +99865,11 @@
               "refId": "Q4"
             }
           ],
-          "title": "🔍 Multi-Resource Analysis #1 (4 Queries)",
+          "title": "\ud83d\udd0d Multi-Resource Analysis #1 (4 Queries)",
           "type": "timeseries"
         }
       ],
-      "title": "🔬 Analyze - Multi-Resource Comparison",
+      "title": "\ud83d\udd2c Analyze - Multi-Resource Comparison",
       "type": "row"
     }
   ],
@@ -99894,7 +99894,7 @@
           "uid": "P4169E866C3094E38"
         },
         "definition": "label_values(SN)",
-        "description": "Серийный номер массива",
+        "description": "\u0421\u0435\u0440\u0438\u0439\u043d\u044b\u0439 \u043d\u043e\u043c\u0435\u0440 \u043c\u0430\u0441\u0441\u0438\u0432\u0430",
         "includeAll": true,
         "multi": true,
         "name": "SN",
@@ -99921,7 +99921,7 @@
           "uid": "P4169E866C3094E38"
         },
         "definition": "label_values({SN=~\"$SN\"},Resource)",
-        "description": "Тип ресурса (Controller, LUN, Disk и т.д.)",
+        "description": "\u0422\u0438\u043f \u0440\u0435\u0441\u0443\u0440\u0441\u0430 (Controller, LUN, Disk \u0438 \u0442.\u0434.)",
         "includeAll": true,
         "multi": true,
         "name": "Resource",
@@ -99948,7 +99948,7 @@
           "uid": "P4169E866C3094E38"
         },
         "definition": "label_values({SN=~\"$SN\", Resource=~\"$Resource\"},Element)",
-        "description": "Элемент (0A, 0B, CTE0.A.IOM0.P0 и т.д.)",
+        "description": "\u042d\u043b\u0435\u043c\u0435\u043d\u0442 (0A, 0B, CTE0.A.IOM0.P0 \u0438 \u0442.\u0434.)",
         "includeAll": true,
         "multi": true,
         "name": "Element",
@@ -100140,118 +100140,6 @@
           "text": "All",
           "value": "$__all"
         },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "P4169E866C3094E38"
-        },
-        "definition": "label_values({SN=~\"$SN\"},Resource)",
-        "hide": 0,
-        "includeAll": true,
-        "multi": true,
-        "name": "Resource_Q3",
-        "options": [],
-        "query": {
-          "qryType": 1,
-          "query": "label_values({SN=~\"$SN\"},Resource)",
-          "refId": "PrometheusVariableQueryEditor-VariableQuery"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 1,
-        "type": "query",
-        "label": "Q3 Resource"
-      },
-      {
-        "current": {
-          "selected": true,
-          "text": "All",
-          "value": "$__all"
-        },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "P4169E866C3094E38"
-        },
-        "definition": "label_values({SN=~\"$SN\", Resource=~\"$Resource_Q3\"},Element)",
-        "hide": 0,
-        "includeAll": true,
-        "multi": true,
-        "name": "Element_Q3",
-        "options": [],
-        "query": {
-          "qryType": 1,
-          "query": "label_values({SN=~\"$SN\", Resource=~\"$Resource_Q3\"},Element)",
-          "refId": "PrometheusVariableQueryEditor-VariableQuery"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 1,
-        "type": "query",
-        "label": "Q3 Element"
-      },
-      {
-        "current": {
-          "selected": true,
-          "text": "All",
-          "value": "$__all"
-        },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "P4169E866C3094E38"
-        },
-        "definition": "label_values({SN=~\"$SN\"},Resource)",
-        "hide": 0,
-        "includeAll": true,
-        "multi": true,
-        "name": "Resource_Q4",
-        "options": [],
-        "query": {
-          "qryType": 1,
-          "query": "label_values({SN=~\"$SN\"},Resource)",
-          "refId": "PrometheusVariableQueryEditor-VariableQuery"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 1,
-        "type": "query",
-        "label": "Q4 Resource"
-      },
-      {
-        "current": {
-          "selected": true,
-          "text": "All",
-          "value": "$__all"
-        },
-        "datasource": {
-          "type": "prometheus",
-          "uid": "P4169E866C3094E38"
-        },
-        "definition": "label_values({SN=~\"$SN\", Resource=~\"$Resource_Q4\"},Element)",
-        "hide": 0,
-        "includeAll": true,
-        "multi": true,
-        "name": "Element_Q4",
-        "options": [],
-        "query": {
-          "qryType": 1,
-          "query": "label_values({SN=~\"$SN\", Resource=~\"$Resource_Q4\"},Element)",
-          "refId": "PrometheusVariableQueryEditor-VariableQuery"
-        },
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "sort": 1,
-        "type": "query",
-        "label": "Q4 Element"
-      },
-      {
-        "current": {
-          "selected": true,
-          "text": "All",
-          "value": "$__all"
-        },
         "hide": 0,
         "includeAll": true,
         "multi": true,
@@ -100298,62 +100186,6 @@
           "uid": "P4169E866C3094E38"
         },
         "definition": "label_values({SN=~\"$SN\", Resource=~\"$Resource_Q2\"}, __name__)",
-        "refresh": 1,
-        "sort": 1,
-        "regex": "/^huawei_.*/"
-      },
-      {
-        "current": {
-          "selected": true,
-          "text": "All",
-          "value": "$__all"
-        },
-        "hide": 0,
-        "includeAll": true,
-        "multi": true,
-        "name": "Metric_Q3",
-        "options": [],
-        "query": {
-          "qryType": 1,
-          "query": "label_values({SN=~\"$SN\", Resource=~\"$Resource_Q3\"}, __name__)",
-          "refId": "PrometheusVariableQueryEditor-VariableQuery"
-        },
-        "skipUrlSync": false,
-        "type": "query",
-        "label": "Q3 Metric",
-        "datasource": {
-          "type": "prometheus",
-          "uid": "P4169E866C3094E38"
-        },
-        "definition": "label_values({SN=~\"$SN\", Resource=~\"$Resource_Q3\"}, __name__)",
-        "refresh": 1,
-        "sort": 1,
-        "regex": "/^huawei_.*/"
-      },
-      {
-        "current": {
-          "selected": true,
-          "text": "All",
-          "value": "$__all"
-        },
-        "hide": 0,
-        "includeAll": true,
-        "multi": true,
-        "name": "Metric_Q4",
-        "options": [],
-        "query": {
-          "qryType": 1,
-          "query": "label_values({SN=~\"$SN\", Resource=~\"$Resource_Q4\"}, __name__)",
-          "refId": "PrometheusVariableQueryEditor-VariableQuery"
-        },
-        "skipUrlSync": false,
-        "type": "query",
-        "label": "Q4 Metric",
-        "datasource": {
-          "type": "prometheus",
-          "uid": "P4169E866C3094E38"
-        },
-        "definition": "label_values({SN=~\"$SN\", Resource=~\"$Resource_Q4\"}, __name__)",
         "refresh": 1,
         "sort": 1,
         "regex": "/^huawei_.*/"
