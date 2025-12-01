@@ -42,7 +42,14 @@ except ImportError:
     print("Warning: psutil not available, resource monitoring disabled")
 
 # Импорт словарей из parsers/dictionaries/
-from parsers.dictionaries import METRIC_NAME_DICT, RESOURCE_NAME_DICT, METRIC_CONVERSION
+# Поддержка запуска как модуля и напрямую
+try:
+    from parsers.dictionaries import METRIC_NAME_DICT, RESOURCE_NAME_DICT, METRIC_CONVERSION
+except ImportError:
+    # Запуск напрямую из директории parsers или корня проекта
+    sys.path.insert(0, str(Path(__file__).parent))
+    sys.path.insert(0, str(Path(__file__).parent.parent))
+    from dictionaries import METRIC_NAME_DICT, RESOURCE_NAME_DICT, METRIC_CONVERSION
 
 # Настройка логирования
 logging.basicConfig(
