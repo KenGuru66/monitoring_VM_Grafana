@@ -484,9 +484,10 @@ def run_pipeline_sync(job_id: str, zip_path: Path):
         return_code = process.wait(timeout=30)
         
         if return_code == 0:
-            jobs[job_id]["status"] = "done"
-            jobs[job_id]["progress"] = 100
-            jobs[job_id]["message"] = "Processing completed successfully!"
+            # НЕ устанавливаем status="done" сразу! Сначала получаем grafana_url,
+            # потому что frontend прекращает polling когда видит status="done"
+            jobs[job_id]["progress"] = 95
+            jobs[job_id]["message"] = "Generating Grafana link..."
             
             sn_list = jobs[job_id]["serial_numbers"]
             if sn_list:
@@ -569,6 +570,11 @@ def run_pipeline_sync(job_id: str, zip_path: Path):
                 grafana_url += "&orgId=1&timezone=browser&var-Resource=$__all&var-Element=$__all"
                 jobs[job_id]["grafana_url"] = grafana_url
             
+            # Теперь устанавливаем status="done" ПОСЛЕ того как grafana_url готов
+            # Это важно потому что frontend прекращает polling когда видит done
+            jobs[job_id]["status"] = "done"
+            jobs[job_id]["progress"] = 100
+            jobs[job_id]["message"] = "Processing completed successfully!"
             logger.info(f"Job {job_id}: Completed successfully")
         else:
             jobs[job_id]["status"] = "error"
