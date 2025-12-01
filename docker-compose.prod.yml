@@ -8,7 +8,13 @@
 services:
   victoriametrics:
     volumes:
-      - /data/vmdata:/vmdata  # Bind mount на быстрый диск
+      - /data/vmdata:/vmdata  # Bind mount на быстрый диск (переопределяет named volume)
+
+  grafana:
+    volumes:
+      - /data/grafana:/var/lib/grafana
+      - ./grafana/provisioning/datasources:/etc/grafana/provisioning/datasources
+      - ./grafana/provisioning/dashboards:/etc/grafana/provisioning/dashboards
 
   api:
     volumes:
@@ -18,22 +24,3 @@ services:
       - ./tools:/app/tools
       - ./perfmonkey:/app/perfmonkey
       - ./api:/app/api
-
-# Переопределяем volumes на bind mounts для production
-volumes:
-  vmdata:
-    driver_opts:
-      type: none
-      device: /data/vmdata
-      o: bind
-  grafana_data:
-    driver_opts:
-      type: none
-      device: /data/grafana
-      o: bind
-  jobs_data:
-    driver_opts:
-      type: none
-      device: /data/jobs
-      o: bind
-
