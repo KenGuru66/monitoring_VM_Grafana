@@ -506,16 +506,17 @@ def run_pipeline_sync(job_id: str, zip_path: Path):
                     from urllib.parse import urlencode
                     
                     # Используем export API для получения реального временного диапазона
-                    # Важно: используем POST с data для правильного URL-кодирования
+                    # Читаем несколько серий чтобы найти min/max по всем данным
                     export_url = f"{VM_URL}/api/v1/export"
                     export_data = {
-                        "match[]": f'{{SN="{sn}"}}',
-                        "max_rows_per_line": "1"
+                        "match[]": f'{{SN="{sn}"}}'
                     }
-                    export_response = requests.post(export_url, data=export_data, timeout=15, stream=True)
+                    export_response = requests.post(export_url, data=export_data, timeout=30, stream=True)
+                    
+                    series_count = 0
+                    max_series = 100  # Читаем до 100 серий
                     
                     if export_response.status_code == 200:
-                        # Читаем только первую строку (первая серия)
                         for line in export_response.iter_lines(decode_unicode=True):
                             if line and not line.startswith("remoteAddr"):
                                 import json
@@ -523,15 +524,20 @@ def run_pipeline_sync(job_id: str, zip_path: Path):
                                     data = json.loads(line)
                                     timestamps = data.get("timestamps", [])
                                     if timestamps:
-                                        # timestamps уже в миллисекундах
-                                        time_from = timestamps[0]
-                                        time_to = timestamps[-1]
-                                        logger.info(f"Job {job_id}: Time range from export: {time_from} - {time_to}")
-                                    break
+                                        # Находим min/max по всем сериям
+                                        series_min = min(timestamps)
+                                        series_max = max(timestamps)
+                                        if time_from is None or series_min < time_from:
+                                            time_from = series_min
+                                        if time_to is None or series_max > time_to:
+                                            time_to = series_max
+                                        series_count += 1
+                                        if series_count >= max_series:
+                                            break
                                 except json.JSONDecodeError:
-                                    logger.warning(f"Job {job_id}: Failed to parse export line: {line[:100]}")
                                     continue
                         export_response.close()
+                        logger.info(f"Job {job_id}: Time range {time_from} - {time_to} (from {series_count} series)")
                     else:
                         logger.warning(f"Job {job_id}: Export API returned {export_response.status_code}")
                     
@@ -888,13 +894,15 @@ async def get_array_timerange(sn: str):
     try:
         export_url = f"{VM_URL}/api/v1/export"
         export_data = {
-            "match[]": f'{{SN="{sn}"}}',
-            "max_rows_per_line": "1"
+            "match[]": f'{{SN="{sn}"}}'
+            # НЕ используем max_rows_per_line чтобы получить все серии
         }
         export_response = requests.post(export_url, data=export_data, timeout=30, stream=True)
         
         time_from = None
         time_to = None
+        series_count = 0
+        max_series = 100  # Читаем до 100 серий для определения диапазона
         
         if export_response.status_code == 200:
             for line in export_response.iter_lines(decode_unicode=True):
@@ -904,12 +912,21 @@ async def get_array_timerange(sn: str):
                         data = json.loads(line)
                         timestamps = data.get("timestamps", [])
                         if timestamps:
-                            time_from = timestamps[0]
-                            time_to = timestamps[-1]
-                        break
+                            # Находим min/max по всем сериям
+                            series_min = min(timestamps)
+                            series_max = max(timestamps)
+                            if time_from is None or series_min < time_from:
+                                time_from = series_min
+                            if time_to is None or series_max > time_to:
+                                time_to = series_max
+                            series_count += 1
+                            if series_count >= max_series:
+                                break
                     except:
                         continue
             export_response.close()
+        
+        logger.info(f"Timerange for {sn}: {time_from} - {time_to} (from {series_count} series)")
         
         return {
             "sn": sn,
