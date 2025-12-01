@@ -490,8 +490,44 @@ def run_pipeline_sync(job_id: str, zip_path: Path):
             
             sn_list = jobs[job_id]["serial_numbers"]
             if sn_list:
+                # Формируем ссылку на Grafana с временным диапазоном данных
                 grafana_dashboard = f"{GRAFANA_URL}/d/huawei-oceanstor-real/huawei-oceanstor-real-data"
-                jobs[job_id]["grafana_url"] = grafana_dashboard
+                sn = sn_list[0]  # Берём первый SN
+                grafana_url = f"{grafana_dashboard}?var-SN={sn}"
+                
+                # Получаем временной диапазон данных из VictoriaMetrics
+                try:
+                    import time as time_module
+                    end_time = int(time_module.time())
+                    start_time = end_time - (180 * 24 * 60 * 60)  # 6 месяцев назад
+                    
+                    query_url = f"{VM_URL}/api/v1/query_range"
+                    query_params = {
+                        "query": f'huawei_read_bandwidth_mb_s{{SN="{sn}"}}',
+                        "start": str(start_time),
+                        "end": str(end_time),
+                        "step": "1h"
+                    }
+                    range_response = requests.get(query_url, params=query_params, timeout=10)
+                    
+                    if range_response.status_code == 200:
+                        range_data = range_response.json()
+                        results = range_data.get("data", {}).get("result", [])
+                        
+                        if results and len(results) > 0:
+                            values = results[0].get("values", [])
+                            if values and len(values) > 0:
+                                # Получаем первый и последний timestamp (в миллисекундах для Grafana)
+                                time_from = int(values[0][0] * 1000)
+                                time_to = int(values[-1][0] * 1000)
+                                grafana_url += f"&from={time_from}&to={time_to}"
+                                logger.info(f"Job {job_id}: Time range {time_from} - {time_to}")
+                except Exception as e:
+                    logger.warning(f"Job {job_id}: Failed to get time range: {e}")
+                
+                # Добавляем стандартные параметры
+                grafana_url += "&orgId=1&timezone=browser&var-Resource=$__all&var-Element=$__all"
+                jobs[job_id]["grafana_url"] = grafana_url
             
             logger.info(f"Job {job_id}: Completed successfully")
         else:
