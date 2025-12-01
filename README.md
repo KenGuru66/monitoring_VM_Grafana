@@ -122,21 +122,50 @@ MAX_UPLOAD_SIZE=10737418240  # 10GB
 JOB_TIMEOUT=86400            # 24 hours
 JOB_TTL_HOURS=24             # Auto-cleanup after 24 hours
 
-# Work directory for CSV files
-WORK_DIR=/app/jobs
+# Web UI - ВАЖНО для WSL/Docker Desktop!
+# Замените localhost на IP вашей WSL машины
+VITE_API_URL=http://localhost:8000      # или http://<WSL_IP>:8000
+VITE_GRAFANA_URL=http://localhost:3000  # или http://<WSL_IP>:3000
 ```
 
 ### 3. Запуск приложения
+
+**Два режима запуска:**
+
+#### 🖥️ Локальная разработка (WSL / Docker Desktop)
 
 ```bash
 docker compose up -d
 ```
 
-Сервисы будут доступны на:
+Использует простые Docker volumes — данные хранятся внутри Docker.
+
+#### 🏭 Production сервер (Linux с bind mounts)
+
+```bash
+# Создайте директории на хосте
+sudo mkdir -p /data/vmdata /data/grafana /data/jobs
+sudo chown -R $(id -u):$(id -g) /data/vmdata /data/grafana /data/jobs
+
+# Запуск с production конфигурацией
+docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
+```
+
+Данные хранятся в `/data/` на хост-системе для persistence.
+
+### Доступ к сервисам
+
 - **Web UI:** http://localhost:3001
 - **API:** http://localhost:8000
 - **Grafana:** http://localhost:3000 (admin/changeme)
 - **VictoriaMetrics:** http://localhost:8428
+
+> **⚠️ WSL/Docker Desktop:** Если Web UI не может загрузить файлы, используйте IP адрес WSL вместо localhost:
+> ```bash
+> # Узнать IP WSL
+> hostname -I | awk '{print $1}'
+> # Обновить .env и пересобрать: docker compose build web && docker compose up -d web
+> ```
 
 ### 4. Первая загрузка данных
 
@@ -545,7 +574,22 @@ victoriametrics:
 
 ## 📝 Changelog
 
-### v2.4.0 (Current) - October 30, 2025
+### v2.5.0 (Current) - November 27, 2025
+- ✅ **Универсальный Docker Compose**: Поддержка локальной разработки и production
+  - `docker-compose.yml` — универсальная конфигурация с простыми named volumes (работает везде: WSL, Docker Desktop, Linux)
+  - `docker-compose.prod.yml` — production конфигурация с bind mounts к `/data/` для persistent storage
+  - Команда для production: `docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d`
+  
+- ✅ **Исправлена совместимость с WSL/Docker Desktop**:
+  - Убраны `driver_opts` из volumes (не поддерживаются в Docker Desktop)
+  - Добавлен `PYTHONPATH=/app` в Dockerfile для корректного импорта модулей
+  - Документация по использованию IP адреса WSL вместо localhost
+  
+- ✅ **Улучшения документации**:
+  - Добавлена инструкция по запуску в двух режимах (локальный/production)
+  - Добавлены примечания для WSL пользователей
+
+### v2.4.0 - October 30, 2025
 - ✅ **Analyze - Multi-Resource Comparison**: Новый интерактивный инструмент для сравнительного анализа
   - **4 независимых query** на одном графике с полной изоляцией
   - **Динамическая загрузка метрик**: Автоматическое получение списка метрик из VictoriaMetrics в зависимости от выбранного типа ресурса

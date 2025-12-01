@@ -1,4 +1,5 @@
-version: "3.8"
+# docker-compose.yml - универсальная конфигурация (работает везде: WSL, Docker Desktop, Linux)
+# Для production с bind mounts к /data/ используйте: docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 
 services:
   victoriametrics:
@@ -17,7 +18,7 @@ services:
       - -inmemoryDataFlushInterval=5s  # чаще flush (default 1s)
       - -maxConcurrentInserts=32       # больше параллелизма
     volumes:
-      - /data/vmdata:/vmdata      # host-path на быстром диске
+      - vmdata:/vmdata
     networks:
       - monitoring
 
@@ -63,10 +64,10 @@ services:
     volumes:
       - ./uploads:/app/uploads
       - jobs_data:/app/jobs  # Persistent storage for CSV output files
-      - ./Data2csv:/app/Data2csv
-      - ./perfmonkey:/app/perfmonkey  # Perfmonkey parser
+      - ./parsers:/app/parsers  # Все парсеры
+      - ./tools:/app/tools  # Утилиты
+      - ./perfmonkey:/app/perfmonkey  # Perfmonkey (legacy)
       - ./api:/app/api  # Mount API code for hot-reload
-      - /data/vmdata:/vmdata  # доступ к VM данным (опционально)
     depends_on:
       - victoriametrics
     networks:
@@ -91,14 +92,9 @@ networks:
   monitoring:
     driver: bridge
 
+# Named volumes - данные хранятся в Docker (portable, работает везде)
+# Для production с bind mounts используйте docker-compose.prod.yml
 volumes:
+  vmdata:
   grafana_data:
-    driver_opts:
-      type: none
-      device: /data/grafana
-      o: bind
   jobs_data:
-    driver_opts:
-      type: none
-      device: /data/jobs  # Host directory for job output files
-      o: bind
