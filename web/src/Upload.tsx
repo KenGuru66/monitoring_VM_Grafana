@@ -434,6 +434,7 @@ function Upload() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="grafana-button"
+                        title={`URL: ${jobStatus.grafana_url || 'fallback'}`}
                       >
                         <ExternalLink size={20} />
                         Open in Grafana
