@@ -496,36 +496,69 @@ def run_pipeline_sync(job_id: str, zip_path: Path):
                 grafana_url = f"{grafana_dashboard}?var-SN={sn}"
                 
                 # Получаем временной диапазон данных из VictoriaMetrics
+                time_from = None
+                time_to = None
+                scrape_interval = "5s"  # default
+                
                 try:
                     import time as time_module
-                    end_time = int(time_module.time())
-                    start_time = end_time - (180 * 24 * 60 * 60)  # 6 месяцев назад
                     
-                    query_url = f"{VM_URL}/api/v1/query_range"
-                    query_params = {
-                        "query": f'huawei_read_bandwidth_mb_s{{SN="{sn}"}}',
-                        "start": str(start_time),
-                        "end": str(end_time),
-                        "step": "1h"
+                    # Используем export API для получения реального временного диапазона
+                    # (работает для данных любой давности)
+                    export_url = f"{VM_URL}/api/v1/export"
+                    export_params = {
+                        "match[]": f'{{SN="{sn}"}}',
+                        "max_rows_per_line": "1"  # Только первая серия
                     }
-                    range_response = requests.get(query_url, params=query_params, timeout=10)
+                    export_response = requests.get(export_url, params=export_params, timeout=15, stream=True)
                     
-                    if range_response.status_code == 200:
-                        range_data = range_response.json()
-                        results = range_data.get("data", {}).get("result", [])
-                        
-                        if results and len(results) > 0:
-                            values = results[0].get("values", [])
-                            if values and len(values) > 0:
-                                # Получаем первый и последний timestamp (в миллисекундах для Grafana)
-                                time_from = int(values[0][0] * 1000)
-                                time_to = int(values[-1][0] * 1000)
-                                grafana_url += f"&from={time_from}&to={time_to}"
-                                logger.info(f"Job {job_id}: Time range {time_from} - {time_to}")
+                    if export_response.status_code == 200:
+                        # Читаем только первую строку (первая серия)
+                        for line in export_response.iter_lines(decode_unicode=True):
+                            if line:
+                                import json
+                                data = json.loads(line)
+                                timestamps = data.get("timestamps", [])
+                                if timestamps:
+                                    # timestamps уже в миллисекундах
+                                    time_from = timestamps[0]
+                                    time_to = timestamps[-1]
+                                    logger.info(f"Job {job_id}: Time range from export: {time_from} - {time_to}")
+                                break  # Одной серии достаточно
+                        export_response.close()
+                    
+                    # Получаем scrape_interval из series
+                    series_url = f"{VM_URL}/api/v1/series"
+                    series_params = {
+                        "match[]": f'{{SN="{sn}"}}',
+                        "start": "0"  # От начала времён
+                    }
+                    series_response = requests.get(series_url, params=series_params, timeout=10)
+                    if series_response.status_code == 200:
+                        series_data = series_response.json()
+                        series_list = series_data.get("data", [])
+                        if series_list and len(series_list) > 0:
+                            interval_sec = series_list[0].get("scrape_interval")
+                            if interval_sec:
+                                interval_sec = int(interval_sec)
+                                if interval_sec < 60:
+                                    scrape_interval = f"{interval_sec}s"
+                                elif interval_sec < 3600:
+                                    scrape_interval = f"{interval_sec // 60}m"
+                                else:
+                                    scrape_interval = f"{interval_sec // 3600}h"
+                                    
                 except Exception as e:
                     logger.warning(f"Job {job_id}: Failed to get time range: {e}")
                 
-                # Добавляем стандартные параметры
+                # Добавляем var-min_interval
+                grafana_url += f"&var-min_interval={scrape_interval}"
+                
+                # Добавляем временной диапазон если нашли
+                if time_from and time_to:
+                    grafana_url += f"&from={time_from}&to={time_to}"
+                
+                # Добавляем стандартные параметры (без лишних Q1-Q4 переменных)
                 grafana_url += "&orgId=1&timezone=browser&var-Resource=$__all&var-Element=$__all"
                 jobs[job_id]["grafana_url"] = grafana_url
             
