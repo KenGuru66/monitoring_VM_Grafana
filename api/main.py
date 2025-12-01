@@ -502,38 +502,45 @@ def run_pipeline_sync(job_id: str, zip_path: Path):
                 
                 try:
                     import time as time_module
+                    from urllib.parse import urlencode
                     
                     # Используем export API для получения реального временного диапазона
-                    # (работает для данных любой давности)
+                    # Важно: используем POST с data для правильного URL-кодирования
                     export_url = f"{VM_URL}/api/v1/export"
-                    export_params = {
+                    export_data = {
                         "match[]": f'{{SN="{sn}"}}',
-                        "max_rows_per_line": "1"  # Только первая серия
+                        "max_rows_per_line": "1"
                     }
-                    export_response = requests.get(export_url, params=export_params, timeout=15, stream=True)
+                    export_response = requests.post(export_url, data=export_data, timeout=15, stream=True)
                     
                     if export_response.status_code == 200:
                         # Читаем только первую строку (первая серия)
                         for line in export_response.iter_lines(decode_unicode=True):
-                            if line:
+                            if line and not line.startswith("remoteAddr"):
                                 import json
-                                data = json.loads(line)
-                                timestamps = data.get("timestamps", [])
-                                if timestamps:
-                                    # timestamps уже в миллисекундах
-                                    time_from = timestamps[0]
-                                    time_to = timestamps[-1]
-                                    logger.info(f"Job {job_id}: Time range from export: {time_from} - {time_to}")
-                                break  # Одной серии достаточно
+                                try:
+                                    data = json.loads(line)
+                                    timestamps = data.get("timestamps", [])
+                                    if timestamps:
+                                        # timestamps уже в миллисекундах
+                                        time_from = timestamps[0]
+                                        time_to = timestamps[-1]
+                                        logger.info(f"Job {job_id}: Time range from export: {time_from} - {time_to}")
+                                    break
+                                except json.JSONDecodeError:
+                                    logger.warning(f"Job {job_id}: Failed to parse export line: {line[:100]}")
+                                    continue
                         export_response.close()
+                    else:
+                        logger.warning(f"Job {job_id}: Export API returned {export_response.status_code}")
                     
-                    # Получаем scrape_interval из series
+                    # Получаем scrape_interval из series (POST для правильного кодирования)
                     series_url = f"{VM_URL}/api/v1/series"
-                    series_params = {
+                    series_data = {
                         "match[]": f'{{SN="{sn}"}}',
-                        "start": "0"  # От начала времён
+                        "start": "0"
                     }
-                    series_response = requests.get(series_url, params=series_params, timeout=10)
+                    series_response = requests.post(series_url, data=series_data, timeout=10)
                     if series_response.status_code == 200:
                         series_data = series_response.json()
                         series_list = series_data.get("data", [])
