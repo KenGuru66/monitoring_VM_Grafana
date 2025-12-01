@@ -123,7 +123,7 @@ function Home() {
     }
   }
 
-  const openGrafana = (sn?: string, scrapeInterval?: string | null, timeFrom?: number | null, timeTo?: number | null) => {
+  const openGrafana = async (sn?: string, scrapeInterval?: string | null, timeFrom?: number | null, timeTo?: number | null) => {
     const dashboard = `${GRAFANA_URL}/d/huawei-oceanstor-real/huawei-oceanstor-real-data`
     let url = dashboard
 
@@ -133,6 +133,23 @@ function Home() {
       if (scrapeInterval) {
         url += `&var-min_interval=${scrapeInterval}`
       }
+      
+      // If time range not provided, fetch it from API
+      if (!timeFrom || !timeTo) {
+        try {
+          const response = await fetch(`${API_URL}/api/array/${sn}/timerange`)
+          if (response.ok) {
+            const data = await response.json()
+            if (data.time_from && data.time_to) {
+              timeFrom = data.time_from
+              timeTo = data.time_to
+            }
+          }
+        } catch (e) {
+          console.warn('Failed to fetch time range:', e)
+        }
+      }
+      
       // Add time range if available (in milliseconds from epoch)
       if (timeFrom && timeTo) {
         url += `&from=${timeFrom}&to=${timeTo}`

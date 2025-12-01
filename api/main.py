@@ -822,86 +822,47 @@ async def list_arrays():
         data = response.json()
         arrays = data.get("data", [])
         
-        # For each array, get scrape_interval
+        # Get scrape_interval for all arrays in ONE batch request
+        import time
+        end_time = int(time.time())
+        start_time = end_time - (365 * 24 * 60 * 60)
+        
+        # Build scrape_interval map from single series query
+        scrape_intervals = {}
+        try:
+            series_url = f"{VM_URL}/api/v1/series"
+            series_data_req = {
+                "match[]": '{SN=~".+"}',  # All series with SN label
+                "start": str(start_time)
+            }
+            series_response = requests.post(series_url, data=series_data_req, timeout=30)
+            
+            if series_response.status_code == 200:
+                series_data = series_response.json()
+                for item in series_data.get("data", []):
+                    sn = item.get("SN")
+                    if sn and sn not in scrape_intervals:
+                        interval_sec = item.get("scrape_interval")
+                        if interval_sec:
+                            interval_sec = int(interval_sec)
+                            if interval_sec < 60:
+                                scrape_intervals[sn] = f"{interval_sec}s"
+                            elif interval_sec < 3600:
+                                scrape_intervals[sn] = f"{interval_sec // 60}m"
+                            else:
+                                scrape_intervals[sn] = f"{interval_sec // 3600}h"
+        except Exception as e:
+            logger.warning(f"Failed to get scrape intervals: {e}")
+        
+        # Build metadata list (time_from/time_to are fetched on-demand)
         arrays_with_metadata = []
         for sn in sorted(arrays):
-            # Query for scrape_interval for this specific SN using series API
-            try:
-                # Use series API with a wide time range to get metrics
-                import time
-                end_time = int(time.time())
-                start_time = end_time - (365 * 24 * 60 * 60)  # 365 days ago
-                
-                series_url = f"{VM_URL}/api/v1/series"
-                series_data_req = {
-                    "match[]": f'{{SN="{sn}"}}',
-                    "start": str(start_time)
-                }
-                series_response = requests.post(series_url, data=series_data_req, timeout=10)
-                
-                scrape_interval = None
-                time_from = None
-                time_to = None
-                
-                if series_response.status_code == 200:
-                    series_data = series_response.json()
-                    results = series_data.get("data", [])
-                    
-                    # Extract scrape_interval from first series
-                    if results and len(results) > 0:
-                        metric_labels = results[0]
-                        scrape_interval_sec = metric_labels.get("scrape_interval")
-                        if scrape_interval_sec:
-                            # Convert seconds to Grafana format (5s, 1m, 5m, etc.)
-                            interval_sec = int(scrape_interval_sec)
-                            if interval_sec < 60:
-                                scrape_interval = f"{interval_sec}s"
-                            elif interval_sec < 3600:
-                                scrape_interval = f"{interval_sec // 60}m"
-                            else:
-                                scrape_interval = f"{interval_sec // 3600}h"
-                
-                # Get time range for this SN using export API (works for any data age)
-                try:
-                    export_url = f"{VM_URL}/api/v1/export"
-                    export_data = {
-                        "match[]": f'{{SN="{sn}"}}',
-                        "max_rows_per_line": "1"
-                    }
-                    export_response = requests.post(export_url, data=export_data, timeout=15, stream=True)
-                    
-                    if export_response.status_code == 200:
-                        for line in export_response.iter_lines(decode_unicode=True):
-                            if line and not line.startswith("remoteAddr"):
-                                try:
-                                    import json
-                                    data = json.loads(line)
-                                    timestamps = data.get("timestamps", [])
-                                    if timestamps:
-                                        # timestamps уже в миллисекундах
-                                        time_from = timestamps[0]
-                                        time_to = timestamps[-1]
-                                    break
-                                except:
-                                    continue
-                        export_response.close()
-                except Exception as e:
-                    logger.warning(f"Failed to get time range for {sn}: {e}")
-                
-                arrays_with_metadata.append({
-                    "sn": sn,
-                    "scrape_interval": scrape_interval,
-                    "time_from": time_from,
-                    "time_to": time_to
-                })
-            except Exception as e:
-                logger.warning(f"Failed to get metadata for {sn}: {e}")
-                arrays_with_metadata.append({
-                    "sn": sn,
-                    "scrape_interval": None,
-                    "time_from": None,
-                    "time_to": None
-                })
+            arrays_with_metadata.append({
+                "sn": sn,
+                "scrape_interval": scrape_intervals.get(sn),
+                "time_from": None,
+                "time_to": None
+            })
         
         # Return both old format (for compatibility) and new format
         return {
@@ -913,6 +874,45 @@ async def list_arrays():
     except Exception as e:
         logger.error(f"Error fetching arrays: {e}")
         raise HTTPException(status_code=500, detail=f"Failed to fetch arrays: {str(e)}")
+
+
+@app.get("/api/array/{sn}/timerange")
+async def get_array_timerange(sn: str):
+    """Get time range for a specific array (on-demand, may take a few seconds)."""
+    try:
+        export_url = f"{VM_URL}/api/v1/export"
+        export_data = {
+            "match[]": f'{{SN="{sn}"}}',
+            "max_rows_per_line": "1"
+        }
+        export_response = requests.post(export_url, data=export_data, timeout=30, stream=True)
+        
+        time_from = None
+        time_to = None
+        
+        if export_response.status_code == 200:
+            for line in export_response.iter_lines(decode_unicode=True):
+                if line and not line.startswith("remoteAddr"):
+                    try:
+                        import json
+                        data = json.loads(line)
+                        timestamps = data.get("timestamps", [])
+                        if timestamps:
+                            time_from = timestamps[0]
+                            time_to = timestamps[-1]
+                        break
+                    except:
+                        continue
+            export_response.close()
+        
+        return {
+            "sn": sn,
+            "time_from": time_from,
+            "time_to": time_to
+        }
+    except Exception as e:
+        logger.error(f"Error getting timerange for {sn}: {e}")
+        raise HTTPException(status_code=500, detail=str(e))
 
 
 @app.get("/api/csv-jobs")
