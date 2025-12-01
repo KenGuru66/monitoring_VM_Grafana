@@ -99931,7 +99931,7 @@
           "query": "label_values({SN=~\"$SN\"},Resource)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
-        "refresh": 2,
+        "refresh": 1,
         "regex": "",
         "sort": 1,
         "type": "query"
@@ -99958,7 +99958,7 @@
           "query": "label_values({SN=~\"$SN\", Resource=~\"$Resource\"},Element)",
           "refId": "PrometheusVariableQueryEditor-VariableQuery"
         },
-        "refresh": 2,
+        "refresh": 1,
         "regex": "",
         "sort": 1,
         "type": "query"
