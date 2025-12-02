@@ -79,7 +79,7 @@ Workers: 8
 
 - Python 3.6+
 - Модули: pathlib, tqdm, multiprocessing, concurrent.futures
-- Data2csv/METRIC_DICT.py и Data2csv/RESOURCE_DICT.py
+- parsers/dictionaries/METRIC_DICT.py и parsers/dictionaries/RESOURCE_DICT.py
 
 ## Особенности
 

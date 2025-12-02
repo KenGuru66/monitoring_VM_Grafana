@@ -245,11 +245,13 @@ monitoring_VM_Grafana/
 │   │   └── App.css              # Styles
 │   ├── package.json
 │   └── Dockerfile
-├── Data2csv/                     # CSV parser (Wide format)
-│   ├── Huawei_perf_parser_v0.2_parallel.py
-│   ├── METRIC_DICT.py           # 743 метрики (названия)
-│   ├── RESOURCE_DICT.py         # 51 тип ресурсов
-│   └── METRIC_CONVERSION.py     # 49 метрик с конверсией единиц 🆕
+├── parsers/                      # Парсеры и словари
+│   ├── streaming_pipeline.py    # Streaming → VictoriaMetrics
+│   ├── csv_wide_parser.py       # CSV wide format
+│   └── dictionaries/            # Словари метрик и ресурсов
+│       ├── METRIC_DICT.py       # 743+ метрики (названия)
+│       ├── RESOURCE_DICT.py     # 51+ тип ресурсов
+│       └── METRIC_CONVERSION.py # 49 метрик с конверсией единиц
 ├── perfmonkey/                   # Perfmonkey format parser
 │   └── perf_zip2csv_wide.py
 ├── grafana/                      # Grafana provisioning
@@ -458,7 +460,7 @@ docker exec monitoring_vm_grafana-api-1 ls -lah /app/jobs/
 
 ### METRIC_CONVERSION.py
 
-Централизованный словарь конверсий находится в `Data2csv/METRIC_CONVERSION.py`:
+Централизованный словарь конверсий находится в `parsers/dictionaries/METRIC_CONVERSION.py`:
 
 **Bandwidth метрики** (KB/s → MB/s, делим на 1024):
 - `311`, `312`, `313`: Throughput, Read/Write throughput
@@ -478,7 +480,7 @@ docker exec monitoring_vm_grafana-api-1 ls -lah /app/jobs/
 ### Просмотр статистики конверсий
 
 ```bash
-cd Data2csv
+cd parsers/dictionaries
 python3 METRIC_CONVERSION.py
 ```
 
@@ -488,7 +490,7 @@ python3 METRIC_CONVERSION.py
 
 Для добавления новой метрики с конверсией:
 
-1. Откройте `Data2csv/METRIC_CONVERSION.py`
+1. Откройте `parsers/dictionaries/METRIC_CONVERSION.py`
 2. Добавьте строку в соответствующую секцию:
    ```python
    "metric_id": коэффициент,  # Название метрики - комментарий
@@ -664,7 +666,7 @@ victoriametrics:
 
 ### v2.1.1 - October 21, 2025
 - ✅ **METRIC_CONVERSION.py**: Централизованная система конверсии единиц измерения
-  - Создан новый модуль `Data2csv/METRIC_CONVERSION.py`
+  - Создан новый модуль `parsers/dictionaries/METRIC_CONVERSION.py`
   - 49 метрик с автоматической конверсией единиц
   - DRY принцип: единый источник истины для обоих парсеров
   - Встроенная документация и статистика

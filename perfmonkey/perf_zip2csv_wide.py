@@ -30,11 +30,11 @@ from multiprocessing import Manager, cpu_count
 
 from tqdm import tqdm
 
-# Add parent directory to path to access Data2csv
+# Add parent directory to path to access parsers/dictionaries
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from Data2csv.METRIC_DICT import METRIC_NAME_DICT
-from Data2csv.RESOURCE_DICT import RESOURCE_NAME_DICT
+from parsers.dictionaries.METRIC_DICT import METRIC_NAME_DICT
+from parsers.dictionaries.RESOURCE_DICT import RESOURCE_NAME_DICT
 
 # Setup logging
 logging.basicConfig(

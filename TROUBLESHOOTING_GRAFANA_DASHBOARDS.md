@@ -262,7 +262,7 @@ curl -s "http://localhost:8428/api/v1/query_range?query=huawei_read_i_o_granular
 
 ```bash
 # 1. Распаковать .tgz файл
-unzip -p Data2csv/logs/ARCHIVE.zip "2025-10-20/PerfData_*_SP0_0_20251020000400.tgz" | tar -xzf - -C temp_debug/
+unzip -p logs/ARCHIVE.zip "2025-10-20/PerfData_*_SP0_0_20251020000400.tgz" | tar -xzf - -C temp_debug/
 
 # 2. Запустить скрипт поиска значения
 python3 debug_metric_value.py \
@@ -274,8 +274,8 @@ python3 debug_metric_value.py \
 ```
 
 **Параметры:**
-- `212` - Resource ID (FC Port, см. `Data2csv/RESOURCE_DICT.py`)
-- `1183` - Metric ID (Read I/O Granularity Distribution: [128K,+∞), см. `Data2csv/METRIC_DICT.py`)
+- `212` - Resource ID (FC Port, см. `parsers/dictionaries/RESOURCE_DICT.py`)
+- `1183` - Metric ID (Read I/O Granularity Distribution: [128K,+∞), см. `parsers/dictionaries/METRIC_DICT.py`)
 - `"CTE0.A.IOM0.P0"` - Element Name (имя порта)
 - `"2025-10-20 00:01:00"` - целевое время
 
@@ -322,8 +322,8 @@ python3 debug_metric_value.py \
 **Генерация CSV:**
 
 ```bash
-python3 Data2csv/Huawei_perf_parser_v0.2_parallel.py \
-    -i Data2csv/logs/ARCHIVE.zip \
+python3 parsers/csv_wide_parser.py \
+    -i logs/ARCHIVE.zip \
     -o temp_csv/ \
     --all-metrics
 ```
@@ -559,7 +559,7 @@ grep -i "unknown.*IDs" streaming_pipeline.log | \
     grep -oP 'metric IDs.*: \K\[.*\]' | \
     tr ',' '\n' | sort -u
 
-# 2. Добавить в Data2csv/METRIC_DICT.py
+# 2. Добавить в parsers/dictionaries/METRIC_DICT.py
 # "1234": "New Metric Name",
 
 # 3. Перезапустить парсинг
@@ -579,7 +579,7 @@ python3 huawei_streaming_pipeline.py -i logs.zip
 
 **Решение:**
 ```python
-# Добавить в Data2csv/METRIC_CONVERSION.py
+# Добавить в parsers/dictionaries/METRIC_CONVERSION.py
 METRIC_CONVERSION = {
     "311": 1024,  # Throughput (MB/s) - реально в KB/s
     "384": 1000,  # Avg. Read I/O Response Time(us) - делим на 1000 для ms
@@ -641,7 +641,7 @@ python3 huawei_streaming_pipeline.py \
     --all-metrics
 
 # CSV парсинг (Wide format)
-python3 Data2csv/Huawei_perf_parser_v0.2_parallel.py \
+python3 parsers/csv_wide_parser.py \
     -i archive.zip \
     -o output_csv/ \
     --all-metrics
@@ -679,13 +679,13 @@ jq . grafana/provisioning/dashboards/Huawei-OceanStor-Real-Data.json > /dev/null
 
 ```bash
 # Найти Metric ID по названию
-grep -i "granularity.*128" Data2csv/METRIC_DICT.py
+grep -i "granularity.*128" parsers/dictionaries/METRIC_DICT.py
 
 # Найти Resource ID
-grep -i "FC Port" Data2csv/RESOURCE_DICT.py
+grep -i "FC Port" parsers/dictionaries/RESOURCE_DICT.py
 
 # Проверить конверсию метрики
-grep "\"311\"" Data2csv/METRIC_CONVERSION.py
+grep "\"311\"" parsers/dictionaries/METRIC_CONVERSION.py
 ```
 
 ---
@@ -734,11 +734,11 @@ grep "\"311\"" Data2csv/METRIC_CONVERSION.py
 ## 🎓 Дополнительные ресурсы
 
 - **README.md** - Общее описание проекта
-- **Data2csv/METRIC_DICT.py** - 743 метрики
-- **Data2csv/RESOURCE_DICT.py** - 51 тип ресурсов
-- **Data2csv/METRIC_CONVERSION.py** - 49 метрик с конверсией
-- **huawei_streaming_pipeline.py** - Streaming парсер
-- **Data2csv/Huawei_perf_parser_v0.2_parallel.py** - CSV парсер
+- **parsers/dictionaries/METRIC_DICT.py** - 743+ метрик
+- **parsers/dictionaries/RESOURCE_DICT.py** - 51+ тип ресурсов
+- **parsers/dictionaries/METRIC_CONVERSION.py** - 49 метрик с конверсией
+- **parsers/streaming_pipeline.py** - Streaming парсер
+- **parsers/csv_wide_parser.py** - CSV парсер
 
 ---
 

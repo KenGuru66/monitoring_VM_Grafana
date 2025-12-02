@@ -60,7 +60,7 @@ app.add_middleware(
 
 # Configuration
 UPLOAD_DIR = Path("/app/uploads")
-OUTPUT_DIR = Path("/app/Data2csv/output")
+OUTPUT_DIR = Path("/app/output")
 WORK_DIR = Path(os.getenv("WORK_DIR", "/app/jobs"))  # Job output directory
 VM_URL = os.getenv("VM_URL", "http://victoriametrics:8428")
 VM_IMPORT_URL = os.getenv("VM_IMPORT_URL", "http://victoriametrics:8428/api/v1/import/prometheus")
@@ -236,7 +236,7 @@ def cleanup_old_jobs():
 
 
 def run_csv_parser_sync(job_id: str, zip_path: Path):
-    """Run Huawei CSV parser (wide format) - Data2csv/Huawei_perf_parser_v0.2_parallel.py"""
+    """Run Huawei CSV parser (wide format) - parsers/csv_wide_parser.py"""
     import subprocess
     
     start_time = time.time()
