@@ -892,44 +892,92 @@ METRIC_NAME_DICT = {
     "1641": "Cumulative Count of All Writes",  # 📄 PDF Documentation
     "1642": "Cumulative Count of Data Written (KB)",  # 📄 PDF Documentation
     "1643": "Average IO Size (KB)",  # 📄 PDF Documentation
-    "90086": "Head Object OPS",  # 📄 PDF Documentation
-    "90087": "Put Object OPS",  # 📄 PDF Documentation
-    "90088": "Get Object OPS",  # 📄 PDF Documentation
-    "90089": "Post Object OPS",  # 📄 PDF Documentation
-    "90090": "Delete Object OPS",  # 📄 PDF Documentation
-    "90091": "List Bucket OPS",  # 📄 PDF Documentation
-    "90092": "Delete Bucket OPS",  # 📄 PDF Documentation
-    "90093": "Get Bucket ACL OPS",  # 📄 PDF Documentation
-    "90094": "Put Bucket ACL OPS",  # 📄 PDF Documentation
-    "90095": "Create Bucket OPS",  # 📄 PDF Documentation
-    "90096": "Head Bucket OPS",  # 📄 PDF Documentation
-    "90097": "Get Object ACL OPS",  # 📄 PDF Documentation
-    "90098": "Put Object ACL OPS",  # 📄 PDF Documentation
-    "90099": "Initiate Multipart Upload OPS",  # 📄 PDF Documentation
-    "90100": "Upload Part OPS",  # 📄 PDF Documentation
-    "90101": "Complete Multipart Upload OPS",  # 📄 PDF Documentation
-    "90102": "Abort Multipart Upload OPS",  # 📄 PDF Documentation
-    "90103": "List Parts OPS",  # 📄 PDF Documentation
-    "90104": "List Multipart Uploads OPS",  # 📄 PDF Documentation
-    "90105": "Upload Part Copy OPS",  # 📄 PDF Documentation
-    "90106": "Copy Object OPS",  # 📄 PDF Documentation
-    "90107": "Get Bucket Versioning OPS",  # 📄 PDF Documentation
-    "90108": "Put Bucket Versioning OPS",  # 📄 PDF Documentation
-    "90109": "Delete Multiple Objects OPS",  # 📄 PDF Documentation
-    "90110": "Get Bucket Location OPS",  # 📄 PDF Documentation
-    "90111": "Get Service OPS",  # 📄 PDF Documentation
-    "90112": "Options Object OPS",  # 📄 PDF Documentation
-    "90118": "Restore Object OPS",  # 📄 PDF Documentation
+    # ============================================================================
+    # S3 Object Storage метрики (исправлено из PDF 2025-12-02)
+    # ============================================================================
+    # Источник: OceanStor Dorado V700R001C10 REST Interface Reference.pdf
+    # Страницы: 4617-4620 (Appendix 4.3/4.4 Protocol Performance Indicators)
+    # ВНИМАНИЕ: Предыдущие значения были НЕВЕРНЫ! Исправлено по PDF документации.
+    "90086": "HeadObject OPS",  # 📄 PDF (было: Head Object OPS)
+    "90087": "PutObject OPS",  # 📄 PDF (было: Put Object OPS)
+    "90088": "GetObject OPS",  # 📄 PDF (было: Get Object OPS)
+    "90089": "ListObjects OPS",  # 📄 PDF (было: Post Object OPS - НЕВЕРНО!)
+    "90090": "DeleteObject OPS",  # 📄 PDF (было: Delete Object OPS)
+    "90091": "DeleteObjects OPS",  # 📄 PDF (было: List Bucket OPS - НЕВЕРНО!)
+    "90092": "GetObjectAcl OPS",  # 📄 PDF (было: Delete Bucket OPS - НЕВЕРНО!)
+    "90093": "PutObjectAcl OPS",  # 📄 PDF (было: Get Bucket ACL OPS - НЕВЕРНО!)
+    "90094": "CreateBucket OPS",  # 📄 PDF (было: Put Bucket ACL OPS - НЕВЕРНО!)
+    "90095": "DeleteBucket OPS",  # 📄 PDF (было: Create Bucket OPS - НЕВЕРНО!)
+    "90096": "ListBuckets OPS",  # 📄 PDF (было: Head Bucket OPS - НЕВЕРНО!)
+    "90097": "Other Object OPS",  # 📄 PDF (было: Get Object ACL OPS - НЕВЕРНО!)
+    "90098": "Other Bucket OPS",  # 📄 PDF (было: Put Object ACL OPS - НЕВЕРНО!)
+    "90099": "Avg. HeadObject Response Time",  # 📄 PDF (было: Initiate Multipart Upload OPS - НЕВЕРНО!)
+    "90100": "Avg. PutObject Response Time",  # 📄 PDF (было: Upload Part OPS - НЕВЕРНО!)
+    "90101": "Avg. GetObject Response Time",  # 📄 PDF (было: Complete Multipart Upload OPS - НЕВЕРНО!)
+    "90102": "Avg. ListObjects Response Time",  # 📄 PDF (было: Abort Multipart Upload OPS - НЕВЕРНО!)
+    "90103": "Avg. DeleteObject Response Time",  # 📄 PDF (было: List Parts OPS - НЕВЕРНО!)
+    "90104": "Avg. DeleteObjects Response Time",  # 📄 PDF (было: List Multipart Uploads OPS - НЕВЕРНО!)
+    "90105": "Avg. GetObjectAcl Response Time",  # 📄 PDF (было: Upload Part Copy OPS - НЕВЕРНО!)
+    "90106": "Avg. PutObjectAcl Response Time",  # 📄 PDF (было: Copy Object OPS - НЕВЕРНО!)
+    "90107": "Avg. CreateBucket Response Time",  # 📄 PDF (было: Get Bucket Versioning OPS - НЕВЕРНО!)
+    "90108": "Avg. DeleteBucket Response Time",  # 📄 PDF (было: Put Bucket Versioning OPS - НЕВЕРНО!)
+    "90109": "Avg. ListBuckets Response Time",  # 📄 PDF (было: Delete Multiple Objects OPS - НЕВЕРНО!)
+    "90110": "Avg. Other Object I/O Response Time",  # 📄 PDF (было: Get Bucket Location OPS - НЕВЕРНО!)
+    "90111": "Avg. Other Bucket I/O Response Time",  # 📄 PDF (было: Get Service OPS - НЕВЕРНО!)
+    "90112": "S3 Bandwidth (KB/s)",  # 📄 PDF (было: Options Object OPS - НЕВЕРНО!)
+    "90113": "Avg. Response Time of S3 I/Os (us)",  # 📄 PDF Documentation (новая)
+    "90114": "Total S3 OPS",  # 📄 PDF Documentation (новая)
+    "90115": "Total S3 Bandwidth (KB/s)",  # 📄 PDF Documentation (новая)
+    "90116": "S3 Read Bandwidth (KB/s)",  # 📄 PDF Documentation (новая)
+    "90117": "S3 Write Bandwidth (KB/s)",  # 📄 PDF Documentation (новая)
+    "90118": "S3 OPS",  # 📄 PDF (было: Restore Object OPS - НЕВЕРНО!)
     "90119": "Select Object Content OPS",  # 📄 PDF Documentation
     "90120": "Put Object Tagging OPS",  # 📄 PDF Documentation
     "90121": "Get Object Tagging OPS",  # 📄 PDF Documentation
-    "90122": "Delete Object Tagging OPS",  # 📄 PDF Documentation
-    "90123": "List Bucket Versions OPS",  # 📄 PDF Documentation
-    "90130": "Append Object OPS",  # 📄 PDF Documentation
-    "90131": "Put Bucket Lifecycle OPS",  # 📄 PDF Documentation
-    "90132": "Get Bucket Lifecycle OPS",  # 📄 PDF Documentation
-    "90133": "Delete Bucket Lifecycle OPS",  # 📄 PDF Documentation
-    "90134": "Put Bucket Policy OPS",  # 📄 PDF Documentation
-    "90135": "Get Bucket Policy OPS",  # 📄 PDF Documentation
-    "90136": "Delete Bucket Policy OPS",  # 📄 PDF Documentation
+    "90122": "S3 Read Bandwidth (KB/s)",  # 📄 PDF (было: Delete Object Tagging OPS - НЕВЕРНО!)
+    "90123": "S3 Write Bandwidth (KB/s)",  # 📄 PDF (было: List Bucket Versions OPS - НЕВЕРНО!)
+    "90124": "Avg. Response Time of S3 Write I/Os (us)",  # 📄 PDF Documentation (новая)
+    "90125": "Avg. Response Time of S3 Read I/Os (us)",  # 📄 PDF Documentation (новая)
+    "90126": "S3 Write OPS",  # 📄 PDF Documentation (новая)
+    "90127": "S3 Read OPS",  # 📄 PDF Documentation (новая)
+    "90128": "Other S3 OPS",  # 📄 PDF Documentation (новая)
+    "90129": "Avg. Response Time of Other S3 I/Os (us)",  # 📄 PDF Documentation (новая)
+    "90130": "Read I/O Granularity Distribution: [2M,4M) (%)",  # 📄 PDF (было: Append Object OPS - НЕВЕРНО!)
+    "90131": "Read I/O Granularity Distribution: [4M,8M) (%)",  # 📄 PDF (было: Put Bucket Lifecycle OPS - НЕВЕРНО!)
+    "90132": "Read I/O Granularity Distribution: [8M,16M) (%)",  # 📄 PDF (было: Get Bucket Lifecycle OPS - НЕВЕРНО!)
+    "90133": "Read I/O Granularity Distribution: [16M,+∞) (%)",  # 📄 PDF (было: Delete Bucket Lifecycle OPS - НЕВЕРНО!)
+    "90134": "Write I/O Granularity Distribution: [2M,4M) (%)",  # 📄 PDF (было: Put Bucket Policy OPS - НЕВЕРНО!)
+    "90135": "Write I/O Granularity Distribution: [4M,8M) (%)",  # 📄 PDF (было: Get Bucket Policy OPS - НЕВЕРНО!)
+    "90136": "Write I/O Granularity Distribution: [8M,16M) (%)",  # 📄 PDF (было: Delete Bucket Policy OPS - НЕВЕРНО!)
+    "90137": "Write I/O Granularity Distribution: [16M,+∞) (%)",  # 📄 PDF Documentation (новая)
+    "90138": "Read I/O Granularity Distribution: [256KB,512KB) (%)",  # 📄 PDF Documentation (новая)
+    "90139": "Read I/O Granularity Distribution: [512KB,1M) (%)",  # 📄 PDF Documentation (новая)
+    "90140": "Read I/O Granularity Distribution: [1M,2M) (%)",  # 📄 PDF Documentation (новая)
+    "90141": "Write I/O Granularity Distribution: [256KB,512KB) (%)",  # 📄 PDF Documentation (новая)
+    "90142": "Write I/O Granularity Distribution: [512KB,1M) (%)",  # 📄 PDF Documentation (новая)
+    # ============================================================================
+    # Новые метрики из PDF документации (добавлено 2025-12-02)
+    # ============================================================================
+    # Источник: OceanStor Dorado V700R001C10/C00/6.1.8 REST Interface Reference.pdf
+    # Извлечено из Appendix: Performance Indicators
+    "1225": "AI Cache Hit Ratio (%)",  # 📄 PDF Documentation
+    "1700": "Front-End Deduplication Processing Bandwidth",  # 📄 PDF Documentation
+    "1701": "Background Deduplication CK Scanning Bandwidth (MB/s)",  # 📄 PDF Documentation
+    "1702": "Deduplication WAL Processing Bandwidth",  # 📄 PDF Documentation
+    "1703": "Deduplication Merge Bandwidth",  # 📄 PDF Documentation
+    "1704": "Deduplication Computing Power Consumption",  # 📄 PDF Documentation
+    "1705": "Compression Computing Power Consumption",  # 📄 PDF Documentation
+    "1706": "Time Percentage of Low-Load Node Resources",  # 📄 PDF Documentation
+    "1707": "Time Percentage of Medium-Load Node Resources",  # 📄 PDF Documentation
+    "1708": "Time Percentage of High-Load Node Resources",  # 📄 PDF Documentation
+    "1709": "Time Percentage of No-Load Node Resources",  # 📄 PDF Documentation
+    "1710": "Daily Hot Data Percentage (%)",  # 📄 PDF Documentation
+    "1711": "Hot File Write Bandwidth (MB/s)",  # 📄 PDF Documentation
+    "1712": "Hot Write Bandwidth (MB/s)",  # 📄 PDF Documentation
+    "1713": "Daily Hot Data Write Volume (GB)",  # 📄 PDF Documentation
+    "1714": "File Write Bandwidth (MB/s)",  # 📄 PDF Documentation
+    "1715": "Write Bandwidth (MB/s)",  # 📄 PDF Documentation
+    "1716": "Daily Written Data Volume (GB)",  # 📄 PDF Documentation
+    "1717": "Background Deduplication RF Scanning Bandwidth (MB/s)",  # 📄 PDF Documentation
+    "90058": "Data Protection Capacity (MB)",  # 📄 PDF Documentation
 }

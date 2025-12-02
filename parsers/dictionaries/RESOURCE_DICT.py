@@ -55,13 +55,16 @@ RESOURCE_NAME_DICT = {
     "57867": "ETH_EXP_Port",
     "57890": "ETH Expansion Port",  # Ethernet расширенные порты CTE0 (2025-10-29)
     # ============================================================================
-    # 📄 Новые ресурсы из PDF документации (добавлено 2025-10-30)
+    # 📄 Ресурсы из PDF документации (обновлено 2025-12-02)
     # ============================================================================
     # Источник: OceanStor Dorado V700R001C10 REST Interface Reference.pdf
-    # Извлечено автоматически из Appendix: Performance Indicators
-    "824": "Remote Replication Pair",  # 📄 PDF Documentation
-    "1006": "SmartPartition",  # 📄 PDF Documentation
-    "1053": "Controller SMB3",  # 📄 PDF Documentation
-    "11110": "SmartQoS Service Level Objective",  # 📄 PDF Documentation
-    "11111": "SmartQoS Workload",  # 📄 PDF Documentation
+    # Извлечено из Appendix: Performance Indicators (раздел 4.3.5 Protocol)
+    # 
+    # ВАЖНО: Названия извлечены из заголовков столбцов таблиц Performance Indicators
+    # Строка с названиями ресурсов находится НАД строкой Type с ID
+    "824": "SmartMove FsPair",  # 📄 PDF: SmartMoveFsPair (раздел Data Protection)
+    "1006": "SmartMove",  # 📄 PDF: SmartMove (раздел Data Protection)
+    "1053": "Controller S3",  # 📄 PDF: ControllerS3 (раздел Protocol) - Amazon S3 протокол!
+    "11110": "LUN Clone",  # 📄 PDF: lun clone (раздел Data Protection)
+    "11111": "LUN Clone Group",  # 📄 PDF: lun clonegroup (раздел Data Protection)
 }

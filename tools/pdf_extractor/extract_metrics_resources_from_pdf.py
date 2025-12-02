@@ -1,9 +1,17 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-ПРОСТОЙ парсер: собираем только списки метрик и ресурсов
-=========================================================
-БЕЗ связей между ними!
+Парсер метрик и ресурсов из PDF документации Huawei OceanStor
+=============================================================
+Извлекает:
+- Метрики (ID + название) из строк таблиц
+- Ресурсы (ID + название) из строк Type с заголовками столбцов
+
+Структура таблиц Performance Indicators в PDF:
+  Row 0: ['Indicator', 'ID', 'Statistics Type', ...]  - заголовок
+  Row 1: [None, None, 'Controller\nNFSV3', 'ControllerS\n3', ...]  - названия ресурсов
+  Row 2: ['Type', '', '1000', '1053', ...]  - ID ресурсов
+  Row 3+: ['Metric Name', 'ID', '√', '√', ...]  - метрики
 """
 
 import json
@@ -15,10 +23,12 @@ import pdfplumber
 # CONFIGURATION
 # ============================================================================
 
-PDF_PATH = Path("Data2csv/pdf/OceanStor Dorado V700R001C10 REST Interface Reference.pdf")
+# Путь к PDF (относительно корня проекта или абсолютный)
+PDF_PATH = Path("tools/pdf_extractor/OceanStor Dorado V700R001C10 REST Interface Reference.pdf")
 OUTPUT_JSON = Path("temp/simple_metrics_resources.json")
 
-APPENDIX_START = 4100
+# Диапазон страниц Appendix с Performance Indicators
+APPENDIX_START = 4500  # Начало секции Performance Indicators
 APPENDIX_END = 4712
 
 # ============================================================================
@@ -26,14 +36,54 @@ APPENDIX_END = 4712
 # ============================================================================
 
 def clean_cell(cell) -> str:
-    """Очистка содержимого ячейки"""
+    """Очистка содержимого ячейки от переносов строк и лишних пробелов.
+    
+    Важно: убирает переносы строк БЕЗ пробелов, чтобы склеивать слова:
+    - 'ControllerS\n3' -> 'ControllerS3'
+    - '129\n9' -> '1299'
+    """
     if cell is None:
         return ""
-    return str(cell).strip().replace('\n', ' ')
+    # Убираем переносы строк (склеиваем части)
+    result = str(cell).strip().replace('\n', '').replace('\r', '')
+    # Убираем лишние пробелы
+    while '  ' in result:
+        result = result.replace('  ', ' ')
+    return result
+
+
+def clean_metric_name(cell) -> str:
+    """Очистка названия метрики с заменой переносов на пробелы.
+    
+    Для названий метрик переносы заменяются на пробелы:
+    - 'Avg.\nHeadObjec\nt Response\nTime' -> 'Avg. HeadObject Response Time'
+    """
+    if cell is None:
+        return ""
+    result = str(cell).strip().replace('\n', ' ').replace('\r', ' ')
+    # Убираем лишние пробелы
+    while '  ' in result:
+        result = result.replace('  ', ' ')
+    return result
+
+
+def extract_metric_id(cell) -> str:
+    """Извлекает ID метрики из ячейки, склеивая части разбитые переносами.
+    
+    Примеры:
+    - '90099' -> '90099'
+    - '129\n9' -> '1299'  (ID разбит на две строки)
+    """
+    if cell is None:
+        return ""
+    # Убираем все переносы и пробелы
+    result = str(cell).strip().replace('\n', '').replace('\r', '').replace(' ', '')
+    return result
+
 
 def is_valid_metric_id(cell) -> bool:
-    """Проверка, является ли ячейка ID метрики"""
-    cell_str = clean_cell(cell)
+    """Проверка, является ли ячейка ID метрики (число от 2 до 100000)"""
+    cell_str = extract_metric_id(cell)
     if not cell_str:
         return False
     try:
@@ -42,14 +92,15 @@ def is_valid_metric_id(cell) -> bool:
     except ValueError:
         return False
 
+
 def is_valid_resource_id(cell) -> bool:
-    """Проверка, является ли ячейка ID ресурса"""
-    cell_str = clean_cell(cell)
+    """Проверка, является ли ячейка ID ресурса (число от 10 до 100000)"""
+    cell_str = extract_metric_id(cell)  # Используем ту же логику
     if not cell_str:
         return False
     try:
         num = int(cell_str)
-        return 10 <= num <= 100000  # Ресурсы обычно >= 10
+        return 10 <= num <= 100000
     except ValueError:
         return False
 
@@ -59,20 +110,28 @@ def is_valid_resource_id(cell) -> bool:
 
 def extract_all_metrics_and_resources(pdf_path: Path) -> dict:
     """
-    Извлекает ВСЕ метрики и ресурсы из PDF
+    Извлекает ВСЕ метрики и ресурсы из PDF.
+    
+    Структура таблиц Performance Indicators:
+    - Row N-1: Названия ресурсов в заголовках столбцов
+    - Row N: 'Type' + ID ресурсов
+    - Row N+1...: Метрики с ID во втором столбце
+    
+    Returns:
+        dict с ключами 'metrics' и 'resources'
     """
     print(f"\n{'='*80}")
-    print("SIMPLE EXTRACTION: Metrics + Resources Lists")
+    print("EXTRACTION: Metrics + Resources with Names")
     print(f"{'='*80}\n")
     
-    all_metrics = {}  # metric_id -> {name, pages}
-    all_resources = {}  # resource_id -> {pages}
+    all_metrics = {}  # metric_id -> {id, name, pages}
+    all_resources = {}  # resource_id -> {id, name, pages}
     
     total_tables = 0
     
     with pdfplumber.open(pdf_path) as pdf:
         for page_num in range(APPENDIX_START, min(APPENDIX_END, len(pdf.pages))):
-            if (page_num - APPENDIX_START) % 100 == 0:
+            if (page_num - APPENDIX_START) % 50 == 0:
                 print(f"  Page {page_num}/{APPENDIX_END}... (metrics: {len(all_metrics)}, resources: {len(all_resources)})")
             
             try:
@@ -92,21 +151,42 @@ def extract_all_metrics_and_resources(pdf_path: Path) -> dict:
                         
                         first_cell = clean_cell(row[0]).lower()
                         
-                        # Нашли строку Type - извлекаем ресурсы
+                        # Нашли строку Type - извлекаем ресурсы с названиями
                         if first_cell == 'type':
+                            # Получаем строку с названиями ресурсов (предыдущая строка)
+                            resource_names_row = table[row_idx - 1] if row_idx > 0 else None
+                            
                             for col_idx in range(1, len(row)):
-                                cell = clean_cell(row[col_idx])
-                                if is_valid_resource_id(cell):
-                                    resource_id = cell
+                                resource_id = extract_metric_id(row[col_idx])
+                                if is_valid_resource_id(resource_id):
+                                    # Извлекаем название ресурса из заголовка столбца
+                                    resource_name = ""
+                                    if resource_names_row and col_idx < len(resource_names_row):
+                                        # Очищаем название: убираем переносы строк
+                                        resource_name = clean_cell(resource_names_row[col_idx])
+                                    
                                     if resource_id not in all_resources:
-                                        all_resources[resource_id] = {'id': resource_id, 'pages': set()}
+                                        all_resources[resource_id] = {
+                                            'id': resource_id,
+                                            'name': resource_name,
+                                            'pages': set()
+                                        }
+                                    else:
+                                        # Обновляем название если текущее длиннее или предыдущее пустое
+                                        if resource_name and (
+                                            not all_resources[resource_id]['name'] or
+                                            len(resource_name) > len(all_resources[resource_id]['name'])
+                                        ):
+                                            all_resources[resource_id]['name'] = resource_name
+                                    
                                     all_resources[resource_id]['pages'].add(page_num)
                         
                         # Каждая строка может быть метрикой
                         # Ищем паттерн: [Название, ID, ...]
                         if len(row) >= 2:
-                            metric_name = clean_cell(row[0])
-                            metric_id = clean_cell(row[1])
+                            # Для названий метрик используем пробелы вместо переносов
+                            metric_name = clean_metric_name(row[0])
+                            metric_id = extract_metric_id(row[1])
                             
                             # Проверяем что это метрика
                             if metric_name and len(metric_name) > 3 and is_valid_metric_id(metric_id):
@@ -155,7 +235,7 @@ def extract_all_metrics_and_resources(pdf_path: Path) -> dict:
 def compare_with_existing(data: dict):
     """Сравнивает с существующими словарями"""
     import sys
-    sys.path.insert(0, str(Path("Data2csv")))
+    sys.path.insert(0, str(Path(__file__).parent.parent.parent / "parsers" / "dictionaries"))
     
     from METRIC_DICT import METRIC_NAME_DICT
     from RESOURCE_DICT import RESOURCE_NAME_DICT
@@ -199,11 +279,22 @@ def compare_with_existing(data: dict):
             metric = data['metrics'][metric_id]
             print(f"   {metric_id:>5s}: {metric['name'][:70]}")
     
-    # Показываем новые ресурсы
+    # Показываем новые ресурсы с названиями
     if new_r:
         print(f"\n🆕 NEW RESOURCES in PDF (not in dict):")
         for resource_id in sorted(new_r, key=lambda x: int(x)):
-            print(f"   {resource_id}")
+            resource = data['resources'][resource_id]
+            name = resource.get('name', 'UNKNOWN')
+            print(f"   {resource_id:>5s}: {name}")
+    
+    # Показываем все ресурсы из PDF с названиями для сравнения
+    print(f"\n📦 ALL RESOURCES FROM PDF:")
+    for resource_id in sorted(pdf_resources, key=lambda x: int(x)):
+        resource = data['resources'][resource_id]
+        name = resource.get('name', 'UNKNOWN')
+        dict_name = RESOURCE_NAME_DICT.get(resource_id, '❌ NOT IN DICT')
+        match_status = "✅" if name == dict_name or resource_id not in dict_resources else "⚠️"
+        print(f"   {resource_id:>5s}: PDF='{name}' | DICT='{dict_name}' {match_status}")
     
     return {
         'metrics': {
@@ -248,7 +339,9 @@ def main():
     
     print(f"\n📦 RESOURCES FOUND ({len(data['resources'])}):")
     for resource_id in sorted(data['resources'].keys(), key=lambda x: int(x)):
-        print(f"   {resource_id}")
+        resource = data['resources'][resource_id]
+        name = resource.get('name', 'UNKNOWN')
+        print(f"   {resource_id:>5s}: {name}")
     
     # Save JSON
     output_data = {
@@ -259,6 +352,7 @@ def main():
         } for mid, mdata in data['metrics'].items()},
         'resources': {rid: {
             'id': rdata['id'],
+            'name': rdata.get('name', ''),
             'pages': rdata['pages']
         } for rid, rdata in data['resources'].items()}
     }
