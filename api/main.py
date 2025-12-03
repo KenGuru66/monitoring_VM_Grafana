@@ -16,6 +16,13 @@ import json
 import gzip
 import shutil
 from pathlib import Path
+
+# Поддержка .7z архивов
+try:
+    import py7zr
+    PY7ZR_AVAILABLE = True
+except ImportError:
+    PY7ZR_AVAILABLE = False
 from typing import Dict, Optional, List
 from datetime import datetime, timedelta
 from concurrent.futures import ThreadPoolExecutor
@@ -113,21 +120,89 @@ class JobStatus(BaseModel):
     error: Optional[str] = None
 
 
-def extract_serial_numbers(zip_path: Path) -> list[str]:
-    """Extract serial numbers from .tgz filenames inside ZIP archive."""
+def extract_serial_numbers(archive_path: Path) -> list[str]:
+    """Extract serial numbers from .tgz filenames inside ZIP or 7Z archive."""
     serial_numbers = set()
+    suffix = archive_path.suffix.lower()
     
     try:
-        with zipfile.ZipFile(zip_path, 'r') as zip_ref:
-            for filename in zip_ref.namelist():
-                matches = re.findall(r"_SN_([0-9A-Z]+)_SP\d+", filename)
-                if matches:
-                    serial_numbers.add(matches[0])
+        file_list = []
+        
+        if suffix == '.zip':
+            with zipfile.ZipFile(archive_path, 'r') as zip_ref:
+                file_list = zip_ref.namelist()
+        elif suffix == '.7z' and PY7ZR_AVAILABLE:
+            with py7zr.SevenZipFile(archive_path, mode='r') as archive:
+                file_list = archive.getnames()
+        
+        for filename in file_list:
+            matches = re.findall(r"_SN_([0-9A-Z]+)_SP\d+", filename)
+            if matches:
+                serial_numbers.add(matches[0])
+        
+        # Fallback: извлечение SN из имени архива (формат Data_Model_Timestamp_SN.7z)
+        if not serial_numbers:
+            match = re.search(r"_(21[0-9A-Z]{18,})\.(zip|7z)$", archive_path.name, re.IGNORECASE)
+            if match:
+                serial_numbers.add(match.group(1))
         
         return sorted(list(serial_numbers))
     except Exception as e:
         logger.error(f"Error extracting serial numbers: {e}")
         return []
+
+
+def extract_perf_zip_from_7z(archive_path: Path, temp_dir: Path) -> Optional[Path]:
+    """
+    Извлекает Perf ZIP файл из .7z архива.
+    
+    Структура внутри .7z:
+    DataCollect/History_Performance_Data/<IP>/(<IP>)..._Perf_*.zip
+    
+    Args:
+        archive_path: Путь к .7z архиву
+        temp_dir: Временная директория для извлечения
+        
+    Returns:
+        Путь к извлечённому .zip файлу или None
+    """
+    if not PY7ZR_AVAILABLE:
+        logger.error("❌ py7zr не установлен! Установите: pip install py7zr")
+        return None
+    
+    try:
+        with py7zr.SevenZipFile(archive_path, mode='r') as archive:
+            all_names = archive.getnames()
+            
+            # Ищем файлы с паттерном *_Perf_*.zip в History_Performance_Data
+            perf_zip_files = [
+                name for name in all_names 
+                if '_Perf_' in name and name.endswith('.zip') and 'History_Performance_Data' in name
+            ]
+            
+            if not perf_zip_files:
+                logger.warning(f"⚠️  Perf ZIP файлы не найдены внутри {archive_path.name}")
+                return None
+            
+            if len(perf_zip_files) > 1:
+                logger.info(f"📦 Найдено {len(perf_zip_files)} Perf ZIP файлов, используем первый")
+            
+            perf_zip_name = perf_zip_files[0]
+            logger.info(f"📦 Извлекаю: {perf_zip_name}")
+            
+            # Извлекаем только нужный файл
+            archive.extract(temp_dir, targets=[perf_zip_name])
+            
+            extracted_path = temp_dir / perf_zip_name
+            if extracted_path.exists():
+                return extracted_path
+            else:
+                logger.error(f"❌ Файл не найден после извлечения: {extracted_path}")
+                return None
+                
+    except Exception as e:
+        logger.error(f"❌ Ошибка при извлечении из .7z: {e}")
+        return None
 
 
 def gzip_single_file(csv_file: Path) -> dict:
@@ -235,17 +310,41 @@ def cleanup_old_jobs():
         logger.info(f"Cleanup complete: removed {removed_count} old job directories")
 
 
-def run_csv_parser_sync(job_id: str, zip_path: Path):
-    """Run Huawei CSV parser (wide format) - parsers/csv_wide_parser.py"""
+def run_csv_parser_sync(job_id: str, archive_path: Path):
+    """Run Huawei CSV parser (wide format) - parsers/csv_wide_parser.py
+    
+    Поддерживает .zip и .7z архивы. Для .7z извлекает вложенный Perf ZIP.
+    """
     import subprocess
     
     start_time = time.time()
     process = None
     job_dir = WORK_DIR / job_id
     job_dir.mkdir(parents=True, exist_ok=True)
+    temp_7z_dir = None
+    actual_input_path = archive_path
     
     try:
         jobs[job_id]["status"] = "running"
+        jobs[job_id]["progress"] = 5
+        jobs[job_id]["message"] = "Preparing archive..."
+        jobs[job_id]["updated_at"] = datetime.now().isoformat()
+        
+        # Для .7z архивов: извлекаем вложенный Perf ZIP
+        if archive_path.suffix.lower() == '.7z':
+            jobs[job_id]["message"] = "Extracting Perf ZIP from .7z archive..."
+            jobs[job_id]["updated_at"] = datetime.now().isoformat()
+            
+            temp_7z_dir = WORK_DIR / f"temp_7z_{job_id}"
+            temp_7z_dir.mkdir(parents=True, exist_ok=True)
+            
+            extracted_zip = extract_perf_zip_from_7z(archive_path, temp_7z_dir)
+            if not extracted_zip:
+                raise ValueError("Failed to extract Perf ZIP from .7z archive")
+            
+            actual_input_path = extracted_zip
+            logger.info(f"Job {job_id}: Extracted Perf ZIP: {extracted_zip}")
+        
         jobs[job_id]["progress"] = 10
         jobs[job_id]["message"] = "Starting CSV parser (wide format)..."
         jobs[job_id]["updated_at"] = datetime.now().isoformat()
@@ -253,7 +352,7 @@ def run_csv_parser_sync(job_id: str, zip_path: Path):
         cmd = [
             "python3",
             "/app/parsers/csv_wide_parser.py",
-            "-i", str(zip_path),
+            "-i", str(actual_input_path),
             "-o", str(job_dir),
             "--all-metrics"
         ]
@@ -312,12 +411,6 @@ def run_csv_parser_sync(job_id: str, zip_path: Path):
             logger.error(f"Job {job_id}: Parser failed with code {return_code}")
         
         jobs[job_id]["updated_at"] = datetime.now().isoformat()
-        
-        # Cleanup uploaded ZIP
-        try:
-            zip_path.unlink()
-        except Exception as e:
-            logger.warning(f"Failed to cleanup {zip_path}: {e}")
             
     except Exception as e:
         if process and process.poll() is None:
@@ -327,19 +420,60 @@ def run_csv_parser_sync(job_id: str, zip_path: Path):
         jobs[job_id]["error"] = str(e)
         jobs[job_id]["updated_at"] = datetime.now().isoformat()
         logger.error(f"Job {job_id}: Error: {e}", exc_info=True)
+    
+    finally:
+        # Cleanup: временная директория для .7z
+        if temp_7z_dir and temp_7z_dir.exists():
+            try:
+                shutil.rmtree(temp_7z_dir)
+                logger.debug(f"Job {job_id}: Cleaned up temp 7z directory")
+            except Exception as e:
+                logger.warning(f"Job {job_id}: Failed to cleanup temp 7z dir: {e}")
+        
+        # Cleanup uploaded archive
+        try:
+            if archive_path.exists():
+                archive_path.unlink()
+                logger.info(f"Job {job_id}: Cleaned up uploaded file {archive_path}")
+        except Exception as e:
+            logger.warning(f"Job {job_id}: Failed to cleanup {archive_path}: {e}")
 
 
-def run_perfmonkey_parser_sync(job_id: str, zip_path: Path):
-    """Run perfmonkey CSV parser - perfmonkey/perf_zip2csv_wide.py"""
+def run_perfmonkey_parser_sync(job_id: str, archive_path: Path):
+    """Run perfmonkey CSV parser - parsers/perfmonkey_parser.py
+    
+    Поддерживает .zip и .7z архивы. Для .7z извлекает вложенный Perf ZIP.
+    """
     import subprocess
     
     start_time = time.time()
     process = None
     job_dir = WORK_DIR / job_id
     job_dir.mkdir(parents=True, exist_ok=True)
+    temp_7z_dir = None
+    actual_input_path = archive_path
     
     try:
         jobs[job_id]["status"] = "running"
+        jobs[job_id]["progress"] = 5
+        jobs[job_id]["message"] = "Preparing archive..."
+        jobs[job_id]["updated_at"] = datetime.now().isoformat()
+        
+        # Для .7z архивов: извлекаем вложенный Perf ZIP
+        if archive_path.suffix.lower() == '.7z':
+            jobs[job_id]["message"] = "Extracting Perf ZIP from .7z archive..."
+            jobs[job_id]["updated_at"] = datetime.now().isoformat()
+            
+            temp_7z_dir = WORK_DIR / f"temp_7z_{job_id}"
+            temp_7z_dir.mkdir(parents=True, exist_ok=True)
+            
+            extracted_zip = extract_perf_zip_from_7z(archive_path, temp_7z_dir)
+            if not extracted_zip:
+                raise ValueError("Failed to extract Perf ZIP from .7z archive")
+            
+            actual_input_path = extracted_zip
+            logger.info(f"Job {job_id}: Extracted Perf ZIP: {extracted_zip}")
+        
         jobs[job_id]["progress"] = 10
         jobs[job_id]["message"] = "Starting perfmonkey parser..."
         jobs[job_id]["updated_at"] = datetime.now().isoformat()
@@ -347,7 +481,7 @@ def run_perfmonkey_parser_sync(job_id: str, zip_path: Path):
         cmd = [
             "python3",
             "/app/parsers/perfmonkey_parser.py",
-            str(zip_path),
+            str(actual_input_path),
             "-o", str(job_dir),
             "--workers", "30"
         ]
@@ -406,12 +540,6 @@ def run_perfmonkey_parser_sync(job_id: str, zip_path: Path):
             logger.error(f"Job {job_id}: Parser failed with code {return_code}")
         
         jobs[job_id]["updated_at"] = datetime.now().isoformat()
-        
-        # Cleanup uploaded ZIP
-        try:
-            zip_path.unlink()
-        except Exception as e:
-            logger.warning(f"Failed to cleanup {zip_path}: {e}")
             
     except Exception as e:
         if process and process.poll() is None:
@@ -421,10 +549,30 @@ def run_perfmonkey_parser_sync(job_id: str, zip_path: Path):
         jobs[job_id]["error"] = str(e)
         jobs[job_id]["updated_at"] = datetime.now().isoformat()
         logger.error(f"Job {job_id}: Error: {e}", exc_info=True)
+    
+    finally:
+        # Cleanup: временная директория для .7z
+        if temp_7z_dir and temp_7z_dir.exists():
+            try:
+                shutil.rmtree(temp_7z_dir)
+                logger.debug(f"Job {job_id}: Cleaned up temp 7z directory")
+            except Exception as e:
+                logger.warning(f"Job {job_id}: Failed to cleanup temp 7z dir: {e}")
+        
+        # Cleanup uploaded archive
+        try:
+            if archive_path.exists():
+                archive_path.unlink()
+                logger.info(f"Job {job_id}: Cleaned up uploaded file {archive_path}")
+        except Exception as e:
+            logger.warning(f"Job {job_id}: Failed to cleanup {archive_path}: {e}")
 
 
-def run_pipeline_sync(job_id: str, zip_path: Path):
-    """Run the Huawei processing pipeline synchronously."""
+def run_pipeline_sync(job_id: str, archive_path: Path):
+    """Run the Huawei processing pipeline synchronously.
+    
+    Поддерживает .zip и .7z архивы - streaming_pipeline.py умеет работать с обоими форматами.
+    """
     import subprocess
     
     start_time = time.time()
@@ -437,10 +585,11 @@ def run_pipeline_sync(job_id: str, zip_path: Path):
         jobs[job_id]["updated_at"] = datetime.now().isoformat()
         jobs[job_id]["start_time"] = start_time
         
+        # streaming_pipeline.py поддерживает и .zip, и .7z
         cmd = [
             "python3",
             "/app/parsers/streaming_pipeline.py",
-            "-i", str(zip_path),
+            "-i", str(archive_path),
             "--vm-url", VM_IMPORT_URL,
             "--batch-size", "50000",
             "--all-metrics"
@@ -592,10 +741,10 @@ def run_pipeline_sync(job_id: str, zip_path: Path):
         jobs[job_id]["updated_at"] = datetime.now().isoformat()
         
         try:
-            zip_path.unlink()
-            logger.info(f"Job {job_id}: Cleaned up uploaded file {zip_path}")
+            archive_path.unlink()
+            logger.info(f"Job {job_id}: Cleaned up uploaded file {archive_path}")
         except Exception as e:
-            logger.warning(f"Job {job_id}: Failed to cleanup {zip_path}: {e}")
+            logger.warning(f"Job {job_id}: Failed to cleanup {archive_path}: {e}")
             
     except TimeoutError as e:
         if process and process.poll() is None:
@@ -609,8 +758,8 @@ def run_pipeline_sync(job_id: str, zip_path: Path):
         logger.error(f"Job {job_id}: Timeout: {e}")
         
         try:
-            if zip_path.exists():
-                zip_path.unlink()
+            if archive_path.exists():
+                archive_path.unlink()
         except:
             pass
             
@@ -626,28 +775,28 @@ def run_pipeline_sync(job_id: str, zip_path: Path):
         logger.error(f"Job {job_id}: Fatal error: {e}", exc_info=True)
         
         try:
-            if zip_path.exists():
-                zip_path.unlink()
+            if archive_path.exists():
+                archive_path.unlink()
         except:
             pass
 
 
-async def run_pipeline_async(job_id: str, zip_path: Path):
+async def run_pipeline_async(job_id: str, archive_path: Path):
     """Async wrapper to run pipeline in thread pool."""
     loop = asyncio.get_event_loop()
-    await loop.run_in_executor(executor, run_pipeline_sync, job_id, zip_path)
+    await loop.run_in_executor(executor, run_pipeline_sync, job_id, archive_path)
 
 
-async def run_csv_parser_async(job_id: str, zip_path: Path):
+async def run_csv_parser_async(job_id: str, archive_path: Path):
     """Async wrapper to run CSV parser in thread pool."""
     loop = asyncio.get_event_loop()
-    await loop.run_in_executor(executor, run_csv_parser_sync, job_id, zip_path)
+    await loop.run_in_executor(executor, run_csv_parser_sync, job_id, archive_path)
 
 
-async def run_perfmonkey_parser_async(job_id: str, zip_path: Path):
+async def run_perfmonkey_parser_async(job_id: str, archive_path: Path):
     """Async wrapper to run perfmonkey parser in thread pool."""
     loop = asyncio.get_event_loop()
-    await loop.run_in_executor(executor, run_perfmonkey_parser_sync, job_id, zip_path)
+    await loop.run_in_executor(executor, run_perfmonkey_parser_sync, job_id, archive_path)
 
 
 @app.get("/")
@@ -673,10 +822,10 @@ async def upload_file(
     file: UploadFile = File(...),
     target: str = Form("grafana")  # grafana | csv | perfmonkey
 ):
-    """Upload ZIP archive with chunked progress tracking.
+    """Upload ZIP or 7Z archive with chunked progress tracking.
     
     Args:
-        file: ZIP archive with .tgz files
+        file: ZIP or 7Z archive with .tgz files
         target: Processing target - 'grafana', 'csv' (wide format), or 'perfmonkey' (perfmonkey format)
     """
     
@@ -684,8 +833,14 @@ async def upload_file(
     if target not in ["grafana", "csv", "perfmonkey"]:
         raise HTTPException(status_code=400, detail="Invalid target. Must be 'grafana', 'csv', or 'perfmonkey'")
     
-    if not file.filename.endswith('.zip'):
-        raise HTTPException(status_code=400, detail="Only .zip files are allowed")
+    # Поддержка .zip и .7z архивов
+    filename_lower = file.filename.lower()
+    if not (filename_lower.endswith('.zip') or filename_lower.endswith('.7z')):
+        raise HTTPException(status_code=400, detail="Only .zip and .7z files are allowed")
+    
+    # Проверка доступности py7zr для .7z файлов
+    if filename_lower.endswith('.7z') and not PY7ZR_AVAILABLE:
+        raise HTTPException(status_code=400, detail=".7z support not available. Please install py7zr or use .zip files.")
     
     job_id = str(uuid.uuid4())
     upload_path = UPLOAD_DIR / f"{job_id}_{file.filename}"

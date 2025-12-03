@@ -9,4 +9,6 @@ click==8.1.7
 tqdm==4.67.1
 # psutil optional but recommended
 psutil==6.1.0
+# py7zr для поддержки .7z архивов
+py7zr==0.22.0
 
