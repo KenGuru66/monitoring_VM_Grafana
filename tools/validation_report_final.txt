@@ -1,0 +1,450 @@
+================================================================================
+GRAFANA METRICS VALIDATION REPORT
+================================================================================
+SN: 2102355TJUN0QB100013
+
+SUMMARY:
+  Total metrics in Grafana queries: 788
+  Total metrics in VictoriaMetrics: 1018
+  Matching metrics: 601
+  Missing in VM (ERRORS): 187
+  Missing in Grafana (WARNINGS): 417
+
+--------------------------------------------------------------------------------
+[ERRORS] Metrics in Grafana but NOT in VictoriaMetrics:
+--------------------------------------------------------------------------------
+
+  Resource: Controller NFSV3
+    - huawei_nfs_v3_pathconf_procedure_count
+    - huawei_avg_nfs_pathconf_response_timeus
+      Suggestion: huawei_avg_nfs_open_response_timeus
+      (NOT in METRIC_DICT)
+    - huawei_total_nfs_null_ops
+      Suggestion: huawei_total_nfs_ops
+      (NOT in METRIC_DICT)
+    - huawei_nfs_v3_commit_procedure_count
+    - huawei_nfs_v3_mknod_procedure_count
+    - huawei_nfs_v3_fsinfo_procedure_count
+    - huawei_avg_nfs_fsinfo_response_timeus
+      Suggestion: huawei_avg_cifs_setinfo_response_timeus
+      (NOT in METRIC_DICT)
+
+  Resource: Host
+    - huawei_write_iops_io_s
+      Suggestion: huawei_write_iops_io_s
+    - huawei_avg_i_o_response_time_us
+      Suggestion: huawei_avg_i_o_response_time_us
+    - huawei_odx_command_bandwidth_mb_s
+      Suggestion: huawei_odx_command_bandwidth_mb_s
+    - huawei_read_i_o_granularity_distribution_64_kb_128_kb_percent
+      Suggestion: huawei_read_i_o_granularity_distribution_64_kb_128_kb_percent
+    - huawei_read_iops_io_s
+      Suggestion: huawei_read_iops_io_s
+    - huawei_block_bandwidth_mb_s
+      Suggestion: huawei_block_bandwidth_mb_s
+    - huawei_write_i_o_granularity_distribution_16_kb_32_kb_percent
+      Suggestion: huawei_write_i_o_granularity_distribution_16_kb_32_kb_percent
+    - huawei_avg_unmap_command_response_time_us
+      Suggestion: huawei_avg_unmap_command_response_time_us
+    - huawei_max_i_o_response_time_us
+      Suggestion: huawei_max_i_o_response_time_us
+    - huawei_avg_odx_command_response_time_us
+      Suggestion: huawei_avg_odx_command_response_time_us
+    - huawei_odx_write_zero_request_bandwidth_mb_s
+      Suggestion: huawei_odx_write_zero_request_bandwidth_mb_s
+    - huawei_avg_odx_write_zero_request_response_time_us
+      Suggestion: huawei_avg_odx_write_zero_request_response_time_us
+    - huawei_write_same_command_bandwidth_mb_s
+      Suggestion: huawei_write_same_command_bandwidth_mb_s
+    - huawei_odx_command_iops_io_s
+      Suggestion: huawei_odx_command_iops_io_s
+    - huawei_avg_full_copy_command_response_time_us
+      Suggestion: huawei_avg_full_copy_command_response_time_us
+    - huawei_avg_write_same_command_response_time_us
+      Suggestion: huawei_avg_write_same_command_response_time_us
+    - huawei_ratio_of_read_i_os_to_total_i_os_percent
+      Suggestion: huawei_ratio_of_read_i_os_to_total_i_os_percent
+    - huawei_avg_write_i_o_response_timeus
+      Suggestion: huawei_avg_write_i_o_response_timeus
+    - huawei_read_i_o_granularity_distribution_8_kb_16_kb_percent
+      Suggestion: huawei_read_i_o_granularity_distribution_8_kb_16_kb_percent
+    - huawei_read_bandwidth_mb_s
+      Suggestion: huawei_read_bandwidth_mb_s
+    - huawei_avg_write_i_o_link_transmission_latencyus
+      Suggestion: huawei_avg_write_i_o_link_transmission_latencyus
+    - huawei_queue_length
+      Suggestion: huawei_queue_length
+    - huawei_full_copy_command_iops_io_s
+      Suggestion: huawei_full_copy_command_iops_io_s
+    - huawei_read_i_o_granularity_distribution_0k4kpercent
+      Suggestion: huawei_read_i_o_granularity_distribution_0k4kpercent
+    - huawei_service_timeus
+      Suggestion: huawei_service_timeus
+    - huawei_write_same_command_iops_io_s
+      Suggestion: huawei_write_same_command_iops_io_s
+    - huawei_write_i_o_granularity_distribution_4_kb_8_kb_percent
+      Suggestion: huawei_write_i_o_granularity_distribution_4_kb_8_kb_percent
+    - huawei_read_i_o_granularity_distribution_4_kb_8_kb_percent
+      Suggestion: huawei_read_i_o_granularity_distribution_4_kb_8_kb_percent
+    - huawei_odx_write_zero_request_iops_io_s
+      Suggestion: huawei_odx_write_zero_request_iops_io_s
+    - huawei_max_iops_io_s
+      Suggestion: huawei_max_iops_io_s
+    - huawei_avg_read_i_o_link_transmission_latencyus
+      Suggestion: huawei_avg_read_i_o_link_transmission_latencyus
+    - huawei_total_iops_io_s
+      Suggestion: huawei_total_iops_io_s
+    - huawei_unmap_command_bandwidth_mb_s
+      Suggestion: huawei_unmap_command_bandwidth_mb_s
+    - huawei_max_bandwidth_mb_s
+      Suggestion: huawei_max_bandwidth_mb_s
+    - huawei_full_copy_command_bandwidth_mb_s
+      Suggestion: huawei_full_copy_command_bandwidth_mb_s
+    - huawei_ratio_of_write_i_os_to_total_i_os_percent
+      Suggestion: huawei_ratio_of_write_i_os_to_total_i_os_percent
+    - huawei_read_i_o_granularity_distribution_32_kb_64_kb_percent
+      Suggestion: huawei_read_i_o_granularity_distribution_32_kb_64_kb_percent
+    - huawei_write_i_o_granularity_distribution_128kinfpercent
+      Suggestion: huawei_write_i_o_granularity_distribution_128kinfpercent
+    - huawei_write_i_o_granularity_distribution_32_kb_64_kb_percent
+      Suggestion: huawei_write_i_o_granularity_distribution_32_kb_64_kb_percent
+    - huawei_read_i_o_granularity_distribution_128kinfpercent
+      Suggestion: huawei_read_i_o_granularity_distribution_128kinfpercent
+    - huawei_read_i_o_granularity_distribution_16_kb_32_kb_percent
+      Suggestion: huawei_read_i_o_granularity_distribution_16_kb_32_kb_percent
+    - huawei_write_i_o_granularity_distribution_8_kb_16_kb_percent
+      Suggestion: huawei_write_i_o_granularity_distribution_8_kb_16_kb_percent
+    - huawei_write_i_o_granularity_distribution_64_kb_128_kb_percent
+      Suggestion: huawei_write_i_o_granularity_distribution_64_kb_128_kb_percent
+    - huawei_write_bandwidth_mb_s
+      Suggestion: huawei_write_bandwidth_mb_s
+    - huawei_avg_read_i_o_response_timeus
+      Suggestion: huawei_avg_read_i_o_response_timeus
+    - huawei_write_i_o_granularity_distribution_0k4kpercent
+      Suggestion: huawei_write_i_o_granularity_distribution_0k4kpercent
+    - huawei_unmap_command_iops_io_s
+      Suggestion: huawei_unmap_command_iops_io_s
+
+  Resource: LUN
+    - huawei_number_of_failed_read_i_os
+      Suggestion: huawei_total_number_of_failed_i_os
+    - huawei_write_iops_io_s
+      Suggestion: huawei_write_iops_io_s
+    - huawei_avg_odx_read_request_response_time_us
+      Suggestion: huawei_avg_odx_read_request_response_time_us
+    - huawei_avg_i_o_response_time_us
+      Suggestion: huawei_avg_i_o_response_time_us
+    - huawei_read_i_o_granularity_distribution_64_kb_128_kb_percent
+      Suggestion: huawei_read_i_o_granularity_distribution_64_kb_128_kb_percent
+    - huawei_avg_vaai_response_time_us
+      Suggestion: huawei_avg_i_o_response_time_us
+    - huawei_dr_write_request_bandwidth_mb_s
+      Suggestion: huawei_dr_write_request_bandwidth_mb_s
+    - huawei_write_i_o_granularity_distribution_16_kb_32_kb_percent
+      Suggestion: huawei_write_i_o_granularity_distribution_16_kb_32_kb_percent
+    - huawei_full_copy_read_request_bandwidth_mb_s
+      Suggestion: huawei_full_copy_read_request_bandwidth_mb_s
+    - huawei_max_i_o_response_time_us
+      Suggestion: huawei_max_i_o_response_time_us
+    - huawei_avg_dr_request_response_time_us
+      Suggestion: huawei_avg_dr_request_response_time_us
+    - huawei_write_same_command_bandwidth_mb_s
+      Suggestion: huawei_write_same_command_bandwidth_mb_s
+    - huawei_dr_read_request_bandwidth_mb_s
+      Suggestion: huawei_dr_read_request_bandwidth_mb_s
+    - huawei_avg_write_same_command_response_time_us
+      Suggestion: huawei_avg_write_same_command_response_time_us
+    - huawei_ratio_of_read_i_os_to_total_i_os_percent
+      Suggestion: huawei_ratio_of_read_i_os_to_total_i_os_percent
+    - huawei_write_i_o_latency_distribution_5_ms_10_ms_percent
+      Suggestion: huawei_write_i_o_latency_distribution_50_ms_100_ms_percent
+      (NOT in METRIC_DICT)
+    - huawei_avg_write_i_o_response_timeus
+      Suggestion: huawei_avg_write_i_o_response_timeus
+    - huawei_dr_request_iops_io_s
+      Suggestion: huawei_dr_request_iops_io_s
+    - huawei_read_bandwidth_mb_s
+      Suggestion: huawei_read_bandwidth_mb_s
+    - huawei_odx_read_request_iops_io_s
+      Suggestion: huawei_odx_read_request_iops_io_s
+    - huawei_read_and_write_i_o_latency_distribution_500_us_1_ms_percent
+      Suggestion: huawei_write_i_o_latency_distribution_50_ms_100_ms_percent
+    - huawei_read_i_o_latency_distribution_0_us_500_us_percent
+      Suggestion: huawei_read_i_o_latency_distribution_20_ms_50_ms_percent
+    - huawei_read_i_o_granularity_distribution_0k4kpercent
+      Suggestion: huawei_read_i_o_granularity_distribution_0k4kpercent
+    - huawei_dr_read_request_iops_io_s
+      Suggestion: huawei_dr_read_request_iops_io_s
+    - huawei_avg_dr_write_request_response_time_us
+      Suggestion: huawei_avg_dr_write_request_response_time_us
+    - huawei_service_timeus
+      Suggestion: huawei_service_timeus
+    - huawei_read_i_o_latency_distribution_1_ms_2_ms_percent
+      Suggestion: huawei_read_i_o_latency_distribution_10_ms_20_ms_percent
+    - huawei_write_i_o_granularity_distribution_4_kb_8_kb_percent
+      Suggestion: huawei_write_i_o_granularity_distribution_4_kb_8_kb_percent
+    - huawei_dr_write_request_iops_io_s
+      Suggestion: huawei_dr_write_request_iops_io_s
+    - huawei_avg_dr_read_request_response_time_us
+      Suggestion: huawei_avg_dr_read_request_response_time_us
+    - huawei_write_i_o_latency_distribution_10_ms_inf_percent
+      Suggestion: huawei_write_i_o_latency_distribution_200msinf_percent
+    - huawei_read_i_o_granularity_distribution_4_kb_8_kb_percent
+      Suggestion: huawei_read_i_o_granularity_distribution_4_kb_8_kb_percent
+    - huawei_odx_write_zero_request_iops_io_s
+      Suggestion: huawei_odx_write_zero_request_iops_io_s
+    - huawei_full_copy_write_request_bandwidth_mb_s
+      Suggestion: huawei_full_copy_write_request_bandwidth_mb_s
+    - huawei_max_iops_io_s
+      Suggestion: huawei_max_iops_io_s
+    - huawei_read_and_write_i_o_latency_distribution_0_us_500_us_percent
+      Suggestion: huawei_write_i_o_latency_distribution_20_ms_50_ms_percent
+    - huawei_unmap_command_bandwidth_mb_s
+      Suggestion: huawei_unmap_command_bandwidth_mb_s
+    - huawei_max_bandwidth_mb_s
+      Suggestion: huawei_max_bandwidth_mb_s
+    - huawei_ratio_of_write_i_os_to_total_i_os_percent
+      Suggestion: huawei_ratio_of_write_i_os_to_total_i_os_percent
+    - huawei_read_i_o_granularity_distribution_32_kb_64_kb_percent
+      Suggestion: huawei_read_i_o_granularity_distribution_32_kb_64_kb_percent
+    - huawei_write_i_o_granularity_distribution_128kinfpercent
+      Suggestion: huawei_write_i_o_granularity_distribution_128kinfpercent
+    - huawei_odx_write_request_bandwidth_mb_s
+      Suggestion: huawei_odx_write_request_bandwidth_mb_s
+    - huawei_read_i_o_latency_distribution_2_ms_5_ms_percent
+      Suggestion: huawei_read_i_o_latency_distribution_20_ms_50_ms_percent
+    - huawei_read_i_o_latency_distribution_500_us_1_ms_percent
+      Suggestion: huawei_read_i_o_latency_distribution_50_ms_100_ms_percent
+    - huawei_read_i_o_granularity_distribution_128kinfpercent
+      Suggestion: huawei_read_i_o_granularity_distribution_128kinfpercent
+    - huawei_i_o_sequentialitypercent
+    - huawei_vaai_iops_io_s
+      Suggestion: huawei_max_iops_io_s
+    - huawei_write_i_o_granularity_distribution_32_kb_64_kb_percent
+      Suggestion: huawei_write_i_o_granularity_distribution_32_kb_64_kb_percent
+    - huawei_write_i_o_latency_distribution_500_us_1_ms_percent
+      Suggestion: huawei_write_i_o_latency_distribution_50_ms_100_ms_percent
+    - huawei_write_bandwidth_mb_s
+      Suggestion: huawei_write_bandwidth_mb_s
+    - huawei_write_i_o_granularity_distribution_0k4kpercent
+      Suggestion: huawei_write_i_o_granularity_distribution_0k4kpercent
+    - huawei_avg_read_i_o_response_timeus
+      Suggestion: huawei_avg_read_i_o_response_timeus
+    - huawei_unmap_command_iops_io_s
+      Suggestion: huawei_unmap_command_iops_io_s
+    - huawei_read_cache_hit_ratio_percent
+      Suggestion: huawei_read_cache_hit_ratio_percent
+    - huawei_read_iops_io_s
+      Suggestion: huawei_read_iops_io_s
+    - huawei_block_bandwidth_mb_s
+      Suggestion: huawei_block_bandwidth_mb_s
+    - huawei_avg_unmap_command_response_time_us
+      Suggestion: huawei_avg_unmap_command_response_time_us
+    - huawei_avg_odx_write_request_response_time_us
+      Suggestion: huawei_avg_odx_write_request_response_time_us
+    - huawei_odx_write_zero_request_bandwidth_mb_s
+      Suggestion: huawei_odx_write_zero_request_bandwidth_mb_s
+    - huawei_avg_odx_write_zero_request_response_time_us
+      Suggestion: huawei_avg_odx_write_zero_request_response_time_us
+    - huawei_full_copy_write_request_iops_io_s
+      Suggestion: huawei_full_copy_write_request_iops_io_s
+    - huawei_read_i_o_granularity_distribution_8_kb_16_kb_percent
+      Suggestion: huawei_read_i_o_granularity_distribution_8_kb_16_kb_percent
+    - huawei_write_i_o_latency_distribution_1_ms_2_ms_percent
+      Suggestion: huawei_write_i_o_latency_distribution_10_ms_20_ms_percent
+    - huawei_read_i_o_latency_distribution_10_ms_inf_percent
+      Suggestion: huawei_read_i_o_latency_distribution_200msinf_percent
+    - huawei_full_copy_read_request_iops_io_s
+      Suggestion: huawei_full_copy_read_request_iops_io_s
+    - huawei_queue_length
+      Suggestion: huawei_queue_length
+    - huawei_odx_write_request_iops_io_s
+      Suggestion: huawei_odx_write_request_iops_io_s
+    - huawei_write_cache_hit_ratio_percent
+      Suggestion: huawei_write_cache_hit_ratio_percent
+    - huawei_dr_request_bandwidth_mb_s
+      Suggestion: huawei_dr_request_bandwidth_mb_s
+    - huawei_write_same_command_iops_io_s
+      Suggestion: huawei_write_same_command_iops_io_s
+    - huawei_read_i_o_latency_distribution_5ms10ms_percent
+      Suggestion: huawei_read_i_o_latency_distribution_50_ms_100_ms_percent
+    - huawei_odx_read_request_bandwidth_mb_s
+      Suggestion: huawei_odx_read_request_bandwidth_mb_s
+    - huawei_write_i_o_latency_distribution_0_us_500_us_percent
+      Suggestion: huawei_write_i_o_latency_distribution_20_ms_50_ms_percent
+    - huawei_read_smartcache_hit_ratio_percent
+      Suggestion: huawei_read_smartcache_hit_ratio_percent
+    - huawei_avg_full_copy_read_request_response_time_us
+      Suggestion: huawei_avg_full_copy_read_request_response_time_us
+    - huawei_number_of_failed_write_i_os
+      Suggestion: huawei_total_number_of_failed_i_os
+    - huawei_total_iops_io_s
+      Suggestion: huawei_total_iops_io_s
+    - huawei_write_i_o_latency_distribution_2_ms_5_ms_percent
+      Suggestion: huawei_write_i_o_latency_distribution_20_ms_50_ms_percent
+    - huawei_vaai_bandwidth_mb_s
+      Suggestion: huawei_max_bandwidth_mb_s
+    - huawei_read_i_o_granularity_distribution_16_kb_32_kb_percent
+      Suggestion: huawei_read_i_o_granularity_distribution_16_kb_32_kb_percent
+    - huawei_write_i_o_granularity_distribution_8_kb_16_kb_percent
+      Suggestion: huawei_write_i_o_granularity_distribution_8_kb_16_kb_percent
+    - huawei_write_i_o_granularity_distribution_64_kb_128_kb_percent
+      Suggestion: huawei_write_i_o_granularity_distribution_64_kb_128_kb_percent
+    - huawei_the_cache_page_preservation
+      Suggestion: huawei_cache_page_preservation_percent
+      (NOT in METRIC_DICT)
+    - huawei_hit_ratio_percent
+      Suggestion: huawei_hit_ratio_percent
+    - huawei_avg_full_copy_write_request_response_time_us
+      Suggestion: huawei_avg_full_copy_write_request_response_time_us
+
+  Resource: Storage Pool
+    - huawei_service_time_ms
+      Suggestion: huawei_service_time_ms
+
+  Resource: Unknown
+    - huawei_read_requests_to_the_snapshot_lun
+    - huawei_total_dataturbo_read_ops
+      Suggestion: huawei_total_dataturbo_read_ops
+    - huawei_write_iops_io_s
+      Suggestion: huawei_write_iops_io_s
+    - huawei_avg_i_o_response_time_us
+      Suggestion: huawei_avg_i_o_response_time_us
+    - huawei_read_i_o_granularity_distribution_64_kb_128_kb_percent
+      Suggestion: huawei_read_i_o_granularity_distribution_64_kb_128_kb_percent
+    - huawei_average_response_time_of_other_dataturbo_i_osus
+      Suggestion: huawei_average_response_time_of_other_dataturbo_i_osus
+    - huawei_block_bandwidth_mb_s
+      Suggestion: huawei_block_bandwidth_mb_s
+    - huawei_read_iops_io_s
+      Suggestion: huawei_read_iops_io_s
+    - huawei_write_i_o_granularity_distribution_16_kb_32_kb_percent
+      Suggestion: huawei_write_i_o_granularity_distribution_16_kb_32_kb_percent
+    - huawei_max_i_o_response_time_us
+      Suggestion: huawei_max_i_o_response_time_us
+    - huawei_ratio_of_read_i_os_to_total_i_os_percent
+      Suggestion: huawei_ratio_of_read_i_os_to_total_i_os_percent
+    - huawei_avg_write_i_o_response_timeus
+      Suggestion: huawei_avg_write_i_o_response_timeus
+    - huawei_average_dataturbo_i_o_response_timeus
+      Suggestion: huawei_average_dataturbo_i_o_response_timeus
+    - huawei_read_bandwidth_mb_s
+      Suggestion: huawei_read_bandwidth_mb_s
+    - huawei_read_i_o_granularity_distribution_8_kb_16_kb_percent
+      Suggestion: huawei_read_i_o_granularity_distribution_8_kb_16_kb_percent
+    - huawei_total_dataturbo_ops
+      Suggestion: huawei_total_dataturbo_ops
+    - huawei_avg_write_i_o_link_transmission_latencyus
+      Suggestion: huawei_avg_write_i_o_link_transmission_latencyus
+    - huawei_queue_length
+      Suggestion: huawei_queue_length
+    - huawei_read_i_o_granularity_distribution_0k4kpercent
+      Suggestion: huawei_read_i_o_granularity_distribution_0k4kpercent
+    - huawei_service_timeus
+      Suggestion: huawei_service_timeus
+    - huawei_dataturbo_write_bandwidth_kb_s
+      Suggestion: huawei_dataturbo_write_bandwidth_kb_s
+    - huawei_write_i_o_granularity_distribution_4_kb_8_kb_percent
+      Suggestion: huawei_write_i_o_granularity_distribution_4_kb_8_kb_percent
+    - huawei_read_requests_redirected_to_the_source_lun
+    - huawei_total_dataturbo_write_ops
+      Suggestion: huawei_total_dataturbo_write_ops
+    - huawei_average_dataturbo_read_i_o_response_timeus
+      Suggestion: huawei_average_dataturbo_read_i_o_response_timeus
+    - huawei_usage_percent
+      Suggestion: huawei_usage_percent
+    - huawei_read_i_o_granularity_distribution_4_kb_8_kb_percent
+      Suggestion: huawei_read_i_o_granularity_distribution_4_kb_8_kb_percent
+    - huawei_max_iops_io_s
+      Suggestion: huawei_max_iops_io_s
+    - huawei_avg_read_i_o_link_transmission_latencyus
+      Suggestion: huawei_avg_read_i_o_link_transmission_latencyus
+    - huawei_total_iops_io_s
+      Suggestion: huawei_total_iops_io_s
+    - huawei_write_requests_to_the_snapshot_lun
+    - huawei_average_dataturbo_write_i_o_response_timeus
+      Suggestion: huawei_average_dataturbo_write_i_o_response_timeus
+    - huawei_max_bandwidth_mb_s
+      Suggestion: huawei_max_bandwidth_mb_s
+    - huawei_ratio_of_write_i_os_to_total_i_os_percent
+      Suggestion: huawei_ratio_of_write_i_os_to_total_i_os_percent
+    - huawei_read_i_o_granularity_distribution_32_kb_64_kb_percent
+      Suggestion: huawei_read_i_o_granularity_distribution_32_kb_64_kb_percent
+    - huawei_total_dataturbo_bandwidth_kb_s
+      Suggestion: huawei_total_dataturbo_bandwidth_kb_s
+    - huawei_write_i_o_granularity_distribution_128kinfpercent
+      Suggestion: huawei_write_i_o_granularity_distribution_128kinfpercent
+    - huawei_write_i_o_granularity_distribution_32_kb_64_kb_percent
+      Suggestion: huawei_write_i_o_granularity_distribution_32_kb_64_kb_percent
+    - huawei_dataturbo_read_bandwidth_kb_s
+      Suggestion: huawei_dataturbo_read_bandwidth_kb_s
+    - huawei_read_i_o_granularity_distribution_128kinfpercent
+      Suggestion: huawei_read_i_o_granularity_distribution_128kinfpercent
+    - huawei_read_i_o_granularity_distribution_16_kb_32_kb_percent
+      Suggestion: huawei_read_i_o_granularity_distribution_16_kb_32_kb_percent
+    - huawei_write_i_o_granularity_distribution_64_kb_128_kb_percent
+      Suggestion: huawei_write_i_o_granularity_distribution_64_kb_128_kb_percent
+    - huawei_write_bandwidth_mb_s
+      Suggestion: huawei_write_bandwidth_mb_s
+    - huawei_avg_read_i_o_response_timeus
+      Suggestion: huawei_avg_read_i_o_response_timeus
+    - huawei_write_i_o_granularity_distribution_0k4kpercent
+      Suggestion: huawei_write_i_o_granularity_distribution_0k4kpercent
+    - huawei_write_i_o_granularity_distribution_8_kb_16_kb_percent
+      Suggestion: huawei_write_i_o_granularity_distribution_8_kb_16_kb_percent
+    - huawei_other_dataturbo_ops
+      Suggestion: huawei_other_dataturbo_ops
+
+--------------------------------------------------------------------------------
+[WARNINGS] Metrics in VictoriaMetrics but NOT in Grafana (first 20):
+--------------------------------------------------------------------------------
+
+  Resource: Controller
+    - huawei_avg_full_copy_write_request_size_kb
+      Original: Avg. Full Copy Write Request Size (KB)
+    - huawei_avg_full_copy_read_request_size_kb
+      Original: Avg. Full Copy Read Request Size (KB)
+    - huawei_avg_odx_read_request_size_kb
+      Original: Avg. ODX Read Request Size (KB)
+    - huawei_avg_odx_write_zero_request_size_kb
+      Original: Avg. ODX Write Zero Request Size (KB)
+    - huawei_avg_i_o_sizekb
+      Original: Avg. I/O size(KB)
+    - huawei_avg_write_same_command_size_kb
+      Original: Avg. WRITE SAME Command Size (KB)
+    - huawei_ai_cache_hit_ratio_percent
+      Original: AI Cache Hit Ratio (%)
+    - huawei_avg_odx_write_request_size_kb
+      Original: Avg. ODX Write Request Size (KB)
+    - huawei_avg_write_i_o_sizekb
+      Original: Avg. write I/O size(KB)
+    - huawei_max_read_i_o_size_kb
+      Original: Max. Read I/O Size (KB)
+    - huawei_max_write_i_o_size_kb
+      Original: Max. Write I/O Size (KB)
+    - huawei_avg_unmap_command_size_kb
+      Original: Avg. Unmap Command Size (KB)
+    - huawei_avg_read_i_o_sizekb
+      Original: Avg. read I/O size(KB)
+    - huawei_max_i_o_size_kb
+      Original: Max. I/O Size (KB)
+
+  Resource: Controller NFSV3
+    - huawei_write_i_o_latency_distribution_8s_infpercent
+      Original: Write I/O Latency Distribution: [8s, +∞)(%)
+    - huawei_avg_i_o_sizekb
+      Original: Avg. I/O size(KB)
+    - huawei_nfsv3_setacl_ops
+      Original: NFSv3 setAcl OPS
+    - huawei_avg_nfsv4_getacl_response_timeus
+      Original: Avg. NFSv4 getAcl response time(us)
+    - huawei_write_i_o_latency_distribution_3s_5spercent
+      Original: Write I/O Latency Distribution: [3s, 5s)(%)
+    - huawei_avg_nfsv4_setacl_response_timeus
+      Original: Avg. NFSv4 setAcl response time(us)
+
+  ... and 397 more
+
+--------------------------------------------------------------------------------
+[OK] Matching metrics: 601
+--------------------------------------------------------------------------------

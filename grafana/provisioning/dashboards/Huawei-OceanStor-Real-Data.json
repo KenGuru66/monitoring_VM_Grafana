@@ -12280,12 +12280,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_total_nfs_remove_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_remove_ops{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\u2705 Total NFS remove OPS (Number/s)",
+      "title": "Total NFS remove OPS",
       "type": "timeseries"
     },
     {
@@ -12352,12 +12352,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_total_nfs_getattr_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_getattr_ops{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\u2705 Total NFS getattr OPS (Number/s)",
+      "title": "Total NFS getattr OPS",
       "type": "timeseries"
     },
     {
@@ -12424,12 +12424,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_total_nfs_lookup_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_lookup_ops{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\u2705 Total NFS lookup OPS (Number/s) (95%)",
+      "title": "Total NFS lookup OPS (95%)",
       "type": "timeseries"
     },
     {
@@ -12496,12 +12496,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_total_nfs_null_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_null_ops{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\u274c Total NFS null OPS (Number/s)",
+      "title": "Total NFS null OPS",
       "type": "timeseries"
     },
     {
@@ -12568,12 +12568,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_total_nfs_create_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_create_ops{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\u26a0\ufe0f Total NFS create OPS (Number/s)",
+      "title": "Total NFS create OPS",
       "type": "timeseries"
     },
     {
@@ -12640,12 +12640,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_total_nfs_access_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_access_ops{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\u274c Total NFS access OPS (Number/s)",
+      "title": "Total NFS access OPS",
       "type": "timeseries"
     },
     {
@@ -12712,12 +12712,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_total_nfs_readlink_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_readlink_ops{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\ud83d\udd0d Total NFS readlink OPS (Number/s)",
+      "title": "Total NFS readlink OPS",
       "type": "timeseries"
     },
     {
@@ -12784,12 +12784,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_total_nfs_read_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_read_ops{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\ud83d\udd0d Total NFS read OPS (Number/s)",
+      "title": "Total NFS read OPS",
       "type": "timeseries"
     },
     {
@@ -12856,12 +12856,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_total_nfs_write_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_write_ops{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\ud83d\udd0d Total NFS write OPS (Number/s)",
+      "title": "Total NFS write OPS",
       "type": "timeseries"
     },
     {
@@ -12928,12 +12928,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_total_nfs_mkdir_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_mkdir_ops{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\ud83d\udd0d Total NFS mkdir OPS (Number/s)",
+      "title": "Total NFS mkdir OPS",
       "type": "timeseries"
     },
     {
@@ -13000,12 +13000,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_total_nfs_symlink_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_symlink_ops{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\ud83d\udd0d Total NFS symlink OPS (Number/s)",
+      "title": "Total NFS symlink OPS",
       "type": "timeseries"
     },
     {
@@ -13072,12 +13072,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_total_nfs_mknod_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_nfs_v3_mknod_procedure_count{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\u274c Total NFS mkdir OPS (Number/s)",
+      "title": "Total NFS mkdir OPS",
       "type": "timeseries"
     },
     {
@@ -13144,12 +13144,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_total_nfs_rename_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_rename_ops{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\u274c Total NFS rename OPS (Number/s)",
+      "title": "Total NFS rename OPS",
       "type": "timeseries"
     },
     {
@@ -13216,12 +13216,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_total_nfs_readdir_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_readdir_ops{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\ud83d\udd0d Total NFS readdir OPS (Number/s)",
+      "title": "Total NFS readdir OPS",
       "type": "timeseries"
     },
     {
@@ -13288,12 +13288,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_total_nfs_readdir_plus_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_readdir_plus_ops{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\ud83d\udd0d Total NFS readdir plus OPS (Number/s)",
+      "title": "Total NFS readdir plus OPS",
       "type": "timeseries"
     },
     {
@@ -13360,12 +13360,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_total_nfs_fsstat_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_total_nfs_fsstat_ops{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\ud83d\udd0d Total NFS fsstat OPS (Number/s)",
+      "title": "Total NFS fsstat OPS",
       "type": "timeseries"
     },
     {
@@ -13432,12 +13432,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_total_nfs_fsinfo_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_nfs_v3_fsinfo_procedure_count{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\ud83d\udd0d Total NFS fsinfo OPS (Number/s)",
+      "title": "Total NFS fsinfo OPS",
       "type": "timeseries"
     },
     {
@@ -13504,12 +13504,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_total_nfs_pathconf_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_nfs_v3_pathconf_procedure_count{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\ud83d\udd0d Total NFS pathconf OPS (Number/s)",
+      "title": "Total NFS pathconf OPS",
       "type": "timeseries"
     },
     {
@@ -13576,12 +13576,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_total_nfs_commit_ops_number_s{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_nfs_v3_commit_procedure_count{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\ud83d\udd0d Total NFS commit OPS (Number/s)",
+      "title": "Total NFS commit OPS",
       "type": "timeseries"
     },
     {
@@ -13648,12 +13648,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_lookup_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_avg_nfs_lookup_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\u2705 NFS lookup response time(us) (95%)",
+      "title": "Avg. NFS lookup response time(us) (95%)",
       "type": "timeseries"
     },
     {
@@ -13720,12 +13720,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_pathconf_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_avg_nfs_pathconf_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\u26a0\ufe0f NFS pathconf response time(us)",
+      "title": "Avg. NFS pathconf response time(us)",
       "type": "timeseries"
     },
     {
@@ -13792,12 +13792,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_readdir_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_avg_nfs_readdir_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\u26a0\ufe0f NFS readdir response time(us)",
+      "title": "Avg. NFS readdir response time(us)",
       "type": "timeseries"
     },
     {
@@ -13864,12 +13864,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_getattr_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_avg_nfs_getattr_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\u274c NFS getattr response time(us)",
+      "title": "Avg. NFS getattr response time(us)",
       "type": "timeseries"
     },
     {
@@ -13936,12 +13936,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_mkdir_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_avg_nfs_mkdir_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\u274c NFS mkdir response time(us)",
+      "title": "Avg. NFS mkdir response time(us)",
       "type": "timeseries"
     },
     {
@@ -14008,12 +14008,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_access_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_avg_nfs_access_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\u274c NFS access response time(us)",
+      "title": "Avg. NFS access response time(us)",
       "type": "timeseries"
     },
     {
@@ -14080,12 +14080,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_readdir_plus_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_avg_nfs_readdir_plus_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\u274c NFS readdir plus response time(us)",
+      "title": "Avg. NFS readdir plus response time(us)",
       "type": "timeseries"
     },
     {
@@ -14152,12 +14152,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_open_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_avg_nfs_open_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\u274c NFS open response time(us)",
+      "title": "Avg. NFS open response time(us)",
       "type": "timeseries"
     },
     {
@@ -14224,12 +14224,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_readlink_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_avg_nfs_readlink_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\u274c NFS readlink response time(us)",
+      "title": "Avg. NFS readlink response time(us)",
       "type": "timeseries"
     },
     {
@@ -14296,12 +14296,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_symlink_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_avg_nfs_symlink_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\u274c NFS symlink response time(us)",
+      "title": "Avg. NFS symlink response time(us)",
       "type": "timeseries"
     },
     {
@@ -14368,12 +14368,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_rename_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_avg_nfs_rename_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\ud83d\udd0d NFS rename response time(us)",
+      "title": "Avg. NFS rename response time(us)",
       "type": "timeseries"
     },
     {
@@ -14440,12 +14440,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_link_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_avg_nfs_link_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\ud83d\udd0d NFS link response time(us)",
+      "title": "Avg. NFS link response time(us)",
       "type": "timeseries"
     },
     {
@@ -14512,12 +14512,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_fsstat_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_avg_nfs_fsstat_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\u274c NFS fsstat response time(us)",
+      "title": "Avg. NFS fsstat response time(us)",
       "type": "timeseries"
     },
     {
@@ -14584,12 +14584,12 @@
             "type": "prometheus",
             "uid": "VictoriaMetrics"
           },
-          "expr": "huawei_nfs_fsinfo_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
+          "expr": "huawei_avg_nfs_fsinfo_response_timeus{SN=~\"$SN\",Resource=\"Controller NFSV3\",Element=~\"$Element\"}",
           "refId": "A",
           "legendFormat": "{{Element}}"
         }
       ],
-      "title": "\ud83d\udd0d NFS fsinfo response time(us)",
+      "title": "Avg. NFS fsinfo response time(us)",
       "type": "timeseries"
     },
     {
@@ -14805,7 +14805,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "huawei_average_read_ops_response_time_ms{SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
+          "expr": "huawei_avg_read_ops_response_time_us{SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -14923,7 +14923,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "huawei_average_write_ops_response_time_ms{SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
+          "expr": "huawei_avg_write_ops_response_time_us{SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -15513,7 +15513,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "huawei_file_bandwidthmb_s{SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
+          "expr": "huawei_file_bandwidth_kb_s{SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -15524,7 +15524,7 @@
           "interval": "$min_interval"
         }
       ],
-      "title": "File bandwidth(MB/s)",
+      "title": "File Bandwidth (KB/s)",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -15867,7 +15867,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "huawei_ops_per_second{SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
+          "expr": "huawei_ops{SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -15878,7 +15878,7 @@
           "interval": "$min_interval"
         }
       ],
-      "title": "OPS (per second)",
+      "title": "OPS",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -16103,7 +16103,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "huawei_read_i_o_granularity_distribution_0512b_percent{SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
+          "expr": "huawei_read_i_o_granularity_distribution_0_bytes_512_bytes_percent{SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -16221,7 +16221,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "huawei_read_i_o_granularity_distribution_256kinf_percent{SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
+          "expr": "huawei_read_i_o_granularity_distribution_256kinfpercent{SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -16339,7 +16339,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "huawei_read_i_o_granularity_distribution_512b1k_percent{SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
+          "expr": "huawei_read_i_o_granularity_distribution_512b1kpercent{SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -16457,7 +16457,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "huawei_read_i_o_latency_distribution_0ms10ms_percent{SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
+          "expr": "huawei_read_i_o_latency_distribution_0_ms_10_ms_percent{SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -16575,7 +16575,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "huawei_read_i_o_latency_distribution_100ms200ms_percent{SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
+          "expr": "huawei_read_i_o_latency_distribution_100_ms_200_ms_percent{SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -16693,7 +16693,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "huawei_read_i_o_latency_distribution_10ms20ms_percent{SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
+          "expr": "huawei_read_i_o_latency_distribution_10_ms_20_ms_percent{SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -16929,7 +16929,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "huawei_read_i_o_latency_distribution_20ms50ms_percent{SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
+          "expr": "huawei_read_i_o_latency_distribution_20_ms_50_ms_percent{SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -18109,7 +18109,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "huawei_read_ops_per_second{SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
+          "expr": "huawei_read_ops{SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -18120,7 +18120,7 @@
           "interval": "$min_interval"
         }
       ],
-      "title": "Read OPS (per second)",
+      "title": "Read OPS",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -20587,7 +20587,7 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "huawei_write_ops_per_second{SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
+          "expr": "huawei_write_ops{SN=~\"$SN\", Resource=\"Controller NFSV3\", Element=~\"$Element\"}",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -20598,7 +20598,7 @@
           "interval": "$min_interval"
         }
       ],
-      "title": "Write OPS (per second)",
+      "title": "Write OPS",
       "transformations": [
         {
           "id": "renameByRegex",
@@ -20955,7 +20955,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_average_read_ops_response_time_ms{SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
+              "expr": "huawei_avg_read_ops_response_time_us{SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -21073,7 +21073,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_average_write_ops_response_time_ms{SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
+              "expr": "huawei_avg_write_ops_response_time_us{SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -21663,7 +21663,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_file_bandwidthmb_s{SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
+              "expr": "huawei_file_bandwidth_kb_s{SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -21674,7 +21674,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "File bandwidth(MB/s)",
+          "title": "File Bandwidth (KB/s)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -22017,7 +22017,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_ops_per_second{SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
+              "expr": "huawei_ops{SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -22028,7 +22028,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "OPS (per second)",
+          "title": "OPS",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -22253,7 +22253,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_read_i_o_granularity_distribution_0512b_percent{SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
+              "expr": "huawei_read_i_o_granularity_distribution_0_bytes_512_bytes_percent{SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -22371,7 +22371,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_read_i_o_granularity_distribution_256kinf_percent{SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
+              "expr": "huawei_read_i_o_granularity_distribution_256kinfpercent{SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -22489,7 +22489,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_read_i_o_granularity_distribution_512b1k_percent{SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
+              "expr": "huawei_read_i_o_granularity_distribution_512b1kpercent{SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -22607,7 +22607,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_read_i_o_latency_distribution_0ms10ms_percent{SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
+              "expr": "huawei_read_i_o_latency_distribution_0_ms_10_ms_percent{SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -22725,7 +22725,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_read_i_o_latency_distribution_100ms200ms_percent{SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
+              "expr": "huawei_read_i_o_latency_distribution_100_ms_200_ms_percent{SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -22843,7 +22843,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_read_i_o_latency_distribution_10ms20ms_percent{SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
+              "expr": "huawei_read_i_o_latency_distribution_10_ms_20_ms_percent{SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -23079,7 +23079,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_read_i_o_latency_distribution_20ms50ms_percent{SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
+              "expr": "huawei_read_i_o_latency_distribution_20_ms_50_ms_percent{SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -24259,7 +24259,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_read_ops_per_second{SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
+              "expr": "huawei_read_ops{SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -24270,7 +24270,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Read OPS (per second)",
+          "title": "Read OPS",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -26737,7 +26737,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_write_ops_per_second{SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
+              "expr": "huawei_write_ops{SN=~\"$SN\", Resource=\"Controller NFSV4\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -26748,7 +26748,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Write OPS (per second)",
+          "title": "Write OPS",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -27109,7 +27109,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_average_read_ops_response_time_ms{SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
+              "expr": "huawei_avg_read_ops_response_time_us{SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -27227,7 +27227,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_average_write_ops_response_time_ms{SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
+              "expr": "huawei_avg_write_ops_response_time_us{SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -27817,7 +27817,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_file_bandwidthmb_s{SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
+              "expr": "huawei_file_bandwidth_kb_s{SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -27828,7 +27828,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "File bandwidth(MB/s)",
+          "title": "File Bandwidth (KB/s)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -28171,7 +28171,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_ops_per_second{SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
+              "expr": "huawei_ops{SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -28182,7 +28182,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "OPS (per second)",
+          "title": "OPS",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -28407,7 +28407,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_read_i_o_granularity_distribution_0512b_percent{SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
+              "expr": "huawei_read_i_o_granularity_distribution_0_bytes_512_bytes_percent{SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -28525,7 +28525,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_read_i_o_granularity_distribution_256kinf_percent{SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
+              "expr": "huawei_read_i_o_granularity_distribution_256kinfpercent{SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -28643,7 +28643,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_read_i_o_granularity_distribution_512b1k_percent{SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
+              "expr": "huawei_read_i_o_granularity_distribution_512b1kpercent{SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -28761,7 +28761,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_read_i_o_latency_distribution_0ms10ms_percent{SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
+              "expr": "huawei_read_i_o_latency_distribution_0_ms_10_ms_percent{SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -28879,7 +28879,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_read_i_o_latency_distribution_100ms200ms_percent{SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
+              "expr": "huawei_read_i_o_latency_distribution_100_ms_200_ms_percent{SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -28997,7 +28997,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_read_i_o_latency_distribution_10ms20ms_percent{SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
+              "expr": "huawei_read_i_o_latency_distribution_10_ms_20_ms_percent{SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -29233,7 +29233,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_read_i_o_latency_distribution_20ms50ms_percent{SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
+              "expr": "huawei_read_i_o_latency_distribution_20_ms_50_ms_percent{SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -30413,7 +30413,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_read_ops_per_second{SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
+              "expr": "huawei_read_ops{SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -30424,7 +30424,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Read OPS (per second)",
+          "title": "Read OPS",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -32891,7 +32891,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_write_ops_per_second{SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
+              "expr": "huawei_write_ops{SN=~\"$SN\", Resource=\"Controller NFSV4.1\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -32902,7 +32902,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Write OPS (per second)",
+          "title": "Write OPS",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -33982,7 +33982,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "File bandwidth(MB/s)",
+          "title": "File Bandwidth (KB/s)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -34336,7 +34336,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "OPS (per second)",
+          "title": "OPS",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -36578,7 +36578,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Read OPS (per second)",
+          "title": "Read OPS",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -39056,7 +39056,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Write OPS (per second)",
+          "title": "Write OPS",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -73141,7 +73141,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_the_cache_page_preservation{SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
+              "expr": "huawei_cache_page_preservation_percent{SN=~\"$SN\", Resource=\"LUN\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -84288,7 +84288,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_average_read_ops_response_time_ms{SN=~\"$SN\", Resource=\"Storage Pool\", Element=~\"$Element\"}",
+              "expr": "huawei_avg_read_ops_response_time_us{SN=~\"$SN\", Resource=\"Storage Pool\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -84406,7 +84406,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_average_write_ops_response_time_ms{SN=~\"$SN\", Resource=\"Storage Pool\", Element=~\"$Element\"}",
+              "expr": "huawei_avg_write_ops_response_time_us{SN=~\"$SN\", Resource=\"Storage Pool\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -89127,7 +89127,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_file_bandwidthmb_s{SN=~\"$SN\", Resource=\"Storage Pool\", Element=~\"$Element\"}",
+              "expr": "huawei_file_bandwidth_kb_s{SN=~\"$SN\", Resource=\"Storage Pool\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -89138,7 +89138,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "File bandwidth(MB/s)",
+          "title": "File Bandwidth (KB/s)",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -90071,7 +90071,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_ops_per_second{SN=~\"$SN\", Resource=\"Storage Pool\", Element=~\"$Element\"}",
+              "expr": "huawei_ops{SN=~\"$SN\", Resource=\"Storage Pool\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -90082,7 +90082,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "OPS (per second)",
+          "title": "OPS",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -91841,7 +91841,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_read_ops_per_second{SN=~\"$SN\", Resource=\"Storage Pool\", Element=~\"$Element\"}",
+              "expr": "huawei_read_ops{SN=~\"$SN\", Resource=\"Storage Pool\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -91852,7 +91852,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Read OPS (per second)",
+          "title": "Read OPS",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -93965,7 +93965,7 @@
               },
               "disableTextWrap": false,
               "editorMode": "builder",
-              "expr": "huawei_write_ops_per_second{SN=~\"$SN\", Resource=\"Storage Pool\", Element=~\"$Element\"}",
+              "expr": "huawei_write_ops{SN=~\"$SN\", Resource=\"Storage Pool\", Element=~\"$Element\"}",
               "fullMetaSearch": false,
               "includeNullMetadata": true,
               "instant": false,
@@ -93976,7 +93976,7 @@
               "interval": "$min_interval"
             }
           ],
-          "title": "Write OPS (per second)",
+          "title": "Write OPS",
           "transformations": [
             {
               "id": "renameByRegex",
@@ -99865,7 +99865,7 @@
               "refId": "Q4"
             }
           ],
-          "title": "\ud83d\udd0d Multi-Resource Analysis #1 (4 Queries)",
+          "title": "Multi-Resource Analysis #1 (4 Queries)",
           "type": "timeseries"
         }
       ],
