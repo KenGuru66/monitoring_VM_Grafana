@@ -1,0 +1,15 @@
+{
+  "include": ["parsers", "api"],
+  "reportMissingImports": "none",
+  "reportMissingModuleSource": "none",
+  "reportMissingTypeStubs": false,
+  "ignore": [
+    "**/node_modules",
+    "**/__pycache__"
+  ],
+  "extraPaths": [
+    "parsers",
+    "parsers/dictionaries"
+  ]
+}
+

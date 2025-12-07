@@ -31,9 +31,9 @@ from multiprocessing import Pool, cpu_count, Manager
 from functools import partial
 import io
 
-import click
-import pandas as pd
-import tqdm
+import click  # noqa: F401
+import pandas as pd  # noqa: F401
+import tqdm  # noqa: F401
 
 # Try to import psutil for smart worker detection
 try:
@@ -71,7 +71,7 @@ log_repeat.addHandler(log_repeat_handler)
 
 # Try to import influxdb (optional dependency)
 try:
-    from influxdb import DataFrameClient
+    from influxdb import DataFrameClient  # noqa: F401
     INFLUXDB_AVAILABLE = True
 except ImportError:
     INFLUXDB_AVAILABLE = False
@@ -788,4 +788,3 @@ def huawei_collect(
 # -----------------------------------------------------------------------------
 if __name__ == "__main__":
     huawei_collect()
-
