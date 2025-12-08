@@ -35,8 +35,8 @@ monitoring_VM_Grafana/
 │
 ├── tools/                             # Утилиты
 │   ├── batch_import.py                # Массовый импорт
-│   ├── victoriametrics_client.py      # VM API клиент
-│   └── pdf_extractor/                 # Извлечение метрик из PDF
+│   └── victoriametrics_client.py      # VM API клиент
+# NOTE: pdf_extractor перенесён в ../docs/huawei_rest_api/
 │
 ├── grafana/provisioning/              # Grafana dashboards
 │   ├── dashboards/
