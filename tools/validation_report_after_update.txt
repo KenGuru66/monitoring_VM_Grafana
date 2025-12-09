@@ -1,0 +1,111 @@
+====================================================================================================
+GRAFANA METRICS VALIDATION REPORT - FULL COMPARISON
+====================================================================================================
+SN: 2102355THQFSQ2100014
+Time: 2025-10-13T12:00:00Z
+
+SUMMARY BY SOURCE:
+  CSV metrics (raw):     215 metrics across 7 resources
+  VictoriaMetrics:       906 metrics across 15 resources
+  Grafana dashboard:     1041 queries across 17 resources
+
+----------------------------------------------------------------------------------------------------
+COMPARISON BY RESOURCE
+----------------------------------------------------------------------------------------------------
+
+Controller:
+  CSV:      41 metrics
+  VM:      104 metrics
+  Grafana: 104 queries
+
+Controller NFSV3:
+  CSV:       0 metrics
+  VM:      107 metrics
+  Grafana: 114 queries
+
+Controller NFSV4:
+  CSV:       0 metrics
+  VM:      107 metrics
+  Grafana: 107 queries
+
+Controller NFSV4.1:
+  CSV:       0 metrics
+  VM:      107 metrics
+  Grafana: 107 queries
+
+Controller SMB2/3:
+  CSV:       0 metrics
+  VM:       83 metrics
+  Grafana:  83 queries
+
+Disk:
+  CSV:      26 metrics
+  VM:       36 metrics
+  Grafana:  36 queries
+
+Disk Domain:
+  CSV:      28 metrics
+  VM:       47 metrics
+  Grafana:  47 queries
+
+ETH Expansion Port:
+  CSV:       0 metrics
+  VM:        4 metrics
+  Grafana:   4 queries
+
+ETH_EXP_Port:
+  CSV:       0 metrics
+  VM:        4 metrics
+  Grafana:   4 queries
+
+Ethernet Port:
+  CSV:       0 metrics
+  VM:        0 metrics
+  Grafana:  69 queries
+
+FC Port:
+  CSV:      28 metrics
+  VM:       49 metrics
+  Grafana:  49 queries
+
+Host:
+  CSV:      27 metrics
+  VM:       55 metrics
+  Grafana:  55 queries
+
+LUN:
+  CSV:      34 metrics
+  VM:      101 metrics
+  Grafana: 101 queries
+
+LUN Priority:
+  CSV:       0 metrics
+  VM:       12 metrics
+  Grafana:  12 queries
+
+Logical Port:
+  CSV:       0 metrics
+  VM:        0 metrics
+  Grafana:  58 queries
+
+Snapshot LUN:
+  CSV:       0 metrics
+  VM:        4 metrics
+  Grafana:   4 queries
+
+Storage Pool:
+  CSV:      31 metrics
+  VM:       86 metrics
+  Grafana:  87 queries
+
+----------------------------------------------------------------------------------------------------
+TOTALS
+----------------------------------------------------------------------------------------------------
+  CSV metrics:           215
+  VictoriaMetrics:       906
+  Grafana queries:       1041
+  Missing in Grafana:    0
+
+----------------------------------------------------------------------------------------------------
+DETAILED: METRICS IN VM BUT NOT IN GRAFANA (candidates for new panels)
+----------------------------------------------------------------------------------------------------
