@@ -2,8 +2,8 @@
 # Использование: docker compose -f docker-compose.yml -f docker-compose.prod.yml up -d
 #
 # Требуется создать директории на хосте:
-#   sudo mkdir -p /data/vmdata /data/grafana /data/jobs
-#   sudo chown -R $(id -u):$(id -g) /data/vmdata /data/grafana /data/jobs
+#   sudo mkdir -p /data/vmdata /data/grafana /data/jobs /data/perf-dumps/dumps
+#   sudo chown -R $(id -u):$(id -g) /data/vmdata /data/grafana /data/jobs /data/perf-dumps
 
 services:
   victoriametrics:
@@ -24,3 +24,10 @@ services:
       - ./tools:/app/tools
       - ./perfmonkey:/app/perfmonkey
       - ./api:/app/api
+
+  # Perf Watcher - автоматический парсинг Performance Dumps
+  perf-watcher:
+    volumes:
+      - /data/perf-dumps/dumps:/data/perf-dumps/dumps  # SFTP директория с dumps
+      - /data/logs/perf-watcher:/app/logs              # Логи watcher на хосте
+      - ./parsers:/app/parsers

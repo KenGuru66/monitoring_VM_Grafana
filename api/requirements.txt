@@ -11,4 +11,6 @@ tqdm==4.67.1
 psutil==6.1.0
 # py7zr для поддержки .7z архивов
 py7zr==0.22.0
+# watchdog для мониторинга файловой системы (perf-watcher)
+watchdog==4.0.1
 

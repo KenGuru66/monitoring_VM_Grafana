@@ -88,6 +88,33 @@ services:
     networks:
       - monitoring
 
+  # Perf Watcher - автоматический парсинг Performance Dumps с SFTP
+  # Мониторит директорию и обрабатывает новые .tgz файлы
+  perf-watcher:
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    command: ["python", "-m", "parsers.perf_watcher"]
+    restart: unless-stopped
+    environment:
+      - VM_URL=http://victoriametrics:8428
+      - VM_IMPORT_URL=http://victoriametrics:8428/api/v1/import/prometheus
+      - WATCH_DIR=/data/perf-dumps/dumps
+      - FILE_WAIT_SECONDS=${FILE_WAIT_SECONDS:-30}
+      - DELETE_AFTER_PROCESS=${DELETE_AFTER_PROCESS:-true}
+      - BATCH_SIZE=${BATCH_SIZE:-100000}
+      - MAX_RETRIES=${MAX_RETRIES:-3}
+      - POLL_INTERVAL_SECONDS=${POLL_INTERVAL_SECONDS:-60}
+    volumes:
+      - ./parsers:/app/parsers
+      - perf_watcher_logs:/app/logs
+      # Для локальной разработки - переопределите в docker-compose.override.yml или prod.yml
+      - ${PERF_DUMPS_DIR:-/data/perf-dumps/dumps}:/data/perf-dumps/dumps
+    depends_on:
+      - victoriametrics
+    networks:
+      - monitoring
+
 networks:
   monitoring:
     driver: bridge
@@ -98,3 +125,4 @@ volumes:
   vmdata:
   grafana_data:
   jobs_data:
+  perf_watcher_logs:
