@@ -20,6 +20,7 @@ import zipfile
 import time
 import argparse
 import logging
+from logging.handlers import RotatingFileHandler
 from pathlib import Path
 
 # Поддержка .7z архивов
@@ -51,14 +52,24 @@ except ImportError:
     sys.path.insert(0, str(Path(__file__).parent.parent))
     from dictionaries import METRIC_NAME_DICT, RESOURCE_NAME_DICT, METRIC_CONVERSION
 
-# Настройка логирования
+# Настройка логирования с ротацией (50MB max, 5 backups = ~300MB total)
+LOG_MAX_BYTES = int(os.getenv("LOG_MAX_BYTES", str(50 * 1024 * 1024)))  # 50MB
+LOG_BACKUP_COUNT = int(os.getenv("LOG_BACKUP_COUNT", "5"))
+
+file_handler = RotatingFileHandler(
+    'streaming_pipeline.log',
+    maxBytes=LOG_MAX_BYTES,
+    backupCount=LOG_BACKUP_COUNT,
+    encoding='utf-8'
+)
+file_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
+
+stream_handler = logging.StreamHandler(sys.stdout)
+stream_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
+
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('streaming_pipeline.log', mode='a', encoding='utf-8'),
-        logging.StreamHandler(sys.stdout)
-    ]
+    handlers=[file_handler, stream_handler]
 )
 logger = logging.getLogger(__name__)
 

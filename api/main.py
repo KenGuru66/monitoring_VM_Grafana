@@ -8,6 +8,7 @@ import os
 import sys
 import asyncio
 import logging
+from logging.handlers import RotatingFileHandler
 import uuid
 import time
 import re
@@ -38,14 +39,24 @@ import requests
 # Add parent directory to path to import pipeline
 sys.path.insert(0, '/app')
 
-# Configure logging
+# Configure logging with rotation (50MB max, 5 backups = ~300MB total)
+LOG_MAX_BYTES = int(os.getenv("LOG_MAX_BYTES", str(50 * 1024 * 1024)))  # 50MB
+LOG_BACKUP_COUNT = int(os.getenv("LOG_BACKUP_COUNT", "5"))
+
+file_handler = RotatingFileHandler(
+    '/app/api.log',
+    maxBytes=LOG_MAX_BYTES,
+    backupCount=LOG_BACKUP_COUNT,
+    encoding='utf-8'
+)
+file_handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+
+stream_handler = logging.StreamHandler(sys.stdout)
+stream_handler.setFormatter(logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s'))
+
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler('/app/api.log', mode='a', encoding='utf-8'),
-        logging.StreamHandler(sys.stdout)
-    ]
+    handlers=[file_handler, stream_handler]
 )
 logger = logging.getLogger(__name__)
 

@@ -4,6 +4,7 @@
 
 import inspect
 import logging
+from logging.handlers import RotatingFileHandler
 import sys
 from pathlib import Path
 
@@ -47,19 +48,33 @@ LOGFILE = 'process_perf_files.log'
 LOGFILE_REPEAT = 'process_perf_files_repeat.log'
 if not (Path() / LOGDIR).is_dir():
     (Path() / LOGDIR).mkdir()
+
+# Ротация логов: 50MB max, 5 backups = ~300MB total на каждый лог
+LOG_MAX_BYTES = int(os.getenv("LOG_MAX_BYTES", str(50 * 1024 * 1024)))  # 50MB
+LOG_BACKUP_COUNT = int(os.getenv("LOG_BACKUP_COUNT", "5"))
+
 logging.root.handlers = []
 logging.basicConfig(
-    format = "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
     level=logging.INFO,
-    # handlers=[],
     handlers=[logging.StreamHandler()],
 )
 logger = logging.getLogger(__name__)
 log_repeat = logging.getLogger("repeat")
 
 log_format = logging.Formatter("[%(asctime)s][%(levelname)s] %(message)s")
-log_handler = logging.FileHandler(f"{LOGDIR}/{LOGFILE}", mode="a", encoding="utf-8")
-log_repeat_handler = logging.FileHandler(f"{LOGDIR}/{LOGFILE_REPEAT}", mode="a", encoding="utf-8")
+log_handler = RotatingFileHandler(
+    f"{LOGDIR}/{LOGFILE}",
+    maxBytes=LOG_MAX_BYTES,
+    backupCount=LOG_BACKUP_COUNT,
+    encoding="utf-8"
+)
+log_repeat_handler = RotatingFileHandler(
+    f"{LOGDIR}/{LOGFILE_REPEAT}",
+    maxBytes=LOG_MAX_BYTES,
+    backupCount=LOG_BACKUP_COUNT,
+    encoding="utf-8"
+)
 
 log_handler.setFormatter(log_format)
 log_repeat_handler.setFormatter(log_format)
