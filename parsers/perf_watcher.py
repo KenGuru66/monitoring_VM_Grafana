@@ -114,10 +114,11 @@ class FileTask:
 class TgzFileHandler(FileSystemEventHandler):
     """Обработчик событий файловой системы для .tgz файлов."""
     
-    def __init__(self, task_queue: Queue, processing_files: Set[str]):
+    def __init__(self, task_queue: Queue, processing_files: Set[str], queued_files: Set[str]):
         super().__init__()
         self.task_queue = task_queue
         self.processing_files = processing_files
+        self.queued_files = queued_files
     
     def on_created(self, event):
         """Обработка события создания файла."""
@@ -131,11 +132,15 @@ class TgzFileHandler(FileSystemEventHandler):
             return
         if not path.name.startswith('PerfData_'):
             return
-            
-        # Проверяем что файл не в обработке
-        if str(path) in self.processing_files:
+        
+        file_key = str(path)
+        
+        # Проверяем что файл не в обработке и не в очереди
+        if file_key in self.processing_files or file_key in self.queued_files:
             return
-            
+        
+        # Добавляем в очередь
+        self.queued_files.add(file_key)
         logger.info(f"📥 Обнаружен новый файл: {path.name}")
         self.task_queue.put(FileTask(path=path))
 
@@ -166,6 +171,9 @@ class PerfWatcher:
         
         # Файлы в процессе обработки (для избежания дублей)
         self.processing_files: Set[str] = set()
+        
+        # Файлы уже добавленные в очередь (для избежания дублей от polling/watchdog)
+        self.queued_files: Set[str] = set()
         
         # Обработанные файлы в текущей сессии (для статистики)
         self.processed_count = 0
@@ -283,12 +291,15 @@ class PerfWatcher:
         
         # Добавляем в очередь с нулевой задержкой (файлы уже загружены)
         for tgz_file in tgz_files:
-            task = FileTask(path=tgz_file, added_time=0)  # Сразу готов к обработке
-            self.task_queue.put(task)
+            file_key = str(tgz_file)
+            if file_key not in self.queued_files:
+                self.queued_files.add(file_key)
+                task = FileTask(path=tgz_file, added_time=0)  # Сразу готов к обработке
+                self.task_queue.put(task)
     
     def _start_watchdog(self):
         """Запуск watchdog observer."""
-        event_handler = TgzFileHandler(self.task_queue, self.processing_files)
+        event_handler = TgzFileHandler(self.task_queue, self.processing_files, self.queued_files)
         
         self.observer = Observer()
         # Рекурсивное наблюдение за всеми подпапками
@@ -310,12 +321,14 @@ class PerfWatcher:
                 tgz_files = list(self.watch_dir.rglob("PerfData_*.tgz"))
                 
                 for tgz_file in tgz_files:
-                    # Пропускаем файлы в обработке
-                    if str(tgz_file) in self.processing_files:
+                    file_key = str(tgz_file)
+                    
+                    # Пропускаем файлы в обработке или уже в очереди
+                    if file_key in self.processing_files or file_key in self.queued_files:
                         continue
                     
-                    # Проверяем не добавлен ли уже в очередь
-                    # (простая проверка через processing_files)
+                    # Добавляем в очередь
+                    self.queued_files.add(file_key)
                     task = FileTask(path=tgz_file, added_time=0)
                     self.task_queue.put(task)
                     
@@ -352,7 +365,8 @@ class PerfWatcher:
             
             # Проверяем что файл существует
             if not task.path.exists():
-                logger.warning(f"⚠️  Файл не существует: {task.path}")
+                # Файл удалён или не существует — убираем из очереди
+                self.queued_files.discard(str(task.path))
                 continue
             
             # Проверяем стабильность размера файла
@@ -384,12 +398,18 @@ class PerfWatcher:
                         logger.warning(f"⚠️  Retry {task.retries}/{self.max_retries} для {task.path.name}")
                         task.added_time = time.time()  # Добавляем задержку перед retry
                         self.task_queue.put(task)
+                        # Оставляем в queued_files для retry
                     else:
                         logger.error(f"❌ Превышено количество попыток для {task.path.name}")
                         self.failed_count += 1
+                        # Убираем из очереди — больше не будем обрабатывать
+                        self.queued_files.discard(str(task.path))
                         
             finally:
                 self.processing_files.discard(str(task.path))
+                # Если файл успешно обработан и удалён — убираем из очереди
+                if not task.path.exists():
+                    self.queued_files.discard(str(task.path))
     
     def _check_file_stability(self, path: Path) -> bool:
         """Проверка что размер файла не меняется (загрузка завершена)."""
