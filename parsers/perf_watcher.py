@@ -26,6 +26,7 @@ import re
 import time
 import signal
 import logging
+from logging.handlers import RotatingFileHandler
 import threading
 import tarfile
 import shutil
@@ -70,17 +71,29 @@ MAX_RETRIES = int(os.getenv("MAX_RETRIES", "3"))
 POLL_INTERVAL_SECONDS = int(os.getenv("POLL_INTERVAL_SECONDS", "60"))
 FILE_STABILITY_CHECK_SECONDS = int(os.getenv("FILE_STABILITY_CHECK_SECONDS", "5"))
 
-# Настройка логирования
+# Настройка логирования с ротацией
+# Максимум 50MB на файл, 5 backup файлов = до 300MB на логи
 LOG_DIR = Path("/app/logs") if Path("/app").exists() else Path("logs")
 LOG_DIR.mkdir(parents=True, exist_ok=True)
 
+LOG_MAX_BYTES = int(os.getenv("LOG_MAX_BYTES", str(50 * 1024 * 1024)))  # 50MB default
+LOG_BACKUP_COUNT = int(os.getenv("LOG_BACKUP_COUNT", "5"))  # 5 backup files
+
+# Создаём handler с ротацией
+file_handler = RotatingFileHandler(
+    LOG_DIR / 'perf_watcher.log',
+    maxBytes=LOG_MAX_BYTES,
+    backupCount=LOG_BACKUP_COUNT,
+    encoding='utf-8'
+)
+file_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
+
+stream_handler = logging.StreamHandler(sys.stdout)
+stream_handler.setFormatter(logging.Formatter('%(asctime)s - %(levelname)s - %(message)s'))
+
 logging.basicConfig(
     level=logging.INFO,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    handlers=[
-        logging.FileHandler(LOG_DIR / 'perf_watcher.log', mode='a', encoding='utf-8'),
-        logging.StreamHandler(sys.stdout)
-    ]
+    handlers=[file_handler, stream_handler]
 )
 logger = logging.getLogger(__name__)
 
