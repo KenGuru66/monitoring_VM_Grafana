@@ -20,6 +20,7 @@ import zipfile
 import time
 import argparse
 import logging
+import uuid
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
 
@@ -555,7 +556,10 @@ def main():
     start_time = time.time()
     
     # Извлекаем архив (поддержка .zip и .7z)
-    temp_dir = Path("temp_streaming_extract")
+    # Используем уникальную директорию для каждого запуска (fix race condition)
+    unique_id = str(uuid.uuid4())[:8]
+    temp_dir = Path(f"temp_streaming_extract_{unique_id}")
+    logger.info(f"📂 Using temp directory: {temp_dir}")
     if temp_dir.exists():
         shutil.rmtree(temp_dir)
     temp_dir.mkdir()
