@@ -1,0 +1,6456 @@
+[
+  {
+    "metric_id": "2",
+    "metric_dict_name": "读I/O比率(%)",
+    "vm_name": "huawei_读i_o比率percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "3",
+    "metric_dict_name": "写I/O比率(%)",
+    "vm_name": "huawei_写i_o比率percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "4",
+    "metric_dict_name": "当前带宽(MB/s)",
+    "vm_name": "huawei_当前带宽mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "5",
+    "metric_dict_name": "Max. bandwidth (MB/s)",
+    "vm_name": "huawei_max_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "6",
+    "metric_dict_name": "当前IOPS",
+    "vm_name": "huawei_当前iops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "8",
+    "metric_dict_name": "最大延迟",
+    "vm_name": "huawei_最大延迟",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "9",
+    "metric_dict_name": "平均延迟",
+    "vm_name": "huawei_平均延迟",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "10",
+    "metric_dict_name": "Cache hit ratio (%)",
+    "vm_name": "huawei_cache_hit_ratio_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "11",
+    "metric_dict_name": "本地写Cache利用率(%)",
+    "vm_name": "huawei_本地写cache利用率percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "12",
+    "metric_dict_name": "Mirror write cache usage (%)",
+    "vm_name": "huawei_mirror_write_cache_usage_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "13",
+    "metric_dict_name": "读I/O流量",
+    "vm_name": "huawei_读i_o流量",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "14",
+    "metric_dict_name": "写I/O流量",
+    "vm_name": "huawei_写i_o流量",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "15",
+    "metric_dict_name": "最大功耗",
+    "vm_name": "huawei_最大功耗",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "16",
+    "metric_dict_name": "平均功耗",
+    "vm_name": "huawei_平均功耗",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "17",
+    "metric_dict_name": "最小功耗",
+    "vm_name": "huawei_最小功耗",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "18",
+    "metric_dict_name": "Usage (%)",
+    "vm_name": "huawei_usage_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "19",
+    "metric_dict_name": "Queue length",
+    "vm_name": "huawei_queue_length",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "20",
+    "metric_dict_name": "响应时间(ms)",
+    "vm_name": "huawei_响应时间ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "21",
+    "metric_dict_name": "Block bandwidth (MB/s)",
+    "vm_name": "huawei_block_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "22",
+    "metric_dict_name": "Total IOPS (IO/s)",
+    "vm_name": "huawei_total_iops_io_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "23",
+    "metric_dict_name": "Read Bandwidth (MB/s)",
+    "vm_name": "huawei_read_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "24",
+    "metric_dict_name": "Avg. read I/O size(KB)",
+    "vm_name": "huawei_avg_read_i_o_sizekb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "25",
+    "metric_dict_name": "Read IOPS (IO/s)",
+    "vm_name": "huawei_read_iops_io_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "26",
+    "metric_dict_name": "Write Bandwidth (MB/s)",
+    "vm_name": "huawei_write_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "27",
+    "metric_dict_name": "Avg. write I/O size(KB)",
+    "vm_name": "huawei_avg_write_i_o_sizekb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "28",
+    "metric_dict_name": "Write IOPS (IO/s)",
+    "vm_name": "huawei_write_iops_io_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "29",
+    "metric_dict_name": "Service time (ms)",
+    "vm_name": "huawei_service_time_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "30",
+    "metric_dict_name": "Read I/O granularity distribution: [0K,1K) (%)",
+    "vm_name": "huawei_read_i_o_granularity_distribution_0k1k_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "31",
+    "metric_dict_name": "Read I/O Granularity Distribution: [1 KB, 2 KB) (%)",
+    "vm_name": "huawei_read_i_o_granularity_distribution_1_kb_2_kb_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "32",
+    "metric_dict_name": "Read I/O Granularity Distribution: [2 KB, 4 KB) (%)",
+    "vm_name": "huawei_read_i_o_granularity_distribution_2_kb_4_kb_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "33",
+    "metric_dict_name": "Read I/O Granularity Distribution: [4 KB, 8 KB) (%)",
+    "vm_name": "huawei_read_i_o_granularity_distribution_4_kb_8_kb_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "34",
+    "metric_dict_name": "Read I/O Granularity Distribution: [8 KB, 16 KB) (%)",
+    "vm_name": "huawei_read_i_o_granularity_distribution_8_kb_16_kb_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "35",
+    "metric_dict_name": "Read I/O Granularity Distribution: [16 KB, 32 KB) (%)",
+    "vm_name": "huawei_read_i_o_granularity_distribution_16_kb_32_kb_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "36",
+    "metric_dict_name": "Read I/O Granularity Distribution: [32 KB, 64 KB) (%)",
+    "vm_name": "huawei_read_i_o_granularity_distribution_32_kb_64_kb_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "37",
+    "metric_dict_name": "Read I/O Granularity Distribution: [64 KB, 128 KB) (%)",
+    "vm_name": "huawei_read_i_o_granularity_distribution_64_kb_128_kb_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "38",
+    "metric_dict_name": "Read I/O Granularity Distribution: [128 KB, 256 KB) (%)",
+    "vm_name": "huawei_read_i_o_granularity_distribution_128_kb_256_kb_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "39",
+    "metric_dict_name": "Read I/O granularity distribution: [256K,512K) (%)",
+    "vm_name": "huawei_read_i_o_granularity_distribution_256k512k_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "40",
+    "metric_dict_name": "Read I/O granularity distribution: [512K,+∞) (%)",
+    "vm_name": "huawei_read_i_o_granularity_distribution_512kinf_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "41",
+    "metric_dict_name": "Write I/O granularity distribution: [0K,1K) (%)",
+    "vm_name": "huawei_write_i_o_granularity_distribution_0k1k_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "42",
+    "metric_dict_name": "Write I/O Granularity Distribution: [1 KB, 2 KB) (%)",
+    "vm_name": "huawei_write_i_o_granularity_distribution_1_kb_2_kb_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "43",
+    "metric_dict_name": "Write I/O Granularity Distribution: [2 KB, 4 KB) (%)",
+    "vm_name": "huawei_write_i_o_granularity_distribution_2_kb_4_kb_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "44",
+    "metric_dict_name": "Write I/O Granularity Distribution: [4 KB, 8 KB) (%)",
+    "vm_name": "huawei_write_i_o_granularity_distribution_4_kb_8_kb_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "45",
+    "metric_dict_name": "Write I/O Granularity Distribution: [8 KB, 16 KB) (%)",
+    "vm_name": "huawei_write_i_o_granularity_distribution_8_kb_16_kb_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "46",
+    "metric_dict_name": "Write I/O Granularity Distribution: [16 KB, 32 KB) (%)",
+    "vm_name": "huawei_write_i_o_granularity_distribution_16_kb_32_kb_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "47",
+    "metric_dict_name": "Write I/O Granularity Distribution: [32 KB, 64 KB) (%)",
+    "vm_name": "huawei_write_i_o_granularity_distribution_32_kb_64_kb_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "48",
+    "metric_dict_name": "Write I/O Granularity Distribution: [64 KB, 128 KB) (%)",
+    "vm_name": "huawei_write_i_o_granularity_distribution_64_kb_128_kb_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "49",
+    "metric_dict_name": "Write I/O Granularity Distribution: [128 KB, 256 KB) (%)",
+    "vm_name": "huawei_write_i_o_granularity_distribution_128_kb_256_kb_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "50",
+    "metric_dict_name": "Write I/O granularity distribution: [256K,512K) (%)",
+    "vm_name": "huawei_write_i_o_granularity_distribution_256k512k_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "51",
+    "metric_dict_name": "Write I/O granularity distribution: [512K,+∞) (%)",
+    "vm_name": "huawei_write_i_o_granularity_distribution_512kinf_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "52",
+    "metric_dict_name": "读写I/O分布：512B",
+    "vm_name": "huawei_读写i_o分布：512b",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "53",
+    "metric_dict_name": "读写I/O分布：1KB",
+    "vm_name": "huawei_读写i_o分布：1kb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "54",
+    "metric_dict_name": "读写I/O分布：2KB",
+    "vm_name": "huawei_读写i_o分布：2kb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "55",
+    "metric_dict_name": "读写I/O分布：4KB",
+    "vm_name": "huawei_读写i_o分布：4kb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "56",
+    "metric_dict_name": "读写I/O分布：8KB",
+    "vm_name": "huawei_读写i_o分布：8kb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "57",
+    "metric_dict_name": "读写I/O分布：16KB",
+    "vm_name": "huawei_读写i_o分布：16kb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "58",
+    "metric_dict_name": "读写I/O分布：32KB",
+    "vm_name": "huawei_读写i_o分布：32kb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "59",
+    "metric_dict_name": "读写I/O分布：64KB",
+    "vm_name": "huawei_读写i_o分布：64kb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "60",
+    "metric_dict_name": "周期内写I/O总数",
+    "vm_name": "huawei_周期内写i_o总数",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "61",
+    "metric_dict_name": "周期内读I/O总数",
+    "vm_name": "huawei_周期内读i_o总数",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "62",
+    "metric_dict_name": "读写I/O分布：512KB",
+    "vm_name": "huawei_读写i_o分布：512kb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "63",
+    "metric_dict_name": "周期内写I/O总数",
+    "vm_name": "huawei_周期内写i_o总数",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "64",
+    "metric_dict_name": "周期内读I/O总数",
+    "vm_name": "huawei_周期内读i_o总数",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "65",
+    "metric_dict_name": "随机顺序比例",
+    "vm_name": "huawei_随机顺序比例",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "66",
+    "metric_dict_name": "使用率(%)",
+    "vm_name": "huawei_使用率percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "67",
+    "metric_dict_name": "Usage (%)",
+    "vm_name": "huawei_usage_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "68",
+    "metric_dict_name": "Avg. CPU usage (%)",
+    "vm_name": "huawei_avg_cpu_usage_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "69",
+    "metric_dict_name": "Avg. cache usage (%)",
+    "vm_name": "huawei_avg_cache_usage_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "70",
+    "metric_dict_name": "交换分区占用率(%)",
+    "vm_name": "huawei_交换分区占用率percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "71",
+    "metric_dict_name": "读吞吐量(MB/s)",
+    "vm_name": "huawei_读吞吐量mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "72",
+    "metric_dict_name": "写吞吐量(MB/s)",
+    "vm_name": "huawei_写吞吐量mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "73",
+    "metric_dict_name": "网络当前进包数量",
+    "vm_name": "huawei_网络当前进包数量",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "74",
+    "metric_dict_name": "网络当前出包数量",
+    "vm_name": "huawei_网络当前出包数量",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "75",
+    "metric_dict_name": "工作温度",
+    "vm_name": "huawei_工作温度",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "76",
+    "metric_dict_name": "功耗",
+    "vm_name": "huawei_功耗",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "77",
+    "metric_dict_name": "电压",
+    "vm_name": "huawei_电压",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "78",
+    "metric_dict_name": "Avg. I/O response time (ms)",
+    "vm_name": "huawei_avg_i_o_response_time_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "79",
+    "metric_dict_name": "Max. I/O response time (ms)",
+    "vm_name": "huawei_max_i_o_response_time_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "80",
+    "metric_dict_name": "Dirty page ratio (%)",
+    "vm_name": "huawei_dirty_page_ratio_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "81",
+    "metric_dict_name": "Cache flushes to write requests ratio (%)",
+    "vm_name": "huawei_cache_flushes_to_write_requests_ratio_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "82",
+    "metric_dict_name": "Cache flushing bandwidth (MB/s)",
+    "vm_name": "huawei_cache_flushing_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "83",
+    "metric_dict_name": "Cache flushes caused by high watermark",
+    "vm_name": "huawei_cache_flushes_caused_by_high_watermark",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "84",
+    "metric_dict_name": "Cache flushes caused by the timer",
+    "vm_name": "huawei_cache_flushes_caused_by_the_timer",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "85",
+    "metric_dict_name": "Low watermark reaching times",
+    "vm_name": "huawei_low_watermark_reaching_times",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "86",
+    "metric_dict_name": "Full-stripe write request ratio (%)",
+    "vm_name": "huawei_full_stripe_write_request_ratio_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "87",
+    "metric_dict_name": "Prefetch traffic (MB/s)",
+    "vm_name": "huawei_prefetch_traffic_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "88",
+    "metric_dict_name": "Prefetch rate (%)",
+    "vm_name": "huawei_prefetch_rate_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "89",
+    "metric_dict_name": "Read cache hits per second",
+    "vm_name": "huawei_read_cache_hits_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90",
+    "metric_dict_name": "Read cache misses per second",
+    "vm_name": "huawei_read_cache_misses_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "91",
+    "metric_dict_name": "Write cache hits by reads per second",
+    "vm_name": "huawei_write_cache_hits_by_reads_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "92",
+    "metric_dict_name": "Read cache hits by reads per second",
+    "vm_name": "huawei_read_cache_hits_by_reads_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "93",
+    "metric_dict_name": "Read cache hit ratio (%)",
+    "vm_name": "huawei_read_cache_hit_ratio_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "94",
+    "metric_dict_name": "Read cache rehit ratio (%)",
+    "vm_name": "huawei_read_cache_rehit_ratio_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "95",
+    "metric_dict_name": "Write cache hit ratio (%)",
+    "vm_name": "huawei_write_cache_hit_ratio_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "96",
+    "metric_dict_name": "Write cache rehit ratio (%)",
+    "vm_name": "huawei_write_cache_rehit_ratio_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "97",
+    "metric_dict_name": "Write cache hits per second",
+    "vm_name": "huawei_write_cache_hits_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "98",
+    "metric_dict_name": "Write cache misses per second",
+    "vm_name": "huawei_write_cache_misses_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "99",
+    "metric_dict_name": "Time since last synchronization (s)",
+    "vm_name": "huawei_time_since_last_synchronization_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "100",
+    "metric_dict_name": "Unsynchronized data amount (MB)",
+    "vm_name": "huawei_unsynchronized_data_amount_mb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "101",
+    "metric_dict_name": "Read requests to the snapshot LUN",
+    "vm_name": "huawei_read_requests_to_the_snapshot_lun",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "102",
+    "metric_dict_name": "Read requests redirected to the source LUN",
+    "vm_name": "huawei_read_requests_redirected_to_the_source_lun",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "103",
+    "metric_dict_name": "COW requests to the source LUN",
+    "vm_name": "huawei_cow_requests_to_the_source_lun",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "104",
+    "metric_dict_name": "COW requests from the snapshot LUN",
+    "vm_name": "huawei_cow_requests_from_the_snapshot_lun",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "105",
+    "metric_dict_name": "Write requests to the snapshot LUN",
+    "vm_name": "huawei_write_requests_to_the_snapshot_lun",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "106",
+    "metric_dict_name": "Write requests to the source LUN exceeding the grain size",
+    "vm_name": "huawei_write_requests_to_the_source_lun_exceeding_the_grain_size",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "107",
+    "metric_dict_name": "Chunks used by the snapshot copy",
+    "vm_name": "huawei_chunks_used_by_the_snapshot_copy",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "108",
+    "metric_dict_name": "本地Cache利用率(%)",
+    "vm_name": "huawei_本地cache利用率percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "109",
+    "metric_dict_name": "镜像Cache利用率(%)",
+    "vm_name": "huawei_镜像cache利用率percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "110",
+    "metric_dict_name": "Cache read usage (%)",
+    "vm_name": "huawei_cache_read_usage_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "111",
+    "metric_dict_name": "主机下发数据的耗时(ms)",
+    "vm_name": "huawei_主机下发数据的耗时ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "112",
+    "metric_dict_name": "设备保存写数据的耗时(ms)",
+    "vm_name": "huawei_设备保存写数据的耗时ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "113",
+    "metric_dict_name": "释放写请求资源的耗时(ms)",
+    "vm_name": "huawei_释放写请求资源的耗时ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "114",
+    "metric_dict_name": "执行读请求的耗时(ms)",
+    "vm_name": "huawei_执行读请求的耗时ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "115",
+    "metric_dict_name": "释放读请求资源的耗时(ms)",
+    "vm_name": "huawei_释放读请求资源的耗时ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "116",
+    "metric_dict_name": "Cache读I/O响应时间(ms)",
+    "vm_name": "huawei_cache读i_o响应时间ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "117",
+    "metric_dict_name": "Cache写I/O响应时间(ms)",
+    "vm_name": "huawei_cache写i_o响应时间ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "118",
+    "metric_dict_name": "Cache镜像I/O响应时间(ms)",
+    "vm_name": "huawei_cache镜像i_o响应时间ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "119",
+    "metric_dict_name": "写请求申请内存的耗时(ms)",
+    "vm_name": "huawei_写请求申请内存的耗时ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "120",
+    "metric_dict_name": "Cache write usage (%)",
+    "vm_name": "huawei_cache_write_usage_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "121",
+    "metric_dict_name": "Cache写盘I/O数(个)",
+    "vm_name": "huawei_cache写盘i_o数个",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "122",
+    "metric_dict_name": "Cache写盘页面数(个)",
+    "vm_name": "huawei_cache写盘页面数个",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "123",
+    "metric_dict_name": "Read Bandwidth (KB/s)",
+    "vm_name": "huawei_read_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "124",
+    "metric_dict_name": "Write Bandwidth (KB/s)",
+    "vm_name": "huawei_write_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "125",
+    "metric_dict_name": "读I/O平均大小(A控)(KB)",
+    "vm_name": "huawei_读i_o平均大小a控kb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "126",
+    "metric_dict_name": "写I/O平均大小(A控)(KB)",
+    "vm_name": "huawei_写i_o平均大小a控kb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "127",
+    "metric_dict_name": "最大I/O响应时间(A控)(ms)",
+    "vm_name": "huawei_最大i_o响应时间a控ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "128",
+    "metric_dict_name": "平均I/O响应时间(A控)(ms)",
+    "vm_name": "huawei_平均i_o响应时间a控ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "129",
+    "metric_dict_name": "利用率(A控)(%)",
+    "vm_name": "huawei_利用率a控percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "130",
+    "metric_dict_name": "队列长度(A控)(个)",
+    "vm_name": "huawei_队列长度a控个",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "131",
+    "metric_dict_name": "服务时间(A控)(ms)",
+    "vm_name": "huawei_服务时间a控ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "132",
+    "metric_dict_name": "每秒合并读I/O的个数(A控)(个/秒)",
+    "vm_name": "huawei_每秒合并读i_o的个数a控个_秒",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "133",
+    "metric_dict_name": "每秒合并写I/O的个数(A控)(个/秒)",
+    "vm_name": "huawei_每秒合并写i_o的个数a控个_秒",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "134",
+    "metric_dict_name": "读等待时间(A控)(ms)",
+    "vm_name": "huawei_读等待时间a控ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "135",
+    "metric_dict_name": "写等待时间(A控)(ms)",
+    "vm_name": "huawei_写等待时间a控ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "136",
+    "metric_dict_name": "I/O平均大小(A控)(sector)",
+    "vm_name": "huawei_i_o平均大小a控sector",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "137",
+    "metric_dict_name": "读I/O平均大小(B控)(KB)",
+    "vm_name": "huawei_读i_o平均大小b控kb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "138",
+    "metric_dict_name": "写I/O平均大小(B控)(KB)",
+    "vm_name": "huawei_写i_o平均大小b控kb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "139",
+    "metric_dict_name": "最大I/O响应时间(B控)(ms)",
+    "vm_name": "huawei_最大i_o响应时间b控ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "140",
+    "metric_dict_name": "平均I/O响应时间(B控)(ms)",
+    "vm_name": "huawei_平均i_o响应时间b控ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "141",
+    "metric_dict_name": "利用率(B控)(%)",
+    "vm_name": "huawei_利用率b控percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "142",
+    "metric_dict_name": "队列长度(B控)(个)",
+    "vm_name": "huawei_队列长度b控个",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "143",
+    "metric_dict_name": "服务时间(B控)(ms)",
+    "vm_name": "huawei_服务时间b控ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "144",
+    "metric_dict_name": "每秒合并读I/O的个数(B控)(个/秒)",
+    "vm_name": "huawei_每秒合并读i_o的个数b控个_秒",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "145",
+    "metric_dict_name": "每秒合并写I/O的个数(个/秒)",
+    "vm_name": "huawei_每秒合并写i_o的个数个_秒",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "146",
+    "metric_dict_name": "读等待时间(B控)(ms)",
+    "vm_name": "huawei_读等待时间b控ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "147",
+    "metric_dict_name": "写等待时间(B控)(ms)",
+    "vm_name": "huawei_写等待时间b控ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "148",
+    "metric_dict_name": "I/O平均大小(B控)(sector)",
+    "vm_name": "huawei_i_o平均大小b控sector",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "149",
+    "metric_dict_name": "读I/O粒度分布：< 4K(%)",
+    "vm_name": "huawei_读i_o粒度分布：<_4kpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "150",
+    "metric_dict_name": "读I/O粒度分布：≤ 8K(%)",
+    "vm_name": "huawei_读i_o粒度分布：≤_8kpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "151",
+    "metric_dict_name": "读I/O粒度分布：≤ 16K(%)",
+    "vm_name": "huawei_读i_o粒度分布：≤_16kpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "152",
+    "metric_dict_name": "读I/O粒度分布：≤ 32K(%)",
+    "vm_name": "huawei_读i_o粒度分布：≤_32kpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "153",
+    "metric_dict_name": "读I/O粒度分布：≤ 64K(%)",
+    "vm_name": "huawei_读i_o粒度分布：≤_64kpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "154",
+    "metric_dict_name": "读I/O粒度分布：≤ 128K(%)",
+    "vm_name": "huawei_读i_o粒度分布：≤_128kpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "155",
+    "metric_dict_name": "读I/O粒度分布：≤ 256K(%)",
+    "vm_name": "huawei_读i_o粒度分布：≤_256kpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "156",
+    "metric_dict_name": "读I/O粒度分布：≤ 512K(%)",
+    "vm_name": "huawei_读i_o粒度分布：≤_512kpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "157",
+    "metric_dict_name": "读I/O粒度分布：≤ 1M(%)",
+    "vm_name": "huawei_读i_o粒度分布：≤_1mpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "158",
+    "metric_dict_name": "读I/O粒度分布：≤ 2M(%)",
+    "vm_name": "huawei_读i_o粒度分布：≤_2mpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "159",
+    "metric_dict_name": "读I/O粒度分布：> 2M(%)",
+    "vm_name": "huawei_读i_o粒度分布：>_2mpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "160",
+    "metric_dict_name": "写I/O粒度分布：< 4K(%)",
+    "vm_name": "huawei_写i_o粒度分布：<_4kpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "161",
+    "metric_dict_name": "写I/O粒度分布：<= 8K(%)",
+    "vm_name": "huawei_写i_o粒度分布：<=_8kpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "162",
+    "metric_dict_name": "写I/O粒度分布：<= 16K(%)",
+    "vm_name": "huawei_写i_o粒度分布：<=_16kpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "163",
+    "metric_dict_name": "写I/O粒度分布：<= 32K(%)",
+    "vm_name": "huawei_写i_o粒度分布：<=_32kpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "164",
+    "metric_dict_name": "写I/O粒度分布：<= 64K(%)",
+    "vm_name": "huawei_写i_o粒度分布：<=_64kpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "165",
+    "metric_dict_name": "写I/O粒度分布：<= 128K(%)",
+    "vm_name": "huawei_写i_o粒度分布：<=_128kpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "166",
+    "metric_dict_name": "写I/O粒度分布：<= 256K(%)",
+    "vm_name": "huawei_写i_o粒度分布：<=_256kpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "167",
+    "metric_dict_name": "写I/O粒度分布：<= 512K(%)",
+    "vm_name": "huawei_写i_o粒度分布：<=_512kpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "168",
+    "metric_dict_name": "写I/O粒度分布：<= 1M(%)",
+    "vm_name": "huawei_写i_o粒度分布：<=_1mpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "169",
+    "metric_dict_name": "写I/O粒度分布：<= 2M(%)",
+    "vm_name": "huawei_写i_o粒度分布：<=_2mpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "170",
+    "metric_dict_name": "写I/O粒度分布：> 2M(%)",
+    "vm_name": "huawei_写i_o粒度分布：>_2mpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "171",
+    "metric_dict_name": "读写I/O粒度分布：< 4K(%)",
+    "vm_name": "huawei_读写i_o粒度分布：<_4kpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "172",
+    "metric_dict_name": "读写I/O粒度分布：<= 8K(%)",
+    "vm_name": "huawei_读写i_o粒度分布：<=_8kpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "173",
+    "metric_dict_name": "读写I/O粒度分布：<= 16K(%)",
+    "vm_name": "huawei_读写i_o粒度分布：<=_16kpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "174",
+    "metric_dict_name": "读写I/O粒度分布：<= 32K(%)",
+    "vm_name": "huawei_读写i_o粒度分布：<=_32kpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "175",
+    "metric_dict_name": "读写I/O粒度分布：<= 64K(%)",
+    "vm_name": "huawei_读写i_o粒度分布：<=_64kpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "176",
+    "metric_dict_name": "读写I/O粒度分布：<= 128K(%)",
+    "vm_name": "huawei_读写i_o粒度分布：<=_128kpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "177",
+    "metric_dict_name": "读写I/O粒度分布：<= 256K(%)",
+    "vm_name": "huawei_读写i_o粒度分布：<=_256kpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "178",
+    "metric_dict_name": "读写I/O粒度分布：<= 512K(%)",
+    "vm_name": "huawei_读写i_o粒度分布：<=_512kpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "179",
+    "metric_dict_name": "读写I/O粒度分布：<= 1M(%)",
+    "vm_name": "huawei_读写i_o粒度分布：<=_1mpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "180",
+    "metric_dict_name": "读写I/O粒度分布：<= 2M(%)",
+    "vm_name": "huawei_读写i_o粒度分布：<=_2mpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "181",
+    "metric_dict_name": "读写I/O粒度分布：> 2M(%)",
+    "vm_name": "huawei_读写i_o粒度分布：>_2mpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "182",
+    "metric_dict_name": "OPS",
+    "vm_name": "huawei_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "183",
+    "metric_dict_name": "在线用户数",
+    "vm_name": "huawei_在线用户数",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "184",
+    "metric_dict_name": "硬配额空间容量",
+    "vm_name": "huawei_硬配额空间容量",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "185",
+    "metric_dict_name": "已用容量",
+    "vm_name": "huawei_已用容量",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "186",
+    "metric_dict_name": "总容量",
+    "vm_name": "huawei_总容量",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "187",
+    "metric_dict_name": "重删率(%)",
+    "vm_name": "huawei_重删率percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "188",
+    "metric_dict_name": "包传输速率(Packets/s)",
+    "vm_name": "huawei_包传输速率packets_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "189",
+    "metric_dict_name": "丢包率(%)",
+    "vm_name": "huawei_丢包率percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "190",
+    "metric_dict_name": "错误包率(%)",
+    "vm_name": "huawei_错误包率percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "191",
+    "metric_dict_name": "包溢出率(%)",
+    "vm_name": "huawei_包溢出率percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "192",
+    "metric_dict_name": "Access frequency (%)",
+    "vm_name": "huawei_access_frequency_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "193",
+    "metric_dict_name": "包吞吐率(%)",
+    "vm_name": "huawei_包吞吐率percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "194",
+    "metric_dict_name": "远程复制带宽(KB/s)",
+    "vm_name": "huawei_远程复制带宽kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "195",
+    "metric_dict_name": "Max. read I/O response time (ms)",
+    "vm_name": "huawei_max_read_i_o_response_time_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "196",
+    "metric_dict_name": "Max. write I/O response time (ms)",
+    "vm_name": "huawei_max_write_i_o_response_time_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "197",
+    "metric_dict_name": "Avg. read I/O response time (ms)",
+    "vm_name": "huawei_avg_read_i_o_response_time_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "198",
+    "metric_dict_name": "Avg. write I/O response time (ms)",
+    "vm_name": "huawei_avg_write_i_o_response_time_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "199",
+    "metric_dict_name": "Read I/O Latency Distribution: [0 ms, 10 ms) (%)",
+    "vm_name": "huawei_read_i_o_latency_distribution_0_ms_10_ms_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "200",
+    "metric_dict_name": "Read I/O Latency Distribution: [10 ms, 20 ms) (%)",
+    "vm_name": "huawei_read_i_o_latency_distribution_10_ms_20_ms_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "201",
+    "metric_dict_name": "Read I/O Latency Distribution: [20 ms, 50 ms) (%)",
+    "vm_name": "huawei_read_i_o_latency_distribution_20_ms_50_ms_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "202",
+    "metric_dict_name": "Read I/O Latency Distribution: [50 ms, 100 ms) (%)",
+    "vm_name": "huawei_read_i_o_latency_distribution_50_ms_100_ms_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "203",
+    "metric_dict_name": "Read I/O Latency Distribution: [100 ms, 200 ms) (%)",
+    "vm_name": "huawei_read_i_o_latency_distribution_100_ms_200_ms_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "204",
+    "metric_dict_name": "Read I/O Latency Distribution: [200ms,+∞) (%)",
+    "vm_name": "huawei_read_i_o_latency_distribution_200msinf_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "205",
+    "metric_dict_name": "Write I/O Latency Distribution: [0 ms, 10 ms) (%)",
+    "vm_name": "huawei_write_i_o_latency_distribution_0_ms_10_ms_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "206",
+    "metric_dict_name": "Write I/O Latency Distribution: [10 ms, 20 ms) (%)",
+    "vm_name": "huawei_write_i_o_latency_distribution_10_ms_20_ms_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "207",
+    "metric_dict_name": "Write I/O Latency Distribution: [20 ms, 50 ms) (%)",
+    "vm_name": "huawei_write_i_o_latency_distribution_20_ms_50_ms_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "208",
+    "metric_dict_name": "Write I/O Latency Distribution: [50 ms, 100 ms) (%)",
+    "vm_name": "huawei_write_i_o_latency_distribution_50_ms_100_ms_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "209",
+    "metric_dict_name": "Write I/O Latency Distribution: [100 ms, 200 ms) (%)",
+    "vm_name": "huawei_write_i_o_latency_distribution_100_ms_200_ms_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "210",
+    "metric_dict_name": "Write I/O Latency Distribution: [200ms,+∞) (%)",
+    "vm_name": "huawei_write_i_o_latency_distribution_200msinf_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "211",
+    "metric_dict_name": "磁盘IOPS(IO/s)",
+    "vm_name": "huawei_磁盘iopsio_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "217",
+    "metric_dict_name": "Max. CPU usage (%)",
+    "vm_name": "huawei_max_cpu_usage_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "218",
+    "metric_dict_name": "Max. memory usage (%)",
+    "vm_name": "huawei_max_memory_usage_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "219",
+    "metric_dict_name": "NFS bandwidth (KB/s)",
+    "vm_name": "huawei_nfs_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "220",
+    "metric_dict_name": "NFS write bandwidth (KB/s)",
+    "vm_name": "huawei_nfs_write_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "221",
+    "metric_dict_name": "NFS read bandwidth (KB/s)",
+    "vm_name": "huawei_nfs_read_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "222",
+    "metric_dict_name": "CIFS bandwidth (KB/s)",
+    "vm_name": "huawei_cifs_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "223",
+    "metric_dict_name": "CIFS write bandwidth (KB/s)",
+    "vm_name": "huawei_cifs_write_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "224",
+    "metric_dict_name": "CIFS read bandwidth (KB/s)",
+    "vm_name": "huawei_cifs_read_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "225",
+    "metric_dict_name": "Number of connected clients",
+    "vm_name": "huawei_number_of_connected_clients",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "226",
+    "metric_dict_name": "Number of connected NFS clients",
+    "vm_name": "huawei_number_of_connected_nfs_clients",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "227",
+    "metric_dict_name": "Number of connected CIFS clients",
+    "vm_name": "huawei_number_of_connected_cifs_clients",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "228",
+    "metric_dict_name": "Avg. I/O size(KB)",
+    "vm_name": "huawei_avg_i_o_sizekb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "229",
+    "metric_dict_name": "Network packet stream speed (per second)",
+    "vm_name": "huawei_network_packet_stream_speed_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "230",
+    "metric_dict_name": "Network packet input stream speed (per second)",
+    "vm_name": "huawei_network_packet_input_stream_speed_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "231",
+    "metric_dict_name": "Network packet output stream speed (per second)",
+    "vm_name": "huawei_network_packet_output_stream_speed_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "232",
+    "metric_dict_name": "Read OPS",
+    "vm_name": "huawei_read_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "233",
+    "metric_dict_name": "Write OPS",
+    "vm_name": "huawei_write_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "236",
+    "metric_dict_name": "Bandwidth (KB/s)",
+    "vm_name": "huawei_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "240",
+    "metric_dict_name": "Average queue depth",
+    "vm_name": "huawei_average_queue_depth",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "241",
+    "metric_dict_name": "SCSI commands executed per second",
+    "vm_name": "huawei_scsi_commands_executed_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "242",
+    "metric_dict_name": "Verify commands per second",
+    "vm_name": "huawei_verify_commands_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "247",
+    "metric_dict_name": "Number of dirty data pages",
+    "vm_name": "huawei_number_of_dirty_data_pages",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "248",
+    "metric_dict_name": "Threshold for dirty data page quantity (%)",
+    "vm_name": "huawei_threshold_for_dirty_data_page_quantity_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "249",
+    "metric_dict_name": "Ratio of dirty data pages to total pages (%)",
+    "vm_name": "huawei_ratio_of_dirty_data_pages_to_total_pages_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "250",
+    "metric_dict_name": "Used cache ratio (%)",
+    "vm_name": "huawei_used_cache_ratio_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "251",
+    "metric_dict_name": "Number of sent-by-host read/write I/Os that can be immediately found in the cache per second",
+    "vm_name": "huawei_number_of_sent_by_host_read_write_i_os_that_can_be_immediately_found_in_the_cache_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "252",
+    "metric_dict_name": "Number of sent-by-host read I/Os that can be immediately found in the cache per second",
+    "vm_name": "huawei_number_of_sent_by_host_read_i_os_that_can_be_immediately_found_in_the_cache_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "253",
+    "metric_dict_name": "Number of sent-by-host write I/Os that can be immediately found in the cache per second",
+    "vm_name": "huawei_number_of_sent_by_host_write_i_os_that_can_be_immediately_found_in_the_cache_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "254",
+    "metric_dict_name": "Number of sent-by-host read/write I/Os that cannot be immediately found in the cache per second",
+    "vm_name": "huawei_number_of_sent_by_host_read_write_i_os_that_cannot_be_immediately_found_in_the_cache_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "255",
+    "metric_dict_name": "Number of sent-by-host read I/Os that cannot be immediately found in the cache per second",
+    "vm_name": "huawei_number_of_sent_by_host_read_i_os_that_cannot_be_immediately_found_in_the_cache_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "256",
+    "metric_dict_name": "Number of sent-by-host write I/Os that cannot be immediately found in the cache per second",
+    "vm_name": "huawei_number_of_sent_by_host_write_i_os_that_cannot_be_immediately_found_in_the_cache_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "257",
+    "metric_dict_name": "Back-end read/write requests per second",
+    "vm_name": "huawei_back_end_read_write_requests_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "258",
+    "metric_dict_name": "Back-end read requests per second",
+    "vm_name": "huawei_back_end_read_requests_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "259",
+    "metric_dict_name": "Back-end write requests per second",
+    "vm_name": "huawei_back_end_write_requests_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "260",
+    "metric_dict_name": "Back-End traffic (MB/s)",
+    "vm_name": "huawei_back_end_traffic_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "261",
+    "metric_dict_name": "Back-end read traffic (MB/s)",
+    "vm_name": "huawei_back_end_read_traffic_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "262",
+    "metric_dict_name": "Back-end write traffic (MB/s)",
+    "vm_name": "huawei_back_end_write_traffic_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "263",
+    "metric_dict_name": "Read miss response time (ms)",
+    "vm_name": "huawei_read_miss_response_time_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "264",
+    "metric_dict_name": "Write miss response time (ms)",
+    "vm_name": "huawei_write_miss_response_time_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "265",
+    "metric_dict_name": "Ratio of read I/Os to total I/Os (%)",
+    "vm_name": "huawei_ratio_of_read_i_os_to_total_i_os_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "266",
+    "metric_dict_name": "Ratio of write I/Os to total I/Os (%)",
+    "vm_name": "huawei_ratio_of_write_i_os_to_total_i_os_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "267",
+    "metric_dict_name": "Ratio of read I/Os to total read I/Os (%)",
+    "vm_name": "huawei_ratio_of_read_i_os_to_total_read_i_os_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "268",
+    "metric_dict_name": "Ratio of write I/Os to total write I/Os (%)",
+    "vm_name": "huawei_ratio_of_write_i_os_to_total_write_i_os_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "269",
+    "metric_dict_name": "Ratio of lost read requests (%)",
+    "vm_name": "huawei_ratio_of_lost_read_requests_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "270",
+    "metric_dict_name": "Ratio of lost write requests (%)",
+    "vm_name": "huawei_ratio_of_lost_write_requests_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "271",
+    "metric_dict_name": "Back-end read request time (ms)",
+    "vm_name": "huawei_back_end_read_request_time_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "272",
+    "metric_dict_name": "Back-end write request time (ms)",
+    "vm_name": "huawei_back_end_write_request_time_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "273",
+    "metric_dict_name": "Back-end read request queuing time (ms)",
+    "vm_name": "huawei_back_end_read_request_queuing_time_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "274",
+    "metric_dict_name": "Back-end read response time (ms)",
+    "vm_name": "huawei_back_end_read_response_time_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "275",
+    "metric_dict_name": "Back-end write response time (ms)",
+    "vm_name": "huawei_back_end_write_response_time_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "276",
+    "metric_dict_name": "Avg. back-end response time (ms)",
+    "vm_name": "huawei_avg_back_end_response_time_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "277",
+    "metric_dict_name": "Ratio of back-end read requests (%)",
+    "vm_name": "huawei_ratio_of_back_end_read_requests_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "278",
+    "metric_dict_name": "Ratio of back-end write requests (%)",
+    "vm_name": "huawei_ratio_of_back_end_write_requests_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "279",
+    "metric_dict_name": "Number of data transfer requests from front-end host ports to cache per second",
+    "vm_name": "huawei_number_of_data_transfer_requests_from_front_end_host_ports_to_cache_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "280",
+    "metric_dict_name": "Number of data transfer read requests from front-end host ports to cache per second",
+    "vm_name": "huawei_number_of_data_transfer_read_requests_from_front_end_host_ports_to_cache_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "281",
+    "metric_dict_name": "Number of data transfer write requests from front-end host ports to cache per second",
+    "vm_name": "huawei_number_of_data_transfer_write_requests_from_front_end_host_ports_to_cache_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "282",
+    "metric_dict_name": "Number of hit read requests sent by front-end host ports per second",
+    "vm_name": "huawei_number_of_hit_read_requests_sent_by_front_end_host_ports_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "283",
+    "metric_dict_name": "Number of hit write requests sent by front-end host ports per second",
+    "vm_name": "huawei_number_of_hit_write_requests_sent_by_front_end_host_ports_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "284",
+    "metric_dict_name": "Number of lost requests per second",
+    "vm_name": "huawei_number_of_lost_requests_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "285",
+    "metric_dict_name": "Number of lost read requests on all the front-end host ports per second",
+    "vm_name": "huawei_number_of_lost_read_requests_on_all_the_front_end_host_ports_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "286",
+    "metric_dict_name": "Number of lost write requests on all the front-end host ports per second",
+    "vm_name": "huawei_number_of_lost_write_requests_on_all_the_front_end_host_ports_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "287",
+    "metric_dict_name": "Ratio of read requests to total requests (%)",
+    "vm_name": "huawei_ratio_of_read_requests_to_total_requests_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "288",
+    "metric_dict_name": "Ratio of write requests to total requests (%)",
+    "vm_name": "huawei_ratio_of_write_requests_to_total_requests_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "289",
+    "metric_dict_name": "Hit ratio of read/write requests (%)",
+    "vm_name": "huawei_hit_ratio_of_read_write_requests_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "290",
+    "metric_dict_name": "Read request hit ratio (%)",
+    "vm_name": "huawei_read_request_hit_ratio_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "291",
+    "metric_dict_name": "I/Os per second",
+    "vm_name": "huawei_i_os_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "292",
+    "metric_dict_name": "Data transfer requests per second",
+    "vm_name": "huawei_data_transfer_requests_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "293",
+    "metric_dict_name": "Data transfer read  requests per second",
+    "vm_name": "huawei_data_transfer_read_requests_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "294",
+    "metric_dict_name": "Data transfer write  requests per second",
+    "vm_name": "huawei_data_transfer_write_requests_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "295",
+    "metric_dict_name": "Read/write traffic (MB/s)",
+    "vm_name": "huawei_read_write_traffic_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "296",
+    "metric_dict_name": "Read/write traffic on ports (MB/s)",
+    "vm_name": "huawei_read_write_traffic_on_ports_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "297",
+    "metric_dict_name": "Read/write IOPS on ports",
+    "vm_name": "huawei_read_write_iops_on_ports",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "298",
+    "metric_dict_name": "Back-end read traffic (MB/s)",
+    "vm_name": "huawei_back_end_read_traffic_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "299",
+    "metric_dict_name": "Back-end write traffic (MB/s)",
+    "vm_name": "huawei_back_end_write_traffic_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "300",
+    "metric_dict_name": "Port average requests size",
+    "vm_name": "huawei_port_average_requests_size",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "301",
+    "metric_dict_name": "Max. number of dirty data pages",
+    "vm_name": "huawei_max_number_of_dirty_data_pages",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "302",
+    "metric_dict_name": "Number of randomly hit requests per second",
+    "vm_name": "huawei_number_of_randomly_hit_requests_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "303",
+    "metric_dict_name": "Hit ratio (%)",
+    "vm_name": "huawei_hit_ratio_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "304",
+    "metric_dict_name": "Miss ratio (%)",
+    "vm_name": "huawei_miss_ratio_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "305",
+    "metric_dict_name": "Random read ratio (%)",
+    "vm_name": "huawei_random_read_ratio_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "306",
+    "metric_dict_name": "Random write ratio (%)",
+    "vm_name": "huawei_random_write_ratio_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "307",
+    "metric_dict_name": "Max. IOPS (IO/s)",
+    "vm_name": "huawei_max_iops_io_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "308",
+    "metric_dict_name": "Total number of failed I/Os",
+    "vm_name": "huawei_total_number_of_failed_i_os",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "309",
+    "metric_dict_name": "Number of failed I/Os per second",
+    "vm_name": "huawei_number_of_failed_i_os_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "310",
+    "metric_dict_name": "Faulty I/O ratio (%)",
+    "vm_name": "huawei_faulty_i_o_ratio_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "311",
+    "metric_dict_name": "Throughput (MB/s)",
+    "vm_name": "huawei_throughput_mb_s",
+    "conversion": "÷1024 (KB→MB)",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "312",
+    "metric_dict_name": "Read throughput (MB/s)",
+    "vm_name": "huawei_read_throughput_mb_s",
+    "conversion": "÷1024 (KB→MB)",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "313",
+    "metric_dict_name": "Write throughput (MB/s)",
+    "vm_name": "huawei_write_throughput_mb_s",
+    "conversion": "÷1024 (KB→MB)",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "333",
+    "metric_dict_name": "Cache water (%)",
+    "vm_name": "huawei_cache_water_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "369",
+    "metric_dict_name": "Service Time(us)",
+    "vm_name": "huawei_service_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "370",
+    "metric_dict_name": "Avg. I/O Response Time (us)",
+    "vm_name": "huawei_avg_i_o_response_time_us",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "371",
+    "metric_dict_name": "Max. I/O Response Time (us)",
+    "vm_name": "huawei_max_i_o_response_time_us",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "382",
+    "metric_dict_name": "Max. Read I/O Response Time (us)",
+    "vm_name": "huawei_max_read_i_o_response_time_us",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "383",
+    "metric_dict_name": "Max. Write I/O Response Time (us)",
+    "vm_name": "huawei_max_write_i_o_response_time_us",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "384",
+    "metric_dict_name": "Avg. Read I/O Response Time(us)",
+    "vm_name": "huawei_avg_read_i_o_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "385",
+    "metric_dict_name": "Avg. Write I/O Response Time(us)",
+    "vm_name": "huawei_avg_write_i_o_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "392",
+    "metric_dict_name": "Read I/O Latency Distribution: [0 us, 500 us) (%)",
+    "vm_name": "huawei_read_i_o_latency_distribution_0_us_500_us_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "393",
+    "metric_dict_name": "Read I/O Latency Distribution: [500 us, 1 ms) (%)",
+    "vm_name": "huawei_read_i_o_latency_distribution_500_us_1_ms_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "394",
+    "metric_dict_name": "Read I/O Latency Distribution: [1 ms, 2 ms) (%)",
+    "vm_name": "huawei_read_i_o_latency_distribution_1_ms_2_ms_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "395",
+    "metric_dict_name": "Read I/O Latency Distribution: [2 ms, 5 ms) (%)",
+    "vm_name": "huawei_read_i_o_latency_distribution_2_ms_5_ms_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "396",
+    "metric_dict_name": "Read I/O Latency Distribution: [5ms,10ms) (%)",
+    "vm_name": "huawei_read_i_o_latency_distribution_5ms10ms_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "397",
+    "metric_dict_name": "Read I/O Latency Distribution: [10 ms, +∞) (%)",
+    "vm_name": "huawei_read_i_o_latency_distribution_10_ms_inf_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "398",
+    "metric_dict_name": "Write I/O Latency Distribution: [0 us, 500 us) (%)",
+    "vm_name": "huawei_write_i_o_latency_distribution_0_us_500_us_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "399",
+    "metric_dict_name": "Write I/O Latency Distribution: [500 us, 1 ms) (%)",
+    "vm_name": "huawei_write_i_o_latency_distribution_500_us_1_ms_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "400",
+    "metric_dict_name": "Write I/O Latency Distribution: [1 ms, 2 ms) (%)",
+    "vm_name": "huawei_write_i_o_latency_distribution_1_ms_2_ms_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "401",
+    "metric_dict_name": "Write I/O Latency Distribution: [2 ms, 5 ms) (%)",
+    "vm_name": "huawei_write_i_o_latency_distribution_2_ms_5_ms_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "402",
+    "metric_dict_name": "Write I/O Latency Distribution: [5ms,10ms) (%)",
+    "vm_name": "huawei_write_i_o_latency_distribution_5ms10ms_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "403",
+    "metric_dict_name": "Write I/O Latency Distribution: [10 ms, +∞) (%)",
+    "vm_name": "huawei_write_i_o_latency_distribution_10_ms_inf_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "404",
+    "metric_dict_name": "Read and Write I/O Latency Distribution: [0 us, 500 us) (%)",
+    "vm_name": "huawei_read_and_write_i_o_latency_distribution_0_us_500_us_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "405",
+    "metric_dict_name": "Read and Write I/O Latency Distribution: [500 us, 1 ms) (%)",
+    "vm_name": "huawei_read_and_write_i_o_latency_distribution_500_us_1_ms_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "410",
+    "metric_dict_name": "Protocol Operations Average Latency For NFS (ms)",
+    "vm_name": "huawei_protocol_operations_average_latency_for_nfs_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "411",
+    "metric_dict_name": "Protocol Operations Max Latency For NFS (ms)",
+    "vm_name": "huawei_protocol_operations_max_latency_for_nfs_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "412",
+    "metric_dict_name": "Protocol Write Operation Average Latency For NFS (ms)",
+    "vm_name": "huawei_protocol_write_operation_average_latency_for_nfs_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "413",
+    "metric_dict_name": "Protocol Write Operation Max Latency For NFS (ms)",
+    "vm_name": "huawei_protocol_write_operation_max_latency_for_nfs_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "414",
+    "metric_dict_name": "Protocol Read Operation Average Latency For NFS (ms)",
+    "vm_name": "huawei_protocol_read_operation_average_latency_for_nfs_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "415",
+    "metric_dict_name": "Protocol Read Operation Max Latency For NFS (ms)",
+    "vm_name": "huawei_protocol_read_operation_max_latency_for_nfs_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "416",
+    "metric_dict_name": "Protocol Operations Average Latency For CIFS (ms)",
+    "vm_name": "huawei_protocol_operations_average_latency_for_cifs_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "417",
+    "metric_dict_name": "Protocol Operations Max Latency For CIFS (ms)",
+    "vm_name": "huawei_protocol_operations_max_latency_for_cifs_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "418",
+    "metric_dict_name": "Protocol Write Operation Average Latency For CIFS (ms)",
+    "vm_name": "huawei_protocol_write_operation_average_latency_for_cifs_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "419",
+    "metric_dict_name": "Protocol Write Operation Max Latency For CIFS (ms)",
+    "vm_name": "huawei_protocol_write_operation_max_latency_for_cifs_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "420",
+    "metric_dict_name": "Protocol Read Operation Average Latency For CIFS (ms)",
+    "vm_name": "huawei_protocol_read_operation_average_latency_for_cifs_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "421",
+    "metric_dict_name": "Protocol Read Operation Max Latency For CIFS (ms)",
+    "vm_name": "huawei_protocol_read_operation_max_latency_for_cifs_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "428",
+    "metric_dict_name": "Average Latency For Operations (ms)",
+    "vm_name": "huawei_average_latency_for_operations_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "429",
+    "metric_dict_name": "Max Latency For Operations (ms)",
+    "vm_name": "huawei_max_latency_for_operations_ms",
+    "conversion": "÷1000 (us→ms)",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "430",
+    "metric_dict_name": "Average Latency For Write Operation (ms)",
+    "vm_name": "huawei_average_latency_for_write_operation_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "431",
+    "metric_dict_name": "Max Latency For Write Operation (ms)",
+    "vm_name": "huawei_max_latency_for_write_operation_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "432",
+    "metric_dict_name": "Average Latency For Read Operation (ms)",
+    "vm_name": "huawei_average_latency_for_read_operation_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "433",
+    "metric_dict_name": "Max Latency For Read Operation (ms)",
+    "vm_name": "huawei_max_latency_for_read_operation_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "435",
+    "metric_dict_name": "Count Of Protocol Read Operation Large Latency Continuous Occurred For CIFS",
+    "vm_name": "huawei_count_of_protocol_read_operation_large_latency_continuous_occurred_for_cifs",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "436",
+    "metric_dict_name": "Count Of Protocol Read Operation Large Latency Continuous Occurred For NFS",
+    "vm_name": "huawei_count_of_protocol_read_operation_large_latency_continuous_occurred_for_nfs",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "437",
+    "metric_dict_name": "Count Of Protocol Read Operation Large Latency Continuous Occurred",
+    "vm_name": "huawei_count_of_protocol_read_operation_large_latency_continuous_occurred",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "439",
+    "metric_dict_name": "Throughput (Bps)",
+    "vm_name": "huawei_throughput_bps",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "462",
+    "metric_dict_name": "Space Usage (%)",
+    "vm_name": "huawei_space_usage_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "463",
+    "metric_dict_name": "Space Size (MB)",
+    "vm_name": "huawei_space_size_mb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "464",
+    "metric_dict_name": "Average Read OPS Response Time (ms)",
+    "vm_name": "huawei_average_read_ops_response_time_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "465",
+    "metric_dict_name": "Average Write OPS Response Time (ms)",
+    "vm_name": "huawei_average_write_ops_response_time_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "466",
+    "metric_dict_name": "Read I/O Granularity Distribution: [0 Bytes, 512 Bytes) (%)",
+    "vm_name": "huawei_read_i_o_granularity_distribution_0_bytes_512_bytes_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "467",
+    "metric_dict_name": "Read I/O Granularity Distribution: [512B,1K)(%)",
+    "vm_name": "huawei_read_i_o_granularity_distribution_512b1kpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "468",
+    "metric_dict_name": "Read I/O Granularity Distribution: [256K,+∞)(%)",
+    "vm_name": "huawei_read_i_o_granularity_distribution_256kinfpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "469",
+    "metric_dict_name": "Write I/O Granularity Distribution: [0 Bytes, 512 Bytes) (%)",
+    "vm_name": "huawei_write_i_o_granularity_distribution_0_bytes_512_bytes_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "470",
+    "metric_dict_name": "Write I/O Granularity Distribution: [512B,1K)(%)",
+    "vm_name": "huawei_write_i_o_granularity_distribution_512b1kpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "471",
+    "metric_dict_name": "Write I/O Granularity Distribution: [256K,+∞)(%)",
+    "vm_name": "huawei_write_i_o_granularity_distribution_256kinfpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "472",
+    "metric_dict_name": "Min Latency For Operations (ms)",
+    "vm_name": "huawei_min_latency_for_operations_ms",
+    "conversion": "÷1000 (us→ms)",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "473",
+    "metric_dict_name": "Logical Bandwidth (MB/s)",
+    "vm_name": "huawei_logical_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "475",
+    "metric_dict_name": "File bandwidth(B/s)",
+    "vm_name": "huawei_file_bandwidthb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "476",
+    "metric_dict_name": "File OPS(per second)",
+    "vm_name": "huawei_file_opsper_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "508",
+    "metric_dict_name": "Avg. Operation Response Time (us)",
+    "vm_name": "huawei_avg_operation_response_time_us",
+    "conversion": "÷1000 (us→ms)",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "509",
+    "metric_dict_name": "Max. Operation Response Time (us)",
+    "vm_name": "huawei_max_operation_response_time_us",
+    "conversion": "÷1000 (us→ms)",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "510",
+    "metric_dict_name": "Min. Operation Response Time (us)",
+    "vm_name": "huawei_min_operation_response_time_us",
+    "conversion": "÷1000 (us→ms)",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "511",
+    "metric_dict_name": "File Bandwidth (KB/s)",
+    "vm_name": "huawei_file_bandwidth_kb_s",
+    "conversion": "÷1024 (KB→MB)",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "512",
+    "metric_dict_name": "Throughput (MB/s)",
+    "vm_name": "huawei_throughput_mb_s",
+    "conversion": "÷1024 (KB→MB)",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "513",
+    "metric_dict_name": "Total amount of migrated data",
+    "vm_name": "huawei_total_amount_of_migrated_data",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "514",
+    "metric_dict_name": "Amount of data migrated to SSDs",
+    "vm_name": "huawei_amount_of_data_migrated_to_ssds",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "515",
+    "metric_dict_name": "Amount of data migrated to SAS disks",
+    "vm_name": "huawei_amount_of_data_migrated_to_sas_disks",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "516",
+    "metric_dict_name": "Amount of data migrated to NL-SAS disks",
+    "vm_name": "huawei_amount_of_data_migrated_to_nl_sas_disks",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "517",
+    "metric_dict_name": "Amount of data migrated from SAS disks to SSDs",
+    "vm_name": "huawei_amount_of_data_migrated_from_sas_disks_to_ssds",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "518",
+    "metric_dict_name": "Amount of data migrated from NL-SAS disks to SSDs",
+    "vm_name": "huawei_amount_of_data_migrated_from_nl_sas_disks_to_ssds",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "519",
+    "metric_dict_name": "Amount of data migrated from SSDs to SAS disks",
+    "vm_name": "huawei_amount_of_data_migrated_from_ssds_to_sas_disks",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "520",
+    "metric_dict_name": "Amount of data migrated from NL-SAS disks to SAS disks",
+    "vm_name": "huawei_amount_of_data_migrated_from_nl_sas_disks_to_sas_disks",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "521",
+    "metric_dict_name": "Amount of data migrated from SSDs to NL-SAS disks",
+    "vm_name": "huawei_amount_of_data_migrated_from_ssds_to_nl_sas_disks",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "522",
+    "metric_dict_name": "Amount of data migrated from SSDs to NL-SAS disks",
+    "vm_name": "huawei_amount_of_data_migrated_from_ssds_to_nl_sas_disks",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "523",
+    "metric_dict_name": "Service Time(Excluding Queue Time)(us)",
+    "vm_name": "huawei_service_timeexcluding_queue_timeus",
+    "conversion": "÷1000 (us→ms)",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "524",
+    "metric_dict_name": "Avg. Read OPS Response Time (us)",
+    "vm_name": "huawei_avg_read_ops_response_time_us",
+    "conversion": "÷1000 (us→ms)",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "525",
+    "metric_dict_name": "Avg. Write OPS Response Time (us)",
+    "vm_name": "huawei_avg_write_ops_response_time_us",
+    "conversion": "÷1000 (us→ms)",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "530",
+    "metric_dict_name": "Read I/O Latency Distribution: [0ms,5ms) (%)",
+    "vm_name": "huawei_read_i_o_latency_distribution_0ms5ms_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "531",
+    "metric_dict_name": "Write I/O Latency Distribution: [0ms,5ms) (%)",
+    "vm_name": "huawei_write_i_o_latency_distribution_0ms5ms_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "532",
+    "metric_dict_name": "Number of failed read I/Os",
+    "vm_name": "huawei_number_of_failed_read_i_os",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "533",
+    "metric_dict_name": "Number of failed write I/Os",
+    "vm_name": "huawei_number_of_failed_write_i_os",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "534",
+    "metric_dict_name": "File System Bandwidth (KB/s)",
+    "vm_name": "huawei_file_system_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "535",
+    "metric_dict_name": "File System Read Bandwidth (KB/s)",
+    "vm_name": "huawei_file_system_read_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "536",
+    "metric_dict_name": "File System Write Bandwidth (KB/s)",
+    "vm_name": "huawei_file_system_write_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "537",
+    "metric_dict_name": "S3 Bandwidth (KB/s)",
+    "vm_name": "huawei_s3_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "538",
+    "metric_dict_name": "S3 Read Bandwidth (KB/s)",
+    "vm_name": "huawei_s3_read_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "539",
+    "metric_dict_name": "S3 Write Bandwidth (KB/s)",
+    "vm_name": "huawei_s3_write_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "540",
+    "metric_dict_name": "S3 Delete Number",
+    "vm_name": "huawei_s3_delete_number",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "541",
+    "metric_dict_name": "S3 Delete Failed Number",
+    "vm_name": "huawei_s3_delete_failed_number",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "542",
+    "metric_dict_name": "S3 Delete Failed Number(client's cause)",
+    "vm_name": "huawei_s3_delete_failed_numberclient's_cause",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "543",
+    "metric_dict_name": "S3 Get Number",
+    "vm_name": "huawei_s3_get_number",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "544",
+    "metric_dict_name": "S3 Get Failed Number",
+    "vm_name": "huawei_s3_get_failed_number",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "545",
+    "metric_dict_name": "S3 Get Failed Number(client's cause)",
+    "vm_name": "huawei_s3_get_failed_numberclient's_cause",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "546",
+    "metric_dict_name": "S3 Put Number",
+    "vm_name": "huawei_s3_put_number",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "547",
+    "metric_dict_name": "S3 Put Failed Number",
+    "vm_name": "huawei_s3_put_failed_number",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "548",
+    "metric_dict_name": "S3 Put Failed Number(client's cause)",
+    "vm_name": "huawei_s3_put_failed_numberclient's_cause",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "549",
+    "metric_dict_name": "S3 Connect Failed Rate(%)",
+    "vm_name": "huawei_s3_connect_failed_ratepercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "550",
+    "metric_dict_name": "Swift Bandwidth (KB/s)",
+    "vm_name": "huawei_swift_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "551",
+    "metric_dict_name": "Swift Read Bandwidth (KB/s)",
+    "vm_name": "huawei_swift_read_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "552",
+    "metric_dict_name": "Swift Write Bandwidth (KB/s)",
+    "vm_name": "huawei_swift_write_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "553",
+    "metric_dict_name": "Swift Delete Number",
+    "vm_name": "huawei_swift_delete_number",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "554",
+    "metric_dict_name": "Swift Delete Failed Number",
+    "vm_name": "huawei_swift_delete_failed_number",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "555",
+    "metric_dict_name": "Swift Delete Failed Number(client's cause)",
+    "vm_name": "huawei_swift_delete_failed_numberclient's_cause",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "556",
+    "metric_dict_name": "Swift Get Number",
+    "vm_name": "huawei_swift_get_number",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "557",
+    "metric_dict_name": "Swift Get Failed Number",
+    "vm_name": "huawei_swift_get_failed_number",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "558",
+    "metric_dict_name": "Swift Get Failed Number(client's cause)",
+    "vm_name": "huawei_swift_get_failed_numberclient's_cause",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "559",
+    "metric_dict_name": "Swift Put Number",
+    "vm_name": "huawei_swift_put_number",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "560",
+    "metric_dict_name": "Swift Put Failed Number",
+    "vm_name": "huawei_swift_put_failed_number",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "561",
+    "metric_dict_name": "Swift Put Failed Number(client's cause)",
+    "vm_name": "huawei_swift_put_failed_numberclient's_cause",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "562",
+    "metric_dict_name": "Swift Connect Failed Rate(%)",
+    "vm_name": "huawei_swift_connect_failed_ratepercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "563",
+    "metric_dict_name": "NFS V3 NULL procedure count",
+    "vm_name": "huawei_nfs_v3_null_procedure_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "564",
+    "metric_dict_name": "NFS V3 GETATTR procedure count",
+    "vm_name": "huawei_nfs_v3_getattr_procedure_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "565",
+    "metric_dict_name": "NFS V3 SETATTR procedure count",
+    "vm_name": "huawei_nfs_v3_setattr_procedure_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "566",
+    "metric_dict_name": "NFS V3 LOOKUP procedure count",
+    "vm_name": "huawei_nfs_v3_lookup_procedure_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "567",
+    "metric_dict_name": "NFS V3 ACCESS procedure count",
+    "vm_name": "huawei_nfs_v3_access_procedure_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "568",
+    "metric_dict_name": "NFS V3 READLINK procedure count",
+    "vm_name": "huawei_nfs_v3_readlink_procedure_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "569",
+    "metric_dict_name": "NFS V3 READ procedure count",
+    "vm_name": "huawei_nfs_v3_read_procedure_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "570",
+    "metric_dict_name": "NFS V3 WRITE procedure count",
+    "vm_name": "huawei_nfs_v3_write_procedure_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "571",
+    "metric_dict_name": "NFS V3 CREATE procedure count",
+    "vm_name": "huawei_nfs_v3_create_procedure_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "572",
+    "metric_dict_name": "NFS V3 MKDIR procedure count",
+    "vm_name": "huawei_nfs_v3_mkdir_procedure_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "573",
+    "metric_dict_name": "NFS V3 SYMLINK procedure count",
+    "vm_name": "huawei_nfs_v3_symlink_procedure_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "574",
+    "metric_dict_name": "NFS V3 MKNOD procedure count",
+    "vm_name": "huawei_nfs_v3_mknod_procedure_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "575",
+    "metric_dict_name": "NFS V3 REMOVE procedure count",
+    "vm_name": "huawei_nfs_v3_remove_procedure_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "576",
+    "metric_dict_name": "NFS V3 RMDIR procedure count",
+    "vm_name": "huawei_nfs_v3_rmdir_procedure_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "577",
+    "metric_dict_name": "NFS V3 RENAME procedure count",
+    "vm_name": "huawei_nfs_v3_rename_procedure_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "578",
+    "metric_dict_name": "NFS V3 LINK procedure count",
+    "vm_name": "huawei_nfs_v3_link_procedure_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "579",
+    "metric_dict_name": "NFS V3 READDIR procedure count",
+    "vm_name": "huawei_nfs_v3_readdir_procedure_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "580",
+    "metric_dict_name": "NFS V3 READDIRPLUS procedure count",
+    "vm_name": "huawei_nfs_v3_readdirplus_procedure_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "581",
+    "metric_dict_name": "NFS V3 FSSTAT procedure count",
+    "vm_name": "huawei_nfs_v3_fsstat_procedure_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "582",
+    "metric_dict_name": "NFS V3 FSINFO procedure count",
+    "vm_name": "huawei_nfs_v3_fsinfo_procedure_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "583",
+    "metric_dict_name": "NFS V3 PATHCONF procedure count",
+    "vm_name": "huawei_nfs_v3_pathconf_procedure_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "584",
+    "metric_dict_name": "NFS V3 COMMIT procedure count",
+    "vm_name": "huawei_nfs_v3_commit_procedure_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "585",
+    "metric_dict_name": "NFS V3 extendcmd procedure count",
+    "vm_name": "huawei_nfs_v3_extendcmd_procedure_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "586",
+    "metric_dict_name": "NFS V4 NULL procedure count",
+    "vm_name": "huawei_nfs_v4_null_procedure_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "587",
+    "metric_dict_name": "NFS V4 COMPOUND procedure count",
+    "vm_name": "huawei_nfs_v4_compound_procedure_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "588",
+    "metric_dict_name": "NFS V4 ACCESS operation count",
+    "vm_name": "huawei_nfs_v4_access_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "589",
+    "metric_dict_name": "NFS V4 CLOSE operation count",
+    "vm_name": "huawei_nfs_v4_close_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "590",
+    "metric_dict_name": "NFS V4 COMMIT operation count",
+    "vm_name": "huawei_nfs_v4_commit_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "591",
+    "metric_dict_name": "NFS V4 CREATE operation count",
+    "vm_name": "huawei_nfs_v4_create_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "592",
+    "metric_dict_name": "NFS V4 DELEGPURGE operation count",
+    "vm_name": "huawei_nfs_v4_delegpurge_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "593",
+    "metric_dict_name": "NFS V4 DELEGRETURN operation count",
+    "vm_name": "huawei_nfs_v4_delegreturn_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "594",
+    "metric_dict_name": "NFS V4 GETATTR operation count",
+    "vm_name": "huawei_nfs_v4_getattr_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "595",
+    "metric_dict_name": "NFS V4 GETFH operation count",
+    "vm_name": "huawei_nfs_v4_getfh_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "596",
+    "metric_dict_name": "NFS V4 LINK operation count",
+    "vm_name": "huawei_nfs_v4_link_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "597",
+    "metric_dict_name": "NFS V4 LOCK operation count",
+    "vm_name": "huawei_nfs_v4_lock_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "598",
+    "metric_dict_name": "NFS V4 LOCKT operation count",
+    "vm_name": "huawei_nfs_v4_lockt_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "599",
+    "metric_dict_name": "NFS V4 LOCKU operation count",
+    "vm_name": "huawei_nfs_v4_locku_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "600",
+    "metric_dict_name": "NFS V4 LOOKUP operation count",
+    "vm_name": "huawei_nfs_v4_lookup_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "601",
+    "metric_dict_name": "NFS V4 LOOKUPP operation count",
+    "vm_name": "huawei_nfs_v4_lookupp_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "602",
+    "metric_dict_name": "NFS V4 NVERIFY operation count",
+    "vm_name": "huawei_nfs_v4_nverify_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "603",
+    "metric_dict_name": "NFS V4 OPEN operation count",
+    "vm_name": "huawei_nfs_v4_open_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "604",
+    "metric_dict_name": "NFS V4 OPENATTR operation count",
+    "vm_name": "huawei_nfs_v4_openattr_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "605",
+    "metric_dict_name": "NFS V4 OPEN_CONFIRM operation count",
+    "vm_name": "huawei_nfs_v4_open_confirm_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "606",
+    "metric_dict_name": "NFS V4 OPEN_DOWNGRADE operation count",
+    "vm_name": "huawei_nfs_v4_open_downgrade_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "607",
+    "metric_dict_name": "NFS V4 PUTFH operation count",
+    "vm_name": "huawei_nfs_v4_putfh_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "608",
+    "metric_dict_name": "NFS V4 PUTPUBFH operation count",
+    "vm_name": "huawei_nfs_v4_putpubfh_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "609",
+    "metric_dict_name": "NFS V4 PUTROOTFH operation count",
+    "vm_name": "huawei_nfs_v4_putrootfh_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "610",
+    "metric_dict_name": "NFS V4 READ operation count",
+    "vm_name": "huawei_nfs_v4_read_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "611",
+    "metric_dict_name": "NFS V4 READDIR operation count",
+    "vm_name": "huawei_nfs_v4_readdir_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "612",
+    "metric_dict_name": "NFS V4 READLINK operation count",
+    "vm_name": "huawei_nfs_v4_readlink_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "613",
+    "metric_dict_name": "NFS V4 REMOVE operation count",
+    "vm_name": "huawei_nfs_v4_remove_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "614",
+    "metric_dict_name": "NFS V4 RENAME operation count",
+    "vm_name": "huawei_nfs_v4_rename_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "615",
+    "metric_dict_name": "NFS V4 RENEW operation count",
+    "vm_name": "huawei_nfs_v4_renew_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "616",
+    "metric_dict_name": "NFS V4 RESTOREFH operation count",
+    "vm_name": "huawei_nfs_v4_restorefh_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "617",
+    "metric_dict_name": "NFS V4 SAVEFH operation count",
+    "vm_name": "huawei_nfs_v4_savefh_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "618",
+    "metric_dict_name": "NFS V4 SECINFO operation count",
+    "vm_name": "huawei_nfs_v4_secinfo_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "619",
+    "metric_dict_name": "NFS V4 SETATTR operation count",
+    "vm_name": "huawei_nfs_v4_setattr_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "620",
+    "metric_dict_name": "NFS V4 SETCLIENTID operation count",
+    "vm_name": "huawei_nfs_v4_setclientid_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "621",
+    "metric_dict_name": "NFS V4 SETCLIENTID_CONFIRM operation count",
+    "vm_name": "huawei_nfs_v4_setclientid_confirm_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "622",
+    "metric_dict_name": "NFS V4 VERIFY operation count",
+    "vm_name": "huawei_nfs_v4_verify_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "623",
+    "metric_dict_name": "NFS V4 WRITE operation count",
+    "vm_name": "huawei_nfs_v4_write_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "624",
+    "metric_dict_name": "NFS V4 RELEASE_LOCKOWNER operation count",
+    "vm_name": "huawei_nfs_v4_release_lockowner_operation_count",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "625",
+    "metric_dict_name": "NFS V3 procedures average latency excluding read and write",
+    "vm_name": "huawei_nfs_v3_procedures_average_latency_excluding_read_and_write",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "626",
+    "metric_dict_name": "NFS V4 operations average latency excluding read and write",
+    "vm_name": "huawei_nfs_v4_operations_average_latency_excluding_read_and_write",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "627",
+    "metric_dict_name": "NFS operation count per second",
+    "vm_name": "huawei_nfs_operation_count_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "628",
+    "metric_dict_name": "NFS V3 Read I/O count: [0K,512B)",
+    "vm_name": "huawei_nfs_v3_read_i_o_count_0k512b",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "629",
+    "metric_dict_name": "NFS V3 Read I/O count: [512B,1K)",
+    "vm_name": "huawei_nfs_v3_read_i_o_count_512b1k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "630",
+    "metric_dict_name": "NFS V3 Read I/O count: [1K,2K)",
+    "vm_name": "huawei_nfs_v3_read_i_o_count_1k2k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "631",
+    "metric_dict_name": "NFS V3 Read I/O count: [2K,4K)",
+    "vm_name": "huawei_nfs_v3_read_i_o_count_2k4k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "632",
+    "metric_dict_name": "NFS V3 Read I/O count: [4K,8K)",
+    "vm_name": "huawei_nfs_v3_read_i_o_count_4k8k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "633",
+    "metric_dict_name": "NFS V3 Read I/O count: [8K,16K)",
+    "vm_name": "huawei_nfs_v3_read_i_o_count_8k16k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "634",
+    "metric_dict_name": "NFS V3 Read I/O count: [16K,32K)",
+    "vm_name": "huawei_nfs_v3_read_i_o_count_16k32k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "635",
+    "metric_dict_name": "NFS V3 Read I/O count: [32K,64K)",
+    "vm_name": "huawei_nfs_v3_read_i_o_count_32k64k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "636",
+    "metric_dict_name": "NFS V3 Read I/O count: [64K,128K)",
+    "vm_name": "huawei_nfs_v3_read_i_o_count_64k128k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "637",
+    "metric_dict_name": "NFS V3 Read I/O count: [128K,256K)",
+    "vm_name": "huawei_nfs_v3_read_i_o_count_128k256k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "638",
+    "metric_dict_name": "NFS V3 Read I/O count: [256K,+∞)",
+    "vm_name": "huawei_nfs_v3_read_i_o_count_256kinf",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "639",
+    "metric_dict_name": "NFS V3 Write I/O count: [0K,512B)",
+    "vm_name": "huawei_nfs_v3_write_i_o_count_0k512b",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "640",
+    "metric_dict_name": "NFS V3 Write I/O count: [512B,1K)",
+    "vm_name": "huawei_nfs_v3_write_i_o_count_512b1k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "641",
+    "metric_dict_name": "NFS V3 Write I/O count: [1K,2K)",
+    "vm_name": "huawei_nfs_v3_write_i_o_count_1k2k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "642",
+    "metric_dict_name": "NFS V3 Write I/O count: [2K,4K)",
+    "vm_name": "huawei_nfs_v3_write_i_o_count_2k4k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "643",
+    "metric_dict_name": "NFS V3 Write I/O count: [4K,8K)",
+    "vm_name": "huawei_nfs_v3_write_i_o_count_4k8k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "644",
+    "metric_dict_name": "NFS V3 Write I/O count: [8K,16K)",
+    "vm_name": "huawei_nfs_v3_write_i_o_count_8k16k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "645",
+    "metric_dict_name": "NFS V3 Write I/O count: [16K,32K)",
+    "vm_name": "huawei_nfs_v3_write_i_o_count_16k32k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "646",
+    "metric_dict_name": "NFS V3 Write I/O count: [32K,64K)",
+    "vm_name": "huawei_nfs_v3_write_i_o_count_32k64k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "647",
+    "metric_dict_name": "NFS V3 Write I/O count: [64K,128K)",
+    "vm_name": "huawei_nfs_v3_write_i_o_count_64k128k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "648",
+    "metric_dict_name": "NFS V3 Write I/O count: [128K,256K)",
+    "vm_name": "huawei_nfs_v3_write_i_o_count_128k256k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "649",
+    "metric_dict_name": "NFS V3 Write I/O count: [256K,+∞)",
+    "vm_name": "huawei_nfs_v3_write_i_o_count_256kinf",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "650",
+    "metric_dict_name": "NFS V4 Read I/O count: [0K,512B)",
+    "vm_name": "huawei_nfs_v4_read_i_o_count_0k512b",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "651",
+    "metric_dict_name": "NFS V4 Read I/O count: [512B,1K)",
+    "vm_name": "huawei_nfs_v4_read_i_o_count_512b1k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "652",
+    "metric_dict_name": "NFS V4 Read I/O count: [1K,2K)",
+    "vm_name": "huawei_nfs_v4_read_i_o_count_1k2k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "653",
+    "metric_dict_name": "NFS V4 Read I/O count: [2K,4K)",
+    "vm_name": "huawei_nfs_v4_read_i_o_count_2k4k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "654",
+    "metric_dict_name": "NFS V4 Read I/O count: [4K,8K)",
+    "vm_name": "huawei_nfs_v4_read_i_o_count_4k8k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "655",
+    "metric_dict_name": "NFS V4 Read I/O count: [8K,16K)",
+    "vm_name": "huawei_nfs_v4_read_i_o_count_8k16k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "656",
+    "metric_dict_name": "NFS V4 Read I/O count: [16K,32K)",
+    "vm_name": "huawei_nfs_v4_read_i_o_count_16k32k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "657",
+    "metric_dict_name": "NFS V4 Read I/O count: [32K,64K)",
+    "vm_name": "huawei_nfs_v4_read_i_o_count_32k64k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "658",
+    "metric_dict_name": "NFS V4 Read I/O count: [64K,128K)",
+    "vm_name": "huawei_nfs_v4_read_i_o_count_64k128k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "659",
+    "metric_dict_name": "NFS V4 Read I/O count: [128K,256K)",
+    "vm_name": "huawei_nfs_v4_read_i_o_count_128k256k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "660",
+    "metric_dict_name": "NFS V4 Read I/O count: [256K,+∞)",
+    "vm_name": "huawei_nfs_v4_read_i_o_count_256kinf",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "661",
+    "metric_dict_name": "NFS V4 Write I/O count: [0K,512B)",
+    "vm_name": "huawei_nfs_v4_write_i_o_count_0k512b",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "662",
+    "metric_dict_name": "NFS V4 Write I/O count: [512B,1K)",
+    "vm_name": "huawei_nfs_v4_write_i_o_count_512b1k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "663",
+    "metric_dict_name": "NFS V4 Write I/O count: [1K,2K)",
+    "vm_name": "huawei_nfs_v4_write_i_o_count_1k2k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "664",
+    "metric_dict_name": "NFS V4 Write I/O count: [2K,4K)",
+    "vm_name": "huawei_nfs_v4_write_i_o_count_2k4k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "665",
+    "metric_dict_name": "NFS V4 Write I/O count: [4K,8K)",
+    "vm_name": "huawei_nfs_v4_write_i_o_count_4k8k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "666",
+    "metric_dict_name": "NFS V4 Write I/O count: [8K,16K)",
+    "vm_name": "huawei_nfs_v4_write_i_o_count_8k16k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "667",
+    "metric_dict_name": "NFS V4 Write I/O count: [16K,32K)",
+    "vm_name": "huawei_nfs_v4_write_i_o_count_16k32k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "668",
+    "metric_dict_name": "NFS V4 Write I/O count: [32K,64K)",
+    "vm_name": "huawei_nfs_v4_write_i_o_count_32k64k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "669",
+    "metric_dict_name": "NFS V4 Write I/O count: [64K,128K)",
+    "vm_name": "huawei_nfs_v4_write_i_o_count_64k128k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "670",
+    "metric_dict_name": "NFS V4 Write I/O count: [128K,256K)",
+    "vm_name": "huawei_nfs_v4_write_i_o_count_128k256k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "671",
+    "metric_dict_name": "NFS V4 Write I/O count: [256K,+∞)",
+    "vm_name": "huawei_nfs_v4_write_i_o_count_256kinf",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "672",
+    "metric_dict_name": "NFS Read I/O count: [0K,512B)",
+    "vm_name": "huawei_nfs_read_i_o_count_0k512b",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "673",
+    "metric_dict_name": "NFS Read I/O count: [512B,1K)",
+    "vm_name": "huawei_nfs_read_i_o_count_512b1k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "674",
+    "metric_dict_name": "NFS Read I/O count: [1K,2K)",
+    "vm_name": "huawei_nfs_read_i_o_count_1k2k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "675",
+    "metric_dict_name": "NFS Read I/O count: [2K,4K)",
+    "vm_name": "huawei_nfs_read_i_o_count_2k4k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "676",
+    "metric_dict_name": "NFS Read I/O count: [4K,8K)",
+    "vm_name": "huawei_nfs_read_i_o_count_4k8k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "677",
+    "metric_dict_name": "NFS Read I/O count: [8K,16K)",
+    "vm_name": "huawei_nfs_read_i_o_count_8k16k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "678",
+    "metric_dict_name": "NFS Read I/O count: [16K,32K)",
+    "vm_name": "huawei_nfs_read_i_o_count_16k32k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "679",
+    "metric_dict_name": "NFS Read I/O count: [32K,64K)",
+    "vm_name": "huawei_nfs_read_i_o_count_32k64k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "680",
+    "metric_dict_name": "NFS Read I/O count: [64K,128K)",
+    "vm_name": "huawei_nfs_read_i_o_count_64k128k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "681",
+    "metric_dict_name": "NFS Read I/O count: [128K,256K)",
+    "vm_name": "huawei_nfs_read_i_o_count_128k256k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "682",
+    "metric_dict_name": "NFS Read I/O count: [256K,+∞)",
+    "vm_name": "huawei_nfs_read_i_o_count_256kinf",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "683",
+    "metric_dict_name": "NFS Write I/O count: [0K,512B)",
+    "vm_name": "huawei_nfs_write_i_o_count_0k512b",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "684",
+    "metric_dict_name": "NFS Write I/O count: [512B,1K)",
+    "vm_name": "huawei_nfs_write_i_o_count_512b1k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "685",
+    "metric_dict_name": "NFS Write I/O count: [1K,2K)",
+    "vm_name": "huawei_nfs_write_i_o_count_1k2k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "686",
+    "metric_dict_name": "NFS Write I/O count: [2K,4K)",
+    "vm_name": "huawei_nfs_write_i_o_count_2k4k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "687",
+    "metric_dict_name": "NFS Write I/O count: [4K,8K)",
+    "vm_name": "huawei_nfs_write_i_o_count_4k8k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "688",
+    "metric_dict_name": "NFS Write I/O count: [8K,16K)",
+    "vm_name": "huawei_nfs_write_i_o_count_8k16k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "689",
+    "metric_dict_name": "NFS Write I/O count: [16K,32K)",
+    "vm_name": "huawei_nfs_write_i_o_count_16k32k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "690",
+    "metric_dict_name": "NFS Write I/O count: [32K,64K)",
+    "vm_name": "huawei_nfs_write_i_o_count_32k64k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "691",
+    "metric_dict_name": "NFS Write I/O count: [64K,128K)",
+    "vm_name": "huawei_nfs_write_i_o_count_64k128k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "692",
+    "metric_dict_name": "NFS Write I/O count: [128K,256K)",
+    "vm_name": "huawei_nfs_write_i_o_count_128k256k",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "693",
+    "metric_dict_name": "NFS Write I/O count: [256K,+∞)",
+    "vm_name": "huawei_nfs_write_i_o_count_256kinf",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "699",
+    "metric_dict_name": "Time Difference (s)",
+    "vm_name": "huawei_time_difference_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "700",
+    "metric_dict_name": "Write Requests Less than Grain Size to Snapshot LUN",
+    "vm_name": "huawei_write_requests_less_than_grain_size_to_snapshot_lun",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "703",
+    "metric_dict_name": "Total NFS Bandwidth (KB/s)",
+    "vm_name": "huawei_total_nfs_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "706",
+    "metric_dict_name": "Total CIFS Bandwidth (KB/s)",
+    "vm_name": "huawei_total_cifs_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "709",
+    "metric_dict_name": "NFS Read Bandwidth (KB/s)",
+    "vm_name": "huawei_nfs_read_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "712",
+    "metric_dict_name": "CIFS Read Bandwidth (KB/s)",
+    "vm_name": "huawei_cifs_read_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "715",
+    "metric_dict_name": "NFS Write Bandwidth (KB/s)",
+    "vm_name": "huawei_nfs_write_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "718",
+    "metric_dict_name": "CIFS Write Bandwidth (KB/s)",
+    "vm_name": "huawei_cifs_write_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "721",
+    "metric_dict_name": "Total NFS OPS",
+    "vm_name": "huawei_total_nfs_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "724",
+    "metric_dict_name": "Total CIFS OPS",
+    "vm_name": "huawei_total_cifs_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "727",
+    "metric_dict_name": "Total NFS Read OPS",
+    "vm_name": "huawei_total_nfs_read_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "730",
+    "metric_dict_name": "Total CIFS read OPS",
+    "vm_name": "huawei_total_cifs_read_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "733",
+    "metric_dict_name": "Total NFS write OPS",
+    "vm_name": "huawei_total_nfs_write_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "736",
+    "metric_dict_name": "Total CIFS Write OPS",
+    "vm_name": "huawei_total_cifs_write_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "739",
+    "metric_dict_name": "Other NFS OPS",
+    "vm_name": "huawei_other_nfs_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "742",
+    "metric_dict_name": "Other CIFS OPS",
+    "vm_name": "huawei_other_cifs_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "745",
+    "metric_dict_name": "Avg. Response Time of NFS I/Os(us)",
+    "vm_name": "huawei_avg_response_time_of_nfs_i_osus",
+    "conversion": "÷1000 (us→ms)",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "748",
+    "metric_dict_name": "Avg. Response Time of CIFS I/Os(us)",
+    "vm_name": "huawei_avg_response_time_of_cifs_i_osus",
+    "conversion": "÷1000 (us→ms)",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "751",
+    "metric_dict_name": "Avg. Response Time of NFS Read I/Os(us)",
+    "vm_name": "huawei_avg_response_time_of_nfs_read_i_osus",
+    "conversion": "÷1000 (us→ms)",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "754",
+    "metric_dict_name": "Avg. Response Time of CIFS Read I/Os(us)",
+    "vm_name": "huawei_avg_response_time_of_cifs_read_i_osus",
+    "conversion": "÷1000 (us→ms)",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "757",
+    "metric_dict_name": "Avg. Response Time of NFS Write I/Os(us)",
+    "vm_name": "huawei_avg_response_time_of_nfs_write_i_osus",
+    "conversion": "÷1000 (us→ms)",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "760",
+    "metric_dict_name": "Avg. Response Time of CIFS Write I/Os(us)",
+    "vm_name": "huawei_avg_response_time_of_cifs_write_i_osus",
+    "conversion": "÷1000 (us→ms)",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "763",
+    "metric_dict_name": "Avg. Response Time of Other NFS I/Os(us)",
+    "vm_name": "huawei_avg_response_time_of_other_nfs_i_osus",
+    "conversion": "÷1000 (us→ms)",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "766",
+    "metric_dict_name": "Avg. Response Time of Other CIFS I/Os(us)",
+    "vm_name": "huawei_avg_response_time_of_other_cifs_i_osus",
+    "conversion": "÷1000 (us→ms)",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "770",
+    "metric_dict_name": "File Read Bandwidth (KB/s)",
+    "vm_name": "huawei_file_read_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "771",
+    "metric_dict_name": "File Write Bandwidth (KB/s)",
+    "vm_name": "huawei_file_write_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "800",
+    "metric_dict_name": "Max. Bandwidth (KB/s)",
+    "vm_name": "huawei_max_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "801",
+    "metric_dict_name": "Bandwidth (KB/s)",
+    "vm_name": "huawei_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "802",
+    "metric_dict_name": "Max. Read I/O Size (KB)",
+    "vm_name": "huawei_max_read_i_o_size_kb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "803",
+    "metric_dict_name": "Max. Write I/O Size (KB)",
+    "vm_name": "huawei_max_write_i_o_size_kb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "804",
+    "metric_dict_name": "Max. I/O Size (KB)",
+    "vm_name": "huawei_max_i_o_size_kb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "805",
+    "metric_dict_name": "Back-End Read Response Time (us)",
+    "vm_name": "huawei_back_end_read_response_time_us",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "806",
+    "metric_dict_name": "Back-End Write Response Time (us)",
+    "vm_name": "huawei_back_end_write_response_time_us",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "807",
+    "metric_dict_name": "Avg. Back-End Response Time (us)",
+    "vm_name": "huawei_avg_back_end_response_time_us",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "808",
+    "metric_dict_name": "Average usage of member disks(%)",
+    "vm_name": "huawei_average_usage_of_member_diskspercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "809",
+    "metric_dict_name": "Logical Bandwidth (KB/s)",
+    "vm_name": "huawei_logical_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "810",
+    "metric_dict_name": "Normalized IOPS (IO/s)",
+    "vm_name": "huawei_normalized_iops_io_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "811",
+    "metric_dict_name": "Total Bandwidth (KB/s)",
+    "vm_name": "huawei_total_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "812",
+    "metric_dict_name": "Transmitting Bandwidth for Replication (KB/s)",
+    "vm_name": "huawei_transmitting_bandwidth_for_replication_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "813",
+    "metric_dict_name": "Receiving Bandwidth for Replication (KB/s)",
+    "vm_name": "huawei_receiving_bandwidth_for_replication_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1054",
+    "metric_dict_name": "Synchronization Duration (s)",
+    "vm_name": "huawei_synchronization_duration_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1055",
+    "metric_dict_name": "Cache page utilization (%)",
+    "vm_name": "huawei_cache_page_utilization_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1056",
+    "metric_dict_name": "Cache chunk utilization (%)",
+    "vm_name": "huawei_cache_chunk_utilization_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1057",
+    "metric_dict_name": "Cache pageUnit utilization (%)",
+    "vm_name": "huawei_cache_pageunit_utilization_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1059",
+    "metric_dict_name": "Cache Page Preservation (%)",
+    "vm_name": "huawei_cache_page_preservation_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1060",
+    "metric_dict_name": "Cache Chunk Preservation (%)",
+    "vm_name": "huawei_cache_chunk_preservation_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1061",
+    "metric_dict_name": "S3 Head Number",
+    "vm_name": "huawei_s3_head_number",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1062",
+    "metric_dict_name": "S3 Head Failed Number",
+    "vm_name": "huawei_s3_head_failed_number",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1063",
+    "metric_dict_name": "S3 Head Failed Number(client's cause)",
+    "vm_name": "huawei_s3_head_failed_numberclient's_cause",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1064",
+    "metric_dict_name": "S3 Post Number",
+    "vm_name": "huawei_s3_post_number",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1065",
+    "metric_dict_name": "S3 Post Failed Number",
+    "vm_name": "huawei_s3_post_failed_number",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1066",
+    "metric_dict_name": "S3 Post Failed Number(client's cause)",
+    "vm_name": "huawei_s3_post_failed_numberclient's_cause",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1067",
+    "metric_dict_name": "Swift Head Number",
+    "vm_name": "huawei_swift_head_number",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1068",
+    "metric_dict_name": "Swift Head Failed Number",
+    "vm_name": "huawei_swift_head_failed_number",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1069",
+    "metric_dict_name": "Swift Head Failed Number(client's cause)",
+    "vm_name": "huawei_swift_head_failed_numberclient's_cause",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1070",
+    "metric_dict_name": "Swift Post Number",
+    "vm_name": "huawei_swift_post_number",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1071",
+    "metric_dict_name": "Swift Post Failed Number",
+    "vm_name": "huawei_swift_post_failed_number",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1072",
+    "metric_dict_name": "Swift Post Failed Number(client's cause)",
+    "vm_name": "huawei_swift_post_failed_numberclient's_cause",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1073",
+    "metric_dict_name": "ISCSI IOPS(IO/s)",
+    "vm_name": "huawei_iscsi_iopsio_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1074",
+    "metric_dict_name": "CIFS operation count per second",
+    "vm_name": "huawei_cifs_operation_count_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1075",
+    "metric_dict_name": "Disk Max. Usage(%)",
+    "vm_name": "huawei_disk_max_usagepercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1076",
+    "metric_dict_name": "Total Disk IOPS(IO/s)",
+    "vm_name": "huawei_total_disk_iopsio_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1077",
+    "metric_dict_name": "Read Disk IOPS(IO/s)",
+    "vm_name": "huawei_read_disk_iopsio_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1078",
+    "metric_dict_name": "Write Disk IOPS(IO/s)",
+    "vm_name": "huawei_write_disk_iopsio_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1079",
+    "metric_dict_name": "SCSI IOPS(IO/s)",
+    "vm_name": "huawei_scsi_iopsio_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1090",
+    "metric_dict_name": "Data Reduction Ratio",
+    "vm_name": "huawei_data_reduction_ratio",
+    "conversion": "÷1000 (us→ms)",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1091",
+    "metric_dict_name": "Deduplication Ratio",
+    "vm_name": "huawei_deduplication_ratio",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1092",
+    "metric_dict_name": "Compression Ratio",
+    "vm_name": "huawei_compression_ratio",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1093",
+    "metric_dict_name": "Overall Space Saving Ratio",
+    "vm_name": "huawei_overall_space_saving_ratio",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1094",
+    "metric_dict_name": "Thin LUN Space Saving Rate (%)",
+    "vm_name": "huawei_thin_lun_space_saving_rate_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1099",
+    "metric_dict_name": "Total NFS lookup OPS",
+    "vm_name": "huawei_total_nfs_lookup_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1100",
+    "metric_dict_name": "Total NFS create OPS",
+    "vm_name": "huawei_total_nfs_create_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1101",
+    "metric_dict_name": "Total NFS remove OPS",
+    "vm_name": "huawei_total_nfs_remove_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1102",
+    "metric_dict_name": "Total NFS getattr OPS",
+    "vm_name": "huawei_total_nfs_getattr_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1103",
+    "metric_dict_name": "Total NFS setattr OPS",
+    "vm_name": "huawei_total_nfs_setattr_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1104",
+    "metric_dict_name": "Total NFS mkdir OPS",
+    "vm_name": "huawei_total_nfs_mkdir_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1105",
+    "metric_dict_name": "Total NFS rmdir OPS",
+    "vm_name": "huawei_total_nfs_rmdir_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1106",
+    "metric_dict_name": "Total NFS access OPS",
+    "vm_name": "huawei_total_nfs_access_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1107",
+    "metric_dict_name": "Total NFS readdir OPS",
+    "vm_name": "huawei_total_nfs_readdir_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1108",
+    "metric_dict_name": "Total NFS readdir plus OPS",
+    "vm_name": "huawei_total_nfs_readdir_plus_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1109",
+    "metric_dict_name": "Total NFS open OPS",
+    "vm_name": "huawei_total_nfs_open_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1110",
+    "metric_dict_name": "Total CIFS create OPS",
+    "vm_name": "huawei_total_cifs_create_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1111",
+    "metric_dict_name": "Total CIFS queryinfo OPS",
+    "vm_name": "huawei_total_cifs_queryinfo_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1112",
+    "metric_dict_name": "Total CIFS querydir OPS",
+    "vm_name": "huawei_total_cifs_querydir_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1113",
+    "metric_dict_name": "Total CIFS setinfo OPS",
+    "vm_name": "huawei_total_cifs_setinfo_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1114",
+    "metric_dict_name": "Avg. NFS lookup response time(us)",
+    "vm_name": "huawei_avg_nfs_lookup_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1115",
+    "metric_dict_name": "Avg. NFS create response time(us)",
+    "vm_name": "huawei_avg_nfs_create_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1116",
+    "metric_dict_name": "Avg. NFS remove response time(us)",
+    "vm_name": "huawei_avg_nfs_remove_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1117",
+    "metric_dict_name": "Avg. NFS getattr response time(us)",
+    "vm_name": "huawei_avg_nfs_getattr_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1118",
+    "metric_dict_name": "Avg. NFS setattr response time(us)",
+    "vm_name": "huawei_avg_nfs_setattr_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1119",
+    "metric_dict_name": "Avg. NFS mkdir response time(us)",
+    "vm_name": "huawei_avg_nfs_mkdir_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1120",
+    "metric_dict_name": "Avg. NFS rmdir response time(us)",
+    "vm_name": "huawei_avg_nfs_rmdir_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1121",
+    "metric_dict_name": "Avg. NFS readdir response time(us)",
+    "vm_name": "huawei_avg_nfs_readdir_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1122",
+    "metric_dict_name": "Avg. NFS access response time(us)",
+    "vm_name": "huawei_avg_nfs_access_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1123",
+    "metric_dict_name": "Avg. NFS readdir plus response time(us)",
+    "vm_name": "huawei_avg_nfs_readdir_plus_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1124",
+    "metric_dict_name": "Avg. CIFS create response time(us)",
+    "vm_name": "huawei_avg_cifs_create_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1125",
+    "metric_dict_name": "Avg. CIFS queryinfo response time(us)",
+    "vm_name": "huawei_avg_cifs_queryinfo_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1126",
+    "metric_dict_name": "Avg. CIFS querydir response time(us)",
+    "vm_name": "huawei_avg_cifs_querydir_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1127",
+    "metric_dict_name": "Avg. CIFS setinfo response time(us)",
+    "vm_name": "huawei_avg_cifs_setinfo_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1128",
+    "metric_dict_name": "Avg. NFS open response time(us)",
+    "vm_name": "huawei_avg_nfs_open_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1129",
+    "metric_dict_name": "Read I/O Latency Distribution: [200ms, 1s)(%)",
+    "vm_name": "huawei_read_i_o_latency_distribution_200ms_1spercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1130",
+    "metric_dict_name": "Read I/O Latency Distribution: [1s, 3s)(%)",
+    "vm_name": "huawei_read_i_o_latency_distribution_1s_3spercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1131",
+    "metric_dict_name": "Read I/O Latency Distribution: [3s, 5s)(%)",
+    "vm_name": "huawei_read_i_o_latency_distribution_3s_5spercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1132",
+    "metric_dict_name": "Read I/O Latency Distribution: [5s, 8s)(%)",
+    "vm_name": "huawei_read_i_o_latency_distribution_5s_8spercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1133",
+    "metric_dict_name": "Read I/O Latency Distribution: [8s, +∞)(%)",
+    "vm_name": "huawei_read_i_o_latency_distribution_8s_infpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1134",
+    "metric_dict_name": "Write I/O Latency Distribution: [200ms, 1s)(%)",
+    "vm_name": "huawei_write_i_o_latency_distribution_200ms_1spercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1135",
+    "metric_dict_name": "Write I/O Latency Distribution: [1s, 3s)(%)",
+    "vm_name": "huawei_write_i_o_latency_distribution_1s_3spercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1136",
+    "metric_dict_name": "Write I/O Latency Distribution: [3s, 5s)(%)",
+    "vm_name": "huawei_write_i_o_latency_distribution_3s_5spercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1137",
+    "metric_dict_name": "Write I/O Latency Distribution: [5s, 8s)(%)",
+    "vm_name": "huawei_write_i_o_latency_distribution_5s_8spercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1138",
+    "metric_dict_name": "Write I/O Latency Distribution: [8s, +∞)(%)",
+    "vm_name": "huawei_write_i_o_latency_distribution_8s_infpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1139",
+    "metric_dict_name": "Avg. Read I/O Link Transmission Latency(us)",
+    "vm_name": "huawei_avg_read_i_o_link_transmission_latencyus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1140",
+    "metric_dict_name": "Avg. Write I/O Link Transmission Latency(us)",
+    "vm_name": "huawei_avg_write_i_o_link_transmission_latencyus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1141",
+    "metric_dict_name": "CIFS Tree Quantity",
+    "vm_name": "huawei_cifs_tree_quantity",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1142",
+    "metric_dict_name": "CIFS Session Quantity",
+    "vm_name": "huawei_cifs_session_quantity",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1143",
+    "metric_dict_name": "NFS Connection Quantity",
+    "vm_name": "huawei_nfs_connection_quantity",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1154",
+    "metric_dict_name": "Unmap Command Bandwidth (MB/s)",
+    "vm_name": "huawei_unmap_command_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1155",
+    "metric_dict_name": "Unmap Command IOPS (IO/s)",
+    "vm_name": "huawei_unmap_command_iops_io_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1156",
+    "metric_dict_name": "Avg. Unmap Command Size (KB)",
+    "vm_name": "huawei_avg_unmap_command_size_kb",
+    "conversion": "×1024 (→KB)",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1157",
+    "metric_dict_name": "Avg. Unmap Command Response Time (us)",
+    "vm_name": "huawei_avg_unmap_command_response_time_us",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1158",
+    "metric_dict_name": "WRITE SAME Command Bandwidth (MB/s)",
+    "vm_name": "huawei_write_same_command_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1159",
+    "metric_dict_name": "WRITE SAME Command IOPS (IO/s)",
+    "vm_name": "huawei_write_same_command_iops_io_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1160",
+    "metric_dict_name": "Avg. WRITE SAME Command Size (KB)",
+    "vm_name": "huawei_avg_write_same_command_size_kb",
+    "conversion": "×1024 (→KB)",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1161",
+    "metric_dict_name": "Avg. WRITE SAME Command Response Time (us)",
+    "vm_name": "huawei_avg_write_same_command_response_time_us",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1162",
+    "metric_dict_name": "Full Copy Read Request Bandwidth (MB/s)",
+    "vm_name": "huawei_full_copy_read_request_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1163",
+    "metric_dict_name": "Full Copy Read Request IOPS (IO/s)",
+    "vm_name": "huawei_full_copy_read_request_iops_io_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1164",
+    "metric_dict_name": "Avg. Full Copy Read Request Size (KB)",
+    "vm_name": "huawei_avg_full_copy_read_request_size_kb",
+    "conversion": "×1024 (→KB)",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1165",
+    "metric_dict_name": "Avg. Full Copy Read Request Response Time (us)",
+    "vm_name": "huawei_avg_full_copy_read_request_response_time_us",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1166",
+    "metric_dict_name": "Full Copy Write Request Bandwidth (MB/s)",
+    "vm_name": "huawei_full_copy_write_request_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1167",
+    "metric_dict_name": "Full Copy Write Request IOPS (IO/s)",
+    "vm_name": "huawei_full_copy_write_request_iops_io_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1168",
+    "metric_dict_name": "Avg. Full Copy Write Request Size (KB)",
+    "vm_name": "huawei_avg_full_copy_write_request_size_kb",
+    "conversion": "×1024 (→KB)",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1169",
+    "metric_dict_name": "Avg. Full Copy Write Request Response Time (us)",
+    "vm_name": "huawei_avg_full_copy_write_request_response_time_us",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1170",
+    "metric_dict_name": "ODX Read Request Bandwidth (MB/s)",
+    "vm_name": "huawei_odx_read_request_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1171",
+    "metric_dict_name": "ODX Read Request IOPS (IO/s)",
+    "vm_name": "huawei_odx_read_request_iops_io_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1172",
+    "metric_dict_name": "Avg. ODX Read Request Size (KB)",
+    "vm_name": "huawei_avg_odx_read_request_size_kb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1173",
+    "metric_dict_name": "Avg. ODX Read Request Response Time (us)",
+    "vm_name": "huawei_avg_odx_read_request_response_time_us",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1174",
+    "metric_dict_name": "ODX Write Request Bandwidth (MB/s)",
+    "vm_name": "huawei_odx_write_request_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1175",
+    "metric_dict_name": "ODX Write Request IOPS (IO/s)",
+    "vm_name": "huawei_odx_write_request_iops_io_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1176",
+    "metric_dict_name": "Avg. ODX Write Request Size (KB)",
+    "vm_name": "huawei_avg_odx_write_request_size_kb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1177",
+    "metric_dict_name": "Avg. ODX Write Request Response Time (us)",
+    "vm_name": "huawei_avg_odx_write_request_response_time_us",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1178",
+    "metric_dict_name": "ODX Write Zero Request Bandwidth (MB/s)",
+    "vm_name": "huawei_odx_write_zero_request_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1179",
+    "metric_dict_name": "ODX Write Zero Request IOPS (IO/s)",
+    "vm_name": "huawei_odx_write_zero_request_iops_io_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1180",
+    "metric_dict_name": "Avg. ODX Write Zero Request Size (KB)",
+    "vm_name": "huawei_avg_odx_write_zero_request_size_kb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1181",
+    "metric_dict_name": "Avg. ODX Write Zero Request Response Time (us)",
+    "vm_name": "huawei_avg_odx_write_zero_request_response_time_us",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1182",
+    "metric_dict_name": "Read I/O Granularity Distribution: [0K,4K)(%)",
+    "vm_name": "huawei_read_i_o_granularity_distribution_0k4kpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1183",
+    "metric_dict_name": "Read I/O Granularity Distribution: [128K,+∞)(%)",
+    "vm_name": "huawei_read_i_o_granularity_distribution_128kinfpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1184",
+    "metric_dict_name": "Write I/O Granularity Distribution: [0K,4K)(%)",
+    "vm_name": "huawei_write_i_o_granularity_distribution_0k4kpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1185",
+    "metric_dict_name": "Write I/O Granularity Distribution: [128K,+∞)(%)",
+    "vm_name": "huawei_write_i_o_granularity_distribution_128kinfpercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1188",
+    "metric_dict_name": "VAAI Bandwidth (MB/s)",
+    "vm_name": "huawei_vaai_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1189",
+    "metric_dict_name": "VAAI IOPS (IO/s)",
+    "vm_name": "huawei_vaai_iops_io_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1190",
+    "metric_dict_name": "Avg. VAAI Size (KB)",
+    "vm_name": "huawei_avg_vaai_size_kb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1191",
+    "metric_dict_name": "Avg. VAAI Response Time (us)",
+    "vm_name": "huawei_avg_vaai_response_time_us",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1192",
+    "metric_dict_name": "DR Read Request Bandwidth (MB/s)",
+    "vm_name": "huawei_dr_read_request_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1193",
+    "metric_dict_name": "DR Read Request IOPS (IO/s)",
+    "vm_name": "huawei_dr_read_request_iops_io_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1194",
+    "metric_dict_name": "Avg. DR Read Request Size (KB)",
+    "vm_name": "huawei_avg_dr_read_request_size_kb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1195",
+    "metric_dict_name": "Avg. DR Read Request Response Time (us)",
+    "vm_name": "huawei_avg_dr_read_request_response_time_us",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1196",
+    "metric_dict_name": "DR Write Request Bandwidth (MB/s)",
+    "vm_name": "huawei_dr_write_request_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1197",
+    "metric_dict_name": "DR Write Request IOPS (IO/s)",
+    "vm_name": "huawei_dr_write_request_iops_io_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1198",
+    "metric_dict_name": "Avg. DR Write Request Size (KB)",
+    "vm_name": "huawei_avg_dr_write_request_size_kb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1199",
+    "metric_dict_name": "Avg. DR Write Request Response Time (us)",
+    "vm_name": "huawei_avg_dr_write_request_response_time_us",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1200",
+    "metric_dict_name": "OBS Storage total bandwidth (KB/s)",
+    "vm_name": "huawei_obs_storage_total_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1201",
+    "metric_dict_name": "OBS Storage read bamdwidth (KB/s)",
+    "vm_name": "huawei_obs_storage_read_bamdwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1202",
+    "metric_dict_name": "OBS Storage write bamdwidth (KB/s)",
+    "vm_name": "huawei_obs_storage_write_bamdwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1211",
+    "metric_dict_name": "Normalized Latency (us)",
+    "vm_name": "huawei_normalized_latency_us",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1212",
+    "metric_dict_name": "Total NFS readlink OPS",
+    "vm_name": "huawei_total_nfs_readlink_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1213",
+    "metric_dict_name": "Total NFS symlink OPS",
+    "vm_name": "huawei_total_nfs_symlink_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1214",
+    "metric_dict_name": "Total NFS rename OPS",
+    "vm_name": "huawei_total_nfs_rename_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1215",
+    "metric_dict_name": "Total NFS link OPS",
+    "vm_name": "huawei_total_nfs_link_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1216",
+    "metric_dict_name": "Total NFS fsstat OPS",
+    "vm_name": "huawei_total_nfs_fsstat_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1217",
+    "metric_dict_name": "Avg. NFS readlink response time(us)",
+    "vm_name": "huawei_avg_nfs_readlink_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1218",
+    "metric_dict_name": "Avg. NFS symlink response time(us)",
+    "vm_name": "huawei_avg_nfs_symlink_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1219",
+    "metric_dict_name": "Avg. NFS rename response time(us)",
+    "vm_name": "huawei_avg_nfs_rename_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1220",
+    "metric_dict_name": "Avg. NFS link response time(us)",
+    "vm_name": "huawei_avg_nfs_link_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1221",
+    "metric_dict_name": "Avg. NFS fsstat response time(us)",
+    "vm_name": "huawei_avg_nfs_fsstat_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1225",
+    "metric_dict_name": "AI Cache Hit Ratio (%)",
+    "vm_name": "huawei_ai_cache_hit_ratio_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1233",
+    "metric_dict_name": "I/O Sequentiality(%)",
+    "vm_name": "huawei_i_o_sequentialitypercent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1234",
+    "metric_dict_name": "Read SmartCache Hit Ratio (%)",
+    "vm_name": "huawei_read_smartcache_hit_ratio_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1243",
+    "metric_dict_name": "Full Copy Command Bandwidth (MB/s)",
+    "vm_name": "huawei_full_copy_command_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1244",
+    "metric_dict_name": "Full Copy Command IOPS (IO/s)",
+    "vm_name": "huawei_full_copy_command_iops_io_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1245",
+    "metric_dict_name": "Avg. Full Copy Command Size (KB)",
+    "vm_name": "huawei_avg_full_copy_command_size_kb",
+    "conversion": "×1024 (→KB)",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1246",
+    "metric_dict_name": "Avg. Full Copy Command Response Time (us)",
+    "vm_name": "huawei_avg_full_copy_command_response_time_us",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1247",
+    "metric_dict_name": "ODX Command Bandwidth (MB/s)",
+    "vm_name": "huawei_odx_command_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1248",
+    "metric_dict_name": "ODX Command IOPS (IO/s)",
+    "vm_name": "huawei_odx_command_iops_io_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1249",
+    "metric_dict_name": "Avg. ODX Command Size (KB)",
+    "vm_name": "huawei_avg_odx_command_size_kb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1250",
+    "metric_dict_name": "Avg. ODX Command Response Time (us)",
+    "vm_name": "huawei_avg_odx_command_response_time_us",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1251",
+    "metric_dict_name": "Total Block IOPS(IO/s)",
+    "vm_name": "huawei_total_block_iopsio_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1252",
+    "metric_dict_name": "Total Block Bandwidth (MB/s)",
+    "vm_name": "huawei_total_block_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1254",
+    "metric_dict_name": "NFSv4 Compound Requests",
+    "vm_name": "huawei_nfsv4_compound_requests",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1255",
+    "metric_dict_name": "Avg. NFS compound response time(us)",
+    "vm_name": "huawei_avg_nfs_compound_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1262",
+    "metric_dict_name": "Link Bandwidth Reduction Ratio",
+    "vm_name": "huawei_link_bandwidth_reduction_ratio",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1263",
+    "metric_dict_name": "Other DataTurbo OPS",
+    "vm_name": "huawei_other_dataturbo_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1264",
+    "metric_dict_name": "Average response time of other DataTurbo I/Os(us)",
+    "vm_name": "huawei_average_response_time_of_other_dataturbo_i_osus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1265",
+    "metric_dict_name": "Total DataTurbo Bandwidth (KB/s)",
+    "vm_name": "huawei_total_dataturbo_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1266",
+    "metric_dict_name": "DataTurbo Read Bandwidth (KB/s)",
+    "vm_name": "huawei_dataturbo_read_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1267",
+    "metric_dict_name": "DataTurbo Write Bandwidth (KB/s)",
+    "vm_name": "huawei_dataturbo_write_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1268",
+    "metric_dict_name": "Total DataTurbo OPS",
+    "vm_name": "huawei_total_dataturbo_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1269",
+    "metric_dict_name": "Total DataTurbo Read OPS",
+    "vm_name": "huawei_total_dataturbo_read_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1270",
+    "metric_dict_name": "Total DataTurbo write OPS",
+    "vm_name": "huawei_total_dataturbo_write_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1271",
+    "metric_dict_name": "Average DataTurbo I/O response time(us)",
+    "vm_name": "huawei_average_dataturbo_i_o_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1272",
+    "metric_dict_name": "Average DataTurbo read I/O response time(us)",
+    "vm_name": "huawei_average_dataturbo_read_i_o_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1273",
+    "metric_dict_name": "Average DataTurbo write I/O response time(us)",
+    "vm_name": "huawei_average_dataturbo_write_i_o_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1277",
+    "metric_dict_name": "Background Copy Bandwidth (KB/s)",
+    "vm_name": "huawei_background_copy_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1278",
+    "metric_dict_name": "NFSv4 getAcl OPS",
+    "vm_name": "huawei_nfsv4_getacl_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1279",
+    "metric_dict_name": "NFSv3 getAcl OPS",
+    "vm_name": "huawei_nfsv3_getacl_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1280",
+    "metric_dict_name": "CIFS getAcl OPS",
+    "vm_name": "huawei_cifs_getacl_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1281",
+    "metric_dict_name": "NFSv4 setAcl OPS",
+    "vm_name": "huawei_nfsv4_setacl_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1282",
+    "metric_dict_name": "NFSv3 setAcl OPS",
+    "vm_name": "huawei_nfsv3_setacl_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1283",
+    "metric_dict_name": "CIFS setAcl OPS",
+    "vm_name": "huawei_cifs_setacl_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1284",
+    "metric_dict_name": "Avg. NFSv4 getAcl response time(us)",
+    "vm_name": "huawei_avg_nfsv4_getacl_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1285",
+    "metric_dict_name": "Avg. NFSv3 getAcl response time(us)",
+    "vm_name": "huawei_avg_nfsv3_getacl_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1286",
+    "metric_dict_name": "Avg. CIFS getAcl response time(us)",
+    "vm_name": "huawei_avg_cifs_getacl_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1287",
+    "metric_dict_name": "Avg. NFSv4 setAcl response time(us)",
+    "vm_name": "huawei_avg_nfsv4_setacl_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1288",
+    "metric_dict_name": "Avg. NFSv3 setAcl response time(us)",
+    "vm_name": "huawei_avg_nfsv3_setacl_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1289",
+    "metric_dict_name": "Avg. CIFS setAcl response time(us)",
+    "vm_name": "huawei_avg_cifs_setacl_response_timeus",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1296",
+    "metric_dict_name": "Network Partition CPU Usage (%)",
+    "vm_name": "huawei_network_partition_cpu_usage_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1297",
+    "metric_dict_name": "Front-End Partition CPU Usage (%)",
+    "vm_name": "huawei_front_end_partition_cpu_usage_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1298",
+    "metric_dict_name": "Back-End Partition CPU Usage (%)",
+    "vm_name": "huawei_back_end_partition_cpu_usage_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1299",
+    "metric_dict_name": "KV CPU Usage (%)",
+    "vm_name": "huawei_kv_cpu_usage_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1303",
+    "metric_dict_name": "RX Packets",
+    "vm_name": "huawei_rx_packets",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1304",
+    "metric_dict_name": "TX Packets",
+    "vm_name": "huawei_tx_packets",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1305",
+    "metric_dict_name": "RX Bandwidth (KB/s)",
+    "vm_name": "huawei_rx_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1306",
+    "metric_dict_name": "TX Bandwidth (KB/s)",
+    "vm_name": "huawei_tx_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1307",
+    "metric_dict_name": "Query Request Frequency (per Second)",
+    "vm_name": "huawei_query_request_frequency_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1308",
+    "metric_dict_name": "Average Query Request Queue Duration (ms)",
+    "vm_name": "huawei_average_query_request_queue_duration_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1309",
+    "metric_dict_name": "Average Query Request Duration (ms)",
+    "vm_name": "huawei_average_query_request_duration_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1310",
+    "metric_dict_name": "Maximum Query Request Duration (ms)",
+    "vm_name": "huawei_maximum_query_request_duration_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1311",
+    "metric_dict_name": "Maximum Query Request Queue Duration (ms)",
+    "vm_name": "huawei_maximum_query_request_queue_duration_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1312",
+    "metric_dict_name": "Configuration Request Frequency (per Second)",
+    "vm_name": "huawei_configuration_request_frequency_per_second",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1313",
+    "metric_dict_name": "Average Configuration Request Queue Duration (ms)",
+    "vm_name": "huawei_average_configuration_request_queue_duration_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1314",
+    "metric_dict_name": "Average Configuration Request Duration (ms)",
+    "vm_name": "huawei_average_configuration_request_duration_ms",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1315",
+    "metric_dict_name": "Maximum Configuration Request Duration (ms)",
+    "vm_name": "huawei_maximum_configuration_request_duration_ms",
+    "conversion": "÷1000 (us→ms)",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1316",
+    "metric_dict_name": "Maximum Configuration Request Queue Duration (ms)",
+    "vm_name": "huawei_maximum_configuration_request_queue_duration_ms",
+    "conversion": "÷1000 (us→ms)",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1317",
+    "metric_dict_name": "DR Request Bandwidth (MB/s)",
+    "vm_name": "huawei_dr_request_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1318",
+    "metric_dict_name": "DR Request IOPS (IO/s)",
+    "vm_name": "huawei_dr_request_iops_io_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1319",
+    "metric_dict_name": "Avg. DR Request Response Time (us)",
+    "vm_name": "huawei_avg_dr_request_response_time_us",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1324",
+    "metric_dict_name": "Normalized Read IOPS (IO/s)",
+    "vm_name": "huawei_normalized_read_iops_io_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1325",
+    "metric_dict_name": "Normalized Write IOPS (IO/s)",
+    "vm_name": "huawei_normalized_write_iops_io_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1326",
+    "metric_dict_name": "CIFS Offload Read OPS",
+    "vm_name": "huawei_cifs_offload_read_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1327",
+    "metric_dict_name": "CIFS Offload Write OPS",
+    "vm_name": "huawei_cifs_offload_write_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1328",
+    "metric_dict_name": "Avg. Response Time of CIFS Offload Read I/Os (us)",
+    "vm_name": "huawei_avg_response_time_of_cifs_offload_read_i_os_us",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1329",
+    "metric_dict_name": "Avg. Response Time of CIFS Offload Write I/Os (us)",
+    "vm_name": "huawei_avg_response_time_of_cifs_offload_write_i_os_us",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1330",
+    "metric_dict_name": "CIFS Offload Read Bandwidth (MB/s)",
+    "vm_name": "huawei_cifs_offload_read_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1331",
+    "metric_dict_name": "CIFS Offload Write Bandwidth (MB/s)",
+    "vm_name": "huawei_cifs_offload_write_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1332",
+    "metric_dict_name": "Post-Process Deduplication Read Bandwidth(MB/s)",
+    "vm_name": "huawei_post_process_deduplication_read_bandwidthmb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1333",
+    "metric_dict_name": "Post-Process Deduplication Write Bandwidth(MB/s)",
+    "vm_name": "huawei_post_process_deduplication_write_bandwidthmb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1334",
+    "metric_dict_name": "Post-Process Deduplication Fingerprint Read Bandwidth(MB/s)",
+    "vm_name": "huawei_post_process_deduplication_fingerprint_read_bandwidthmb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1335",
+    "metric_dict_name": "Post-Process Deduplication Fingerprint Write Bandwidth(MB/s)",
+    "vm_name": "huawei_post_process_deduplication_fingerprint_write_bandwidthmb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1336",
+    "metric_dict_name": "NAS Migration Copy Bandwidth (KB/s)",
+    "vm_name": "huawei_nas_migration_copy_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1337",
+    "metric_dict_name": "Post-Process Deduplication and Reduction Read Bandwidth(MB/s)",
+    "vm_name": "huawei_post_process_deduplication_and_reduction_read_bandwidthmb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1338",
+    "metric_dict_name": "Post-Process Deduplication and Reduction Write Bandwidth(MB/s)",
+    "vm_name": "huawei_post_process_deduplication_and_reduction_write_bandwidthmb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1627",
+    "metric_dict_name": "Read OPS",
+    "vm_name": "huawei_read_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1628",
+    "metric_dict_name": "Write OPS",
+    "vm_name": "huawei_write_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1629",
+    "metric_dict_name": "Read Bandwidth (MB/s)",
+    "vm_name": "huawei_read_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1630",
+    "metric_dict_name": "Write Bandwidth (MB/s)",
+    "vm_name": "huawei_write_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1631",
+    "metric_dict_name": "Avg. Read OPS Response Time (us)",
+    "vm_name": "huawei_avg_read_ops_response_time_us",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1632",
+    "metric_dict_name": "Avg. Write OPS Response Time (us)",
+    "vm_name": "huawei_avg_write_ops_response_time_us",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1633",
+    "metric_dict_name": "Avg. Corrected CPU usage (%)",
+    "vm_name": "huawei_avg_corrected_cpu_usage_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1634",
+    "metric_dict_name": "Link Write Bandwidth Reduction Ratio",
+    "vm_name": "huawei_link_write_bandwidth_reduction_ratio",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1635",
+    "metric_dict_name": "% Read",
+    "vm_name": "huawei_%_read",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1636",
+    "metric_dict_name": "% Write",
+    "vm_name": "huawei_%_write",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1638",
+    "metric_dict_name": "Bandwidth (MB/s)",
+    "vm_name": "huawei_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1639",
+    "metric_dict_name": "Cumulative Count of I/Os",
+    "vm_name": "huawei_cumulative_count_of_i_os",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1640",
+    "metric_dict_name": "Cumulative Count of Data Transferred (KB)",
+    "vm_name": "huawei_cumulative_count_of_data_transferred_kb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1641",
+    "metric_dict_name": "Cumulative Count of All Writes",
+    "vm_name": "huawei_cumulative_count_of_all_writes",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1642",
+    "metric_dict_name": "Cumulative Count of Data Written (KB)",
+    "vm_name": "huawei_cumulative_count_of_data_written_kb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1643",
+    "metric_dict_name": "Average IO Size (KB)",
+    "vm_name": "huawei_average_io_size_kb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1644",
+    "metric_dict_name": "SmartMobility Migration Bandwidth (MB/s)",
+    "vm_name": "huawei_smartmobility_migration_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1645",
+    "metric_dict_name": "SmartMobility Recall Bandwidth (MB/s)",
+    "vm_name": "huawei_smartmobility_recall_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1700",
+    "metric_dict_name": "Front-End Deduplication Processing Bandwidth",
+    "vm_name": "huawei_front_end_deduplication_processing_bandwidth",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1701",
+    "metric_dict_name": "Background Deduplication CK Scanning Bandwidth (MB/s)",
+    "vm_name": "huawei_background_deduplication_ck_scanning_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1702",
+    "metric_dict_name": "Deduplication WAL Processing Bandwidth",
+    "vm_name": "huawei_deduplication_wal_processing_bandwidth",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1703",
+    "metric_dict_name": "Deduplication Merge Bandwidth",
+    "vm_name": "huawei_deduplication_merge_bandwidth",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1704",
+    "metric_dict_name": "Deduplication Computing Power Consumption",
+    "vm_name": "huawei_deduplication_computing_power_consumption",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1705",
+    "metric_dict_name": "Compression Computing Power Consumption",
+    "vm_name": "huawei_compression_computing_power_consumption",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1706",
+    "metric_dict_name": "Time Percentage of Low-Load Node Resources",
+    "vm_name": "huawei_time_percentage_of_low_load_node_resources",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1707",
+    "metric_dict_name": "Time Percentage of Medium-Load Node Resources",
+    "vm_name": "huawei_time_percentage_of_medium_load_node_resources",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1708",
+    "metric_dict_name": "Time Percentage of High-Load Node Resources",
+    "vm_name": "huawei_time_percentage_of_high_load_node_resources",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1709",
+    "metric_dict_name": "Time Percentage of No-Load Node Resources",
+    "vm_name": "huawei_time_percentage_of_no_load_node_resources",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1710",
+    "metric_dict_name": "Daily Hot Data Percentage (%)",
+    "vm_name": "huawei_daily_hot_data_percentage_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1711",
+    "metric_dict_name": "Hot File Write Bandwidth (MB/s)",
+    "vm_name": "huawei_hot_file_write_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1712",
+    "metric_dict_name": "Hot Write Bandwidth (MB/s)",
+    "vm_name": "huawei_hot_write_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1713",
+    "metric_dict_name": "Daily Hot Data Write Volume (GB)",
+    "vm_name": "huawei_daily_hot_data_write_volume_gb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1714",
+    "metric_dict_name": "File Write Bandwidth (MB/s)",
+    "vm_name": "huawei_file_write_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1715",
+    "metric_dict_name": "Write Bandwidth (MB/s)",
+    "vm_name": "huawei_write_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1716",
+    "metric_dict_name": "Daily Written Data Volume (GB)",
+    "vm_name": "huawei_daily_written_data_volume_gb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "1717",
+    "metric_dict_name": "Background Deduplication RF Scanning Bandwidth (MB/s)",
+    "vm_name": "huawei_background_deduplication_rf_scanning_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "30001",
+    "metric_dict_name": "NFS read bandwidth (KB/s)",
+    "vm_name": "huawei_nfs_read_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "30002",
+    "metric_dict_name": "NFS write bandwidth (KB/s)",
+    "vm_name": "huawei_nfs_write_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "30003",
+    "metric_dict_name": "NFS Total bandwidth (KB/s)",
+    "vm_name": "huawei_nfs_total_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "30004",
+    "metric_dict_name": "NFS read OPS",
+    "vm_name": "huawei_nfs_read_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "30005",
+    "metric_dict_name": "NFS write OPS",
+    "vm_name": "huawei_nfs_write_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "30006",
+    "metric_dict_name": "NFS total OPS",
+    "vm_name": "huawei_nfs_total_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "30008",
+    "metric_dict_name": "NFS connected client Number",
+    "vm_name": "huawei_nfs_connected_client_number",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "30013",
+    "metric_dict_name": "NFS write OPS average response time (us)",
+    "vm_name": "huawei_nfs_write_ops_average_response_time_us",
+    "conversion": "÷1000 (us→ms)",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "30015",
+    "metric_dict_name": "NFS read OPS average response time (us)",
+    "vm_name": "huawei_nfs_read_ops_average_response_time_us",
+    "conversion": "÷1000 (us→ms)",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "30043",
+    "metric_dict_name": "DPC read bandwidth (MB/s)",
+    "vm_name": "huawei_dpc_read_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "30044",
+    "metric_dict_name": "DPC write bandwidth (MB/s)",
+    "vm_name": "huawei_dpc_write_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "30045",
+    "metric_dict_name": "DPC read OPS",
+    "vm_name": "huawei_dpc_read_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "30046",
+    "metric_dict_name": "DPC write OPS",
+    "vm_name": "huawei_dpc_write_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "30051",
+    "metric_dict_name": "DPC total bandwidth (MB/s)",
+    "vm_name": "huawei_dpc_total_bandwidth_mb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "30052",
+    "metric_dict_name": "DPC Total OPS",
+    "vm_name": "huawei_dpc_total_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "30053",
+    "metric_dict_name": "CIFS read bandwidth (KB/s)",
+    "vm_name": "huawei_cifs_read_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "30054",
+    "metric_dict_name": "CIFS write bandwidth (KB/s)",
+    "vm_name": "huawei_cifs_write_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "30055",
+    "metric_dict_name": "CIFS total bandwidth (KB/s)",
+    "vm_name": "huawei_cifs_total_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "30056",
+    "metric_dict_name": "CIFS read OPS",
+    "vm_name": "huawei_cifs_read_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "30057",
+    "metric_dict_name": "CIFS write OPS",
+    "vm_name": "huawei_cifs_write_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "30058",
+    "metric_dict_name": "CIFS total OPS",
+    "vm_name": "huawei_cifs_total_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "50001",
+    "metric_dict_name": "OBS read bandwidth (KB/s)",
+    "vm_name": "huawei_obs_read_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "50002",
+    "metric_dict_name": "OBS write bandwidth (KB/s)",
+    "vm_name": "huawei_obs_write_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "50003",
+    "metric_dict_name": "OBS total bandwidth (KB/s)",
+    "vm_name": "huawei_obs_total_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "50004",
+    "metric_dict_name": "OBS read OPS",
+    "vm_name": "huawei_obs_read_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "50005",
+    "metric_dict_name": "OBS write OPS",
+    "vm_name": "huawei_obs_write_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "50006",
+    "metric_dict_name": "OBS total OPS",
+    "vm_name": "huawei_obs_total_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "60002",
+    "metric_dict_name": "Read/write requests to the source LUN",
+    "vm_name": "huawei_read_write_requests_to_the_source_lun",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "60003",
+    "metric_dict_name": "Read/write requests to the snapshot pool",
+    "vm_name": "huawei_read_write_requests_to_the_snapshot_pool",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90001",
+    "metric_dict_name": "Total capacity (MB)",
+    "vm_name": "huawei_total_capacity_mb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90002",
+    "metric_dict_name": "Used capacity (MB)",
+    "vm_name": "huawei_used_capacity_mb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90003",
+    "metric_dict_name": "Free capacity (MB)",
+    "vm_name": "huawei_free_capacity_mb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90004",
+    "metric_dict_name": "Capacity usage (%)",
+    "vm_name": "huawei_capacity_usage_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90005",
+    "metric_dict_name": "Allocated capacity (MB)",
+    "vm_name": "huawei_allocated_capacity_mb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90006",
+    "metric_dict_name": "Free capacity ratio (%)",
+    "vm_name": "huawei_free_capacity_ratio_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90016",
+    "metric_dict_name": "Space Hard Quota(MB)",
+    "vm_name": "huawei_space_hard_quotamb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90017",
+    "metric_dict_name": "Space Soft Quota(MB)",
+    "vm_name": "huawei_space_soft_quotamb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90018",
+    "metric_dict_name": "Used Space Quota(MB)",
+    "vm_name": "huawei_used_space_quotamb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90019",
+    "metric_dict_name": "File Quantity Hard Quota",
+    "vm_name": "huawei_file_quantity_hard_quota",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90020",
+    "metric_dict_name": "File Quantity Soft Quota",
+    "vm_name": "huawei_file_quantity_soft_quota",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90021",
+    "metric_dict_name": "Used File Quantity Quota",
+    "vm_name": "huawei_used_file_quantity_quota",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90057",
+    "metric_dict_name": "Bandwidth for Copying Cone Files on a File System (KB/s)",
+    "vm_name": "huawei_bandwidth_for_copying_cone_files_on_a_file_system_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90058",
+    "metric_dict_name": "Data Protection Capacity (MB)",
+    "vm_name": "huawei_data_protection_capacity_mb",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90086",
+    "metric_dict_name": "HeadObject OPS",
+    "vm_name": "huawei_headobject_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90087",
+    "metric_dict_name": "PutObject OPS",
+    "vm_name": "huawei_putobject_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90088",
+    "metric_dict_name": "GetObject OPS",
+    "vm_name": "huawei_getobject_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90089",
+    "metric_dict_name": "ListObjects OPS",
+    "vm_name": "huawei_listobjects_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90090",
+    "metric_dict_name": "DeleteObject OPS",
+    "vm_name": "huawei_deleteobject_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90091",
+    "metric_dict_name": "DeleteObjects OPS",
+    "vm_name": "huawei_deleteobjects_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90092",
+    "metric_dict_name": "GetObjectAcl OPS",
+    "vm_name": "huawei_getobjectacl_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90093",
+    "metric_dict_name": "PutObjectAcl OPS",
+    "vm_name": "huawei_putobjectacl_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90094",
+    "metric_dict_name": "CreateBucket OPS",
+    "vm_name": "huawei_createbucket_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90095",
+    "metric_dict_name": "DeleteBucket OPS",
+    "vm_name": "huawei_deletebucket_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90096",
+    "metric_dict_name": "ListBuckets OPS",
+    "vm_name": "huawei_listbuckets_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90097",
+    "metric_dict_name": "Other Object OPS",
+    "vm_name": "huawei_other_object_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90098",
+    "metric_dict_name": "Other Bucket OPS",
+    "vm_name": "huawei_other_bucket_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90099",
+    "metric_dict_name": "Avg. HeadObject Response Time",
+    "vm_name": "huawei_avg_headobject_response_time",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90100",
+    "metric_dict_name": "Avg. PutObject Response Time",
+    "vm_name": "huawei_avg_putobject_response_time",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90101",
+    "metric_dict_name": "Avg. GetObject Response Time",
+    "vm_name": "huawei_avg_getobject_response_time",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90102",
+    "metric_dict_name": "Avg. ListObjects Response Time",
+    "vm_name": "huawei_avg_listobjects_response_time",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90103",
+    "metric_dict_name": "Avg. DeleteObject Response Time",
+    "vm_name": "huawei_avg_deleteobject_response_time",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90104",
+    "metric_dict_name": "Avg. DeleteObjects Response Time",
+    "vm_name": "huawei_avg_deleteobjects_response_time",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90105",
+    "metric_dict_name": "Avg. GetObjectAcl Response Time",
+    "vm_name": "huawei_avg_getobjectacl_response_time",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90106",
+    "metric_dict_name": "Avg. PutObjectAcl Response Time",
+    "vm_name": "huawei_avg_putobjectacl_response_time",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90107",
+    "metric_dict_name": "Avg. CreateBucket Response Time",
+    "vm_name": "huawei_avg_createbucket_response_time",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90108",
+    "metric_dict_name": "Avg. DeleteBucket Response Time",
+    "vm_name": "huawei_avg_deletebucket_response_time",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90109",
+    "metric_dict_name": "Avg. ListBuckets Response Time",
+    "vm_name": "huawei_avg_listbuckets_response_time",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90110",
+    "metric_dict_name": "Avg. Other Object I/O Response Time",
+    "vm_name": "huawei_avg_other_object_i_o_response_time",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90111",
+    "metric_dict_name": "Avg. Other Bucket I/O Response Time",
+    "vm_name": "huawei_avg_other_bucket_i_o_response_time",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90112",
+    "metric_dict_name": "S3 Bandwidth (KB/s)",
+    "vm_name": "huawei_s3_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90113",
+    "metric_dict_name": "Avg. Response Time of S3 I/Os (us)",
+    "vm_name": "huawei_avg_response_time_of_s3_i_os_us",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90114",
+    "metric_dict_name": "Total S3 OPS",
+    "vm_name": "huawei_total_s3_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90115",
+    "metric_dict_name": "Total S3 Bandwidth (KB/s)",
+    "vm_name": "huawei_total_s3_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90116",
+    "metric_dict_name": "S3 Read Bandwidth (KB/s)",
+    "vm_name": "huawei_s3_read_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90117",
+    "metric_dict_name": "S3 Write Bandwidth (KB/s)",
+    "vm_name": "huawei_s3_write_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90118",
+    "metric_dict_name": "S3 OPS",
+    "vm_name": "huawei_s3_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90119",
+    "metric_dict_name": "Select Object Content OPS",
+    "vm_name": "huawei_select_object_content_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90120",
+    "metric_dict_name": "Put Object Tagging OPS",
+    "vm_name": "huawei_put_object_tagging_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90121",
+    "metric_dict_name": "Get Object Tagging OPS",
+    "vm_name": "huawei_get_object_tagging_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90122",
+    "metric_dict_name": "S3 Read Bandwidth (KB/s)",
+    "vm_name": "huawei_s3_read_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90123",
+    "metric_dict_name": "S3 Write Bandwidth (KB/s)",
+    "vm_name": "huawei_s3_write_bandwidth_kb_s",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90124",
+    "metric_dict_name": "Avg. Response Time of S3 Write I/Os (us)",
+    "vm_name": "huawei_avg_response_time_of_s3_write_i_os_us",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90125",
+    "metric_dict_name": "Avg. Response Time of S3 Read I/Os (us)",
+    "vm_name": "huawei_avg_response_time_of_s3_read_i_os_us",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90126",
+    "metric_dict_name": "S3 Write OPS",
+    "vm_name": "huawei_s3_write_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90127",
+    "metric_dict_name": "S3 Read OPS",
+    "vm_name": "huawei_s3_read_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90128",
+    "metric_dict_name": "Other S3 OPS",
+    "vm_name": "huawei_other_s3_ops",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90129",
+    "metric_dict_name": "Avg. Response Time of Other S3 I/Os (us)",
+    "vm_name": "huawei_avg_response_time_of_other_s3_i_os_us",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90130",
+    "metric_dict_name": "Read I/O Granularity Distribution: [2M,4M) (%)",
+    "vm_name": "huawei_read_i_o_granularity_distribution_2m4m_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90131",
+    "metric_dict_name": "Read I/O Granularity Distribution: [4M,8M) (%)",
+    "vm_name": "huawei_read_i_o_granularity_distribution_4m8m_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90132",
+    "metric_dict_name": "Read I/O Granularity Distribution: [8M,16M) (%)",
+    "vm_name": "huawei_read_i_o_granularity_distribution_8m16m_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90133",
+    "metric_dict_name": "Read I/O Granularity Distribution: [16M,+∞) (%)",
+    "vm_name": "huawei_read_i_o_granularity_distribution_16minf_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90134",
+    "metric_dict_name": "Write I/O Granularity Distribution: [2M,4M) (%)",
+    "vm_name": "huawei_write_i_o_granularity_distribution_2m4m_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90135",
+    "metric_dict_name": "Write I/O Granularity Distribution: [4M,8M) (%)",
+    "vm_name": "huawei_write_i_o_granularity_distribution_4m8m_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90136",
+    "metric_dict_name": "Write I/O Granularity Distribution: [8M,16M) (%)",
+    "vm_name": "huawei_write_i_o_granularity_distribution_8m16m_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90137",
+    "metric_dict_name": "Write I/O Granularity Distribution: [16M,+∞) (%)",
+    "vm_name": "huawei_write_i_o_granularity_distribution_16minf_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90138",
+    "metric_dict_name": "Read I/O Granularity Distribution: [256KB,512KB) (%)",
+    "vm_name": "huawei_read_i_o_granularity_distribution_256kb512kb_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90139",
+    "metric_dict_name": "Read I/O Granularity Distribution: [512KB,1M) (%)",
+    "vm_name": "huawei_read_i_o_granularity_distribution_512kb1m_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90140",
+    "metric_dict_name": "Read I/O Granularity Distribution: [1M,2M) (%)",
+    "vm_name": "huawei_read_i_o_granularity_distribution_1m2m_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90141",
+    "metric_dict_name": "Write I/O Granularity Distribution: [256KB,512KB) (%)",
+    "vm_name": "huawei_write_i_o_granularity_distribution_256kb512kb_percent",
+    "conversion": "",
+    "in_vm": "-"
+  },
+  {
+    "metric_id": "90142",
+    "metric_dict_name": "Write I/O Granularity Distribution: [512KB,1M) (%)",
+    "vm_name": "huawei_write_i_o_granularity_distribution_512kb1m_percent",
+    "conversion": "",
+    "in_vm": "-"
+  }
+]
