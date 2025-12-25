@@ -21,6 +21,7 @@ import time
 import argparse
 import logging
 import uuid
+import json
 from logging.handlers import RotatingFileHandler
 from pathlib import Path
 
@@ -585,7 +586,11 @@ def main():
     
     # Находим .tgz файлы
     tgz_files = list(temp_dir.rglob("*.tgz"))
-    logger.info(f"✅ Found {len(tgz_files)} .tgz files")
+    total_files = len(tgz_files)
+    logger.info(f"✅ Found {total_files} .tgz files")
+    
+    # Выводим начальный прогресс для API (JSON формат для парсинга)
+    print(f"PROGRESS_JSON: {json.dumps({'total_files': total_files, 'processed_files': 0, 'phase': 'starting'})}", flush=True)
     
     if not tgz_files:
         logger.error("No .tgz files found!")
@@ -602,10 +607,27 @@ def main():
         for f in tgz_files
     ]
     
-    logger.info(f"🔥 Processing {len(tgz_files)} files with {num_workers} workers...")
+    logger.info(f"🔥 Processing {total_files} files with {num_workers} workers...")
+    
+    # Используем imap_unordered для получения результатов по мере завершения
+    # Это позволяет выводить реальный прогресс обработки
+    results = []
+    processed_files = 0
     
     with Pool(processes=num_workers) as pool:
-        results = pool.map(process_single_tgz_streaming, process_args)
+        for result in pool.imap_unordered(process_single_tgz_streaming, process_args):
+            results.append(result)
+            processed_files += 1
+            
+            # Выводим прогресс после каждого завершенного файла (JSON формат для API)
+            progress_data = {
+                'total_files': total_files,
+                'processed_files': processed_files,
+                'current_file': result.get('file', ''),
+                'metrics': result.get('metrics', 0),
+                'success': result.get('success', False)
+            }
+            print(f"PROGRESS_JSON: {json.dumps(progress_data)}", flush=True)
     
     # Статистика
     total_time = time.time() - start_time
