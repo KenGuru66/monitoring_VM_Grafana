@@ -13,7 +13,13 @@ MCP Server для доступа к данным Huawei Storage в VictoriaMetri
     python mcp_server.py
 
 Конфигурация через переменные окружения:
-    VM_URL - URL VictoriaMetrics (по умолчанию http://localhost:8428)
+    VM_URL - Primary URL VictoriaMetrics (по умолчанию http://10.5.10.163:8428)
+    VM_URL_FALLBACK - Fallback URL если primary недоступен (по умолчанию http://localhost:8428)
+
+Логика подключения:
+    1. Проверяет доступность primary (лаборатория через VPN)
+    2. Если недоступен — переключается на fallback (локальный)
+    3. Кеширует результат на 60 секунд
 """
 
 import os
@@ -32,7 +38,16 @@ logging.basicConfig(
 logger = logging.getLogger("mcp-huawei-vm")
 
 # Конфигурация
-VM_URL = os.getenv("VM_URL", "http://localhost:8428")
+# Список URL для попыток подключения (в порядке приоритета)
+VM_URLS = [
+    os.getenv("VM_URL", "http://10.5.10.163:8428"),  # Лаборатория (primary)
+    os.getenv("VM_URL_FALLBACK", "http://localhost:8428"),  # Локальный (fallback)
+]
+
+# Кеш активного URL (чтобы не проверять каждый раз)
+_active_vm_url: Optional[str] = None
+_active_vm_url_checked_at: Optional[float] = None
+HEALTH_CHECK_INTERVAL = 60  # Перепроверять доступность каждые 60 секунд
 
 # Временной диапазон по умолчанию (6 месяцев назад - сейчас)
 DEFAULT_START = 1571875200  # Достаточно старая дата для захвата всех данных
@@ -220,6 +235,49 @@ mcp = FastMCP(
 # Вспомогательные функции
 # =============================================================================
 
+async def get_active_vm_url() -> str:
+    """
+    Возвращает активный URL VictoriaMetrics с fallback логикой.
+    
+    Проверяет доступность серверов в порядке приоритета:
+    1. Лаборатория (VM_URL) - если доступен VPN
+    2. Локальный (VM_URL_FALLBACK) - fallback
+    
+    Кеширует результат на HEALTH_CHECK_INTERVAL секунд.
+    """
+    global _active_vm_url, _active_vm_url_checked_at
+    
+    import time
+    now = time.time()
+    
+    # Используем кешированный URL если он ещё валиден
+    if (_active_vm_url is not None and 
+        _active_vm_url_checked_at is not None and
+        now - _active_vm_url_checked_at < HEALTH_CHECK_INTERVAL):
+        return _active_vm_url
+    
+    # Проверяем доступность серверов
+    async with httpx.AsyncClient(timeout=5.0) as client:
+        for vm_url in VM_URLS:
+            try:
+                response = await client.get(f"{vm_url}/health")
+                if response.status_code == 200:
+                    if _active_vm_url != vm_url:
+                        logger.info(f"Активный VictoriaMetrics: {vm_url}")
+                    _active_vm_url = vm_url
+                    _active_vm_url_checked_at = now
+                    return vm_url
+            except Exception as e:
+                logger.debug(f"VictoriaMetrics {vm_url} недоступен: {e}")
+                continue
+    
+    # Если ничего не доступно, используем первый URL (ошибка будет позже)
+    logger.warning(f"Ни один VictoriaMetrics не доступен, используем {VM_URLS[0]}")
+    _active_vm_url = VM_URLS[0]
+    _active_vm_url_checked_at = now
+    return VM_URLS[0]
+
+
 async def vm_request(
     endpoint: str,
     params: Optional[dict] = None,
@@ -228,6 +286,8 @@ async def vm_request(
 ) -> dict:
     """
     Выполняет HTTP запрос к VictoriaMetrics API.
+    
+    Автоматически выбирает доступный сервер (лаборатория или локальный).
     
     Args:
         endpoint: Путь API (например, /api/v1/label/SN/values)
@@ -241,7 +301,8 @@ async def vm_request(
     Raises:
         Exception: При ошибке запроса
     """
-    url = f"{VM_URL}{endpoint}"
+    vm_url = await get_active_vm_url()
+    url = f"{vm_url}{endpoint}"
     
     # Добавляем временной диапазон по умолчанию только для endpoints где это нужно
     if params is None:
@@ -1759,5 +1820,30 @@ async def get_health_summary(
 # =============================================================================
 
 if __name__ == "__main__":
-    logger.info(f"Запуск MCP сервера huawei-storage-vm (VM_URL={VM_URL})")
-    mcp.run()
+    import sys
+    
+    # Логируем количество зарегистрированных инструментов перед запуском
+    try:
+        # Пытаемся получить список инструментов (может не работать до запуска)
+        logger.info(f"Инициализация MCP сервера huawei-storage-vm")
+        logger.info(f"  Primary: {VM_URLS[0]}")
+        logger.info(f"  Fallback: {VM_URLS[1] if len(VM_URLS) > 1 else 'не настроен'}")
+        logger.info("Все инструменты должны быть зарегистрированы через декораторы @mcp.tool()")
+    except Exception as e:
+        logger.warning(f"Не удалось проверить инструменты до запуска: {e}")
+    
+    # Проверяем аргументы командной строки для выбора транспорта
+    transport = "stdio"  # По умолчанию stdio для совместимости с Cursor
+    port = 8000
+    
+    if len(sys.argv) > 1 and sys.argv[1] == "--http":
+        transport = "http"
+        if len(sys.argv) > 2:
+            port = int(sys.argv[2])
+        logger.info(f"Запуск MCP сервера в режиме HTTP (порт {port})")
+        mcp.run(transport="http", host="127.0.0.1", port=port)
+    else:
+        logger.info(f"Запуск MCP сервера в режиме stdio")
+        logger.info("Примечание: если инструменты не находятся при повторном подключении,")
+        logger.info("попробуйте перезапустить Cursor или отключить/включить сервер в настройках")
+        mcp.run(transport="stdio")
